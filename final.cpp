@@ -1,7 +1,8 @@
 ﻿/*---------------------------------------------------------*/
-/* ----------------   Pr�ctica 11 --------------------------*/
+/* ----------------   Proyecto Final --------------------------*/
 /*-----------------    2019-2   ---------------------------*/
-/*------------- Alumno: Miramontes Sarabia Luis Enrique ---------------*/
+/*------------- Alumnos Miramontes Sarabia Luis Enrique ---------------*/
+/*-----------------     Varela García Alan Paul   ---------------------------*/
 //#define STB_IMAGE_IMPLEMENTATION
 #include <glew.h>
 #include <glfw3.h>
