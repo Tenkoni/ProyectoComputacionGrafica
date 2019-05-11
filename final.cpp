@@ -1,4 +1,4 @@
-﻿/*---------------------------------------------------------*/
+/*---------------------------------------------------------*/
 /* ----------------   Proyecto Final --------------------------*/
 /*-----------------    2019-2   ---------------------------*/
 /*------------- Alumnos Miramontes Sarabia Luis Enrique ---------------*/
@@ -10,6 +10,11 @@
 
 #include "camera.h"
 #include "Model.h"
+
+#include "esfera.h"
+#include "toroide.h"
+#include <vector>
+
 
 // Other Libs
 #include "SOIL2/SOIL2.h"
@@ -42,11 +47,15 @@ glm::vec3 lightPosition(0.0f, 3.0f, 0.0f);
 glm::vec3 lightDirection(0.0f, 0.0f, -3.0f);
 
 void myData(void);
-void display(Shader, Model, Model);
+void display(Shader, Shader, Model, Model);
 void getResolution(void);
 void animate(void);
 void LoadTextures(void);
 unsigned int generateTextures(char*, bool);
+
+//Figuras
+Esfera my_sphere(1.0);
+Toroide my_torus(1.0, 1.0, 3.0);
 
 //For Keyboard
 float	movX = 0.0f,
@@ -68,11 +77,18 @@ t_caja_brillo;
 float movKit_z = 0.0f,
 movKit_x = 0.0f,
 movKit_y = 0.0f,
-rotKit_y = 0.0f;
+rotKit_y = 0.0f,
+fortuna_rot = 0.0f;
 
 int estado = 0;
 bool play, reversa = false;
 
+//savestates_fortuna
+std::vector < glm::mat4 > savestate(15); 
+std::vector < glm::mat4 > savestate_adorno(15);
+
+//factor de escala fortuna
+float escala = 15.0f;
 
 unsigned int generateTextures(const char* filename, bool alfa)
 {
@@ -128,304 +144,90 @@ void LoadTextures()
 
 void myData()
 {
-	float vertices[] = {
-		// positions          // normals           // texture coords
-		-0.5f, -0.5f, -0.5f,  0.0f,  0.0f, -1.0f,  0.0f,  0.0f,
-		 0.5f, -0.5f, -0.5f,  0.0f,  0.0f, -1.0f,  1.0f,  0.0f,
-		 0.5f,  0.5f, -0.5f,  0.0f,  0.0f, -1.0f,  1.0f,  1.0f,
-		-0.5f,  0.5f, -0.5f,  0.0f,  0.0f, -1.0f,  0.0f,  1.0f,
+	GLfloat vertices[] = {
+		//Position				//Normals
+		-0.5f, -0.5f, -0.5f,  0.0f,  0.0f, -1.0f,//
+		 0.5f, -0.5f, -0.5f,  0.0f,  0.0f, -1.0f,
+		 0.5f,  0.5f, -0.5f,  0.0f,  0.0f, -1.0f,
+		 0.5f,  0.5f, -0.5f,  0.0f,  0.0f, -1.0f,
+		-0.5f,  0.5f, -0.5f,  0.0f,  0.0f, -1.0f,
+		-0.5f, -0.5f, -0.5f,  0.0f,  0.0f, -1.0f,
 
-		-0.5f, -0.5f,  0.5f,  0.0f,  0.0f,  1.0f,  0.0f,  0.0f,
-		 0.5f, -0.5f,  0.5f,  0.0f,  0.0f,  1.0f,  1.0f,  0.0f,
-		 0.5f,  0.5f,  0.5f,  0.0f,  0.0f,  1.0f,  1.0f,  1.0f,
-		-0.5f,  0.5f,  0.5f,  0.0f,  0.0f,  1.0f,  0.0f,  1.0f,
+		-0.5f, -0.5f,  0.5f,  0.0f,  0.0f,  1.0f,
+		 0.5f, -0.5f,  0.5f,  0.0f,  0.0f,  1.0f,
+		 0.5f,  0.5f,  0.5f,  0.0f,  0.0f,  1.0f,
+		 0.5f,  0.5f,  0.5f,  0.0f,  0.0f,  1.0f,
+		-0.5f,  0.5f,  0.5f,  0.0f,  0.0f,  1.0f,
+		-0.5f, -0.5f,  0.5f,  0.0f,  0.0f,  1.0f,
 
-		-0.5f,  0.5f,  0.5f, -1.0f,  0.0f,  0.0f,  1.0f,  0.0f,
-		-0.5f,  0.5f, -0.5f, -1.0f,  0.0f,  0.0f,  1.0f,  1.0f,
-		-0.5f, -0.5f, -0.5f, -1.0f,  0.0f,  0.0f,  0.0f,  1.0f,
-		-0.5f, -0.5f,  0.5f, -1.0f,  0.0f,  0.0f,  0.0f,  0.0f,
+		-0.5f,  0.5f,  0.5f, -1.0f,  0.0f,  0.0f,
+		-0.5f,  0.5f, -0.5f, -1.0f,  0.0f,  0.0f,
+		-0.5f, -0.5f, -0.5f, -1.0f,  0.0f,  0.0f,
+		-0.5f, -0.5f, -0.5f, -1.0f,  0.0f,  0.0f,
+		-0.5f, -0.5f,  0.5f, -1.0f,  0.0f,  0.0f,
+		-0.5f,  0.5f,  0.5f, -1.0f,  0.0f,  0.0f,
 
-		 0.5f,  0.5f,  0.5f,  1.0f,  0.0f,  0.0f,  1.0f,  0.0f,
-		 0.5f,  0.5f, -0.5f,  1.0f,  0.0f,  0.0f,  1.0f,  1.0f,
-		 0.5f, -0.5f, -0.5f,  1.0f,  0.0f,  0.0f,  0.0f,  1.0f,
-		 0.5f, -0.5f,  0.5f,  1.0f,  0.0f,  0.0f,  0.0f,  0.0f,
+		 0.5f,  0.5f,  0.5f,  1.0f,  0.0f,  0.0f,
+		 0.5f,  0.5f, -0.5f,  1.0f,  0.0f,  0.0f,
+		 0.5f, -0.5f, -0.5f,  1.0f,  0.0f,  0.0f,
+		 0.5f, -0.5f, -0.5f,  1.0f,  0.0f,  0.0f,
+		 0.5f, -0.5f,  0.5f,  1.0f,  0.0f,  0.0f,
+		 0.5f,  0.5f,  0.5f,  1.0f,  0.0f,  0.0f,
 
-		-0.5f, -0.5f, -0.5f,  0.0f, -1.0f,  0.0f,  0.0f,  1.0f,
-		 0.5f, -0.5f, -0.5f,  0.0f, -1.0f,  0.0f,  1.0f,  1.0f,
-		 0.5f, -0.5f,  0.5f,  0.0f, -1.0f,  0.0f,  1.0f,  0.0f,
-		-0.5f, -0.5f,  0.5f,  0.0f, -1.0f,  0.0f,  0.0f,  0.0f,
+		-0.5f, -0.5f, -0.5f,  0.0f, -1.0f,  0.0f,
+		 0.5f, -0.5f, -0.5f,  0.0f, -1.0f,  0.0f,
+		 0.5f, -0.5f,  0.5f,  0.0f, -1.0f,  0.0f,
+		 0.5f, -0.5f,  0.5f,  0.0f, -1.0f,  0.0f,
+		-0.5f, -0.5f,  0.5f,  0.0f, -1.0f,  0.0f,
+		-0.5f, -0.5f, -0.5f,  0.0f, -1.0f,  0.0f,
 
-		-0.5f,  0.5f, -0.5f,  0.0f,  1.0f,  0.0f,  0.0f,  1.0f,
-		 0.5f,  0.5f, -0.5f,  0.0f,  1.0f,  0.0f,  1.0f,  1.0f,
-		 0.5f,  0.5f,  0.5f,  0.0f,  1.0f,  0.0f,  1.0f,  0.0f,
-		-0.5f,  0.5f,  0.5f,  0.0f,  1.0f,  0.0f,  0.0f,  0.0f,
-
-
-		//////Segunda caja
-
-		-0.5f, -0.5f, -0.5f,  0.0f,  0.0f, -1.0f,  0.0f,  0.0f,
-		 0.5f, -0.5f, -0.5f,  0.0f,  0.0f, -1.0f,  1.0f,  0.0f,
-		 0.5f,  0.5f, -0.5f,  0.0f,  0.0f, -1.0f,  1.0f,  1.0f,
-		-0.5f,  0.5f, -0.5f,  0.0f,  0.0f, -1.0f,  0.0f,  1.0f,
-
-		-0.5f, -0.5f,  0.5f,  0.0f,  0.0f,  1.0f,  0.0f,  0.0f,
-		 0.5f, -0.5f,  0.5f,  0.0f,  0.0f,  1.0f,  1.0f,  0.0f,
-		 0.5f,  0.5f,  0.5f,  0.0f,  0.0f,  1.0f,  1.0f,  1.0f,
-		-0.5f,  0.5f,  0.5f,  0.0f,  0.0f,  1.0f,  0.0f,  1.0f,
-
-		-0.5f,  0.5f,  0.5f, -1.0f,  0.0f,  0.0f,  1.0f,  0.0f,
-		-0.5f,  0.5f, -0.5f, -1.0f,  0.0f,  0.0f,  1.0f,  1.0f,
-		-0.5f, -0.5f, -0.5f, -1.0f,  0.0f,  0.0f,  0.0f,  1.0f,
-		-0.5f, -0.5f,  0.5f, -1.0f,  0.0f,  0.0f,  0.0f,  0.0f,
-
-		 0.5f,  0.5f,  0.5f,  1.0f,  0.0f,  0.0f,  1.0f,  0.0f,
-		 0.5f,  0.5f, -0.5f,  1.0f,  0.0f,  0.0f,  1.0f,  1.0f,
-		 0.5f, -0.5f, -0.5f,  1.0f,  0.0f,  0.0f,  0.0f,  1.0f,
-		 0.5f, -0.5f,  0.5f,  1.0f,  0.0f,  0.0f,  0.0f,  0.0f,
-
-		-0.5f, -0.5f, -0.5f,  0.0f, -1.0f,  0.0f,  0.0f,  1.0f,
-		 0.5f, -0.5f, -0.5f,  0.0f, -1.0f,  0.0f,  1.0f,  1.0f,
-		 0.5f, -0.5f,  0.5f,  0.0f, -1.0f,  0.0f,  1.0f,  0.0f,
-		-0.5f, -0.5f,  0.5f,  0.0f, -1.0f,  0.0f,  0.0f,  0.0f,
-
-		-0.5f,  0.5f, -0.5f,  0.0f,  1.0f,  0.0f,  0.0f,  1.0f,
-		 0.5f,  0.5f, -0.5f,  0.0f,  1.0f,  0.0f,  1.0f,  1.0f,
-		 0.5f,  0.5f,  0.5f,  0.0f,  1.0f,  0.0f,  1.0f,  0.0f,
-		-0.5f,  0.5f,  0.5f,  0.0f,  1.0f,  0.0f,  0.0f,  0.0f,
-
-	};
-	unsigned int indices[] = {
-		0, 1, 3, // first triangle
-		1, 2, 3  // second triangle
+		-0.5f,  0.5f, -0.5f,  0.0f,  1.0f,  0.0f,
+		 0.5f,  0.5f, -0.5f,  0.0f,  1.0f,  0.0f,
+		 0.5f,  0.5f,  0.5f,  0.0f,  1.0f,  0.0f,
+		 0.5f,  0.5f,  0.5f,  0.0f,  1.0f,  0.0f,
+		-0.5f,  0.5f,  0.5f,  0.0f,  1.0f,  0.0f,
+		-0.5f,  0.5f, -0.5f,  0.0f,  1.0f,  0.0f
 	};
 
 	glGenVertexArrays(1, &VAO);
+	glBindVertexArray(VAO);
+
 	glGenBuffers(1, &VBO);
 	glGenBuffers(1, &EBO);
 
-	glBindVertexArray(VAO);
 
 	glBindBuffer(GL_ARRAY_BUFFER, VBO);
 	glBufferData(GL_ARRAY_BUFFER, sizeof(vertices), vertices, GL_STATIC_DRAW);
 
-	glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, EBO);
-	glBufferData(GL_ELEMENT_ARRAY_BUFFER, sizeof(indices), indices, GL_STATIC_DRAW);
-
 	// position attribute
-	glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 8 * sizeof(float), (void*)0);
+	glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 6 * sizeof(float), (void*)0);
 	glEnableVertexAttribArray(0);
 	// normal attribute
-	glVertexAttribPointer(1, 3, GL_FLOAT, GL_FALSE, 8 * sizeof(float), (void*)(3 * sizeof(float)));
+	glVertexAttribPointer(1, 3, GL_FLOAT, GL_FALSE, 6 * sizeof(float), (void*)(3 * sizeof(float)));
 	glEnableVertexAttribArray(1);
 	// texture coord attribute
-	glVertexAttribPointer(2, 2, GL_FLOAT, GL_FALSE, 8 * sizeof(float), (void*)(6 * sizeof(float)));
+	glVertexAttribPointer(2, 2, GL_FLOAT, GL_FALSE, 6 * sizeof(float), (void*)(6 * sizeof(float)));
 	glEnableVertexAttribArray(2);
 
 }
 
 void animate(void)
 {
-	if (play) {
-
-		if (estado == 0 and !reversa) {
-
-
-			if (movKit_z < 150) {
-				printf("Z desp: %f \n", movKit_z);
-				movKit_z += 1.0f;
-			}
-			else {
-				rotKit_y = 90;
-				estado = 1;
-			}
-		}
-
-		if (estado == 1 and !reversa) {
-
-			if (movKit_x < 63) {
-				movKit_x += 1.0f;
-				printf("X desp: %f \n", movKit_x);
-			}
-			else {
-				rotKit_y = 180;
-				estado = 2;
-			}
-		}
-		if (estado == 2 and !reversa) {
-
-
-			if (movKit_z > 50) {
-				movKit_z += -1.0f;
-				printf("Z desp: %f \n", movKit_z);
-			}
-			else {
-				rotKit_y = 90;
-				estado = 3;
-			}
-		}
-
-		if (estado == 3 and !reversa) {
-
-
-			if (movKit_x < 63*2) {
-				movKit_x += 1.0f;
-				printf("X desp: %f \n", movKit_x);
-			}
-			else {
-				rotKit_y = 0;
-				estado = 4;
-			}
-		}
-
-		if (estado == 4 and !reversa) {
-
-
-			if (movKit_z < 150) {
-				printf("Z desp: %f \n", movKit_z);
-				movKit_z += 1.0f;
-			}
-			else {
-				rotKit_y = 90;
-				estado = 5;
-			}
-		}
-
-		if (estado == 5 and !reversa) {
-
-
-			if (movKit_x < 63 * 3) {
-				movKit_x += 1.0f;
-				printf("X desp: %f \n", movKit_x);
-			}
-			else {
-				rotKit_y = 180;
-				estado = 6;
-			}
-		}
-
-		if (estado == 6 and !reversa) {
-
-
-			if (movKit_z > -150) {
-				movKit_z += -1.0f;
-				printf("Z desp: %f \n", movKit_z);
-			}
-			else {
-				rotKit_y = 270;
-				estado = 7;
-			}
-		}
-
-		if (estado == 7 and !reversa) {
-
-
-			if (movKit_x > 82) {
-				movKit_x += -1.0f;
-				printf("X desp: %f \n", movKit_x);
-			}
-			else {
-				rotKit_y = 0;
-				estado = 8;
-			}
-		}
-
-		if (estado == 8 and !reversa) {
-
-			if (movKit_z < -105) {
-				printf("Z desp: %f \n", movKit_z);
-				movKit_z += 1.0f;
-			}
-			else {
-				rotKit_y = 270;
-				estado = 9;
-			}
-		}
-
-		if (estado == 9 and !reversa) {
-
-
-			if (movKit_x > 0) {
-				movKit_x += -1.0f;
-				printf("X desp: %f \n", movKit_x);
-			}
-			else {
-				rotKit_y = 0;
-				estado = 0;
-			}
-		}
-
-		if (estado == 0 and reversa) {
-
-			if (rotKit_y == 0)
-				rotKit_y = 180;
-
-			if (movKit_z > -150) {
-				movKit_z -= 1.0f;
-				printf("Z desp: %f \n", movKit_z);
-			}
-			else {
-				rotKit_y = 90;
-				estado = 3;
-			}
-		}
-
-		if (estado == 1 and reversa) {
-
-			if (rotKit_y == 90)
-				rotKit_y = 270;
-
-			if (movKit_x > 0) {
-				movKit_x -= 1.0f;
-				printf("X desp: %f \n", movKit_x);
-			}
-			else {
-				rotKit_y = 180;
-				estado = 0;
-			}
-		}
-		if (estado == 2 and reversa) {
-
-			if (rotKit_y == 180)
-				rotKit_y = 0;
-
-			if (movKit_z < 150) {
-				movKit_z += 1.0f;
-				printf("Z desp: %f \n", movKit_z);
-			}
-			else {
-				rotKit_y = 270;
-				estado = 1;
-			}
-		}
-		if (estado == 3 and reversa) {
-
-			if (rotKit_y == 270)
-				rotKit_y = 90;
-
-			if (movKit_x < 180) {
-				movKit_x += 1.0f;
-				printf("X desp: %f \n", movKit_x);
-			}
-			else {
-				rotKit_y = 0;
-				estado = 2;
-			}
-		}
-
-
+	if (play)
+	{
+		fortuna_rot += 0.2f; //rueda de la fortuna
 
 	}
 
-
-
-
-
 }
 
-void display(Shader shader, Model modelo, Model pista)
+void display(Shader shader, Shader projectionShader, Model modelo, Model pista)
 {
-	shader.use();
+	//shader.use();
 
+	projectionShader.use();
+	projectionShader.setVec3("lightColor", 1.0f, 1.0f, 1.0f);
+	projectionShader.setVec3("lightPos", lightPosition);
 	// create transformations and Projection
 	glm::mat4 tmp = glm::mat4(1.0f);
 	glm::mat4 model = glm::mat4(1.0f);		// initialize Matrix, Use this matrix for individual models
@@ -433,9 +235,91 @@ void display(Shader shader, Model modelo, Model pista)
 	glm::mat4 projection = glm::mat4(1.0f);	//This matrix is for Projection
 
 	//Use "projection" to include Camera
-	projection = glm::perspective(glm::radians(camera.Zoom), (float)SCR_WIDTH / (float)SCR_HEIGHT, 0.1f, 500.0f);
+	projection = glm::perspective(glm::radians(camera.Zoom), (float)SCR_WIDTH / (float)SCR_HEIGHT, 0.1f, 2000.0f);
 	view = camera.GetViewMatrix();
 
+	projectionShader.setVec3("viewPos", camera.Position);
+	projectionShader.setMat4("model", model);
+	projectionShader.setMat4("view", view);
+	// note: currently we set the projection matrix each frame, but since the projection matrix rarely changes it's often best practice to set it outside the main loop only once.
+	projectionShader.setMat4("projection", projection);
+
+	glBindVertexArray(VAO);
+	//Soporte1
+	model = savestate.at(0) = glm::translate(savestate.at(0) = glm::mat4(1.0f), glm::vec3(9.546*escala/2, 8.9 /2*escala, 4 * escala / 1.5 *2.3));
+	model = glm::rotate(model, glm::radians(45.0f), glm::vec3(0.0f, 0.0f, 1.0f));
+	model = glm::scale(model, glm::vec3(0.5*escala, 13.5*escala, 0.5*escala));
+	projectionShader.setVec3("aColor", glm::vec3((float)100 / 255, (float)83 / 255, (float)148 / 255));
+	projectionShader.setMat4("model", model);
+	glDrawArrays(GL_TRIANGLES, 0, 36);
+
+	//Soporte2
+	model = savestate.at(0) = glm::translate(savestate.at(0), glm::vec3(-13.5 * escala * cos(45 * M_PI / 180) + 0.25, 0, 0));
+	model = glm::rotate(model, glm::radians(45.0f), glm::vec3(0.0f, 0.0f, -1.0f));
+	model = glm::scale(model, glm::vec3(0.5*escala, 13.5 * escala, 0.5*escala));
+	projectionShader.setVec3("aColor", glm::vec3((float)100 / 255, (float)83 / 255, (float)148 / 255));
+	projectionShader.setMat4("model", model);
+	glDrawArrays(GL_TRIANGLES, 0, 36);
+
+	//Soporte3
+	model = savestate.at(0) = glm::translate(savestate.at(0) = glm::mat4(1.0f), glm::vec3(9.546*escala / 2, 8.9 / 2 * escala, -4*escala/1.5 + 4 * escala / 1.5 * 2.3));
+	model = glm::rotate(model, glm::radians(45.0f), glm::vec3(0.0f, 0.0f, 1.0f));
+	model = glm::scale(model, glm::vec3(0.5*escala, 13.5 * escala, 0.5*escala));
+	projectionShader.setVec3("aColor", glm::vec3((float)100 / 255, (float)83 / 255, (float)148 / 255));
+	projectionShader.setMat4("model", model);
+	glDrawArrays(GL_TRIANGLES, 0, 36);
+
+	//Soporte4
+	model = savestate.at(0) = glm::translate(savestate.at(0), glm::vec3(-13.5 * escala * cos(45 * M_PI / 180) + 0.25, 0, 0));
+	model = glm::rotate(model, glm::radians(45.0f), glm::vec3(0.0f, 0.0f, -1.0f));
+	model = glm::scale(model, glm::vec3(0.5*escala, 13.5 * escala, 0.5*escala));
+	projectionShader.setVec3("aColor", glm::vec3((float)100 / 255, (float)83 / 255, (float)148 / 255));
+	projectionShader.setMat4("model", model);
+	glDrawArrays(GL_TRIANGLES, 0, 36);
+
+	//Eje
+	model = glm::translate(savestate.at(0) = glm::mat4(1.0f), glm::vec3(-13.5 * escala * cos(45 * M_PI / 180) / 2 + 9.546*escala / 2, (13.5 * escala * cos(45 * M_PI / 180) / 2) + (8.9 / 2 )*escala, -2*escala/1.5+ 4 * escala / 1.5 * 2.3));
+	model = savestate.at(0) = glm::rotate(model, glm::radians(fortuna_rot), glm::vec3(0.0f, 0.0f, 1.0f));
+	model = glm::scale(model, glm::vec3(0.25*escala, 0.25*escala, 2.25*escala/1.5));
+	projectionShader.setVec3("aColor", glm::vec3((float)100 / 255, (float)83 / 255, (float)148 / 255));
+	projectionShader.setMat4("model", model);
+	my_sphere.render();
+	glBindVertexArray(VAO);
+
+	for (int ind = 0; ind < 12; ind++)
+	{
+		//Viga30d
+		model = savestate.at(ind + 1) = glm::rotate(savestate.at(0), glm::radians(ind*30.0f), glm::vec3(0.0f, 0.0f, 1.0f));
+		model = savestate.at(ind + 1) = glm::translate(savestate.at(ind + 1), glm::vec3(0, (8.0*escala) / 2, 0));
+		model = glm::scale(model, glm::vec3(0.25*escala, 8.0*escala, 0.25*escala));
+		projectionShader.setVec3("aColor", glm::vec3((float)100 / 255, (float)83 / 255, (float)148 / 255));
+		projectionShader.setMat4("model", model);
+		glDrawArrays(GL_TRIANGLES, 0, 36);
+		//cabina
+		model = glm::translate(savestate.at(ind + 1), glm::vec3(0, (8.0*escala) / 2, 0));
+		model = savestate_adorno.at(ind) = glm::rotate(model, glm::radians(180.0f) - glm::radians(fortuna_rot) - glm::radians(ind*30.0f), glm::vec3(0.0f, 0.0f, 1.0f));
+		model = glm::scale(model, glm::vec3(0.5*escala, 0.5*escala, 0.5*escala));
+		projectionShader.setVec3("aColor", glm::vec3((float)100 / 255, (float)83 / 255, (float)148 / 255));
+		projectionShader.setMat4("model", model);
+		my_sphere.render();
+		//adornos
+		model = glm::translate(savestate_adorno.at(ind), glm::vec3(0, (0.5 + 0.25)*escala, 0));
+		model = glm::scale(model, glm::vec3(0.25*escala, 0.25*escala, 0.25*escala));
+		projectionShader.setVec3("aColor", glm::vec3((float)100 / 255, (float)83 / 255, (float)148 / 255));
+		projectionShader.setMat4("model", model);
+		my_sphere.render();
+		glBindVertexArray(VAO);
+
+	}
+
+	//torus, rueda para la fortuna huehuehueue
+	model = glm::scale(savestate.at(0), glm::vec3(1.8f*escala, 1.8f*escala, 0.3f*escala));
+	//model = glm::translate(model, lightPos);
+	projectionShader.setMat4("model", model);
+	my_torus.render();
+
+	shader.use();
+	model = glm::mat4(1.0f);
 	// pass them to the shaders
 	shader.setMat4("model", model);
 	shader.setMat4("view", view);
@@ -443,10 +327,11 @@ void display(Shader shader, Model modelo, Model pista)
 	shader.setMat4("projection", projection);
 
 	model = glm::rotate(model, glm::radians(90.0f), glm::vec3(0.0f, 1.0f, 0.0f));
-	model = glm::scale(model, glm::vec3(0.5f, 0.5f, 0.5f));
+	model = glm::scale(model, glm::vec3(2.5f, 0.5f, 2.5f));
 	shader.setMat4("model", model);
 	pista.Draw(shader);
-	model = glm::translate(model, glm::vec3(movKit_x, movKit_y, movKit_z));
+
+	model = glm::translate(model = glm::mat4(1.0f), glm::vec3(movKit_x, movKit_y, movKit_z));
 	model = glm::rotate(model, glm::radians(rotKit_y), glm::vec3(0.0f, 1.0f, 0.0f));
 	shader.setMat4("model", model);
 	modelo.Draw(shader);
@@ -498,7 +383,16 @@ int main()
 	//Datos a utilizar
 	LoadTextures();
 	myData();
+	my_torus.init();
+	my_sphere.init();
 	glEnable(GL_DEPTH_TEST);
+
+	//Shader myShader("shaders/shader.vs", "shaders/shader.fs");
+	Shader projectionShader("shaders/shader_projection.vs", "shaders/shader_projection.fs");
+	//Shader projectionShader("shaders/shader_light.vs", "shaders/shader_light.fs");
+	//Shader projectionShader("shaders/shader_light_Gouraud.vs", "shaders/shader_light_Gouraud.fs");
+	Shader lampShader("shaders/shader_lamp.vs", "shaders/shader_lamp.fs");
+
 
 	Shader modelShader("Shaders/modelLoading.vs", "Shaders/modelLoading.fs");
 	// Load models
@@ -507,7 +401,7 @@ int main()
 
 
 	glm::mat4 projection = glm::mat4(1.0f);	//This matrix is for Projection
-	projection = glm::perspective(glm::radians(camera.Zoom), (float)SCR_WIDTH / (float)SCR_HEIGHT, 0.1f, 100.0f);
+	projection = glm::perspective(glm::radians(camera.Zoom), (float)SCR_WIDTH / (float)SCR_HEIGHT, 0.1f, 2000.0f);
 	// render loop
 	// While the windows is not closed
 	while (!glfwWindowShouldClose(window))
@@ -527,7 +421,7 @@ int main()
 		glClearColor(1.0f, 1.0f, 1.0f, 1.0f);
 		glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
-		display(modelShader, ourModel, pista);
+		display(modelShader, projectionShader, ourModel, pista);
 
 		// glfw: swap buffers and poll IO events (keys pressed/released, mouse moved etc.)
 		// -------------------------------------------------------------------------------
@@ -557,6 +451,8 @@ void my_input(GLFWwindow *window)
 		camera.ProcessKeyboard(BACKWARD, (float)deltaTime);
 	if (glfwGetKey(window, GLFW_KEY_A) == GLFW_PRESS)
 		camera.ProcessKeyboard(LEFT, (float)deltaTime);
+	if (glfwGetKey(window, GLFW_KEY_D) == GLFW_PRESS)
+		camera.ProcessKeyboard(RIGHT, (float)deltaTime);
 
 	if (glfwGetKey(window, GLFW_KEY_SPACE) == GLFW_PRESS)
 		play = true;
