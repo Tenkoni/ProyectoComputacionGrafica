@@ -10,7 +10,7 @@
 
 #include "camera.h"
 #include "Model.h"
-
+#include <random>
 #include "esfera.h"
 #include "toroide.h"
 #include <vector>
@@ -87,8 +87,13 @@ bool play, reversa = false;
 std::vector < glm::mat4 > savestate(15); 
 std::vector < glm::mat4 > savestate_adorno(15);
 
+
 //factor de escala fortuna
 float escala = 15.0f;
+ 
+
+//reja savestate
+glm::mat4 savestatereja = glm::mat4(1.0f);
 
 unsigned int generateTextures(const char* filename, bool alfa)
 {
@@ -221,7 +226,7 @@ void animate(void)
 
 }
 
-void display(Shader shader, Shader projectionShader, Model modelo, Model pista)
+void display(Shader shader, Shader projectionShader, Model modelo, Model pista, Model reja)
 {
 	//shader.use();
 
@@ -249,7 +254,7 @@ void display(Shader shader, Shader projectionShader, Model modelo, Model pista)
 	model = savestate.at(0) = glm::translate(savestate.at(0) = glm::mat4(1.0f), glm::vec3(9.546*escala/2, 8.9 /2*escala, 4 * escala / 1.5 *2.3));
 	model = glm::rotate(model, glm::radians(45.0f), glm::vec3(0.0f, 0.0f, 1.0f));
 	model = glm::scale(model, glm::vec3(0.5*escala, 13.5*escala, 0.5*escala));
-	projectionShader.setVec3("aColor", glm::vec3((float)100 / 255, (float)83 / 255, (float)148 / 255));
+	projectionShader.setVec3("aColor", glm::vec3((float)214 / 255, (float)216 / 255, (float)201 / 255));
 	projectionShader.setMat4("model", model);
 	glDrawArrays(GL_TRIANGLES, 0, 36);
 
@@ -257,7 +262,7 @@ void display(Shader shader, Shader projectionShader, Model modelo, Model pista)
 	model = savestate.at(0) = glm::translate(savestate.at(0), glm::vec3(-13.5 * escala * cos(45 * M_PI / 180) + 0.25, 0, 0));
 	model = glm::rotate(model, glm::radians(45.0f), glm::vec3(0.0f, 0.0f, -1.0f));
 	model = glm::scale(model, glm::vec3(0.5*escala, 13.5 * escala, 0.5*escala));
-	projectionShader.setVec3("aColor", glm::vec3((float)100 / 255, (float)83 / 255, (float)148 / 255));
+	projectionShader.setVec3("aColor", glm::vec3((float)214 / 255, (float)216 / 255, (float)201 / 255));
 	projectionShader.setMat4("model", model);
 	glDrawArrays(GL_TRIANGLES, 0, 36);
 
@@ -265,7 +270,7 @@ void display(Shader shader, Shader projectionShader, Model modelo, Model pista)
 	model = savestate.at(0) = glm::translate(savestate.at(0) = glm::mat4(1.0f), glm::vec3(9.546*escala / 2, 8.9 / 2 * escala, -4*escala/1.5 + 4 * escala / 1.5 * 2.3));
 	model = glm::rotate(model, glm::radians(45.0f), glm::vec3(0.0f, 0.0f, 1.0f));
 	model = glm::scale(model, glm::vec3(0.5*escala, 13.5 * escala, 0.5*escala));
-	projectionShader.setVec3("aColor", glm::vec3((float)100 / 255, (float)83 / 255, (float)148 / 255));
+	projectionShader.setVec3("aColor", glm::vec3((float)214 / 255, (float)216 / 255, (float)201 / 255));
 	projectionShader.setMat4("model", model);
 	glDrawArrays(GL_TRIANGLES, 0, 36);
 
@@ -273,7 +278,7 @@ void display(Shader shader, Shader projectionShader, Model modelo, Model pista)
 	model = savestate.at(0) = glm::translate(savestate.at(0), glm::vec3(-13.5 * escala * cos(45 * M_PI / 180) + 0.25, 0, 0));
 	model = glm::rotate(model, glm::radians(45.0f), glm::vec3(0.0f, 0.0f, -1.0f));
 	model = glm::scale(model, glm::vec3(0.5*escala, 13.5 * escala, 0.5*escala));
-	projectionShader.setVec3("aColor", glm::vec3((float)100 / 255, (float)83 / 255, (float)148 / 255));
+	projectionShader.setVec3("aColor", glm::vec3((float)214 / 255, (float)216 / 255, (float)201 / 255));
 	projectionShader.setMat4("model", model);
 	glDrawArrays(GL_TRIANGLES, 0, 36);
 
@@ -281,7 +286,7 @@ void display(Shader shader, Shader projectionShader, Model modelo, Model pista)
 	model = glm::translate(savestate.at(0) = glm::mat4(1.0f), glm::vec3(-13.5 * escala * cos(45 * M_PI / 180) / 2 + 9.546*escala / 2, (13.5 * escala * cos(45 * M_PI / 180) / 2) + (8.9 / 2 )*escala, -2*escala/1.5+ 4 * escala / 1.5 * 2.3));
 	model = savestate.at(0) = glm::rotate(model, glm::radians(fortuna_rot), glm::vec3(0.0f, 0.0f, 1.0f));
 	model = glm::scale(model, glm::vec3(0.25*escala, 0.25*escala, 2.25*escala/1.5));
-	projectionShader.setVec3("aColor", glm::vec3((float)100 / 255, (float)83 / 255, (float)148 / 255));
+	projectionShader.setVec3("aColor", glm::vec3((float)244 / 255, (float)90 / 255, (float)116 / 255));
 	projectionShader.setMat4("model", model);
 	my_sphere.render();
 	glBindVertexArray(VAO);
@@ -327,18 +332,44 @@ void display(Shader shader, Shader projectionShader, Model modelo, Model pista)
 	shader.setMat4("projection", projection);
 
 	model = glm::rotate(model, glm::radians(90.0f), glm::vec3(0.0f, 1.0f, 0.0f));
-	model = glm::scale(model, glm::vec3(2.5f, 0.5f, 2.5f));
+	model = glm::scale(model, glm::vec3(2.5f, 0.0f, 2.5f));
 	shader.setMat4("model", model);
 	pista.Draw(shader);
 
 	model = glm::translate(model = glm::mat4(1.0f), glm::vec3(movKit_x, movKit_y, movKit_z));
 	model = glm::rotate(model, glm::radians(rotKit_y), glm::vec3(0.0f, 1.0f, 0.0f));
 	shader.setMat4("model", model);
-	modelo.Draw(shader);
+	//modelo.Draw(shader);
 
+	model = savestatereja = glm::translate(model = glm::mat4(1.0f), glm::vec3(15, 0, 52));
+	model = glm::rotate(model, glm::radians(90.0f), glm::vec3(0.0f, 1.0f, 0.0f));
+	model = glm::scale(model, glm::vec3(4.5f, 4.5f, 4.5f));
+	shader.setMat4("model", model);
+	reja.Draw(shader);
 
+	for (int ind = 0; ind < 6; ind++)
+	{
+		model = savestatereja = glm::translate(savestatereja, glm::vec3(11.3, 0, 0));
+		model = glm::rotate(model, glm::radians(90.0f), glm::vec3(0.0f, 1.0f, 0.0f));
+		model = glm::scale(model, glm::vec3(4.5f, 4.5f, 4.5f));
+		shader.setMat4("model", model);
+		reja.Draw(shader);
+	}
 
+	model = savestatereja = glm::translate(model = glm::mat4(1.0f), glm::vec3(-15, 0, 52));
+	model = glm::rotate(model, glm::radians(90.0f), glm::vec3(0.0f, 1.0f, 0.0f));
+	model = glm::scale(model, glm::vec3(4.5f, 4.5f, 4.5f));
+	shader.setMat4("model", model);
+	reja.Draw(shader);
 
+	for (int ind = 0; ind < 6; ind++)
+	{
+		model = savestatereja = glm::translate(savestatereja, glm::vec3(-11.3, 0, 0));
+		model = glm::rotate(model, glm::radians(90.0f), glm::vec3(0.0f, 1.0f, 0.0f));
+		model = glm::scale(model, glm::vec3(4.5f, 4.5f, 4.5f));
+		shader.setMat4("model", model);
+		reja.Draw(shader);
+	}
 
 }
 
@@ -378,6 +409,8 @@ int main()
 
 	glewInit();
 
+	//random colours
+
 
 	//Mis funciones
 	//Datos a utilizar
@@ -398,7 +431,7 @@ int main()
 	// Load models
 	Model ourModel = ((char *)"Models/kit2.obj");
 	Model pista = ((char *)"Models/pista2.obj");
-
+	Model reja = ((char *)"Models/reja/reja.obj");
 
 	glm::mat4 projection = glm::mat4(1.0f);	//This matrix is for Projection
 	projection = glm::perspective(glm::radians(camera.Zoom), (float)SCR_WIDTH / (float)SCR_HEIGHT, 0.1f, 2000.0f);
@@ -421,7 +454,7 @@ int main()
 		glClearColor(1.0f, 1.0f, 1.0f, 1.0f);
 		glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
-		display(modelShader, projectionShader, ourModel, pista);
+		display(modelShader, projectionShader, ourModel, pista, reja);
 
 		// glfw: swap buffers and poll IO events (keys pressed/released, mouse moved etc.)
 		// -------------------------------------------------------------------------------
