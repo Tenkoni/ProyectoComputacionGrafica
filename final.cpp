@@ -235,6 +235,8 @@ void display(Shader shader, Shader projectionShader, Model modelo, Model pista, 
 	projectionShader.setVec3("lightPos", lightPosition);
 	// create transformations and Projection
 	glm::mat4 tmp = glm::mat4(1.0f);
+	glm::mat4 temp = glm::mat4(1.0f);
+	glm::mat4 temp2 = glm::mat4(1.0f);
 	glm::mat4 model = glm::mat4(1.0f);		// initialize Matrix, Use this matrix for individual models
 	glm::mat4 view = glm::mat4(1.0f);		//Use this matrix for ALL models
 	glm::mat4 projection = glm::mat4(1.0f);	//This matrix is for Projection
@@ -250,6 +252,5151 @@ void display(Shader shader, Shader projectionShader, Model modelo, Model pista, 
 	projectionShader.setMat4("projection", projection);
 
 	glBindVertexArray(VAO);
+
+	/////RIEL-BASE
+	/////////////////////////////////////////////////
+	model = glm::translate(model, glm::vec3(-500.0f, 10.0f, -600.0f));
+	model = glm::rotate(model, glm::radians(-90.0f), glm::vec3(1, 0, 0));
+	temp = model;//respaldo de matriz
+	temp2 = model;
+	model = glm::scale(model, glm::vec3(3.0f, 21.0f, 3.0f));
+	projectionShader.setVec3("aColor", glm::vec3((float)0.9, (float)0.7, (float)0));
+	projectionShader.setMat4("model", model);
+	glDrawArrays(GL_TRIANGLES, 0, 36);
+	model = temp;
+
+	model = glm::translate(model, glm::vec3(6.0f, 0.0f, -3.5f));
+	model = glm::rotate(model, glm::radians(30.0f), glm::vec3(0, 1, 0));
+	temp = model;//respaldo de matriz
+	model = glm::scale(model, glm::vec3(12.0f, 1.5f, 1.5f));
+	projectionShader.setVec3("aColor", glm::vec3((float)0.9, (float)0.7, (float)0));
+	projectionShader.setMat4("model", model);
+	glDrawArrays(GL_TRIANGLES, 0, 36);
+	model = temp;
+
+
+	model = glm::translate(model, glm::vec3(6.0f, 0.0f, 0.0f));
+	temp = model;
+	model = glm::scale(model, glm::vec3(3.0f, 21.0f, 3.0f));
+	projectionShader.setVec3("aColor", glm::vec3((float)0.9, (float)0.7, (float)0));
+	projectionShader.setMat4("model", model);
+	glDrawArrays(GL_TRIANGLES, 0, 36);
+	model = temp;
+
+	model = glm::rotate(model, glm::radians(-60.0f), glm::vec3(0, 1, 0));
+	model = glm::translate(model, glm::vec3(6.0f, 0.0f, 0.0f));
+	temp = model;//respaldo de matriz
+	model = glm::scale(model, glm::vec3(12.0f, 1.5f, 1.5f));
+	projectionShader.setVec3("aColor", glm::vec3((float)0.9, (float)0.7, (float)0));
+	projectionShader.setMat4("model", model);
+	glDrawArrays(GL_TRIANGLES, 0, 36);
+	model = temp;
+
+	model = glm::translate(model, glm::vec3(6.0f, 0.0f, 0.0f));
+	temp = model;
+	model = glm::scale(model, glm::vec3(3.0f, 21.0f, 3.0f));
+	projectionShader.setVec3("aColor", glm::vec3((float)0.9, (float)0.7, (float)0));
+	projectionShader.setMat4("model", model);
+	glDrawArrays(GL_TRIANGLES, 0, 36);
+	model = temp2;
+	//////////////////////
+
+	/////////////////////////////////////////////////
+	model = glm::translate(model, glm::vec3(0.0f, 21.0f, 0.0f));
+	temp = model;//respaldo de matriz
+	temp2 = model;
+	model = glm::scale(model, glm::vec3(3.0f, 21.0f, 3.0f));
+	projectionShader.setVec3("aColor", glm::vec3((float)0.9, (float)0.7, (float)0));
+	projectionShader.setMat4("model", model);
+	glDrawArrays(GL_TRIANGLES, 0, 36);
+	model = temp;
+
+	model = glm::translate(model, glm::vec3(6.0f, 0.0f, -3.5f));
+	model = glm::rotate(model, glm::radians(30.0f), glm::vec3(0, 1, 0));
+	temp = model;//respaldo de matriz
+	model = glm::scale(model, glm::vec3(12.0f, 1.5f, 1.5f));
+	projectionShader.setVec3("aColor", glm::vec3((float)0.9, (float)0.7, (float)0));
+	projectionShader.setMat4("model", model);
+	glDrawArrays(GL_TRIANGLES, 0, 36);
+	model = temp;
+
+
+	model = glm::translate(model, glm::vec3(6.0f, 0.0f, 0.0f));
+	temp = model;
+	model = glm::scale(model, glm::vec3(3.0f, 21.0f, 3.0f));
+	projectionShader.setVec3("aColor", glm::vec3((float)0.9, (float)0.7, (float)0));
+	projectionShader.setMat4("model", model);
+	glDrawArrays(GL_TRIANGLES, 0, 36);
+	model = temp;
+
+	model = glm::rotate(model, glm::radians(-60.0f), glm::vec3(0, 1, 0));
+	model = glm::translate(model, glm::vec3(6.0f, 0.0f, 0.0f));
+	temp = model;//respaldo de matriz
+	model = glm::scale(model, glm::vec3(12.0f, 1.5f, 1.5f));
+	projectionShader.setVec3("aColor", glm::vec3((float)0.9, (float)0.7, (float)0));
+	projectionShader.setMat4("model", model);
+	glDrawArrays(GL_TRIANGLES, 0, 36);
+	model = temp;
+
+	model = glm::translate(model, glm::vec3(6.0f, 0.0f, 0.0f));
+	temp = model;
+	model = glm::scale(model, glm::vec3(3.0f, 21.0f, 3.0f));
+	projectionShader.setVec3("aColor", glm::vec3((float)0.9, (float)0.7, (float)0));
+	projectionShader.setMat4("model", model);
+	glDrawArrays(GL_TRIANGLES, 0, 36);
+	model = temp2;
+	//////////////////////
+
+	/////////////////////////////////////////////////
+	model = glm::translate(model, glm::vec3(0.0f, 21.0f, 0.0f));
+	temp = model;//respaldo de matriz
+	temp2 = model;
+	model = glm::scale(model, glm::vec3(3.0f, 21.0f, 3.0f));
+	projectionShader.setVec3("aColor", glm::vec3((float)0.9, (float)0.7, (float)0));
+	projectionShader.setMat4("model", model);
+	glDrawArrays(GL_TRIANGLES, 0, 36);
+	model = temp;
+
+	model = glm::translate(model, glm::vec3(6.0f, 0.0f, -3.5f));
+	model = glm::rotate(model, glm::radians(30.0f), glm::vec3(0, 1, 0));
+	temp = model;//respaldo de matriz
+	model = glm::scale(model, glm::vec3(12.0f, 1.5f, 1.5f));
+	projectionShader.setVec3("aColor", glm::vec3((float)0.9, (float)0.7, (float)0));
+	projectionShader.setMat4("model", model);
+	glDrawArrays(GL_TRIANGLES, 0, 36);
+	model = temp;
+
+
+	model = glm::translate(model, glm::vec3(6.0f, 0.0f, 0.0f));
+	temp = model;
+	model = glm::scale(model, glm::vec3(3.0f, 21.0f, 3.0f));
+	projectionShader.setVec3("aColor", glm::vec3((float)0.9, (float)0.7, (float)0));
+	projectionShader.setMat4("model", model);
+	glDrawArrays(GL_TRIANGLES, 0, 36);
+	model = temp;
+
+	model = glm::rotate(model, glm::radians(-60.0f), glm::vec3(0, 1, 0));
+	model = glm::translate(model, glm::vec3(6.0f, 0.0f, 0.0f));
+	temp = model;//respaldo de matriz
+	model = glm::scale(model, glm::vec3(12.0f, 1.5f, 1.5f));
+	projectionShader.setVec3("aColor", glm::vec3((float)0.9, (float)0.7, (float)0));
+	projectionShader.setMat4("model", model);
+	glDrawArrays(GL_TRIANGLES, 0, 36);
+	model = temp;
+
+	model = glm::translate(model, glm::vec3(6.0f, 0.0f, 0.0f));
+	temp = model;
+	model = glm::scale(model, glm::vec3(3.0f, 21.0f, 3.0f));
+	projectionShader.setVec3("aColor", glm::vec3((float)0.9, (float)0.7, (float)0));
+	projectionShader.setMat4("model", model);
+	glDrawArrays(GL_TRIANGLES, 0, 36);
+	model = temp2;
+	//////////////////////
+
+	/////////////////////////////////////////////////
+	model = glm::translate(model, glm::vec3(0.0f, 21.0f, 1.0f));
+	model = glm::rotate(model, glm::radians(15.0f), glm::vec3(1, 0, 0));
+	temp = model;//respaldo de matriz
+	temp2 = model;
+	model = glm::scale(model, glm::vec3(3.0f, 21.0f, 3.0f));
+	projectionShader.setVec3("aColor", glm::vec3((float)0.9, (float)0.7, (float)0));
+	projectionShader.setMat4("model", model);
+	glDrawArrays(GL_TRIANGLES, 0, 36);
+	model = temp;
+
+	model = glm::translate(model, glm::vec3(6.0f, 0.0f, -3.5f));
+	model = glm::rotate(model, glm::radians(30.0f), glm::vec3(0, 1, 0));
+	temp = model;//respaldo de matriz
+	model = glm::scale(model, glm::vec3(12.0f, 1.5f, 1.5f));
+	projectionShader.setVec3("aColor", glm::vec3((float)0.9, (float)0.7, (float)0));
+	projectionShader.setMat4("model", model);
+	glDrawArrays(GL_TRIANGLES, 0, 36);
+	model = temp;
+
+
+	model = glm::translate(model, glm::vec3(6.0f, 0.0f, 0.0f));
+	temp = model;
+	model = glm::scale(model, glm::vec3(3.0f, 21.0f, 3.0f));
+	projectionShader.setVec3("aColor", glm::vec3((float)0.9, (float)0.7, (float)0));
+	projectionShader.setMat4("model", model);
+	glDrawArrays(GL_TRIANGLES, 0, 36);
+	model = temp;
+
+	model = glm::rotate(model, glm::radians(-60.0f), glm::vec3(0, 1, 0));
+	model = glm::translate(model, glm::vec3(6.0f, 0.0f, 0.0f));
+	temp = model;//respaldo de matriz
+	model = glm::scale(model, glm::vec3(12.0f, 1.5f, 1.5f));
+	projectionShader.setVec3("aColor", glm::vec3((float)0.9, (float)0.7, (float)0));
+	projectionShader.setMat4("model", model);
+	glDrawArrays(GL_TRIANGLES, 0, 36);
+	model = temp;
+
+	model = glm::translate(model, glm::vec3(6.0f, 0.0f, 0.0f));
+	temp = model;
+	model = glm::scale(model, glm::vec3(3.0f, 21.0f, 3.0f));
+	projectionShader.setVec3("aColor", glm::vec3((float)0.9, (float)0.7, (float)0));
+	projectionShader.setMat4("model", model);
+	glDrawArrays(GL_TRIANGLES, 0, 36);
+	model = temp2;
+	//////////////////////
+
+
+	/////////////////////////////////////////////////
+	model = glm::translate(model, glm::vec3(0.0f, 21.0f, 1.0f));
+	model = glm::rotate(model, glm::radians(15.0f), glm::vec3(1, 0, 0));
+	temp = model;//respaldo de matriz
+	temp2 = model;
+	model = glm::scale(model, glm::vec3(3.0f, 21.0f, 3.0f));
+	projectionShader.setVec3("aColor", glm::vec3((float)0.9, (float)0.7, (float)0));
+	projectionShader.setMat4("model", model);
+	glDrawArrays(GL_TRIANGLES, 0, 36);
+	model = temp;
+
+	model = glm::translate(model, glm::vec3(6.0f, 0.0f, -3.5f));
+	model = glm::rotate(model, glm::radians(30.0f), glm::vec3(0, 1, 0));
+	temp = model;//respaldo de matriz
+	model = glm::scale(model, glm::vec3(12.0f, 1.5f, 1.5f));
+	projectionShader.setVec3("aColor", glm::vec3((float)0.9, (float)0.7, (float)0));
+	projectionShader.setMat4("model", model);
+	glDrawArrays(GL_TRIANGLES, 0, 36);
+	model = temp;
+
+
+	model = glm::translate(model, glm::vec3(6.0f, 0.0f, 0.0f));
+	temp = model;
+	model = glm::scale(model, glm::vec3(3.0f, 21.0f, 3.0f));
+	projectionShader.setVec3("aColor", glm::vec3((float)0.9, (float)0.7, (float)0));
+	projectionShader.setMat4("model", model);
+	glDrawArrays(GL_TRIANGLES, 0, 36);
+	model = temp;
+
+	model = glm::rotate(model, glm::radians(-60.0f), glm::vec3(0, 1, 0));
+	model = glm::translate(model, glm::vec3(6.0f, 0.0f, 0.0f));
+	temp = model;//respaldo de matriz
+	model = glm::scale(model, glm::vec3(12.0f, 1.5f, 1.5f));
+	projectionShader.setVec3("aColor", glm::vec3((float)0.9, (float)0.7, (float)0));
+	projectionShader.setMat4("model", model);
+	glDrawArrays(GL_TRIANGLES, 0, 36);
+	model = temp;
+
+	model = glm::translate(model, glm::vec3(6.0f, 0.0f, 0.0f));
+	temp = model;
+	model = glm::scale(model, glm::vec3(3.0f, 21.0f, 3.0f));
+	projectionShader.setVec3("aColor", glm::vec3((float)0.9, (float)0.7, (float)0));
+	projectionShader.setMat4("model", model);
+	glDrawArrays(GL_TRIANGLES, 0, 36);
+	model = temp2;
+	//////////////////////
+
+	/////////////////////////////////////////////////
+	model = glm::translate(model, glm::vec3(0.0f, 21.0f, 1.0f));
+	model = glm::rotate(model, glm::radians(15.0f), glm::vec3(1, 0, 0));
+	temp = model;//respaldo de matriz
+	temp2 = model;
+	model = glm::scale(model, glm::vec3(3.0f, 21.0f, 3.0f));
+	projectionShader.setVec3("aColor", glm::vec3((float)0.9, (float)0.7, (float)0));
+	projectionShader.setMat4("model", model);
+	glDrawArrays(GL_TRIANGLES, 0, 36);
+	model = temp;
+
+	model = glm::translate(model, glm::vec3(6.0f, 0.0f, -3.5f));
+	model = glm::rotate(model, glm::radians(30.0f), glm::vec3(0, 1, 0));
+	temp = model;//respaldo de matriz
+	model = glm::scale(model, glm::vec3(12.0f, 1.5f, 1.5f));
+	projectionShader.setVec3("aColor", glm::vec3((float)0.9, (float)0.7, (float)0));
+	projectionShader.setMat4("model", model);
+	glDrawArrays(GL_TRIANGLES, 0, 36);
+	model = temp;
+
+
+	model = glm::translate(model, glm::vec3(6.0f, 0.0f, 0.0f));
+	temp = model;
+	model = glm::scale(model, glm::vec3(3.0f, 21.0f, 3.0f));
+	projectionShader.setVec3("aColor", glm::vec3((float)0.9, (float)0.7, (float)0));
+	projectionShader.setMat4("model", model);
+	glDrawArrays(GL_TRIANGLES, 0, 36);
+	model = temp;
+
+	model = glm::rotate(model, glm::radians(-60.0f), glm::vec3(0, 1, 0));
+	model = glm::translate(model, glm::vec3(6.0f, 0.0f, 0.0f));
+	temp = model;//respaldo de matriz
+	model = glm::scale(model, glm::vec3(12.0f, 1.5f, 1.5f));
+	projectionShader.setVec3("aColor", glm::vec3((float)0.9, (float)0.7, (float)0));
+	projectionShader.setMat4("model", model);
+	glDrawArrays(GL_TRIANGLES, 0, 36);
+	model = temp;
+
+	model = glm::translate(model, glm::vec3(6.0f, 0.0f, 0.0f));
+	temp = model;
+	model = glm::scale(model, glm::vec3(3.0f, 21.0f, 3.0f));
+	projectionShader.setVec3("aColor", glm::vec3((float)0.9, (float)0.7, (float)0));
+	projectionShader.setMat4("model", model);
+	glDrawArrays(GL_TRIANGLES, 0, 36);
+	model = temp2;
+	//////////////////////
+
+	/////////////////////////////////////////////////
+	model = glm::translate(model, glm::vec3(0.0f, 21.0f, 1.0f));
+	model = glm::rotate(model, glm::radians(15.0f), glm::vec3(1, 0, 0));
+	temp = model;//respaldo de matriz
+	temp2 = model;
+	model = glm::scale(model, glm::vec3(3.0f, 21.0f, 3.0f));
+	projectionShader.setVec3("aColor", glm::vec3((float)0.9, (float)0.7, (float)0));
+	projectionShader.setMat4("model", model);
+	glDrawArrays(GL_TRIANGLES, 0, 36);
+	model = temp;
+
+	model = glm::translate(model, glm::vec3(6.0f, 0.0f, -3.5f));
+	model = glm::rotate(model, glm::radians(30.0f), glm::vec3(0, 1, 0));
+	temp = model;//respaldo de matriz
+	model = glm::scale(model, glm::vec3(12.0f, 1.5f, 1.5f));
+	projectionShader.setVec3("aColor", glm::vec3((float)0.9, (float)0.7, (float)0));
+	projectionShader.setMat4("model", model);
+	glDrawArrays(GL_TRIANGLES, 0, 36);
+	model = temp;
+
+
+	model = glm::translate(model, glm::vec3(6.0f, 0.0f, 0.0f));
+	temp = model;
+	model = glm::scale(model, glm::vec3(3.0f, 21.0f, 3.0f));
+	projectionShader.setVec3("aColor", glm::vec3((float)0.9, (float)0.7, (float)0));
+	projectionShader.setMat4("model", model);
+	glDrawArrays(GL_TRIANGLES, 0, 36);
+	model = temp;
+
+	model = glm::rotate(model, glm::radians(-60.0f), glm::vec3(0, 1, 0));
+	model = glm::translate(model, glm::vec3(6.0f, 0.0f, 0.0f));
+	temp = model;//respaldo de matriz
+	model = glm::scale(model, glm::vec3(12.0f, 1.5f, 1.5f));
+	projectionShader.setVec3("aColor", glm::vec3((float)0.9, (float)0.7, (float)0));
+	projectionShader.setMat4("model", model);
+	glDrawArrays(GL_TRIANGLES, 0, 36);
+	model = temp;
+
+	model = glm::translate(model, glm::vec3(6.0f, 0.0f, 0.0f));
+	temp = model;
+	model = glm::scale(model, glm::vec3(3.0f, 21.0f, 3.0f));
+	projectionShader.setVec3("aColor", glm::vec3((float)0.9, (float)0.7, (float)0));
+	projectionShader.setMat4("model", model);
+	glDrawArrays(GL_TRIANGLES, 0, 36);
+	model = temp2;
+	//////////////////////
+
+	/////////////////////////////////////////////////
+	model = glm::translate(model, glm::vec3(0.0f, 21.0f, 0.0f));
+	temp = model;//respaldo de matriz
+	temp2 = model;
+	model = glm::scale(model, glm::vec3(3.0f, 21.0f, 3.0f));
+	projectionShader.setVec3("aColor", glm::vec3((float)0.9, (float)0.7, (float)0));
+	projectionShader.setMat4("model", model);
+	glDrawArrays(GL_TRIANGLES, 0, 36);
+	model = temp;
+
+	model = glm::translate(model, glm::vec3(6.0f, 0.0f, -3.5f));
+	model = glm::rotate(model, glm::radians(30.0f), glm::vec3(0, 1, 0));
+	temp = model;//respaldo de matriz
+	model = glm::scale(model, glm::vec3(12.0f, 1.5f, 1.5f));
+	projectionShader.setVec3("aColor", glm::vec3((float)0.9, (float)0.7, (float)0));
+	projectionShader.setMat4("model", model);
+	glDrawArrays(GL_TRIANGLES, 0, 36);
+	model = temp;
+
+
+	model = glm::translate(model, glm::vec3(6.0f, 0.0f, 0.0f));
+	temp = model;
+	model = glm::scale(model, glm::vec3(3.0f, 21.0f, 3.0f));
+	projectionShader.setVec3("aColor", glm::vec3((float)0.9, (float)0.7, (float)0));
+	projectionShader.setMat4("model", model);
+	glDrawArrays(GL_TRIANGLES, 0, 36);
+	model = temp;
+
+	model = glm::rotate(model, glm::radians(-60.0f), glm::vec3(0, 1, 0));
+	model = glm::translate(model, glm::vec3(6.0f, 0.0f, 0.0f));
+	temp = model;//respaldo de matriz
+	model = glm::scale(model, glm::vec3(12.0f, 1.5f, 1.5f));
+	projectionShader.setVec3("aColor", glm::vec3((float)0.9, (float)0.7, (float)0));
+	projectionShader.setMat4("model", model);
+	glDrawArrays(GL_TRIANGLES, 0, 36);
+	model = temp;
+
+	model = glm::translate(model, glm::vec3(6.0f, 0.0f, 0.0f));
+	temp = model;
+	model = glm::scale(model, glm::vec3(3.0f, 21.0f, 3.0f));
+	projectionShader.setVec3("aColor", glm::vec3((float)0.9, (float)0.7, (float)0));
+	projectionShader.setMat4("model", model);
+	glDrawArrays(GL_TRIANGLES, 0, 36);
+	model = temp2;
+	//////////////////////
+
+	/////////////////////////////////////////////////
+	model = glm::translate(model, glm::vec3(0.0f, 21.0f, 0.0f));
+	temp = model;//respaldo de matriz
+	temp2 = model;
+	model = glm::scale(model, glm::vec3(3.0f, 21.0f, 3.0f));
+	projectionShader.setVec3("aColor", glm::vec3((float)0.9, (float)0.7, (float)0));
+	projectionShader.setMat4("model", model);
+	glDrawArrays(GL_TRIANGLES, 0, 36);
+	model = temp;
+
+	model = glm::translate(model, glm::vec3(6.0f, 0.0f, -3.5f));
+	model = glm::rotate(model, glm::radians(30.0f), glm::vec3(0, 1, 0));
+	temp = model;//respaldo de matriz
+	model = glm::scale(model, glm::vec3(12.0f, 1.5f, 1.5f));
+	projectionShader.setVec3("aColor", glm::vec3((float)0.9, (float)0.7, (float)0));
+	projectionShader.setMat4("model", model);
+	glDrawArrays(GL_TRIANGLES, 0, 36);
+	model = temp;
+
+
+	model = glm::translate(model, glm::vec3(6.0f, 0.0f, 0.0f));
+	temp = model;
+	model = glm::scale(model, glm::vec3(3.0f, 21.0f, 3.0f));
+	projectionShader.setVec3("aColor", glm::vec3((float)0.9, (float)0.7, (float)0));
+	projectionShader.setMat4("model", model);
+	glDrawArrays(GL_TRIANGLES, 0, 36);
+	model = temp;
+
+	model = glm::rotate(model, glm::radians(-60.0f), glm::vec3(0, 1, 0));
+	model = glm::translate(model, glm::vec3(6.0f, 0.0f, 0.0f));
+	temp = model;//respaldo de matriz
+	model = glm::scale(model, glm::vec3(12.0f, 1.5f, 1.5f));
+	projectionShader.setVec3("aColor", glm::vec3((float)0.9, (float)0.7, (float)0));
+	projectionShader.setMat4("model", model);
+	glDrawArrays(GL_TRIANGLES, 0, 36);
+	model = temp;
+
+	model = glm::translate(model, glm::vec3(6.0f, 0.0f, 0.0f));
+	temp = model;
+	model = glm::scale(model, glm::vec3(3.0f, 21.0f, 3.0f));
+	projectionShader.setVec3("aColor", glm::vec3((float)0.9, (float)0.7, (float)0));
+	projectionShader.setMat4("model", model);
+	glDrawArrays(GL_TRIANGLES, 0, 36);
+	model = temp2;
+	//////////////////////
+
+	/////////////////////////////////////////////////
+	model = glm::translate(model, glm::vec3(0.0f, 21.0f, 0.0f));
+	temp = model;//respaldo de matriz
+	temp2 = model;
+	model = glm::scale(model, glm::vec3(3.0f, 21.0f, 3.0f));
+	projectionShader.setVec3("aColor", glm::vec3((float)0.9, (float)0.7, (float)0));
+	projectionShader.setMat4("model", model);
+	glDrawArrays(GL_TRIANGLES, 0, 36);
+	model = temp;
+
+	model = glm::translate(model, glm::vec3(6.0f, 0.0f, -3.5f));
+	model = glm::rotate(model, glm::radians(30.0f), glm::vec3(0, 1, 0));
+	temp = model;//respaldo de matriz
+	model = glm::scale(model, glm::vec3(12.0f, 1.5f, 1.5f));
+	projectionShader.setVec3("aColor", glm::vec3((float)0.9, (float)0.7, (float)0));
+	projectionShader.setMat4("model", model);
+	glDrawArrays(GL_TRIANGLES, 0, 36);
+	model = temp;
+
+
+	model = glm::translate(model, glm::vec3(6.0f, 0.0f, 0.0f));
+	temp = model;
+	model = glm::scale(model, glm::vec3(3.0f, 21.0f, 3.0f));
+	projectionShader.setVec3("aColor", glm::vec3((float)0.9, (float)0.7, (float)0));
+	projectionShader.setMat4("model", model);
+	glDrawArrays(GL_TRIANGLES, 0, 36);
+	model = temp;
+
+	model = glm::rotate(model, glm::radians(-60.0f), glm::vec3(0, 1, 0));
+	model = glm::translate(model, glm::vec3(6.0f, 0.0f, 0.0f));
+	temp = model;//respaldo de matriz
+	model = glm::scale(model, glm::vec3(12.0f, 1.5f, 1.5f));
+	projectionShader.setVec3("aColor", glm::vec3((float)0.9, (float)0.7, (float)0));
+	projectionShader.setMat4("model", model);
+	glDrawArrays(GL_TRIANGLES, 0, 36);
+	model = temp;
+
+	model = glm::translate(model, glm::vec3(6.0f, 0.0f, 0.0f));
+	temp = model;
+	model = glm::scale(model, glm::vec3(3.0f, 21.0f, 3.0f));
+	projectionShader.setVec3("aColor", glm::vec3((float)0.9, (float)0.7, (float)0));
+	projectionShader.setMat4("model", model);
+	glDrawArrays(GL_TRIANGLES, 0, 36);
+	model = temp2;
+	//////////////////////
+
+	/////////////////////////////////////////////////
+	model = glm::translate(model, glm::vec3(0.0f, 21.0f, 0.0f));
+	temp = model;//respaldo de matriz
+	temp2 = model;
+	model = glm::scale(model, glm::vec3(3.0f, 21.0f, 3.0f));
+	projectionShader.setVec3("aColor", glm::vec3((float)0.9, (float)0.7, (float)0));
+	projectionShader.setMat4("model", model);
+	glDrawArrays(GL_TRIANGLES, 0, 36);
+	model = temp;
+
+	model = glm::translate(model, glm::vec3(6.0f, 0.0f, -3.5f));
+	model = glm::rotate(model, glm::radians(30.0f), glm::vec3(0, 1, 0));
+	temp = model;//respaldo de matriz
+	model = glm::scale(model, glm::vec3(12.0f, 1.5f, 1.5f));
+	projectionShader.setVec3("aColor", glm::vec3((float)0.9, (float)0.7, (float)0));
+	projectionShader.setMat4("model", model);
+	glDrawArrays(GL_TRIANGLES, 0, 36);
+	model = temp;
+
+
+	model = glm::translate(model, glm::vec3(6.0f, 0.0f, 0.0f));
+	temp = model;
+	model = glm::scale(model, glm::vec3(3.0f, 21.0f, 3.0f));
+	projectionShader.setVec3("aColor", glm::vec3((float)0.9, (float)0.7, (float)0));
+	projectionShader.setMat4("model", model);
+	glDrawArrays(GL_TRIANGLES, 0, 36);
+	model = temp;
+
+	model = glm::rotate(model, glm::radians(-60.0f), glm::vec3(0, 1, 0));
+	model = glm::translate(model, glm::vec3(6.0f, 0.0f, 0.0f));
+	temp = model;//respaldo de matriz
+	model = glm::scale(model, glm::vec3(12.0f, 1.5f, 1.5f));
+	projectionShader.setVec3("aColor", glm::vec3((float)0.9, (float)0.7, (float)0));
+	projectionShader.setMat4("model", model);
+	glDrawArrays(GL_TRIANGLES, 0, 36);
+	model = temp;
+
+	model = glm::translate(model, glm::vec3(6.0f, 0.0f, 0.0f));
+	temp = model;
+	model = glm::scale(model, glm::vec3(3.0f, 21.0f, 3.0f));
+	projectionShader.setVec3("aColor", glm::vec3((float)0.9, (float)0.7, (float)0));
+	projectionShader.setMat4("model", model);
+	glDrawArrays(GL_TRIANGLES, 0, 36);
+	model = temp2;
+	//////////////////////
+
+	/////////////////////////////////////////////////
+	model = glm::translate(model, glm::vec3(0.0f, 21.0f, 0.0f));
+	temp = model;//respaldo de matriz
+	temp2 = model;
+	model = glm::scale(model, glm::vec3(3.0f, 21.0f, 3.0f));
+	projectionShader.setVec3("aColor", glm::vec3((float)0.9, (float)0.7, (float)0));
+	projectionShader.setMat4("model", model);
+	glDrawArrays(GL_TRIANGLES, 0, 36);
+	model = temp;
+
+	model = glm::translate(model, glm::vec3(6.0f, 0.0f, -3.5f));
+	model = glm::rotate(model, glm::radians(30.0f), glm::vec3(0, 1, 0));
+	temp = model;//respaldo de matriz
+	model = glm::scale(model, glm::vec3(12.0f, 1.5f, 1.5f));
+	projectionShader.setVec3("aColor", glm::vec3((float)0.9, (float)0.7, (float)0));
+	projectionShader.setMat4("model", model);
+	glDrawArrays(GL_TRIANGLES, 0, 36);
+	model = temp;
+
+
+	model = glm::translate(model, glm::vec3(6.0f, 0.0f, 0.0f));
+	temp = model;
+	model = glm::scale(model, glm::vec3(3.0f, 21.0f, 3.0f));
+	projectionShader.setVec3("aColor", glm::vec3((float)0.9, (float)0.7, (float)0));
+	projectionShader.setMat4("model", model);
+	glDrawArrays(GL_TRIANGLES, 0, 36);
+	model = temp;
+
+	model = glm::rotate(model, glm::radians(-60.0f), glm::vec3(0, 1, 0));
+	model = glm::translate(model, glm::vec3(6.0f, 0.0f, 0.0f));
+	temp = model;//respaldo de matriz
+	model = glm::scale(model, glm::vec3(12.0f, 1.5f, 1.5f));
+	projectionShader.setVec3("aColor", glm::vec3((float)0.9, (float)0.7, (float)0));
+	projectionShader.setMat4("model", model);
+	glDrawArrays(GL_TRIANGLES, 0, 36);
+	model = temp;
+
+	model = glm::translate(model, glm::vec3(6.0f, 0.0f, 0.0f));
+	temp = model;
+	model = glm::scale(model, glm::vec3(3.0f, 21.0f, 3.0f));
+	projectionShader.setVec3("aColor", glm::vec3((float)0.9, (float)0.7, (float)0));
+	projectionShader.setMat4("model", model);
+	glDrawArrays(GL_TRIANGLES, 0, 36);
+	model = temp2;
+	//////////////////////
+
+	/////////////////////////////////////////////////
+	model = glm::translate(model, glm::vec3(0.0f, 21.0f, 0.0f));
+	temp = model;//respaldo de matriz
+	temp2 = model;
+	model = glm::scale(model, glm::vec3(3.0f, 21.0f, 3.0f));
+	projectionShader.setVec3("aColor", glm::vec3((float)0.9, (float)0.7, (float)0));
+	projectionShader.setMat4("model", model);
+	glDrawArrays(GL_TRIANGLES, 0, 36);
+	model = temp;
+
+	model = glm::translate(model, glm::vec3(6.0f, 0.0f, -3.5f));
+	model = glm::rotate(model, glm::radians(30.0f), glm::vec3(0, 1, 0));
+	temp = model;//respaldo de matriz
+	model = glm::scale(model, glm::vec3(12.0f, 1.5f, 1.5f));
+	projectionShader.setVec3("aColor", glm::vec3((float)0.9, (float)0.7, (float)0));
+	projectionShader.setMat4("model", model);
+	glDrawArrays(GL_TRIANGLES, 0, 36);
+	model = temp;
+
+
+	model = glm::translate(model, glm::vec3(6.0f, 0.0f, 0.0f));
+	temp = model;
+	model = glm::scale(model, glm::vec3(3.0f, 21.0f, 3.0f));
+	projectionShader.setVec3("aColor", glm::vec3((float)0.9, (float)0.7, (float)0));
+	projectionShader.setMat4("model", model);
+	glDrawArrays(GL_TRIANGLES, 0, 36);
+	model = temp;
+
+	model = glm::rotate(model, glm::radians(-60.0f), glm::vec3(0, 1, 0));
+	model = glm::translate(model, glm::vec3(6.0f, 0.0f, 0.0f));
+	temp = model;//respaldo de matriz
+	model = glm::scale(model, glm::vec3(12.0f, 1.5f, 1.5f));
+	projectionShader.setVec3("aColor", glm::vec3((float)0.9, (float)0.7, (float)0));
+	projectionShader.setMat4("model", model);
+	glDrawArrays(GL_TRIANGLES, 0, 36);
+	model = temp;
+
+	model = glm::translate(model, glm::vec3(6.0f, 0.0f, 0.0f));
+	temp = model;
+	model = glm::scale(model, glm::vec3(3.0f, 21.0f, 3.0f));
+	projectionShader.setVec3("aColor", glm::vec3((float)0.9, (float)0.7, (float)0));
+	projectionShader.setMat4("model", model);
+	glDrawArrays(GL_TRIANGLES, 0, 36);
+	model = temp2;
+	//////////////////////
+
+	/////////////////////////////////////////////////
+	model = glm::translate(model, glm::vec3(0.0f, 21.0f, 0.0f));
+	temp = model;//respaldo de matriz
+	temp2 = model;
+	model = glm::scale(model, glm::vec3(3.0f, 21.0f, 3.0f));
+	projectionShader.setVec3("aColor", glm::vec3((float)0.9, (float)0.7, (float)0));
+	projectionShader.setMat4("model", model);
+	glDrawArrays(GL_TRIANGLES, 0, 36);
+	model = temp;
+
+	model = glm::translate(model, glm::vec3(6.0f, 0.0f, -3.5f));
+	model = glm::rotate(model, glm::radians(30.0f), glm::vec3(0, 1, 0));
+	temp = model;//respaldo de matriz
+	model = glm::scale(model, glm::vec3(12.0f, 1.5f, 1.5f));
+	projectionShader.setVec3("aColor", glm::vec3((float)0.9, (float)0.7, (float)0));
+	projectionShader.setMat4("model", model);
+	glDrawArrays(GL_TRIANGLES, 0, 36);
+	model = temp;
+
+
+	model = glm::translate(model, glm::vec3(6.0f, 0.0f, 0.0f));
+	temp = model;
+	model = glm::scale(model, glm::vec3(3.0f, 21.0f, 3.0f));
+	projectionShader.setVec3("aColor", glm::vec3((float)0.9, (float)0.7, (float)0));
+	projectionShader.setMat4("model", model);
+	glDrawArrays(GL_TRIANGLES, 0, 36);
+	model = temp;
+
+	model = glm::rotate(model, glm::radians(-60.0f), glm::vec3(0, 1, 0));
+	model = glm::translate(model, glm::vec3(6.0f, 0.0f, 0.0f));
+	temp = model;//respaldo de matriz
+	model = glm::scale(model, glm::vec3(12.0f, 1.5f, 1.5f));
+	projectionShader.setVec3("aColor", glm::vec3((float)0.9, (float)0.7, (float)0));
+	projectionShader.setMat4("model", model);
+	glDrawArrays(GL_TRIANGLES, 0, 36);
+	model = temp;
+
+	model = glm::translate(model, glm::vec3(6.0f, 0.0f, 0.0f));
+	temp = model;
+	model = glm::scale(model, glm::vec3(3.0f, 21.0f, 3.0f));
+	projectionShader.setVec3("aColor", glm::vec3((float)0.9, (float)0.7, (float)0));
+	projectionShader.setMat4("model", model);
+	glDrawArrays(GL_TRIANGLES, 0, 36);
+	model = temp2;
+	//////////////////////
+
+	/////////////////////////////////////////////////
+	model = glm::translate(model, glm::vec3(0.0f, 21.0f, 0.0f));
+	temp = model;//respaldo de matriz
+	temp2 = model;
+	model = glm::scale(model, glm::vec3(3.0f, 21.0f, 3.0f));
+	projectionShader.setVec3("aColor", glm::vec3((float)0.9, (float)0.7, (float)0));
+	projectionShader.setMat4("model", model);
+	glDrawArrays(GL_TRIANGLES, 0, 36);
+	model = temp;
+
+	model = glm::translate(model, glm::vec3(6.0f, 0.0f, -3.5f));
+	model = glm::rotate(model, glm::radians(30.0f), glm::vec3(0, 1, 0));
+	temp = model;//respaldo de matriz
+	model = glm::scale(model, glm::vec3(12.0f, 1.5f, 1.5f));
+	projectionShader.setVec3("aColor", glm::vec3((float)0.9, (float)0.7, (float)0));
+	projectionShader.setMat4("model", model);
+	glDrawArrays(GL_TRIANGLES, 0, 36);
+	model = temp;
+
+
+	model = glm::translate(model, glm::vec3(6.0f, 0.0f, 0.0f));
+	temp = model;
+	model = glm::scale(model, glm::vec3(3.0f, 21.0f, 3.0f));
+	projectionShader.setVec3("aColor", glm::vec3((float)0.9, (float)0.7, (float)0));
+	projectionShader.setMat4("model", model);
+	glDrawArrays(GL_TRIANGLES, 0, 36);
+	model = temp;
+
+	model = glm::rotate(model, glm::radians(-60.0f), glm::vec3(0, 1, 0));
+	model = glm::translate(model, glm::vec3(6.0f, 0.0f, 0.0f));
+	temp = model;//respaldo de matriz
+	model = glm::scale(model, glm::vec3(12.0f, 1.5f, 1.5f));
+	projectionShader.setVec3("aColor", glm::vec3((float)0.9, (float)0.7, (float)0));
+	projectionShader.setMat4("model", model);
+	glDrawArrays(GL_TRIANGLES, 0, 36);
+	model = temp;
+
+	model = glm::translate(model, glm::vec3(6.0f, 0.0f, 0.0f));
+	temp = model;
+	model = glm::scale(model, glm::vec3(3.0f, 21.0f, 3.0f));
+	projectionShader.setVec3("aColor", glm::vec3((float)0.9, (float)0.7, (float)0));
+	projectionShader.setMat4("model", model);
+	glDrawArrays(GL_TRIANGLES, 0, 36);
+	model = temp2;
+	//////////////////////
+
+	/////////////////////////////////////////////////
+	model = glm::translate(model, glm::vec3(0.0f, 21.0f, 0.0f));
+	temp = model;//respaldo de matriz
+	temp2 = model;
+	model = glm::scale(model, glm::vec3(3.0f, 21.0f, 3.0f));
+	projectionShader.setVec3("aColor", glm::vec3((float)0.9, (float)0.7, (float)0));
+	projectionShader.setMat4("model", model);
+	glDrawArrays(GL_TRIANGLES, 0, 36);
+	model = temp;
+
+	model = glm::translate(model, glm::vec3(6.0f, 0.0f, -3.5f));
+	model = glm::rotate(model, glm::radians(30.0f), glm::vec3(0, 1, 0));
+	temp = model;//respaldo de matriz
+	model = glm::scale(model, glm::vec3(12.0f, 1.5f, 1.5f));
+	projectionShader.setVec3("aColor", glm::vec3((float)0.9, (float)0.7, (float)0));
+	projectionShader.setMat4("model", model);
+	glDrawArrays(GL_TRIANGLES, 0, 36);
+	model = temp;
+
+
+	model = glm::translate(model, glm::vec3(6.0f, 0.0f, 0.0f));
+	temp = model;
+	model = glm::scale(model, glm::vec3(3.0f, 21.0f, 3.0f));
+	projectionShader.setVec3("aColor", glm::vec3((float)0.9, (float)0.7, (float)0));
+	projectionShader.setMat4("model", model);
+	glDrawArrays(GL_TRIANGLES, 0, 36);
+	model = temp;
+
+	model = glm::rotate(model, glm::radians(-60.0f), glm::vec3(0, 1, 0));
+	model = glm::translate(model, glm::vec3(6.0f, 0.0f, 0.0f));
+	temp = model;//respaldo de matriz
+	model = glm::scale(model, glm::vec3(12.0f, 1.5f, 1.5f));
+	projectionShader.setVec3("aColor", glm::vec3((float)0.9, (float)0.7, (float)0));
+	projectionShader.setMat4("model", model);
+	glDrawArrays(GL_TRIANGLES, 0, 36);
+	model = temp;
+
+	model = glm::translate(model, glm::vec3(6.0f, 0.0f, 0.0f));
+	temp = model;
+	model = glm::scale(model, glm::vec3(3.0f, 21.0f, 3.0f));
+	projectionShader.setVec3("aColor", glm::vec3((float)0.9, (float)0.7, (float)0));
+	projectionShader.setMat4("model", model);
+	glDrawArrays(GL_TRIANGLES, 0, 36);
+	model = temp2;
+	//////////////////////
+
+	/////////////////////////////////////////////////
+	model = glm::translate(model, glm::vec3(0.0f, 21.0f, -1.0f));
+	model = glm::rotate(model, glm::radians(-30.0f), glm::vec3(1, 0, 0));
+	//model = glm::rotate(model, glm::radians(30.0f), glm::vec3(0, 1, 0));
+	//model = glm::rotate(model, glm::radians(30.0f), glm::vec3(0, 0, 1));
+	temp = model;//respaldo de matriz
+	temp2 = model;
+	model = glm::scale(model, glm::vec3(3.0f, 21.0f, 3.0f));
+	projectionShader.setVec3("aColor", glm::vec3((float)0.9, (float)0.7, (float)0));
+	projectionShader.setMat4("model", model);
+	glDrawArrays(GL_TRIANGLES, 0, 36);
+	model = temp;
+
+	model = glm::translate(model, glm::vec3(6.0f, 0.0f, -3.5f));
+	model = glm::rotate(model, glm::radians(30.0f), glm::vec3(0, 1, 0));
+	temp = model;//respaldo de matriz
+	model = glm::scale(model, glm::vec3(12.0f, 1.5f, 1.5f));
+	projectionShader.setVec3("aColor", glm::vec3((float)0.9, (float)0.7, (float)0));
+	projectionShader.setMat4("model", model);
+	glDrawArrays(GL_TRIANGLES, 0, 36);
+	model = temp;
+
+
+	model = glm::translate(model, glm::vec3(6.0f, 0.0f, 0.0f));
+	temp = model;
+	model = glm::scale(model, glm::vec3(3.0f, 21.0f, 3.0f));
+	projectionShader.setVec3("aColor", glm::vec3((float)0.9, (float)0.7, (float)0));
+	projectionShader.setMat4("model", model);
+	glDrawArrays(GL_TRIANGLES, 0, 36);
+	model = temp;
+
+	model = glm::rotate(model, glm::radians(-60.0f), glm::vec3(0, 1, 0));
+	model = glm::translate(model, glm::vec3(6.0f, 0.0f, 0.0f));
+	temp = model;//respaldo de matriz
+	model = glm::scale(model, glm::vec3(12.0f, 1.5f, 1.5f));
+	projectionShader.setVec3("aColor", glm::vec3((float)0.9, (float)0.7, (float)0));
+	projectionShader.setMat4("model", model);
+	glDrawArrays(GL_TRIANGLES, 0, 36);
+	model = temp;
+
+	model = glm::translate(model, glm::vec3(6.0f, 0.0f, 0.0f));
+	temp = model;
+	model = glm::scale(model, glm::vec3(3.0f, 21.0f, 3.0f));
+	projectionShader.setVec3("aColor", glm::vec3((float)0.9, (float)0.7, (float)0));
+	projectionShader.setMat4("model", model);
+	glDrawArrays(GL_TRIANGLES, 0, 36);
+	model = temp2;
+	//////////////////////
+
+	/////////////////////////////////////////////////
+	model = glm::translate(model, glm::vec3(0.0f, 21.0f, -1.0f));
+	model = glm::rotate(model, glm::radians(-15.0f), glm::vec3(1, 0, 0));
+	//model = glm::rotate(model, glm::radians(30.0f), glm::vec3(0, 1, 0));
+	//model = glm::rotate(model, glm::radians(30.0f), glm::vec3(0, 0, 1));
+	temp = model;//respaldo de matriz
+	temp2 = model;
+	model = glm::scale(model, glm::vec3(3.0f, 21.0f, 3.0f));
+	projectionShader.setVec3("aColor", glm::vec3((float)0.9, (float)0.7, (float)0));
+	projectionShader.setMat4("model", model);
+	glDrawArrays(GL_TRIANGLES, 0, 36);
+	model = temp;
+
+	model = glm::translate(model, glm::vec3(6.0f, 0.0f, -3.5f));
+	model = glm::rotate(model, glm::radians(30.0f), glm::vec3(0, 1, 0));
+	temp = model;//respaldo de matriz
+	model = glm::scale(model, glm::vec3(12.0f, 1.5f, 1.5f));
+	projectionShader.setVec3("aColor", glm::vec3((float)0.9, (float)0.7, (float)0));
+	projectionShader.setMat4("model", model);
+	glDrawArrays(GL_TRIANGLES, 0, 36);
+	model = temp;
+
+
+	model = glm::translate(model, glm::vec3(6.0f, 0.0f, 0.0f));
+	temp = model;
+	model = glm::scale(model, glm::vec3(3.0f, 21.0f, 3.0f));
+	projectionShader.setVec3("aColor", glm::vec3((float)0.9, (float)0.7, (float)0));
+	projectionShader.setMat4("model", model);
+	glDrawArrays(GL_TRIANGLES, 0, 36);
+	model = temp;
+
+	model = glm::rotate(model, glm::radians(-60.0f), glm::vec3(0, 1, 0));
+	model = glm::translate(model, glm::vec3(6.0f, 0.0f, 0.0f));
+	temp = model;//respaldo de matriz
+	model = glm::scale(model, glm::vec3(12.0f, 1.5f, 1.5f));
+	projectionShader.setVec3("aColor", glm::vec3((float)0.9, (float)0.7, (float)0));
+	projectionShader.setMat4("model", model);
+	glDrawArrays(GL_TRIANGLES, 0, 36);
+	model = temp;
+
+	model = glm::translate(model, glm::vec3(6.0f, 0.0f, 0.0f));
+	temp = model;
+	model = glm::scale(model, glm::vec3(3.0f, 21.0f, 3.0f));
+	projectionShader.setVec3("aColor", glm::vec3((float)0.9, (float)0.7, (float)0));
+	projectionShader.setMat4("model", model);
+	glDrawArrays(GL_TRIANGLES, 0, 36);
+	model = temp2;
+	//////////////////////
+
+	/////////////////////////////////////////////////
+	model = glm::translate(model, glm::vec3(0.0f, 21.0f, -1.0f));
+	model = glm::rotate(model, glm::radians(-10.0f), glm::vec3(1, 0, 0));
+	//model = glm::rotate(model, glm::radians(30.0f), glm::vec3(0, 1, 0));
+	//model = glm::rotate(model, glm::radians(30.0f), glm::vec3(0, 0, 1));
+	temp = model;//respaldo de matriz
+	temp2 = model;
+	model = glm::scale(model, glm::vec3(3.0f, 21.0f, 3.0f));
+	projectionShader.setVec3("aColor", glm::vec3((float)0.9, (float)0.7, (float)0));
+	projectionShader.setMat4("model", model);
+	glDrawArrays(GL_TRIANGLES, 0, 36);
+	model = temp;
+
+	model = glm::translate(model, glm::vec3(6.0f, 0.0f, -3.5f));
+	model = glm::rotate(model, glm::radians(30.0f), glm::vec3(0, 1, 0));
+	temp = model;//respaldo de matriz
+	model = glm::scale(model, glm::vec3(12.0f, 1.5f, 1.5f));
+	projectionShader.setVec3("aColor", glm::vec3((float)0.9, (float)0.7, (float)0));
+	projectionShader.setMat4("model", model);
+	glDrawArrays(GL_TRIANGLES, 0, 36);
+	model = temp;
+
+
+	model = glm::translate(model, glm::vec3(6.0f, 0.0f, 0.0f));
+	temp = model;
+	model = glm::scale(model, glm::vec3(3.0f, 21.0f, 3.0f));
+	projectionShader.setVec3("aColor", glm::vec3((float)0.9, (float)0.7, (float)0));
+	projectionShader.setMat4("model", model);
+	glDrawArrays(GL_TRIANGLES, 0, 36);
+	model = temp;
+
+	model = glm::rotate(model, glm::radians(-60.0f), glm::vec3(0, 1, 0));
+	model = glm::translate(model, glm::vec3(6.0f, 0.0f, 0.0f));
+	temp = model;//respaldo de matriz
+	model = glm::scale(model, glm::vec3(12.0f, 1.5f, 1.5f));
+	projectionShader.setVec3("aColor", glm::vec3((float)0.9, (float)0.7, (float)0));
+	projectionShader.setMat4("model", model);
+	glDrawArrays(GL_TRIANGLES, 0, 36);
+	model = temp;
+
+	model = glm::translate(model, glm::vec3(6.0f, 0.0f, 0.0f));
+	temp = model;
+	model = glm::scale(model, glm::vec3(3.0f, 21.0f, 3.0f));
+	projectionShader.setVec3("aColor", glm::vec3((float)0.9, (float)0.7, (float)0));
+	projectionShader.setMat4("model", model);
+	glDrawArrays(GL_TRIANGLES, 0, 36);
+	model = temp2;
+	//////////////////////
+
+	/////////////////////////////////////////////////
+	model = glm::translate(model, glm::vec3(0.0f, 21.0f, -1.0f));
+	model = glm::rotate(model, glm::radians(-10.0f), glm::vec3(1, 0, 0));
+	//model = glm::rotate(model, glm::radians(30.0f), glm::vec3(0, 1, 0));
+	//model = glm::rotate(model, glm::radians(30.0f), glm::vec3(0, 0, 1));
+	temp = model;//respaldo de matriz
+	temp2 = model;
+	model = glm::scale(model, glm::vec3(3.0f, 21.0f, 3.0f));
+	projectionShader.setVec3("aColor", glm::vec3((float)0.9, (float)0.7, (float)0));
+	projectionShader.setMat4("model", model);
+	glDrawArrays(GL_TRIANGLES, 0, 36);
+	model = temp;
+
+	model = glm::translate(model, glm::vec3(6.0f, 0.0f, -3.5f));
+	model = glm::rotate(model, glm::radians(30.0f), glm::vec3(0, 1, 0));
+	temp = model;//respaldo de matriz
+	model = glm::scale(model, glm::vec3(12.0f, 1.5f, 1.5f));
+	projectionShader.setVec3("aColor", glm::vec3((float)0.9, (float)0.7, (float)0));
+	projectionShader.setMat4("model", model);
+	glDrawArrays(GL_TRIANGLES, 0, 36);
+	model = temp;
+
+
+	model = glm::translate(model, glm::vec3(6.0f, 0.0f, 0.0f));
+	temp = model;
+	model = glm::scale(model, glm::vec3(3.0f, 21.0f, 3.0f));
+	projectionShader.setVec3("aColor", glm::vec3((float)0.9, (float)0.7, (float)0));
+	projectionShader.setMat4("model", model);
+	glDrawArrays(GL_TRIANGLES, 0, 36);
+	model = temp;
+
+	model = glm::rotate(model, glm::radians(-60.0f), glm::vec3(0, 1, 0));
+	model = glm::translate(model, glm::vec3(6.0f, 0.0f, 0.0f));
+	temp = model;//respaldo de matriz
+	model = glm::scale(model, glm::vec3(12.0f, 1.5f, 1.5f));
+	projectionShader.setVec3("aColor", glm::vec3((float)0.9, (float)0.7, (float)0));
+	projectionShader.setMat4("model", model);
+	glDrawArrays(GL_TRIANGLES, 0, 36);
+	model = temp;
+
+	model = glm::translate(model, glm::vec3(6.0f, 0.0f, 0.0f));
+	temp = model;
+	model = glm::scale(model, glm::vec3(3.0f, 21.0f, 3.0f));
+	projectionShader.setVec3("aColor", glm::vec3((float)0.9, (float)0.7, (float)0));
+	projectionShader.setMat4("model", model);
+	glDrawArrays(GL_TRIANGLES, 0, 36);
+	model = temp2;
+	//////////////////////
+
+	/////////////////////////////////////////////////
+	model = glm::translate(model, glm::vec3(0.0f, 21.0f, -1.0f));
+	model = glm::rotate(model, glm::radians(-15.0f), glm::vec3(1, 0, 0));
+	model = glm::rotate(model, glm::radians(15.0f), glm::vec3(0, 1, 0));
+	//model = glm::rotate(model, glm::radians(30.0f), glm::vec3(0, 0, 1));
+	temp = model;//respaldo de matriz
+	temp2 = model;
+	model = glm::scale(model, glm::vec3(3.0f, 21.0f, 3.0f));
+	projectionShader.setVec3("aColor", glm::vec3((float)0.9, (float)0.7, (float)0));
+	projectionShader.setMat4("model", model);
+	glDrawArrays(GL_TRIANGLES, 0, 36);
+	model = temp;
+
+	model = glm::translate(model, glm::vec3(6.0f, 0.0f, -3.5f));
+	model = glm::rotate(model, glm::radians(30.0f), glm::vec3(0, 1, 0));
+	temp = model;//respaldo de matriz
+	model = glm::scale(model, glm::vec3(12.0f, 1.5f, 1.5f));
+	projectionShader.setVec3("aColor", glm::vec3((float)0.9, (float)0.7, (float)0));
+	projectionShader.setMat4("model", model);
+	glDrawArrays(GL_TRIANGLES, 0, 36);
+	model = temp;
+
+
+	model = glm::translate(model, glm::vec3(6.0f, 0.0f, 0.0f));
+	temp = model;
+	model = glm::scale(model, glm::vec3(3.0f, 21.0f, 3.0f));
+	projectionShader.setVec3("aColor", glm::vec3((float)0.9, (float)0.7, (float)0));
+	projectionShader.setMat4("model", model);
+	glDrawArrays(GL_TRIANGLES, 0, 36);
+	model = temp;
+
+	model = glm::rotate(model, glm::radians(-60.0f), glm::vec3(0, 1, 0));
+	model = glm::translate(model, glm::vec3(6.0f, 0.0f, 0.0f));
+	temp = model;//respaldo de matriz
+	model = glm::scale(model, glm::vec3(12.0f, 1.5f, 1.5f));
+	projectionShader.setVec3("aColor", glm::vec3((float)0.9, (float)0.7, (float)0));
+	projectionShader.setMat4("model", model);
+	glDrawArrays(GL_TRIANGLES, 0, 36);
+	model = temp;
+
+	model = glm::translate(model, glm::vec3(6.0f, 0.0f, 0.0f));
+	temp = model;
+	model = glm::scale(model, glm::vec3(3.0f, 21.0f, 3.0f));
+	projectionShader.setVec3("aColor", glm::vec3((float)0.9, (float)0.7, (float)0));
+	projectionShader.setMat4("model", model);
+	glDrawArrays(GL_TRIANGLES, 0, 36);
+	model = temp2;
+	//////////////////////
+
+	/////////////////////////////////////////////////
+	model = glm::translate(model, glm::vec3(3.0f, 21.0f, -1.0f));
+	model = glm::rotate(model, glm::radians(-15.0f), glm::vec3(1, 0, 0));
+	model = glm::rotate(model, glm::radians(15.0f), glm::vec3(0, 1, 0));
+	model = glm::rotate(model, glm::radians(-15.0f), glm::vec3(0, 0, 1));
+	temp = model;//respaldo de matriz
+	temp2 = model;
+	model = glm::scale(model, glm::vec3(3.0f, 21.0f, 3.0f));
+	projectionShader.setVec3("aColor", glm::vec3((float)0.9, (float)0.7, (float)0));
+	projectionShader.setMat4("model", model);
+	glDrawArrays(GL_TRIANGLES, 0, 36);
+	model = temp;
+
+	model = glm::translate(model, glm::vec3(6.0f, 0.0f, -3.5f));
+	model = glm::rotate(model, glm::radians(30.0f), glm::vec3(0, 1, 0));
+	temp = model;//respaldo de matriz
+	model = glm::scale(model, glm::vec3(12.0f, 1.5f, 1.5f));
+	projectionShader.setVec3("aColor", glm::vec3((float)0.9, (float)0.7, (float)0));
+	projectionShader.setMat4("model", model);
+	glDrawArrays(GL_TRIANGLES, 0, 36);
+	model = temp;
+
+
+	model = glm::translate(model, glm::vec3(6.0f, 0.0f, 0.0f));
+	temp = model;
+	model = glm::scale(model, glm::vec3(3.0f, 21.0f, 3.0f));
+	projectionShader.setVec3("aColor", glm::vec3((float)0.9, (float)0.7, (float)0));
+	projectionShader.setMat4("model", model);
+	glDrawArrays(GL_TRIANGLES, 0, 36);
+	model = temp;
+
+	model = glm::rotate(model, glm::radians(-60.0f), glm::vec3(0, 1, 0));
+	model = glm::translate(model, glm::vec3(6.0f, 0.0f, 0.0f));
+	temp = model;//respaldo de matriz
+	model = glm::scale(model, glm::vec3(12.0f, 1.5f, 1.5f));
+	projectionShader.setVec3("aColor", glm::vec3((float)0.9, (float)0.7, (float)0));
+	projectionShader.setMat4("model", model);
+	glDrawArrays(GL_TRIANGLES, 0, 36);
+	model = temp;
+
+	model = glm::translate(model, glm::vec3(6.0f, 0.0f, 0.0f));
+	temp = model;
+	model = glm::scale(model, glm::vec3(3.0f, 21.0f, 3.0f));
+	projectionShader.setVec3("aColor", glm::vec3((float)0.9, (float)0.7, (float)0));
+	projectionShader.setMat4("model", model);
+	glDrawArrays(GL_TRIANGLES, 0, 36);
+	model = temp2;
+	//////////////////////
+
+	/////////////////////////////////////////////////
+	model = glm::translate(model, glm::vec3(4.0f, 21.0f, -2.0f));
+	model = glm::rotate(model, glm::radians(-15.0f), glm::vec3(1, 0, 0));
+	model = glm::rotate(model, glm::radians(15.0f), glm::vec3(0, 1, 0));
+	model = glm::rotate(model, glm::radians(-25.0f), glm::vec3(0, 0, 1));
+	temp = model;//respaldo de matriz
+	temp2 = model;
+	model = glm::scale(model, glm::vec3(3.0f, 21.0f, 3.0f));
+	projectionShader.setVec3("aColor", glm::vec3((float)0.9, (float)0.7, (float)0));
+	projectionShader.setMat4("model", model);
+	glDrawArrays(GL_TRIANGLES, 0, 36);
+	model = temp;
+
+	model = glm::translate(model, glm::vec3(6.0f, 0.0f, -3.5f));
+	model = glm::rotate(model, glm::radians(30.0f), glm::vec3(0, 1, 0));
+	temp = model;//respaldo de matriz
+	model = glm::scale(model, glm::vec3(12.0f, 1.5f, 1.5f));
+	projectionShader.setVec3("aColor", glm::vec3((float)0.9, (float)0.7, (float)0));
+	projectionShader.setMat4("model", model);
+	glDrawArrays(GL_TRIANGLES, 0, 36);
+	model = temp;
+
+
+	model = glm::translate(model, glm::vec3(6.0f, 0.0f, 0.0f));
+	temp = model;
+	model = glm::scale(model, glm::vec3(3.0f, 21.0f, 3.0f));
+	projectionShader.setVec3("aColor", glm::vec3((float)0.9, (float)0.7, (float)0));
+	projectionShader.setMat4("model", model);
+	glDrawArrays(GL_TRIANGLES, 0, 36);
+	model = temp;
+
+	model = glm::rotate(model, glm::radians(-60.0f), glm::vec3(0, 1, 0));
+	model = glm::translate(model, glm::vec3(6.0f, 0.0f, 0.0f));
+	temp = model;//respaldo de matriz
+	model = glm::scale(model, glm::vec3(12.0f, 1.5f, 1.5f));
+	projectionShader.setVec3("aColor", glm::vec3((float)0.9, (float)0.7, (float)0));
+	projectionShader.setMat4("model", model);
+	glDrawArrays(GL_TRIANGLES, 0, 36);
+	model = temp;
+
+	model = glm::translate(model, glm::vec3(6.0f, 0.0f, 0.0f));
+	temp = model;
+	model = glm::scale(model, glm::vec3(3.0f, 21.0f, 3.0f));
+	projectionShader.setVec3("aColor", glm::vec3((float)0.9, (float)0.7, (float)0));
+	projectionShader.setMat4("model", model);
+	glDrawArrays(GL_TRIANGLES, 0, 36);
+	model = temp2;
+	//////////////////////
+
+	/////////////////////////////////////////////////
+	model = glm::translate(model, glm::vec3(0.0f, 21.0f, 0.0f));
+	//model = glm::rotate(model, glm::radians(15.0f), glm::vec3(1, 0, 0));
+	//model = glm::rotate(model, glm::radians(15.0f), glm::vec3(0, 1, 0));
+	//model = glm::rotate(model, glm::radians(-15.0f), glm::vec3(0, 0, 1));
+	temp = model;//respaldo de matriz
+	temp2 = model;
+	model = glm::scale(model, glm::vec3(3.0f, 21.0f, 3.0f));
+	projectionShader.setVec3("aColor", glm::vec3((float)0.9, (float)0.7, (float)0));
+	projectionShader.setMat4("model", model);
+	glDrawArrays(GL_TRIANGLES, 0, 36);
+	model = temp;
+
+	model = glm::translate(model, glm::vec3(6.0f, 0.0f, -3.5f));
+	model = glm::rotate(model, glm::radians(30.0f), glm::vec3(0, 1, 0));
+	temp = model;//respaldo de matriz
+	model = glm::scale(model, glm::vec3(12.0f, 1.5f, 1.5f));
+	projectionShader.setVec3("aColor", glm::vec3((float)0.9, (float)0.7, (float)0));
+	projectionShader.setMat4("model", model);
+	glDrawArrays(GL_TRIANGLES, 0, 36);
+	model = temp;
+
+
+	model = glm::translate(model, glm::vec3(6.0f, 0.0f, 0.0f));
+	temp = model;
+	model = glm::scale(model, glm::vec3(3.0f, 21.0f, 3.0f));
+	projectionShader.setVec3("aColor", glm::vec3((float)0.9, (float)0.7, (float)0));
+	projectionShader.setMat4("model", model);
+	glDrawArrays(GL_TRIANGLES, 0, 36);
+	model = temp;
+
+	model = glm::rotate(model, glm::radians(-60.0f), glm::vec3(0, 1, 0));
+	model = glm::translate(model, glm::vec3(6.0f, 0.0f, 0.0f));
+	temp = model;//respaldo de matriz
+	model = glm::scale(model, glm::vec3(12.0f, 1.5f, 1.5f));
+	projectionShader.setVec3("aColor", glm::vec3((float)0.9, (float)0.7, (float)0));
+	projectionShader.setMat4("model", model);
+	glDrawArrays(GL_TRIANGLES, 0, 36);
+	model = temp;
+
+	model = glm::translate(model, glm::vec3(6.0f, 0.0f, 0.0f));
+	temp = model;
+	model = glm::scale(model, glm::vec3(3.0f, 21.0f, 3.0f));
+	projectionShader.setVec3("aColor", glm::vec3((float)0.9, (float)0.7, (float)0));
+	projectionShader.setMat4("model", model);
+	glDrawArrays(GL_TRIANGLES, 0, 36);
+	model = temp2;
+	//////////////////////
+
+	/////////////////////////////////////////////////
+	model = glm::translate(model, glm::vec3(0.0f, 21.0f, 0.0f));
+	//model = glm::rotate(model, glm::radians(15.0f), glm::vec3(1, 0, 0));
+	//model = glm::rotate(model, glm::radians(15.0f), glm::vec3(0, 1, 0));
+	//model = glm::rotate(model, glm::radians(-15.0f), glm::vec3(0, 0, 1));
+	temp = model;//respaldo de matriz
+	temp2 = model;
+	model = glm::scale(model, glm::vec3(3.0f, 21.0f, 3.0f));
+	projectionShader.setVec3("aColor", glm::vec3((float)0.9, (float)0.7, (float)0));
+	projectionShader.setMat4("model", model);
+	glDrawArrays(GL_TRIANGLES, 0, 36);
+	model = temp;
+
+	model = glm::translate(model, glm::vec3(6.0f, 0.0f, -3.5f));
+	model = glm::rotate(model, glm::radians(30.0f), glm::vec3(0, 1, 0));
+	temp = model;//respaldo de matriz
+	model = glm::scale(model, glm::vec3(12.0f, 1.5f, 1.5f));
+	projectionShader.setVec3("aColor", glm::vec3((float)0.9, (float)0.7, (float)0));
+	projectionShader.setMat4("model", model);
+	glDrawArrays(GL_TRIANGLES, 0, 36);
+	model = temp;
+
+
+	model = glm::translate(model, glm::vec3(6.0f, 0.0f, 0.0f));
+	temp = model;
+	model = glm::scale(model, glm::vec3(3.0f, 21.0f, 3.0f));
+	projectionShader.setVec3("aColor", glm::vec3((float)0.9, (float)0.7, (float)0));
+	projectionShader.setMat4("model", model);
+	glDrawArrays(GL_TRIANGLES, 0, 36);
+	model = temp;
+
+	model = glm::rotate(model, glm::radians(-60.0f), glm::vec3(0, 1, 0));
+	model = glm::translate(model, glm::vec3(6.0f, 0.0f, 0.0f));
+	temp = model;//respaldo de matriz
+	model = glm::scale(model, glm::vec3(12.0f, 1.5f, 1.5f));
+	projectionShader.setVec3("aColor", glm::vec3((float)0.9, (float)0.7, (float)0));
+	projectionShader.setMat4("model", model);
+	glDrawArrays(GL_TRIANGLES, 0, 36);
+	model = temp;
+
+	model = glm::translate(model, glm::vec3(6.0f, 0.0f, 0.0f));
+	temp = model;
+	model = glm::scale(model, glm::vec3(3.0f, 21.0f, 3.0f));
+	projectionShader.setVec3("aColor", glm::vec3((float)0.9, (float)0.7, (float)0));
+	projectionShader.setMat4("model", model);
+	glDrawArrays(GL_TRIANGLES, 0, 36);
+	model = temp2;
+	////////////////////////
+
+	/////////////////////////////////////////////////
+	model = glm::translate(model, glm::vec3(4.0f, 21.0f, 3.0f));
+	//model = glm::rotate(model, glm::radians(-15.0f), glm::vec3(1, 0, 0));
+	model = glm::rotate(model, glm::radians(15.0f), glm::vec3(0, 1, 0));
+	model = glm::rotate(model, glm::radians(-10.0f), glm::vec3(0, 0, 1));
+	temp = model;//respaldo de matriz
+	temp2 = model;
+	model = glm::scale(model, glm::vec3(3.0f, 21.0f, 3.0f));
+	projectionShader.setVec3("aColor", glm::vec3((float)0.9, (float)0.7, (float)0));
+	projectionShader.setMat4("model", model);
+	glDrawArrays(GL_TRIANGLES, 0, 36);
+	model = temp;
+
+	model = glm::translate(model, glm::vec3(6.0f, 0.0f, -3.5f));
+	model = glm::rotate(model, glm::radians(30.0f), glm::vec3(0, 1, 0));
+	temp = model;//respaldo de matriz
+	model = glm::scale(model, glm::vec3(12.0f, 1.5f, 1.5f));
+	projectionShader.setVec3("aColor", glm::vec3((float)0.9, (float)0.7, (float)0));
+	projectionShader.setMat4("model", model);
+	glDrawArrays(GL_TRIANGLES, 0, 36);
+	model = temp;
+
+
+	model = glm::translate(model, glm::vec3(6.0f, 0.0f, 0.0f));
+	temp = model;
+	model = glm::scale(model, glm::vec3(3.0f, 21.0f, 3.0f));
+	projectionShader.setVec3("aColor", glm::vec3((float)0.9, (float)0.7, (float)0));
+	projectionShader.setMat4("model", model);
+	glDrawArrays(GL_TRIANGLES, 0, 36);
+	model = temp;
+
+	model = glm::rotate(model, glm::radians(-60.0f), glm::vec3(0, 1, 0));
+	model = glm::translate(model, glm::vec3(6.0f, 0.0f, 0.0f));
+	temp = model;//respaldo de matriz
+	model = glm::scale(model, glm::vec3(12.0f, 1.5f, 1.5f));
+	projectionShader.setVec3("aColor", glm::vec3((float)0.9, (float)0.7, (float)0));
+	projectionShader.setMat4("model", model);
+	glDrawArrays(GL_TRIANGLES, 0, 36);
+	model = temp;
+
+	model = glm::translate(model, glm::vec3(6.0f, 0.0f, 0.0f));
+	temp = model;
+	model = glm::scale(model, glm::vec3(3.0f, 21.0f, 3.0f));
+	projectionShader.setVec3("aColor", glm::vec3((float)0.9, (float)0.7, (float)0));
+	projectionShader.setMat4("model", model);
+	glDrawArrays(GL_TRIANGLES, 0, 36);
+	model = temp2;
+	//////////////////////
+
+	/////////////////////////////////////////////////
+	model = glm::translate(model, glm::vec3(0.0f, 21.0f, 0.0f));
+	//model = glm::rotate(model, glm::radians(15.0f), glm::vec3(1, 0, 0));
+	//model = glm::rotate(model, glm::radians(15.0f), glm::vec3(0, 1, 0));
+	//model = glm::rotate(model, glm::radians(-15.0f), glm::vec3(0, 0, 1));
+	temp = model;//respaldo de matriz
+	temp2 = model;
+	model = glm::scale(model, glm::vec3(3.0f, 21.0f, 3.0f));
+	projectionShader.setVec3("aColor", glm::vec3((float)0.9, (float)0.7, (float)0));
+	projectionShader.setMat4("model", model);
+	glDrawArrays(GL_TRIANGLES, 0, 36);
+	model = temp;
+
+	model = glm::translate(model, glm::vec3(6.0f, 0.0f, -3.5f));
+	model = glm::rotate(model, glm::radians(30.0f), glm::vec3(0, 1, 0));
+	temp = model;//respaldo de matriz
+	model = glm::scale(model, glm::vec3(12.0f, 1.5f, 1.5f));
+	projectionShader.setVec3("aColor", glm::vec3((float)0.9, (float)0.7, (float)0));
+	projectionShader.setMat4("model", model);
+	glDrawArrays(GL_TRIANGLES, 0, 36);
+	model = temp;
+
+
+	model = glm::translate(model, glm::vec3(6.0f, 0.0f, 0.0f));
+	temp = model;
+	model = glm::scale(model, glm::vec3(3.0f, 21.0f, 3.0f));
+	projectionShader.setVec3("aColor", glm::vec3((float)0.9, (float)0.7, (float)0));
+	projectionShader.setMat4("model", model);
+	glDrawArrays(GL_TRIANGLES, 0, 36);
+	model = temp;
+
+	model = glm::rotate(model, glm::radians(-60.0f), glm::vec3(0, 1, 0));
+	model = glm::translate(model, glm::vec3(6.0f, 0.0f, 0.0f));
+	temp = model;//respaldo de matriz
+	model = glm::scale(model, glm::vec3(12.0f, 1.5f, 1.5f));
+	projectionShader.setVec3("aColor", glm::vec3((float)0.9, (float)0.7, (float)0));
+	projectionShader.setMat4("model", model);
+	glDrawArrays(GL_TRIANGLES, 0, 36);
+	model = temp;
+
+	model = glm::translate(model, glm::vec3(6.0f, 0.0f, 0.0f));
+	temp = model;
+	model = glm::scale(model, glm::vec3(3.0f, 21.0f, 3.0f));
+	projectionShader.setVec3("aColor", glm::vec3((float)0.9, (float)0.7, (float)0));
+	projectionShader.setMat4("model", model);
+	glDrawArrays(GL_TRIANGLES, 0, 36);
+	model = temp2;
+	//////////////////////
+
+	/////////////////////////////////////////////////
+	model = glm::translate(model, glm::vec3(0.0f, 21.0f, 0.0f));
+	//model = glm::rotate(model, glm::radians(15.0f), glm::vec3(1, 0, 0));
+	//model = glm::rotate(model, glm::radians(15.0f), glm::vec3(0, 1, 0));
+	//model = glm::rotate(model, glm::radians(-15.0f), glm::vec3(0, 0, 1));
+	temp = model;//respaldo de matriz
+	temp2 = model;
+	model = glm::scale(model, glm::vec3(3.0f, 21.0f, 3.0f));
+	projectionShader.setVec3("aColor", glm::vec3((float)0.9, (float)0.7, (float)0));
+	projectionShader.setMat4("model", model);
+	glDrawArrays(GL_TRIANGLES, 0, 36);
+	model = temp;
+
+	model = glm::translate(model, glm::vec3(6.0f, 0.0f, -3.5f));
+	model = glm::rotate(model, glm::radians(30.0f), glm::vec3(0, 1, 0));
+	temp = model;//respaldo de matriz
+	model = glm::scale(model, glm::vec3(12.0f, 1.5f, 1.5f));
+	projectionShader.setVec3("aColor", glm::vec3((float)0.9, (float)0.7, (float)0));
+	projectionShader.setMat4("model", model);
+	glDrawArrays(GL_TRIANGLES, 0, 36);
+	model = temp;
+
+
+	model = glm::translate(model, glm::vec3(6.0f, 0.0f, 0.0f));
+	temp = model;
+	model = glm::scale(model, glm::vec3(3.0f, 21.0f, 3.0f));
+	projectionShader.setVec3("aColor", glm::vec3((float)0.9, (float)0.7, (float)0));
+	projectionShader.setMat4("model", model);
+	glDrawArrays(GL_TRIANGLES, 0, 36);
+	model = temp;
+
+	model = glm::rotate(model, glm::radians(-60.0f), glm::vec3(0, 1, 0));
+	model = glm::translate(model, glm::vec3(6.0f, 0.0f, 0.0f));
+	temp = model;//respaldo de matriz
+	model = glm::scale(model, glm::vec3(12.0f, 1.5f, 1.5f));
+	projectionShader.setVec3("aColor", glm::vec3((float)0.9, (float)0.7, (float)0));
+	projectionShader.setMat4("model", model);
+	glDrawArrays(GL_TRIANGLES, 0, 36);
+	model = temp;
+
+	model = glm::translate(model, glm::vec3(6.0f, 0.0f, 0.0f));
+	temp = model;
+	model = glm::scale(model, glm::vec3(3.0f, 21.0f, 3.0f));
+	projectionShader.setVec3("aColor", glm::vec3((float)0.9, (float)0.7, (float)0));
+	projectionShader.setMat4("model", model);
+	glDrawArrays(GL_TRIANGLES, 0, 36);
+	model = temp2;
+	////////////////////////
+
+	/////////////////////////////////////////////////
+	model = glm::translate(model, glm::vec3(4.0f, 21.0f, 3.0f));
+	//model = glm::rotate(model, glm::radians(-15.0f), glm::vec3(1, 0, 0));
+	model = glm::rotate(model, glm::radians(15.0f), glm::vec3(0, 1, 0));
+	model = glm::rotate(model, glm::radians(-10.0f), glm::vec3(0, 0, 1));
+	temp = model;//respaldo de matriz
+	temp2 = model;
+	model = glm::scale(model, glm::vec3(3.0f, 21.0f, 3.0f));
+	projectionShader.setVec3("aColor", glm::vec3((float)0.9, (float)0.7, (float)0));
+	projectionShader.setMat4("model", model);
+	glDrawArrays(GL_TRIANGLES, 0, 36);
+	model = temp;
+
+	model = glm::translate(model, glm::vec3(6.0f, 0.0f, -3.5f));
+	model = glm::rotate(model, glm::radians(30.0f), glm::vec3(0, 1, 0));
+	temp = model;//respaldo de matriz
+	model = glm::scale(model, glm::vec3(12.0f, 1.5f, 1.5f));
+	projectionShader.setVec3("aColor", glm::vec3((float)0.9, (float)0.7, (float)0));
+	projectionShader.setMat4("model", model);
+	glDrawArrays(GL_TRIANGLES, 0, 36);
+	model = temp;
+
+
+	model = glm::translate(model, glm::vec3(6.0f, 0.0f, 0.0f));
+	temp = model;
+	model = glm::scale(model, glm::vec3(3.0f, 21.0f, 3.0f));
+	projectionShader.setVec3("aColor", glm::vec3((float)0.9, (float)0.7, (float)0));
+	projectionShader.setMat4("model", model);
+	glDrawArrays(GL_TRIANGLES, 0, 36);
+	model = temp;
+
+	model = glm::rotate(model, glm::radians(-60.0f), glm::vec3(0, 1, 0));
+	model = glm::translate(model, glm::vec3(6.0f, 0.0f, 0.0f));
+	temp = model;//respaldo de matriz
+	model = glm::scale(model, glm::vec3(12.0f, 1.5f, 1.5f));
+	projectionShader.setVec3("aColor", glm::vec3((float)0.9, (float)0.7, (float)0));
+	projectionShader.setMat4("model", model);
+	glDrawArrays(GL_TRIANGLES, 0, 36);
+	model = temp;
+
+	model = glm::translate(model, glm::vec3(6.0f, 0.0f, 0.0f));
+	temp = model;
+	model = glm::scale(model, glm::vec3(3.0f, 21.0f, 3.0f));
+	projectionShader.setVec3("aColor", glm::vec3((float)0.9, (float)0.7, (float)0));
+	projectionShader.setMat4("model", model);
+	glDrawArrays(GL_TRIANGLES, 0, 36);
+	model = temp2;
+	//////////////////////
+
+	/////////////////////////////////////////////////
+	model = glm::translate(model, glm::vec3(0.0f, 21.0f, 0.0f));
+	//model = glm::rotate(model, glm::radians(15.0f), glm::vec3(1, 0, 0));
+	//model = glm::rotate(model, glm::radians(15.0f), glm::vec3(0, 1, 0));
+	//model = glm::rotate(model, glm::radians(-15.0f), glm::vec3(0, 0, 1));
+	temp = model;//respaldo de matriz
+	temp2 = model;
+	model = glm::scale(model, glm::vec3(3.0f, 21.0f, 3.0f));
+	projectionShader.setVec3("aColor", glm::vec3((float)0.9, (float)0.7, (float)0));
+	projectionShader.setMat4("model", model);
+	glDrawArrays(GL_TRIANGLES, 0, 36);
+	model = temp;
+
+	model = glm::translate(model, glm::vec3(6.0f, 0.0f, -3.5f));
+	model = glm::rotate(model, glm::radians(30.0f), glm::vec3(0, 1, 0));
+	temp = model;//respaldo de matriz
+	model = glm::scale(model, glm::vec3(12.0f, 1.5f, 1.5f));
+	projectionShader.setVec3("aColor", glm::vec3((float)0.9, (float)0.7, (float)0));
+	projectionShader.setMat4("model", model);
+	glDrawArrays(GL_TRIANGLES, 0, 36);
+	model = temp;
+
+
+	model = glm::translate(model, glm::vec3(6.0f, 0.0f, 0.0f));
+	temp = model;
+	model = glm::scale(model, glm::vec3(3.0f, 21.0f, 3.0f));
+	projectionShader.setVec3("aColor", glm::vec3((float)0.9, (float)0.7, (float)0));
+	projectionShader.setMat4("model", model);
+	glDrawArrays(GL_TRIANGLES, 0, 36);
+	model = temp;
+
+	model = glm::rotate(model, glm::radians(-60.0f), glm::vec3(0, 1, 0));
+	model = glm::translate(model, glm::vec3(6.0f, 0.0f, 0.0f));
+	temp = model;//respaldo de matriz
+	model = glm::scale(model, glm::vec3(12.0f, 1.5f, 1.5f));
+	projectionShader.setVec3("aColor", glm::vec3((float)0.9, (float)0.7, (float)0));
+	projectionShader.setMat4("model", model);
+	glDrawArrays(GL_TRIANGLES, 0, 36);
+	model = temp;
+
+	model = glm::translate(model, glm::vec3(6.0f, 0.0f, 0.0f));
+	temp = model;
+	model = glm::scale(model, glm::vec3(3.0f, 21.0f, 3.0f));
+	projectionShader.setVec3("aColor", glm::vec3((float)0.9, (float)0.7, (float)0));
+	projectionShader.setMat4("model", model);
+	glDrawArrays(GL_TRIANGLES, 0, 36);
+	model = temp2;
+	//////////////////////
+
+	/////////////////////////////////////////////////
+	model = glm::translate(model, glm::vec3(0.0f, 21.0f, 0.0f));
+	model = glm::rotate(model, glm::radians(15.0f), glm::vec3(1, 0, 0));
+	//model = glm::rotate(model, glm::radians(15.0f), glm::vec3(0, 1, 0));
+	//model = glm::rotate(model, glm::radians(-15.0f), glm::vec3(0, 0, 1));
+	temp = model;//respaldo de matriz
+	temp2 = model;
+	model = glm::scale(model, glm::vec3(3.0f, 21.0f, 3.0f));
+	projectionShader.setVec3("aColor", glm::vec3((float)0.9, (float)0.7, (float)0));
+	projectionShader.setMat4("model", model);
+	glDrawArrays(GL_TRIANGLES, 0, 36);
+	model = temp;
+
+	model = glm::translate(model, glm::vec3(6.0f, 0.0f, -3.5f));
+	model = glm::rotate(model, glm::radians(30.0f), glm::vec3(0, 1, 0));
+	temp = model;//respaldo de matriz
+	model = glm::scale(model, glm::vec3(12.0f, 1.5f, 1.5f));
+	projectionShader.setVec3("aColor", glm::vec3((float)0.9, (float)0.7, (float)0));
+	projectionShader.setMat4("model", model);
+	glDrawArrays(GL_TRIANGLES, 0, 36);
+	model = temp;
+
+
+	model = glm::translate(model, glm::vec3(6.0f, 0.0f, 0.0f));
+	temp = model;
+	model = glm::scale(model, glm::vec3(3.0f, 21.0f, 3.0f));
+	projectionShader.setVec3("aColor", glm::vec3((float)0.9, (float)0.7, (float)0));
+	projectionShader.setMat4("model", model);
+	glDrawArrays(GL_TRIANGLES, 0, 36);
+	model = temp;
+
+	model = glm::rotate(model, glm::radians(-60.0f), glm::vec3(0, 1, 0));
+	model = glm::translate(model, glm::vec3(6.0f, 0.0f, 0.0f));
+	temp = model;//respaldo de matriz
+	model = glm::scale(model, glm::vec3(12.0f, 1.5f, 1.5f));
+	projectionShader.setVec3("aColor", glm::vec3((float)0.9, (float)0.7, (float)0));
+	projectionShader.setMat4("model", model);
+	glDrawArrays(GL_TRIANGLES, 0, 36);
+	model = temp;
+
+	model = glm::translate(model, glm::vec3(6.0f, 0.0f, 0.0f));
+	temp = model;
+	model = glm::scale(model, glm::vec3(3.0f, 21.0f, 3.0f));
+	projectionShader.setVec3("aColor", glm::vec3((float)0.9, (float)0.7, (float)0));
+	projectionShader.setMat4("model", model);
+	glDrawArrays(GL_TRIANGLES, 0, 36);
+	model = temp2;
+	////////////////////////
+
+	/////////////////////////////////////////////////
+	model = glm::translate(model, glm::vec3(0.0f, 21.0f, 0.0f));
+	model = glm::rotate(model, glm::radians(15.0f), glm::vec3(1, 0, 0));
+	//model = glm::rotate(model, glm::radians(15.0f), glm::vec3(0, 1, 0));
+	//model = glm::rotate(model, glm::radians(-15.0f), glm::vec3(0, 0, 1));
+	temp = model;//respaldo de matriz
+	temp2 = model;
+	model = glm::scale(model, glm::vec3(3.0f, 21.0f, 3.0f));
+	projectionShader.setVec3("aColor", glm::vec3((float)0.9, (float)0.7, (float)0));
+	projectionShader.setMat4("model", model);
+	glDrawArrays(GL_TRIANGLES, 0, 36);
+	model = temp;
+
+	model = glm::translate(model, glm::vec3(6.0f, 0.0f, -3.5f));
+	model = glm::rotate(model, glm::radians(30.0f), glm::vec3(0, 1, 0));
+	temp = model;//respaldo de matriz
+	model = glm::scale(model, glm::vec3(12.0f, 1.5f, 1.5f));
+	projectionShader.setVec3("aColor", glm::vec3((float)0.9, (float)0.7, (float)0));
+	projectionShader.setMat4("model", model);
+	glDrawArrays(GL_TRIANGLES, 0, 36);
+	model = temp;
+
+
+	model = glm::translate(model, glm::vec3(6.0f, 0.0f, 0.0f));
+	temp = model;
+	model = glm::scale(model, glm::vec3(3.0f, 21.0f, 3.0f));
+	projectionShader.setVec3("aColor", glm::vec3((float)0.9, (float)0.7, (float)0));
+	projectionShader.setMat4("model", model);
+	glDrawArrays(GL_TRIANGLES, 0, 36);
+	model = temp;
+
+	model = glm::rotate(model, glm::radians(-60.0f), glm::vec3(0, 1, 0));
+	model = glm::translate(model, glm::vec3(6.0f, 0.0f, 0.0f));
+	temp = model;//respaldo de matriz
+	model = glm::scale(model, glm::vec3(12.0f, 1.5f, 1.5f));
+	projectionShader.setVec3("aColor", glm::vec3((float)0.9, (float)0.7, (float)0));
+	projectionShader.setMat4("model", model);
+	glDrawArrays(GL_TRIANGLES, 0, 36);
+	model = temp;
+
+	model = glm::translate(model, glm::vec3(6.0f, 0.0f, 0.0f));
+	temp = model;
+	model = glm::scale(model, glm::vec3(3.0f, 21.0f, 3.0f));
+	projectionShader.setVec3("aColor", glm::vec3((float)0.9, (float)0.7, (float)0));
+	projectionShader.setMat4("model", model);
+	glDrawArrays(GL_TRIANGLES, 0, 36);
+	model = temp2;
+	////////////////////////
+
+	/////////////////////////////////////////////////
+	model = glm::translate(model, glm::vec3(0.0f, 21.0f, 0.0f));
+	model = glm::rotate(model, glm::radians(15.0f), glm::vec3(1, 0, 0));
+	//model = glm::rotate(model, glm::radians(15.0f), glm::vec3(0, 1, 0));
+	//model = glm::rotate(model, glm::radians(-15.0f), glm::vec3(0, 0, 1));
+	temp = model;//respaldo de matriz
+	temp2 = model;
+	model = glm::scale(model, glm::vec3(3.0f, 21.0f, 3.0f));
+	projectionShader.setVec3("aColor", glm::vec3((float)0.9, (float)0.7, (float)0));
+	projectionShader.setMat4("model", model);
+	glDrawArrays(GL_TRIANGLES, 0, 36);
+	model = temp;
+
+	model = glm::translate(model, glm::vec3(6.0f, 0.0f, -3.5f));
+	model = glm::rotate(model, glm::radians(30.0f), glm::vec3(0, 1, 0));
+	temp = model;//respaldo de matriz
+	model = glm::scale(model, glm::vec3(12.0f, 1.5f, 1.5f));
+	projectionShader.setVec3("aColor", glm::vec3((float)0.9, (float)0.7, (float)0));
+	projectionShader.setMat4("model", model);
+	glDrawArrays(GL_TRIANGLES, 0, 36);
+	model = temp;
+
+
+	model = glm::translate(model, glm::vec3(6.0f, 0.0f, 0.0f));
+	temp = model;
+	model = glm::scale(model, glm::vec3(3.0f, 21.0f, 3.0f));
+	projectionShader.setVec3("aColor", glm::vec3((float)0.9, (float)0.7, (float)0));
+	projectionShader.setMat4("model", model);
+	glDrawArrays(GL_TRIANGLES, 0, 36);
+	model = temp;
+
+	model = glm::rotate(model, glm::radians(-60.0f), glm::vec3(0, 1, 0));
+	model = glm::translate(model, glm::vec3(6.0f, 0.0f, 0.0f));
+	temp = model;//respaldo de matriz
+	model = glm::scale(model, glm::vec3(12.0f, 1.5f, 1.5f));
+	projectionShader.setVec3("aColor", glm::vec3((float)0.9, (float)0.7, (float)0));
+	projectionShader.setMat4("model", model);
+	glDrawArrays(GL_TRIANGLES, 0, 36);
+	model = temp;
+
+	model = glm::translate(model, glm::vec3(6.0f, 0.0f, 0.0f));
+	temp = model;
+	model = glm::scale(model, glm::vec3(3.0f, 21.0f, 3.0f));
+	projectionShader.setVec3("aColor", glm::vec3((float)0.9, (float)0.7, (float)0));
+	projectionShader.setMat4("model", model);
+	glDrawArrays(GL_TRIANGLES, 0, 36);
+	model = temp2;
+	////////////////////////
+
+	/////////////////////////////////////////////////
+	model = glm::translate(model, glm::vec3(0.0f, 21.0f, 0.0f));
+	model = glm::rotate(model, glm::radians(15.0f), glm::vec3(1, 0, 0));
+	model = glm::rotate(model, glm::radians(-15.0f), glm::vec3(0, 1, 0));
+	//model = glm::rotate(model, glm::radians(-15.0f), glm::vec3(0, 0, 1));
+	temp = model;//respaldo de matriz
+	temp2 = model;
+	model = glm::scale(model, glm::vec3(3.0f, 21.0f, 3.0f));
+	projectionShader.setVec3("aColor", glm::vec3((float)0.9, (float)0.7, (float)0));
+	projectionShader.setMat4("model", model);
+	glDrawArrays(GL_TRIANGLES, 0, 36);
+	model = temp;
+
+	model = glm::translate(model, glm::vec3(6.0f, 0.0f, -3.5f));
+	model = glm::rotate(model, glm::radians(30.0f), glm::vec3(0, 1, 0));
+	temp = model;//respaldo de matriz
+	model = glm::scale(model, glm::vec3(12.0f, 1.5f, 1.5f));
+	projectionShader.setVec3("aColor", glm::vec3((float)0.9, (float)0.7, (float)0));
+	projectionShader.setMat4("model", model);
+	glDrawArrays(GL_TRIANGLES, 0, 36);
+	model = temp;
+
+
+	model = glm::translate(model, glm::vec3(6.0f, 0.0f, 0.0f));
+	temp = model;
+	model = glm::scale(model, glm::vec3(3.0f, 21.0f, 3.0f));
+	projectionShader.setVec3("aColor", glm::vec3((float)0.9, (float)0.7, (float)0));
+	projectionShader.setMat4("model", model);
+	glDrawArrays(GL_TRIANGLES, 0, 36);
+	model = temp;
+
+	model = glm::rotate(model, glm::radians(-60.0f), glm::vec3(0, 1, 0));
+	model = glm::translate(model, glm::vec3(6.0f, 0.0f, 0.0f));
+	temp = model;//respaldo de matriz
+	model = glm::scale(model, glm::vec3(12.0f, 1.5f, 1.5f));
+	projectionShader.setVec3("aColor", glm::vec3((float)0.9, (float)0.7, (float)0));
+	projectionShader.setMat4("model", model);
+	glDrawArrays(GL_TRIANGLES, 0, 36);
+	model = temp;
+
+	model = glm::translate(model, glm::vec3(6.0f, 0.0f, 0.0f));
+	temp = model;
+	model = glm::scale(model, glm::vec3(3.0f, 21.0f, 3.0f));
+	projectionShader.setVec3("aColor", glm::vec3((float)0.9, (float)0.7, (float)0));
+	projectionShader.setMat4("model", model);
+	glDrawArrays(GL_TRIANGLES, 0, 36);
+	model = temp2;
+	////////////////////////
+
+	/////////////////////////////////////////////////
+	model = glm::translate(model, glm::vec3(0.0f, 21.0f, 0.0f));
+	model = glm::rotate(model, glm::radians(15.0f), glm::vec3(1, 0, 0));
+	model = glm::rotate(model, glm::radians(-15.0f), glm::vec3(0, 1, 0));
+	//model = glm::rotate(model, glm::radians(-15.0f), glm::vec3(0, 0, 1));
+	temp = model;//respaldo de matriz
+	temp2 = model;
+	model = glm::scale(model, glm::vec3(3.0f, 21.0f, 3.0f));
+	projectionShader.setVec3("aColor", glm::vec3((float)0.9, (float)0.7, (float)0));
+	projectionShader.setMat4("model", model);
+	glDrawArrays(GL_TRIANGLES, 0, 36);
+	model = temp;
+
+	model = glm::translate(model, glm::vec3(6.0f, 0.0f, -3.5f));
+	model = glm::rotate(model, glm::radians(30.0f), glm::vec3(0, 1, 0));
+	temp = model;//respaldo de matriz
+	model = glm::scale(model, glm::vec3(12.0f, 1.5f, 1.5f));
+	projectionShader.setVec3("aColor", glm::vec3((float)0.9, (float)0.7, (float)0));
+	projectionShader.setMat4("model", model);
+	glDrawArrays(GL_TRIANGLES, 0, 36);
+	model = temp;
+
+
+	model = glm::translate(model, glm::vec3(6.0f, 0.0f, 0.0f));
+	temp = model;
+	model = glm::scale(model, glm::vec3(3.0f, 21.0f, 3.0f));
+	projectionShader.setVec3("aColor", glm::vec3((float)0.9, (float)0.7, (float)0));
+	projectionShader.setMat4("model", model);
+	glDrawArrays(GL_TRIANGLES, 0, 36);
+	model = temp;
+
+	model = glm::rotate(model, glm::radians(-60.0f), glm::vec3(0, 1, 0));
+	model = glm::translate(model, glm::vec3(6.0f, 0.0f, 0.0f));
+	temp = model;//respaldo de matriz
+	model = glm::scale(model, glm::vec3(12.0f, 1.5f, 1.5f));
+	projectionShader.setVec3("aColor", glm::vec3((float)0.9, (float)0.7, (float)0));
+	projectionShader.setMat4("model", model);
+	glDrawArrays(GL_TRIANGLES, 0, 36);
+	model = temp;
+
+	model = glm::translate(model, glm::vec3(6.0f, 0.0f, 0.0f));
+	temp = model;
+	model = glm::scale(model, glm::vec3(3.0f, 21.0f, 3.0f));
+	projectionShader.setVec3("aColor", glm::vec3((float)0.9, (float)0.7, (float)0));
+	projectionShader.setMat4("model", model);
+	glDrawArrays(GL_TRIANGLES, 0, 36);
+	model = temp2;
+	////////////////////////
+
+	/////////////////////////////////////////////////
+	model = glm::translate(model, glm::vec3(0.0f, 21.0f, 0.0f));
+	model = glm::rotate(model, glm::radians(15.0f), glm::vec3(1, 0, 0));
+	model = glm::rotate(model, glm::radians(-15.0f), glm::vec3(0, 1, 0));
+	model = glm::rotate(model, glm::radians(-15.0f), glm::vec3(0, 0, 1));
+	temp = model;//respaldo de matriz
+	temp2 = model;
+	model = glm::scale(model, glm::vec3(3.0f, 21.0f, 3.0f));
+	projectionShader.setVec3("aColor", glm::vec3((float)0.9, (float)0.7, (float)0));
+	projectionShader.setMat4("model", model);
+	glDrawArrays(GL_TRIANGLES, 0, 36);
+	model = temp;
+
+	model = glm::translate(model, glm::vec3(6.0f, 0.0f, -3.5f));
+	model = glm::rotate(model, glm::radians(30.0f), glm::vec3(0, 1, 0));
+	temp = model;//respaldo de matriz
+	model = glm::scale(model, glm::vec3(12.0f, 1.5f, 1.5f));
+	projectionShader.setVec3("aColor", glm::vec3((float)0.9, (float)0.7, (float)0));
+	projectionShader.setMat4("model", model);
+	glDrawArrays(GL_TRIANGLES, 0, 36);
+	model = temp;
+
+
+	model = glm::translate(model, glm::vec3(6.0f, 0.0f, 0.0f));
+	temp = model;
+	model = glm::scale(model, glm::vec3(3.0f, 21.0f, 3.0f));
+	projectionShader.setVec3("aColor", glm::vec3((float)0.9, (float)0.7, (float)0));
+	projectionShader.setMat4("model", model);
+	glDrawArrays(GL_TRIANGLES, 0, 36);
+	model = temp;
+
+	model = glm::rotate(model, glm::radians(-60.0f), glm::vec3(0, 1, 0));
+	model = glm::translate(model, glm::vec3(6.0f, 0.0f, 0.0f));
+	temp = model;//respaldo de matriz
+	model = glm::scale(model, glm::vec3(12.0f, 1.5f, 1.5f));
+	projectionShader.setVec3("aColor", glm::vec3((float)0.9, (float)0.7, (float)0));
+	projectionShader.setMat4("model", model);
+	glDrawArrays(GL_TRIANGLES, 0, 36);
+	model = temp;
+
+	model = glm::translate(model, glm::vec3(6.0f, 0.0f, 0.0f));
+	temp = model;
+	model = glm::scale(model, glm::vec3(3.0f, 21.0f, 3.0f));
+	projectionShader.setVec3("aColor", glm::vec3((float)0.9, (float)0.7, (float)0));
+	projectionShader.setMat4("model", model);
+	glDrawArrays(GL_TRIANGLES, 0, 36);
+	model = temp2;
+	////////////////////////
+	/////////////////////////////////////////////////
+	model = glm::translate(model, glm::vec3(0.0f, 21.0f, 0.0f));
+	model = glm::rotate(model, glm::radians(15.0f), glm::vec3(1, 0, 0));
+	model = glm::rotate(model, glm::radians(-15.0f), glm::vec3(0, 1, 0));
+	model = glm::rotate(model, glm::radians(-15.0f), glm::vec3(0, 0, 1));
+	temp = model;//respaldo de matriz
+	temp2 = model;
+	model = glm::scale(model, glm::vec3(3.0f, 21.0f, 3.0f));
+	projectionShader.setVec3("aColor", glm::vec3((float)0.9, (float)0.7, (float)0));
+	projectionShader.setMat4("model", model);
+	glDrawArrays(GL_TRIANGLES, 0, 36);
+	model = temp;
+
+	model = glm::translate(model, glm::vec3(6.0f, 0.0f, -3.5f));
+	model = glm::rotate(model, glm::radians(30.0f), glm::vec3(0, 1, 0));
+	temp = model;//respaldo de matriz
+	model = glm::scale(model, glm::vec3(12.0f, 1.5f, 1.5f));
+	projectionShader.setVec3("aColor", glm::vec3((float)0.9, (float)0.7, (float)0));
+	projectionShader.setMat4("model", model);
+	glDrawArrays(GL_TRIANGLES, 0, 36);
+	model = temp;
+
+
+	model = glm::translate(model, glm::vec3(6.0f, 0.0f, 0.0f));
+	temp = model;
+	model = glm::scale(model, glm::vec3(3.0f, 21.0f, 3.0f));
+	projectionShader.setVec3("aColor", glm::vec3((float)0.9, (float)0.7, (float)0));
+	projectionShader.setMat4("model", model);
+	glDrawArrays(GL_TRIANGLES, 0, 36);
+	model = temp;
+
+	model = glm::rotate(model, glm::radians(-60.0f), glm::vec3(0, 1, 0));
+	model = glm::translate(model, glm::vec3(6.0f, 0.0f, 0.0f));
+	temp = model;//respaldo de matriz
+	model = glm::scale(model, glm::vec3(12.0f, 1.5f, 1.5f));
+	projectionShader.setVec3("aColor", glm::vec3((float)0.9, (float)0.7, (float)0));
+	projectionShader.setMat4("model", model);
+	glDrawArrays(GL_TRIANGLES, 0, 36);
+	model = temp;
+
+	model = glm::translate(model, glm::vec3(6.0f, 0.0f, 0.0f));
+	temp = model;
+	model = glm::scale(model, glm::vec3(3.0f, 21.0f, 3.0f));
+	projectionShader.setVec3("aColor", glm::vec3((float)0.9, (float)0.7, (float)0));
+	projectionShader.setMat4("model", model);
+	glDrawArrays(GL_TRIANGLES, 0, 36);
+	model = temp2;
+	////////////////////////
+	/////////////////////////////////////////////////
+	model = glm::translate(model, glm::vec3(0.0f, 21.0f, 0.0f));
+	//model = glm::rotate(model, glm::radians(15.0f), glm::vec3(1, 0, 0));
+	model = glm::rotate(model, glm::radians(-15.0f), glm::vec3(0, 1, 0));
+	model = glm::rotate(model, glm::radians(-15.0f), glm::vec3(0, 0, 1));
+	temp = model;//respaldo de matriz
+	temp2 = model;
+	model = glm::scale(model, glm::vec3(3.0f, 21.0f, 3.0f));
+	projectionShader.setVec3("aColor", glm::vec3((float)0.9, (float)0.7, (float)0));
+	projectionShader.setMat4("model", model);
+	glDrawArrays(GL_TRIANGLES, 0, 36);
+	model = temp;
+
+	model = glm::translate(model, glm::vec3(6.0f, 0.0f, -3.5f));
+	model = glm::rotate(model, glm::radians(30.0f), glm::vec3(0, 1, 0));
+	temp = model;//respaldo de matriz
+	model = glm::scale(model, glm::vec3(12.0f, 1.5f, 1.5f));
+	projectionShader.setVec3("aColor", glm::vec3((float)0.9, (float)0.7, (float)0));
+	projectionShader.setMat4("model", model);
+	glDrawArrays(GL_TRIANGLES, 0, 36);
+	model = temp;
+
+
+	model = glm::translate(model, glm::vec3(6.0f, 0.0f, 0.0f));
+	temp = model;
+	model = glm::scale(model, glm::vec3(3.0f, 21.0f, 3.0f));
+	projectionShader.setVec3("aColor", glm::vec3((float)0.9, (float)0.7, (float)0));
+	projectionShader.setMat4("model", model);
+	glDrawArrays(GL_TRIANGLES, 0, 36);
+	model = temp;
+
+	model = glm::rotate(model, glm::radians(-60.0f), glm::vec3(0, 1, 0));
+	model = glm::translate(model, glm::vec3(6.0f, 0.0f, 0.0f));
+	temp = model;//respaldo de matriz
+	model = glm::scale(model, glm::vec3(12.0f, 1.5f, 1.5f));
+	projectionShader.setVec3("aColor", glm::vec3((float)0.9, (float)0.7, (float)0));
+	projectionShader.setMat4("model", model);
+	glDrawArrays(GL_TRIANGLES, 0, 36);
+	model = temp;
+
+	model = glm::translate(model, glm::vec3(6.0f, 0.0f, 0.0f));
+	temp = model;
+	model = glm::scale(model, glm::vec3(3.0f, 21.0f, 3.0f));
+	projectionShader.setVec3("aColor", glm::vec3((float)0.9, (float)0.7, (float)0));
+	projectionShader.setMat4("model", model);
+	glDrawArrays(GL_TRIANGLES, 0, 36);
+	model = temp2;
+	////////////////////////
+	/////////////////////////////////////////////////
+	model = glm::translate(model, glm::vec3(0.0f, 21.0f, 0.0f));
+	//model = glm::rotate(model, glm::radians(15.0f), glm::vec3(1, 0, 0));
+	model = glm::rotate(model, glm::radians(-15.0f), glm::vec3(0, 1, 0));
+	//model = glm::rotate(model, glm::radians(-15.0f), glm::vec3(0, 0, 1));
+	temp = model;//respaldo de matriz
+	temp2 = model;
+	model = glm::scale(model, glm::vec3(3.0f, 21.0f, 3.0f));
+	projectionShader.setVec3("aColor", glm::vec3((float)0.9, (float)0.7, (float)0));
+	projectionShader.setMat4("model", model);
+	glDrawArrays(GL_TRIANGLES, 0, 36);
+	model = temp;
+
+	model = glm::translate(model, glm::vec3(6.0f, 0.0f, -3.5f));
+	model = glm::rotate(model, glm::radians(30.0f), glm::vec3(0, 1, 0));
+	temp = model;//respaldo de matriz
+	model = glm::scale(model, glm::vec3(12.0f, 1.5f, 1.5f));
+	projectionShader.setVec3("aColor", glm::vec3((float)0.9, (float)0.7, (float)0));
+	projectionShader.setMat4("model", model);
+	glDrawArrays(GL_TRIANGLES, 0, 36);
+	model = temp;
+
+
+	model = glm::translate(model, glm::vec3(6.0f, 0.0f, 0.0f));
+	temp = model;
+	model = glm::scale(model, glm::vec3(3.0f, 21.0f, 3.0f));
+	projectionShader.setVec3("aColor", glm::vec3((float)0.9, (float)0.7, (float)0));
+	projectionShader.setMat4("model", model);
+	glDrawArrays(GL_TRIANGLES, 0, 36);
+	model = temp;
+
+	model = glm::rotate(model, glm::radians(-60.0f), glm::vec3(0, 1, 0));
+	model = glm::translate(model, glm::vec3(6.0f, 0.0f, 0.0f));
+	temp = model;//respaldo de matriz
+	model = glm::scale(model, glm::vec3(12.0f, 1.5f, 1.5f));
+	projectionShader.setVec3("aColor", glm::vec3((float)0.9, (float)0.7, (float)0));
+	projectionShader.setMat4("model", model);
+	glDrawArrays(GL_TRIANGLES, 0, 36);
+	model = temp;
+
+	model = glm::translate(model, glm::vec3(6.0f, 0.0f, 0.0f));
+	temp = model;
+	model = glm::scale(model, glm::vec3(3.0f, 21.0f, 3.0f));
+	projectionShader.setVec3("aColor", glm::vec3((float)0.9, (float)0.7, (float)0));
+	projectionShader.setMat4("model", model);
+	glDrawArrays(GL_TRIANGLES, 0, 36);
+	model = temp2;
+	////////////////////////
+	/////////////////////////////////////////////////
+	model = glm::translate(model, glm::vec3(0.0f, 21.0f, 0.0f));
+	//model = glm::rotate(model, glm::radians(15.0f), glm::vec3(1, 0, 0));
+	model = glm::rotate(model, glm::radians(-15.0f), glm::vec3(0, 1, 0));
+	//model = glm::rotate(model, glm::radians(-15.0f), glm::vec3(0, 0, 1));
+	temp = model;//respaldo de matriz
+	temp2 = model;
+	model = glm::scale(model, glm::vec3(3.0f, 21.0f, 3.0f));
+	projectionShader.setVec3("aColor", glm::vec3((float)0.9, (float)0.7, (float)0));
+	projectionShader.setMat4("model", model);
+	glDrawArrays(GL_TRIANGLES, 0, 36);
+	model = temp;
+
+	model = glm::translate(model, glm::vec3(6.0f, 0.0f, -3.5f));
+	model = glm::rotate(model, glm::radians(30.0f), glm::vec3(0, 1, 0));
+	temp = model;//respaldo de matriz
+	model = glm::scale(model, glm::vec3(12.0f, 1.5f, 1.5f));
+	projectionShader.setVec3("aColor", glm::vec3((float)0.9, (float)0.7, (float)0));
+	projectionShader.setMat4("model", model);
+	glDrawArrays(GL_TRIANGLES, 0, 36);
+	model = temp;
+
+
+	model = glm::translate(model, glm::vec3(6.0f, 0.0f, 0.0f));
+	temp = model;
+	model = glm::scale(model, glm::vec3(3.0f, 21.0f, 3.0f));
+	projectionShader.setVec3("aColor", glm::vec3((float)0.9, (float)0.7, (float)0));
+	projectionShader.setMat4("model", model);
+	glDrawArrays(GL_TRIANGLES, 0, 36);
+	model = temp;
+
+	model = glm::rotate(model, glm::radians(-60.0f), glm::vec3(0, 1, 0));
+	model = glm::translate(model, glm::vec3(6.0f, 0.0f, 0.0f));
+	temp = model;//respaldo de matriz
+	model = glm::scale(model, glm::vec3(12.0f, 1.5f, 1.5f));
+	projectionShader.setVec3("aColor", glm::vec3((float)0.9, (float)0.7, (float)0));
+	projectionShader.setMat4("model", model);
+	glDrawArrays(GL_TRIANGLES, 0, 36);
+	model = temp;
+
+	model = glm::translate(model, glm::vec3(6.0f, 0.0f, 0.0f));
+	temp = model;
+	model = glm::scale(model, glm::vec3(3.0f, 21.0f, 3.0f));
+	projectionShader.setVec3("aColor", glm::vec3((float)0.9, (float)0.7, (float)0));
+	projectionShader.setMat4("model", model);
+	glDrawArrays(GL_TRIANGLES, 0, 36);
+	model = temp2;
+	////////////////////////
+	/////////////////////////////////////////////////
+	model = glm::translate(model, glm::vec3(0.0f, 21.0f, 0.0f));
+	//model = glm::rotate(model, glm::radians(15.0f), glm::vec3(1, 0, 0));
+	//model = glm::rotate(model, glm::radians(-15.0f), glm::vec3(0, 1, 0));
+	//model = glm::rotate(model, glm::radians(-15.0f), glm::vec3(0, 0, 1));
+	temp = model;//respaldo de matriz
+	temp2 = model;
+	model = glm::scale(model, glm::vec3(3.0f, 21.0f, 3.0f));
+	projectionShader.setVec3("aColor", glm::vec3((float)0.9, (float)0.7, (float)0));
+	projectionShader.setMat4("model", model);
+	glDrawArrays(GL_TRIANGLES, 0, 36);
+	model = temp;
+
+	model = glm::translate(model, glm::vec3(6.0f, 0.0f, -3.5f));
+	model = glm::rotate(model, glm::radians(30.0f), glm::vec3(0, 1, 0));
+	temp = model;//respaldo de matriz
+	model = glm::scale(model, glm::vec3(12.0f, 1.5f, 1.5f));
+	projectionShader.setVec3("aColor", glm::vec3((float)0.9, (float)0.7, (float)0));
+	projectionShader.setMat4("model", model);
+	glDrawArrays(GL_TRIANGLES, 0, 36);
+	model = temp;
+
+
+	model = glm::translate(model, glm::vec3(6.0f, 0.0f, 0.0f));
+	temp = model;
+	model = glm::scale(model, glm::vec3(3.0f, 21.0f, 3.0f));
+	projectionShader.setVec3("aColor", glm::vec3((float)0.9, (float)0.7, (float)0));
+	projectionShader.setMat4("model", model);
+	glDrawArrays(GL_TRIANGLES, 0, 36);
+	model = temp;
+
+	model = glm::rotate(model, glm::radians(-60.0f), glm::vec3(0, 1, 0));
+	model = glm::translate(model, glm::vec3(6.0f, 0.0f, 0.0f));
+	temp = model;//respaldo de matriz
+	model = glm::scale(model, glm::vec3(12.0f, 1.5f, 1.5f));
+	projectionShader.setVec3("aColor", glm::vec3((float)0.9, (float)0.7, (float)0));
+	projectionShader.setMat4("model", model);
+	glDrawArrays(GL_TRIANGLES, 0, 36);
+	model = temp;
+
+	model = glm::translate(model, glm::vec3(6.0f, 0.0f, 0.0f));
+	temp = model;
+	model = glm::scale(model, glm::vec3(3.0f, 21.0f, 3.0f));
+	projectionShader.setVec3("aColor", glm::vec3((float)0.9, (float)0.7, (float)0));
+	projectionShader.setMat4("model", model);
+	glDrawArrays(GL_TRIANGLES, 0, 36);
+	model = temp2;
+	////////////////////////
+	/////////////////////////////////////////////////
+	model = glm::translate(model, glm::vec3(0.0f, 21.0f, 0.0f));
+	//model = glm::rotate(model, glm::radians(15.0f), glm::vec3(1, 0, 0));
+	//model = glm::rotate(model, glm::radians(-15.0f), glm::vec3(0, 1, 0));
+	//model = glm::rotate(model, glm::radians(-15.0f), glm::vec3(0, 0, 1));
+	temp = model;//respaldo de matriz
+	temp2 = model;
+	model = glm::scale(model, glm::vec3(3.0f, 21.0f, 3.0f));
+	projectionShader.setVec3("aColor", glm::vec3((float)0.9, (float)0.7, (float)0));
+	projectionShader.setMat4("model", model);
+	glDrawArrays(GL_TRIANGLES, 0, 36);
+	model = temp;
+
+	model = glm::translate(model, glm::vec3(6.0f, 0.0f, -3.5f));
+	model = glm::rotate(model, glm::radians(30.0f), glm::vec3(0, 1, 0));
+	temp = model;//respaldo de matriz
+	model = glm::scale(model, glm::vec3(12.0f, 1.5f, 1.5f));
+	projectionShader.setVec3("aColor", glm::vec3((float)0.9, (float)0.7, (float)0));
+	projectionShader.setMat4("model", model);
+	glDrawArrays(GL_TRIANGLES, 0, 36);
+	model = temp;
+
+
+	model = glm::translate(model, glm::vec3(6.0f, 0.0f, 0.0f));
+	temp = model;
+	model = glm::scale(model, glm::vec3(3.0f, 21.0f, 3.0f));
+	projectionShader.setVec3("aColor", glm::vec3((float)0.9, (float)0.7, (float)0));
+	projectionShader.setMat4("model", model);
+	glDrawArrays(GL_TRIANGLES, 0, 36);
+	model = temp;
+
+	model = glm::rotate(model, glm::radians(-60.0f), glm::vec3(0, 1, 0));
+	model = glm::translate(model, glm::vec3(6.0f, 0.0f, 0.0f));
+	temp = model;//respaldo de matriz
+	model = glm::scale(model, glm::vec3(12.0f, 1.5f, 1.5f));
+	projectionShader.setVec3("aColor", glm::vec3((float)0.9, (float)0.7, (float)0));
+	projectionShader.setMat4("model", model);
+	glDrawArrays(GL_TRIANGLES, 0, 36);
+	model = temp;
+
+	model = glm::translate(model, glm::vec3(6.0f, 0.0f, 0.0f));
+	temp = model;
+	model = glm::scale(model, glm::vec3(3.0f, 21.0f, 3.0f));
+	projectionShader.setVec3("aColor", glm::vec3((float)0.9, (float)0.7, (float)0));
+	projectionShader.setMat4("model", model);
+	glDrawArrays(GL_TRIANGLES, 0, 36);
+	model = temp2;
+	////////////////////////
+	/////////////////////////////////////////////////
+	model = glm::translate(model, glm::vec3(0.0f, 21.0f, 0.0f));
+	//model = glm::rotate(model, glm::radians(15.0f), glm::vec3(1, 0, 0));
+	//model = glm::rotate(model, glm::radians(-15.0f), glm::vec3(0, 1, 0));
+	//model = glm::rotate(model, glm::radians(-15.0f), glm::vec3(0, 0, 1));
+	temp = model;//respaldo de matriz
+	temp2 = model;
+	model = glm::scale(model, glm::vec3(3.0f, 21.0f, 3.0f));
+	projectionShader.setVec3("aColor", glm::vec3((float)0.9, (float)0.7, (float)0));
+	projectionShader.setMat4("model", model);
+	glDrawArrays(GL_TRIANGLES, 0, 36);
+	model = temp;
+
+	model = glm::translate(model, glm::vec3(6.0f, 0.0f, -3.5f));
+	model = glm::rotate(model, glm::radians(30.0f), glm::vec3(0, 1, 0));
+	temp = model;//respaldo de matriz
+	model = glm::scale(model, glm::vec3(12.0f, 1.5f, 1.5f));
+	projectionShader.setVec3("aColor", glm::vec3((float)0.9, (float)0.7, (float)0));
+	projectionShader.setMat4("model", model);
+	glDrawArrays(GL_TRIANGLES, 0, 36);
+	model = temp;
+
+
+	model = glm::translate(model, glm::vec3(6.0f, 0.0f, 0.0f));
+	temp = model;
+	model = glm::scale(model, glm::vec3(3.0f, 21.0f, 3.0f));
+	projectionShader.setVec3("aColor", glm::vec3((float)0.9, (float)0.7, (float)0));
+	projectionShader.setMat4("model", model);
+	glDrawArrays(GL_TRIANGLES, 0, 36);
+	model = temp;
+
+	model = glm::rotate(model, glm::radians(-60.0f), glm::vec3(0, 1, 0));
+	model = glm::translate(model, glm::vec3(6.0f, 0.0f, 0.0f));
+	temp = model;//respaldo de matriz
+	model = glm::scale(model, glm::vec3(12.0f, 1.5f, 1.5f));
+	projectionShader.setVec3("aColor", glm::vec3((float)0.9, (float)0.7, (float)0));
+	projectionShader.setMat4("model", model);
+	glDrawArrays(GL_TRIANGLES, 0, 36);
+	model = temp;
+
+	model = glm::translate(model, glm::vec3(6.0f, 0.0f, 0.0f));
+	temp = model;
+	model = glm::scale(model, glm::vec3(3.0f, 21.0f, 3.0f));
+	projectionShader.setVec3("aColor", glm::vec3((float)0.9, (float)0.7, (float)0));
+	projectionShader.setMat4("model", model);
+	glDrawArrays(GL_TRIANGLES, 0, 36);
+	model = temp2;
+	////////////////////////
+	///////////////15ADICION
+	/////////////////////////////////////////////////
+	model = glm::translate(model, glm::vec3(4.0f, 21.0f, 3.0f));
+	//model = glm::rotate(model, glm::radians(-15.0f), glm::vec3(1, 0, 0));
+	//model = glm::rotate(model, glm::radians(15.0f), glm::vec3(0, 1, 0));
+	//model = glm::rotate(model, glm::radians(-10.0f), glm::vec3(0, 0, 1));
+	temp = model;//respaldo de matriz
+	temp2 = model;
+	model = glm::scale(model, glm::vec3(3.0f, 21.0f, 3.0f));
+	projectionShader.setVec3("aColor", glm::vec3((float)0.9, (float)0.7, (float)0));
+	projectionShader.setMat4("model", model);
+	glDrawArrays(GL_TRIANGLES, 0, 36);
+	model = temp;
+
+	model = glm::translate(model, glm::vec3(6.0f, 0.0f, -3.5f));
+	model = glm::rotate(model, glm::radians(30.0f), glm::vec3(0, 1, 0));
+	temp = model;//respaldo de matriz
+	model = glm::scale(model, glm::vec3(12.0f, 1.5f, 1.5f));
+	projectionShader.setVec3("aColor", glm::vec3((float)0.9, (float)0.7, (float)0));
+	projectionShader.setMat4("model", model);
+	glDrawArrays(GL_TRIANGLES, 0, 36);
+	model = temp;
+
+
+	model = glm::translate(model, glm::vec3(6.0f, 0.0f, 0.0f));
+	temp = model;
+	model = glm::scale(model, glm::vec3(3.0f, 21.0f, 3.0f));
+	projectionShader.setVec3("aColor", glm::vec3((float)0.9, (float)0.7, (float)0));
+	projectionShader.setMat4("model", model);
+	glDrawArrays(GL_TRIANGLES, 0, 36);
+	model = temp;
+
+	model = glm::rotate(model, glm::radians(-60.0f), glm::vec3(0, 1, 0));
+	model = glm::translate(model, glm::vec3(6.0f, 0.0f, 0.0f));
+	temp = model;//respaldo de matriz
+	model = glm::scale(model, glm::vec3(12.0f, 1.5f, 1.5f));
+	projectionShader.setVec3("aColor", glm::vec3((float)0.9, (float)0.7, (float)0));
+	projectionShader.setMat4("model", model);
+	glDrawArrays(GL_TRIANGLES, 0, 36);
+	model = temp;
+
+	model = glm::translate(model, glm::vec3(6.0f, 0.0f, 0.0f));
+	temp = model;
+	model = glm::scale(model, glm::vec3(3.0f, 21.0f, 3.0f));
+	projectionShader.setVec3("aColor", glm::vec3((float)0.9, (float)0.7, (float)0));
+	projectionShader.setMat4("model", model);
+	glDrawArrays(GL_TRIANGLES, 0, 36);
+	model = temp2;
+	//////////////////////
+
+	/////////////////////////////////////////////////
+	model = glm::translate(model, glm::vec3(0.0f, 21.0f, 0.0f));
+	//model = glm::rotate(model, glm::radians(15.0f), glm::vec3(1, 0, 0));
+	//model = glm::rotate(model, glm::radians(15.0f), glm::vec3(0, 1, 0));
+	//model = glm::rotate(model, glm::radians(-15.0f), glm::vec3(0, 0, 1));
+	temp = model;//respaldo de matriz
+	temp2 = model;
+	model = glm::scale(model, glm::vec3(3.0f, 21.0f, 3.0f));
+	projectionShader.setVec3("aColor", glm::vec3((float)0.9, (float)0.7, (float)0));
+	projectionShader.setMat4("model", model);
+	glDrawArrays(GL_TRIANGLES, 0, 36);
+	model = temp;
+
+	model = glm::translate(model, glm::vec3(6.0f, 0.0f, -3.5f));
+	model = glm::rotate(model, glm::radians(30.0f), glm::vec3(0, 1, 0));
+	temp = model;//respaldo de matriz
+	model = glm::scale(model, glm::vec3(12.0f, 1.5f, 1.5f));
+	projectionShader.setVec3("aColor", glm::vec3((float)0.9, (float)0.7, (float)0));
+	projectionShader.setMat4("model", model);
+	glDrawArrays(GL_TRIANGLES, 0, 36);
+	model = temp;
+
+
+	model = glm::translate(model, glm::vec3(6.0f, 0.0f, 0.0f));
+	temp = model;
+	model = glm::scale(model, glm::vec3(3.0f, 21.0f, 3.0f));
+	projectionShader.setVec3("aColor", glm::vec3((float)0.9, (float)0.7, (float)0));
+	projectionShader.setMat4("model", model);
+	glDrawArrays(GL_TRIANGLES, 0, 36);
+	model = temp;
+
+	model = glm::rotate(model, glm::radians(-60.0f), glm::vec3(0, 1, 0));
+	model = glm::translate(model, glm::vec3(6.0f, 0.0f, 0.0f));
+	temp = model;//respaldo de matriz
+	model = glm::scale(model, glm::vec3(12.0f, 1.5f, 1.5f));
+	projectionShader.setVec3("aColor", glm::vec3((float)0.9, (float)0.7, (float)0));
+	projectionShader.setMat4("model", model);
+	glDrawArrays(GL_TRIANGLES, 0, 36);
+	model = temp;
+
+	model = glm::translate(model, glm::vec3(6.0f, 0.0f, 0.0f));
+	temp = model;
+	model = glm::scale(model, glm::vec3(3.0f, 21.0f, 3.0f));
+	projectionShader.setVec3("aColor", glm::vec3((float)0.9, (float)0.7, (float)0));
+	projectionShader.setMat4("model", model);
+	glDrawArrays(GL_TRIANGLES, 0, 36);
+	model = temp2;
+	//////////////////////
+
+	/////////////////////////////////////////////////
+	model = glm::translate(model, glm::vec3(0.0f, 21.0f, 0.0f));
+	model = glm::rotate(model, glm::radians(15.0f), glm::vec3(1, 0, 0));
+	//model = glm::rotate(model, glm::radians(15.0f), glm::vec3(0, 1, 0));
+	//model = glm::rotate(model, glm::radians(-15.0f), glm::vec3(0, 0, 1));
+	temp = model;//respaldo de matriz
+	temp2 = model;
+	model = glm::scale(model, glm::vec3(3.0f, 21.0f, 3.0f));
+	projectionShader.setVec3("aColor", glm::vec3((float)0.9, (float)0.7, (float)0));
+	projectionShader.setMat4("model", model);
+	glDrawArrays(GL_TRIANGLES, 0, 36);
+	model = temp;
+
+	model = glm::translate(model, glm::vec3(6.0f, 0.0f, -3.5f));
+	model = glm::rotate(model, glm::radians(30.0f), glm::vec3(0, 1, 0));
+	temp = model;//respaldo de matriz
+	model = glm::scale(model, glm::vec3(12.0f, 1.5f, 1.5f));
+	projectionShader.setVec3("aColor", glm::vec3((float)0.9, (float)0.7, (float)0));
+	projectionShader.setMat4("model", model);
+	glDrawArrays(GL_TRIANGLES, 0, 36);
+	model = temp;
+
+
+	model = glm::translate(model, glm::vec3(6.0f, 0.0f, 0.0f));
+	temp = model;
+	model = glm::scale(model, glm::vec3(3.0f, 21.0f, 3.0f));
+	projectionShader.setVec3("aColor", glm::vec3((float)0.9, (float)0.7, (float)0));
+	projectionShader.setMat4("model", model);
+	glDrawArrays(GL_TRIANGLES, 0, 36);
+	model = temp;
+
+	model = glm::rotate(model, glm::radians(-60.0f), glm::vec3(0, 1, 0));
+	model = glm::translate(model, glm::vec3(6.0f, 0.0f, 0.0f));
+	temp = model;//respaldo de matriz
+	model = glm::scale(model, glm::vec3(12.0f, 1.5f, 1.5f));
+	projectionShader.setVec3("aColor", glm::vec3((float)0.9, (float)0.7, (float)0));
+	projectionShader.setMat4("model", model);
+	glDrawArrays(GL_TRIANGLES, 0, 36);
+	model = temp;
+
+	model = glm::translate(model, glm::vec3(6.0f, 0.0f, 0.0f));
+	temp = model;
+	model = glm::scale(model, glm::vec3(3.0f, 21.0f, 3.0f));
+	projectionShader.setVec3("aColor", glm::vec3((float)0.9, (float)0.7, (float)0));
+	projectionShader.setMat4("model", model);
+	glDrawArrays(GL_TRIANGLES, 0, 36);
+	model = temp2;
+	////////////////////////
+
+	/////////////////////////////////////////////////
+	model = glm::translate(model, glm::vec3(0.0f, 21.0f, 0.0f));
+	model = glm::rotate(model, glm::radians(15.0f), glm::vec3(1, 0, 0));
+	//model = glm::rotate(model, glm::radians(15.0f), glm::vec3(0, 1, 0));
+	//model = glm::rotate(model, glm::radians(-15.0f), glm::vec3(0, 0, 1));
+	temp = model;//respaldo de matriz
+	temp2 = model;
+	model = glm::scale(model, glm::vec3(3.0f, 21.0f, 3.0f));
+	projectionShader.setVec3("aColor", glm::vec3((float)0.9, (float)0.7, (float)0));
+	projectionShader.setMat4("model", model);
+	glDrawArrays(GL_TRIANGLES, 0, 36);
+	model = temp;
+
+	model = glm::translate(model, glm::vec3(6.0f, 0.0f, -3.5f));
+	model = glm::rotate(model, glm::radians(30.0f), glm::vec3(0, 1, 0));
+	temp = model;//respaldo de matriz
+	model = glm::scale(model, glm::vec3(12.0f, 1.5f, 1.5f));
+	projectionShader.setVec3("aColor", glm::vec3((float)0.9, (float)0.7, (float)0));
+	projectionShader.setMat4("model", model);
+	glDrawArrays(GL_TRIANGLES, 0, 36);
+	model = temp;
+
+
+	model = glm::translate(model, glm::vec3(6.0f, 0.0f, 0.0f));
+	temp = model;
+	model = glm::scale(model, glm::vec3(3.0f, 21.0f, 3.0f));
+	projectionShader.setVec3("aColor", glm::vec3((float)0.9, (float)0.7, (float)0));
+	projectionShader.setMat4("model", model);
+	glDrawArrays(GL_TRIANGLES, 0, 36);
+	model = temp;
+
+	model = glm::rotate(model, glm::radians(-60.0f), glm::vec3(0, 1, 0));
+	model = glm::translate(model, glm::vec3(6.0f, 0.0f, 0.0f));
+	temp = model;//respaldo de matriz
+	model = glm::scale(model, glm::vec3(12.0f, 1.5f, 1.5f));
+	projectionShader.setVec3("aColor", glm::vec3((float)0.9, (float)0.7, (float)0));
+	projectionShader.setMat4("model", model);
+	glDrawArrays(GL_TRIANGLES, 0, 36);
+	model = temp;
+
+	model = glm::translate(model, glm::vec3(6.0f, 0.0f, 0.0f));
+	temp = model;
+	model = glm::scale(model, glm::vec3(3.0f, 21.0f, 3.0f));
+	projectionShader.setVec3("aColor", glm::vec3((float)0.9, (float)0.7, (float)0));
+	projectionShader.setMat4("model", model);
+	glDrawArrays(GL_TRIANGLES, 0, 36);
+	model = temp2;
+	////////////////////////
+
+	/////////////////////////////////////////////////
+	model = glm::translate(model, glm::vec3(0.0f, 21.0f, 0.0f));
+	model = glm::rotate(model, glm::radians(15.0f), glm::vec3(1, 0, 0));
+	//model = glm::rotate(model, glm::radians(15.0f), glm::vec3(0, 1, 0));
+	//model = glm::rotate(model, glm::radians(-15.0f), glm::vec3(0, 0, 1));
+	temp = model;//respaldo de matriz
+	temp2 = model;
+	model = glm::scale(model, glm::vec3(3.0f, 21.0f, 3.0f));
+	projectionShader.setVec3("aColor", glm::vec3((float)0.9, (float)0.7, (float)0));
+	projectionShader.setMat4("model", model);
+	glDrawArrays(GL_TRIANGLES, 0, 36);
+	model = temp;
+
+	model = glm::translate(model, glm::vec3(6.0f, 0.0f, -3.5f));
+	model = glm::rotate(model, glm::radians(30.0f), glm::vec3(0, 1, 0));
+	temp = model;//respaldo de matriz
+	model = glm::scale(model, glm::vec3(12.0f, 1.5f, 1.5f));
+	projectionShader.setVec3("aColor", glm::vec3((float)0.9, (float)0.7, (float)0));
+	projectionShader.setMat4("model", model);
+	glDrawArrays(GL_TRIANGLES, 0, 36);
+	model = temp;
+
+
+	model = glm::translate(model, glm::vec3(6.0f, 0.0f, 0.0f));
+	temp = model;
+	model = glm::scale(model, glm::vec3(3.0f, 21.0f, 3.0f));
+	projectionShader.setVec3("aColor", glm::vec3((float)0.9, (float)0.7, (float)0));
+	projectionShader.setMat4("model", model);
+	glDrawArrays(GL_TRIANGLES, 0, 36);
+	model = temp;
+
+	model = glm::rotate(model, glm::radians(-60.0f), glm::vec3(0, 1, 0));
+	model = glm::translate(model, glm::vec3(6.0f, 0.0f, 0.0f));
+	temp = model;//respaldo de matriz
+	model = glm::scale(model, glm::vec3(12.0f, 1.5f, 1.5f));
+	projectionShader.setVec3("aColor", glm::vec3((float)0.9, (float)0.7, (float)0));
+	projectionShader.setMat4("model", model);
+	glDrawArrays(GL_TRIANGLES, 0, 36);
+	model = temp;
+
+	model = glm::translate(model, glm::vec3(6.0f, 0.0f, 0.0f));
+	temp = model;
+	model = glm::scale(model, glm::vec3(3.0f, 21.0f, 3.0f));
+	projectionShader.setVec3("aColor", glm::vec3((float)0.9, (float)0.7, (float)0));
+	projectionShader.setMat4("model", model);
+	glDrawArrays(GL_TRIANGLES, 0, 36);
+	model = temp2;
+	////////////////////////
+
+	/////////////////////////////////////////////////
+	model = glm::translate(model, glm::vec3(0.0f, 21.0f, 0.0f));
+	model = glm::rotate(model, glm::radians(15.0f), glm::vec3(1, 0, 0));
+	model = glm::rotate(model, glm::radians(-15.0f), glm::vec3(0, 1, 0));
+	//model = glm::rotate(model, glm::radians(-15.0f), glm::vec3(0, 0, 1));
+	temp = model;//respaldo de matriz
+	temp2 = model;
+	model = glm::scale(model, glm::vec3(3.0f, 21.0f, 3.0f));
+	projectionShader.setVec3("aColor", glm::vec3((float)0.9, (float)0.7, (float)0));
+	projectionShader.setMat4("model", model);
+	glDrawArrays(GL_TRIANGLES, 0, 36);
+	model = temp;
+
+	model = glm::translate(model, glm::vec3(6.0f, 0.0f, -3.5f));
+	model = glm::rotate(model, glm::radians(30.0f), glm::vec3(0, 1, 0));
+	temp = model;//respaldo de matriz
+	model = glm::scale(model, glm::vec3(12.0f, 1.5f, 1.5f));
+	projectionShader.setVec3("aColor", glm::vec3((float)0.9, (float)0.7, (float)0));
+	projectionShader.setMat4("model", model);
+	glDrawArrays(GL_TRIANGLES, 0, 36);
+	model = temp;
+
+
+	model = glm::translate(model, glm::vec3(6.0f, 0.0f, 0.0f));
+	temp = model;
+	model = glm::scale(model, glm::vec3(3.0f, 21.0f, 3.0f));
+	projectionShader.setVec3("aColor", glm::vec3((float)0.9, (float)0.7, (float)0));
+	projectionShader.setMat4("model", model);
+	glDrawArrays(GL_TRIANGLES, 0, 36);
+	model = temp;
+
+	model = glm::rotate(model, glm::radians(-60.0f), glm::vec3(0, 1, 0));
+	model = glm::translate(model, glm::vec3(6.0f, 0.0f, 0.0f));
+	temp = model;//respaldo de matriz
+	model = glm::scale(model, glm::vec3(12.0f, 1.5f, 1.5f));
+	projectionShader.setVec3("aColor", glm::vec3((float)0.9, (float)0.7, (float)0));
+	projectionShader.setMat4("model", model);
+	glDrawArrays(GL_TRIANGLES, 0, 36);
+	model = temp;
+
+	model = glm::translate(model, glm::vec3(6.0f, 0.0f, 0.0f));
+	temp = model;
+	model = glm::scale(model, glm::vec3(3.0f, 21.0f, 3.0f));
+	projectionShader.setVec3("aColor", glm::vec3((float)0.9, (float)0.7, (float)0));
+	projectionShader.setMat4("model", model);
+	glDrawArrays(GL_TRIANGLES, 0, 36);
+	model = temp2;
+	////////////////////////
+
+	/////////////////////////////////////////////////
+	model = glm::translate(model, glm::vec3(0.0f, 21.0f, 0.0f));
+	model = glm::rotate(model, glm::radians(15.0f), glm::vec3(1, 0, 0));
+	model = glm::rotate(model, glm::radians(-15.0f), glm::vec3(0, 1, 0));
+	//model = glm::rotate(model, glm::radians(-15.0f), glm::vec3(0, 0, 1));
+	temp = model;//respaldo de matriz
+	temp2 = model;
+	model = glm::scale(model, glm::vec3(3.0f, 21.0f, 3.0f));
+	projectionShader.setVec3("aColor", glm::vec3((float)0.9, (float)0.7, (float)0));
+	projectionShader.setMat4("model", model);
+	glDrawArrays(GL_TRIANGLES, 0, 36);
+	model = temp;
+
+	model = glm::translate(model, glm::vec3(6.0f, 0.0f, -3.5f));
+	model = glm::rotate(model, glm::radians(30.0f), glm::vec3(0, 1, 0));
+	temp = model;//respaldo de matriz
+	model = glm::scale(model, glm::vec3(12.0f, 1.5f, 1.5f));
+	projectionShader.setVec3("aColor", glm::vec3((float)0.9, (float)0.7, (float)0));
+	projectionShader.setMat4("model", model);
+	glDrawArrays(GL_TRIANGLES, 0, 36);
+	model = temp;
+
+
+	model = glm::translate(model, glm::vec3(6.0f, 0.0f, 0.0f));
+	temp = model;
+	model = glm::scale(model, glm::vec3(3.0f, 21.0f, 3.0f));
+	projectionShader.setVec3("aColor", glm::vec3((float)0.9, (float)0.7, (float)0));
+	projectionShader.setMat4("model", model);
+	glDrawArrays(GL_TRIANGLES, 0, 36);
+	model = temp;
+
+	model = glm::rotate(model, glm::radians(-60.0f), glm::vec3(0, 1, 0));
+	model = glm::translate(model, glm::vec3(6.0f, 0.0f, 0.0f));
+	temp = model;//respaldo de matriz
+	model = glm::scale(model, glm::vec3(12.0f, 1.5f, 1.5f));
+	projectionShader.setVec3("aColor", glm::vec3((float)0.9, (float)0.7, (float)0));
+	projectionShader.setMat4("model", model);
+	glDrawArrays(GL_TRIANGLES, 0, 36);
+	model = temp;
+
+	model = glm::translate(model, glm::vec3(6.0f, 0.0f, 0.0f));
+	temp = model;
+	model = glm::scale(model, glm::vec3(3.0f, 21.0f, 3.0f));
+	projectionShader.setVec3("aColor", glm::vec3((float)0.9, (float)0.7, (float)0));
+	projectionShader.setMat4("model", model);
+	glDrawArrays(GL_TRIANGLES, 0, 36);
+	model = temp2;
+	////////////////////////
+
+	/////////////////////////////////////////////////
+	model = glm::translate(model, glm::vec3(0.0f, 21.0f, 0.0f));
+	model = glm::rotate(model, glm::radians(15.0f), glm::vec3(1, 0, 0));
+	model = glm::rotate(model, glm::radians(-15.0f), glm::vec3(0, 1, 0));
+	model = glm::rotate(model, glm::radians(-15.0f), glm::vec3(0, 0, 1));
+	temp = model;//respaldo de matriz
+	temp2 = model;
+	model = glm::scale(model, glm::vec3(3.0f, 21.0f, 3.0f));
+	projectionShader.setVec3("aColor", glm::vec3((float)0.9, (float)0.7, (float)0));
+	projectionShader.setMat4("model", model);
+	glDrawArrays(GL_TRIANGLES, 0, 36);
+	model = temp;
+
+	model = glm::translate(model, glm::vec3(6.0f, 0.0f, -3.5f));
+	model = glm::rotate(model, glm::radians(30.0f), glm::vec3(0, 1, 0));
+	temp = model;//respaldo de matriz
+	model = glm::scale(model, glm::vec3(12.0f, 1.5f, 1.5f));
+	projectionShader.setVec3("aColor", glm::vec3((float)0.9, (float)0.7, (float)0));
+	projectionShader.setMat4("model", model);
+	glDrawArrays(GL_TRIANGLES, 0, 36);
+	model = temp;
+
+
+	model = glm::translate(model, glm::vec3(6.0f, 0.0f, 0.0f));
+	temp = model;
+	model = glm::scale(model, glm::vec3(3.0f, 21.0f, 3.0f));
+	projectionShader.setVec3("aColor", glm::vec3((float)0.9, (float)0.7, (float)0));
+	projectionShader.setMat4("model", model);
+	glDrawArrays(GL_TRIANGLES, 0, 36);
+	model = temp;
+
+	model = glm::rotate(model, glm::radians(-60.0f), glm::vec3(0, 1, 0));
+	model = glm::translate(model, glm::vec3(6.0f, 0.0f, 0.0f));
+	temp = model;//respaldo de matriz
+	model = glm::scale(model, glm::vec3(12.0f, 1.5f, 1.5f));
+	projectionShader.setVec3("aColor", glm::vec3((float)0.9, (float)0.7, (float)0));
+	projectionShader.setMat4("model", model);
+	glDrawArrays(GL_TRIANGLES, 0, 36);
+	model = temp;
+
+	model = glm::translate(model, glm::vec3(6.0f, 0.0f, 0.0f));
+	temp = model;
+	model = glm::scale(model, glm::vec3(3.0f, 21.0f, 3.0f));
+	projectionShader.setVec3("aColor", glm::vec3((float)0.9, (float)0.7, (float)0));
+	projectionShader.setMat4("model", model);
+	glDrawArrays(GL_TRIANGLES, 0, 36);
+	model = temp2;
+	////////////////////////
+	/////////////////////////////////////////////////
+	model = glm::translate(model, glm::vec3(0.0f, 21.0f, 0.0f));
+	model = glm::rotate(model, glm::radians(15.0f), glm::vec3(1, 0, 0));
+	model = glm::rotate(model, glm::radians(-15.0f), glm::vec3(0, 1, 0));
+	model = glm::rotate(model, glm::radians(-15.0f), glm::vec3(0, 0, 1));
+	temp = model;//respaldo de matriz
+	temp2 = model;
+	model = glm::scale(model, glm::vec3(3.0f, 21.0f, 3.0f));
+	projectionShader.setVec3("aColor", glm::vec3((float)0.9, (float)0.7, (float)0));
+	projectionShader.setMat4("model", model);
+	glDrawArrays(GL_TRIANGLES, 0, 36);
+	model = temp;
+
+	model = glm::translate(model, glm::vec3(6.0f, 0.0f, -3.5f));
+	model = glm::rotate(model, glm::radians(30.0f), glm::vec3(0, 1, 0));
+	temp = model;//respaldo de matriz
+	model = glm::scale(model, glm::vec3(12.0f, 1.5f, 1.5f));
+	projectionShader.setVec3("aColor", glm::vec3((float)0.9, (float)0.7, (float)0));
+	projectionShader.setMat4("model", model);
+	glDrawArrays(GL_TRIANGLES, 0, 36);
+	model = temp;
+
+
+	model = glm::translate(model, glm::vec3(6.0f, 0.0f, 0.0f));
+	temp = model;
+	model = glm::scale(model, glm::vec3(3.0f, 21.0f, 3.0f));
+	projectionShader.setVec3("aColor", glm::vec3((float)0.9, (float)0.7, (float)0));
+	projectionShader.setMat4("model", model);
+	glDrawArrays(GL_TRIANGLES, 0, 36);
+	model = temp;
+
+	model = glm::rotate(model, glm::radians(-60.0f), glm::vec3(0, 1, 0));
+	model = glm::translate(model, glm::vec3(6.0f, 0.0f, 0.0f));
+	temp = model;//respaldo de matriz
+	model = glm::scale(model, glm::vec3(12.0f, 1.5f, 1.5f));
+	projectionShader.setVec3("aColor", glm::vec3((float)0.9, (float)0.7, (float)0));
+	projectionShader.setMat4("model", model);
+	glDrawArrays(GL_TRIANGLES, 0, 36);
+	model = temp;
+
+	model = glm::translate(model, glm::vec3(6.0f, 0.0f, 0.0f));
+	temp = model;
+	model = glm::scale(model, glm::vec3(3.0f, 21.0f, 3.0f));
+	projectionShader.setVec3("aColor", glm::vec3((float)0.9, (float)0.7, (float)0));
+	projectionShader.setMat4("model", model);
+	glDrawArrays(GL_TRIANGLES, 0, 36);
+	model = temp2;
+	////////////////////////
+	/////////////////////////////////////////////////
+	model = glm::translate(model, glm::vec3(0.0f, 21.0f, 0.0f));
+	model = glm::rotate(model, glm::radians(30.0f), glm::vec3(1, 0, 0));
+	//model = glm::rotate(model, glm::radians(-15.0f), glm::vec3(0, 1, 0));
+	//model = glm::rotate(model, glm::radians(-15.0f), glm::vec3(0, 0, 1));
+	temp = model;//respaldo de matriz
+	temp2 = model;
+	model = glm::scale(model, glm::vec3(3.0f, 21.0f, 3.0f));
+	projectionShader.setVec3("aColor", glm::vec3((float)0.9, (float)0.7, (float)0));
+	projectionShader.setMat4("model", model);
+	glDrawArrays(GL_TRIANGLES, 0, 36);
+	model = temp;
+
+	model = glm::translate(model, glm::vec3(6.0f, 0.0f, -3.5f));
+	model = glm::rotate(model, glm::radians(30.0f), glm::vec3(0, 1, 0));
+	temp = model;//respaldo de matriz
+	model = glm::scale(model, glm::vec3(12.0f, 1.5f, 1.5f));
+	projectionShader.setVec3("aColor", glm::vec3((float)0.9, (float)0.7, (float)0));
+	projectionShader.setMat4("model", model);
+	glDrawArrays(GL_TRIANGLES, 0, 36);
+	model = temp;
+
+
+	model = glm::translate(model, glm::vec3(6.0f, 0.0f, 0.0f));
+	temp = model;
+	model = glm::scale(model, glm::vec3(3.0f, 21.0f, 3.0f));
+	projectionShader.setVec3("aColor", glm::vec3((float)0.9, (float)0.7, (float)0));
+	projectionShader.setMat4("model", model);
+	glDrawArrays(GL_TRIANGLES, 0, 36);
+	model = temp;
+
+	model = glm::rotate(model, glm::radians(-60.0f), glm::vec3(0, 1, 0));
+	model = glm::translate(model, glm::vec3(6.0f, 0.0f, 0.0f));
+	temp = model;//respaldo de matriz
+	model = glm::scale(model, glm::vec3(12.0f, 1.5f, 1.5f));
+	projectionShader.setVec3("aColor", glm::vec3((float)0.9, (float)0.7, (float)0));
+	projectionShader.setMat4("model", model);
+	glDrawArrays(GL_TRIANGLES, 0, 36);
+	model = temp;
+
+	model = glm::translate(model, glm::vec3(6.0f, 0.0f, 0.0f));
+	temp = model;
+	model = glm::scale(model, glm::vec3(3.0f, 21.0f, 3.0f));
+	projectionShader.setVec3("aColor", glm::vec3((float)0.9, (float)0.7, (float)0));
+	projectionShader.setMat4("model", model);
+	glDrawArrays(GL_TRIANGLES, 0, 36);
+	model = temp2;
+	////////////////////////
+	/////////////////////////////////////////////////
+	model = glm::translate(model, glm::vec3(0.0f, 21.0f, 0.0f));
+	model = glm::rotate(model, glm::radians(30.0f), glm::vec3(1, 0, 0));
+	//model = glm::rotate(model, glm::radians(-15.0f), glm::vec3(0, 1, 0));
+	//model = glm::rotate(model, glm::radians(-15.0f), glm::vec3(0, 0, 1));
+	temp = model;//respaldo de matriz
+	temp2 = model;
+	model = glm::scale(model, glm::vec3(3.0f, 21.0f, 3.0f));
+	projectionShader.setVec3("aColor", glm::vec3((float)0.9, (float)0.7, (float)0));
+	projectionShader.setMat4("model", model);
+	glDrawArrays(GL_TRIANGLES, 0, 36);
+	model = temp;
+
+	model = glm::translate(model, glm::vec3(6.0f, 0.0f, -3.5f));
+	model = glm::rotate(model, glm::radians(30.0f), glm::vec3(0, 1, 0));
+	temp = model;//respaldo de matriz
+	model = glm::scale(model, glm::vec3(12.0f, 1.5f, 1.5f));
+	projectionShader.setVec3("aColor", glm::vec3((float)0.9, (float)0.7, (float)0));
+	projectionShader.setMat4("model", model);
+	glDrawArrays(GL_TRIANGLES, 0, 36);
+	model = temp;
+
+
+	model = glm::translate(model, glm::vec3(6.0f, 0.0f, 0.0f));
+	temp = model;
+	model = glm::scale(model, glm::vec3(3.0f, 21.0f, 3.0f));
+	projectionShader.setVec3("aColor", glm::vec3((float)0.9, (float)0.7, (float)0));
+	projectionShader.setMat4("model", model);
+	glDrawArrays(GL_TRIANGLES, 0, 36);
+	model = temp;
+
+	model = glm::rotate(model, glm::radians(-60.0f), glm::vec3(0, 1, 0));
+	model = glm::translate(model, glm::vec3(6.0f, 0.0f, 0.0f));
+	temp = model;//respaldo de matriz
+	model = glm::scale(model, glm::vec3(12.0f, 1.5f, 1.5f));
+	projectionShader.setVec3("aColor", glm::vec3((float)0.9, (float)0.7, (float)0));
+	projectionShader.setMat4("model", model);
+	glDrawArrays(GL_TRIANGLES, 0, 36);
+	model = temp;
+
+	model = glm::translate(model, glm::vec3(6.0f, 0.0f, 0.0f));
+	temp = model;
+	model = glm::scale(model, glm::vec3(3.0f, 21.0f, 3.0f));
+	projectionShader.setVec3("aColor", glm::vec3((float)0.9, (float)0.7, (float)0));
+	projectionShader.setMat4("model", model);
+	glDrawArrays(GL_TRIANGLES, 0, 36);
+	model = temp2;
+	////////////////////////
+	/////////////////////////////////////////////////
+	model = glm::translate(model, glm::vec3(0.0f, 21.0f, 0.0f));
+	model = glm::rotate(model, glm::radians(15.0f), glm::vec3(1, 0, 0));
+	//model = glm::rotate(model, glm::radians(-15.0f), glm::vec3(0, 1, 0));
+	//model = glm::rotate(model, glm::radians(-15.0f), glm::vec3(0, 0, 1));
+	temp = model;//respaldo de matriz
+	temp2 = model;
+	model = glm::scale(model, glm::vec3(3.0f, 21.0f, 3.0f));
+	projectionShader.setVec3("aColor", glm::vec3((float)0.9, (float)0.7, (float)0));
+	projectionShader.setMat4("model", model);
+	glDrawArrays(GL_TRIANGLES, 0, 36);
+	model = temp;
+
+	model = glm::translate(model, glm::vec3(6.0f, 0.0f, -3.5f));
+	model = glm::rotate(model, glm::radians(30.0f), glm::vec3(0, 1, 0));
+	temp = model;//respaldo de matriz
+	model = glm::scale(model, glm::vec3(12.0f, 1.5f, 1.5f));
+	projectionShader.setVec3("aColor", glm::vec3((float)0.9, (float)0.7, (float)0));
+	projectionShader.setMat4("model", model);
+	glDrawArrays(GL_TRIANGLES, 0, 36);
+	model = temp;
+
+
+	model = glm::translate(model, glm::vec3(6.0f, 0.0f, 0.0f));
+	temp = model;
+	model = glm::scale(model, glm::vec3(3.0f, 21.0f, 3.0f));
+	projectionShader.setVec3("aColor", glm::vec3((float)0.9, (float)0.7, (float)0));
+	projectionShader.setMat4("model", model);
+	glDrawArrays(GL_TRIANGLES, 0, 36);
+	model = temp;
+
+	model = glm::rotate(model, glm::radians(-60.0f), glm::vec3(0, 1, 0));
+	model = glm::translate(model, glm::vec3(6.0f, 0.0f, 0.0f));
+	temp = model;//respaldo de matriz
+	model = glm::scale(model, glm::vec3(12.0f, 1.5f, 1.5f));
+	projectionShader.setVec3("aColor", glm::vec3((float)0.9, (float)0.7, (float)0));
+	projectionShader.setMat4("model", model);
+	glDrawArrays(GL_TRIANGLES, 0, 36);
+	model = temp;
+
+	model = glm::translate(model, glm::vec3(6.0f, 0.0f, 0.0f));
+	temp = model;
+	model = glm::scale(model, glm::vec3(3.0f, 21.0f, 3.0f));
+	projectionShader.setVec3("aColor", glm::vec3((float)0.9, (float)0.7, (float)0));
+	projectionShader.setMat4("model", model);
+	glDrawArrays(GL_TRIANGLES, 0, 36);
+	model = temp2;
+	////////////////////////
+	/////////////////////////////////////////////////
+	model = glm::translate(model, glm::vec3(0.0f, 21.0f, 0.0f));
+	model = glm::rotate(model, glm::radians(15.0f), glm::vec3(1, 0, 0));
+	//model = glm::rotate(model, glm::radians(-15.0f), glm::vec3(0, 1, 0));
+	//model = glm::rotate(model, glm::radians(-15.0f), glm::vec3(0, 0, 1));
+	temp = model;//respaldo de matriz
+	temp2 = model;
+	model = glm::scale(model, glm::vec3(3.0f, 21.0f, 3.0f));
+	projectionShader.setVec3("aColor", glm::vec3((float)0.9, (float)0.7, (float)0));
+	projectionShader.setMat4("model", model);
+	glDrawArrays(GL_TRIANGLES, 0, 36);
+	model = temp;
+
+	model = glm::translate(model, glm::vec3(6.0f, 0.0f, -3.5f));
+	model = glm::rotate(model, glm::radians(30.0f), glm::vec3(0, 1, 0));
+	temp = model;//respaldo de matriz
+	model = glm::scale(model, glm::vec3(12.0f, 1.5f, 1.5f));
+	projectionShader.setVec3("aColor", glm::vec3((float)0.9, (float)0.7, (float)0));
+	projectionShader.setMat4("model", model);
+	glDrawArrays(GL_TRIANGLES, 0, 36);
+	model = temp;
+
+
+	model = glm::translate(model, glm::vec3(6.0f, 0.0f, 0.0f));
+	temp = model;
+	model = glm::scale(model, glm::vec3(3.0f, 21.0f, 3.0f));
+	projectionShader.setVec3("aColor", glm::vec3((float)0.9, (float)0.7, (float)0));
+	projectionShader.setMat4("model", model);
+	glDrawArrays(GL_TRIANGLES, 0, 36);
+	model = temp;
+
+	model = glm::rotate(model, glm::radians(-60.0f), glm::vec3(0, 1, 0));
+	model = glm::translate(model, glm::vec3(6.0f, 0.0f, 0.0f));
+	temp = model;//respaldo de matriz
+	model = glm::scale(model, glm::vec3(12.0f, 1.5f, 1.5f));
+	projectionShader.setVec3("aColor", glm::vec3((float)0.9, (float)0.7, (float)0));
+	projectionShader.setMat4("model", model);
+	glDrawArrays(GL_TRIANGLES, 0, 36);
+	model = temp;
+
+	model = glm::translate(model, glm::vec3(6.0f, 0.0f, 0.0f));
+	temp = model;
+	model = glm::scale(model, glm::vec3(3.0f, 21.0f, 3.0f));
+	projectionShader.setVec3("aColor", glm::vec3((float)0.9, (float)0.7, (float)0));
+	projectionShader.setMat4("model", model);
+	glDrawArrays(GL_TRIANGLES, 0, 36);
+	model = temp2;
+	////////////////////////
+	/////////////////////////////////////////////////
+	model = glm::translate(model, glm::vec3(1.0f, 21.0f, 0.0f));
+	//model = glm::rotate(model, glm::radians(15.0f), glm::vec3(1, 0, 0));
+	//model = glm::rotate(model, glm::radians(-15.0f), glm::vec3(0, 1, 0));
+	model = glm::rotate(model, glm::radians(-15.0f), glm::vec3(0, 0, 1));
+	temp = model;//respaldo de matriz
+	temp2 = model;
+	model = glm::scale(model, glm::vec3(3.0f, 21.0f, 3.0f));
+	projectionShader.setVec3("aColor", glm::vec3((float)0.9, (float)0.7, (float)0));
+	projectionShader.setMat4("model", model);
+	glDrawArrays(GL_TRIANGLES, 0, 36);
+	model = temp;
+
+	model = glm::translate(model, glm::vec3(6.0f, 0.0f, -3.5f));
+	model = glm::rotate(model, glm::radians(30.0f), glm::vec3(0, 1, 0));
+	temp = model;//respaldo de matriz
+	model = glm::scale(model, glm::vec3(12.0f, 1.5f, 1.5f));
+	projectionShader.setVec3("aColor", glm::vec3((float)0.9, (float)0.7, (float)0));
+	projectionShader.setMat4("model", model);
+	glDrawArrays(GL_TRIANGLES, 0, 36);
+	model = temp;
+
+
+	model = glm::translate(model, glm::vec3(6.0f, 0.0f, 0.0f));
+	temp = model;
+	model = glm::scale(model, glm::vec3(3.0f, 21.0f, 3.0f));
+	projectionShader.setVec3("aColor", glm::vec3((float)0.9, (float)0.7, (float)0));
+	projectionShader.setMat4("model", model);
+	glDrawArrays(GL_TRIANGLES, 0, 36);
+	model = temp;
+
+	model = glm::rotate(model, glm::radians(-60.0f), glm::vec3(0, 1, 0));
+	model = glm::translate(model, glm::vec3(6.0f, 0.0f, 0.0f));
+	temp = model;//respaldo de matriz
+	model = glm::scale(model, glm::vec3(12.0f, 1.5f, 1.5f));
+	projectionShader.setVec3("aColor", glm::vec3((float)0.9, (float)0.7, (float)0));
+	projectionShader.setMat4("model", model);
+	glDrawArrays(GL_TRIANGLES, 0, 36);
+	model = temp;
+
+	model = glm::translate(model, glm::vec3(6.0f, 0.0f, 0.0f));
+	temp = model;
+	model = glm::scale(model, glm::vec3(3.0f, 21.0f, 3.0f));
+	projectionShader.setVec3("aColor", glm::vec3((float)0.9, (float)0.7, (float)0));
+	projectionShader.setMat4("model", model);
+	glDrawArrays(GL_TRIANGLES, 0, 36);
+	model = temp2;
+
+	////////////////////////
+	/////////////////////////////////////////////////
+	model = glm::translate(model, glm::vec3(0.0f, 21.0f, 0.0f));
+	//model = glm::rotate(model, glm::radians(15.0f), glm::vec3(1, 0, 0));
+	//model = glm::rotate(model, glm::radians(-15.0f), glm::vec3(0, 1, 0));
+	//	model = glm::rotate(model, glm::radians(-15.0f), glm::vec3(0, 0, 1));
+	temp = model;//respaldo de matriz
+	temp2 = model;
+	model = glm::scale(model, glm::vec3(3.0f, 21.0f, 3.0f));
+	projectionShader.setVec3("aColor", glm::vec3((float)0.9, (float)0.7, (float)0));
+	projectionShader.setMat4("model", model);
+	glDrawArrays(GL_TRIANGLES, 0, 36);
+	model = temp;
+
+	model = glm::translate(model, glm::vec3(6.0f, 0.0f, -3.5f));
+	model = glm::rotate(model, glm::radians(30.0f), glm::vec3(0, 1, 0));
+	temp = model;//respaldo de matriz
+	model = glm::scale(model, glm::vec3(12.0f, 1.5f, 1.5f));
+	projectionShader.setVec3("aColor", glm::vec3((float)0.9, (float)0.7, (float)0));
+	projectionShader.setMat4("model", model);
+	glDrawArrays(GL_TRIANGLES, 0, 36);
+	model = temp;
+
+
+	model = glm::translate(model, glm::vec3(6.0f, 0.0f, 0.0f));
+	temp = model;
+	model = glm::scale(model, glm::vec3(3.0f, 21.0f, 3.0f));
+	projectionShader.setVec3("aColor", glm::vec3((float)0.9, (float)0.7, (float)0));
+	projectionShader.setMat4("model", model);
+	glDrawArrays(GL_TRIANGLES, 0, 36);
+	model = temp;
+
+	model = glm::rotate(model, glm::radians(-60.0f), glm::vec3(0, 1, 0));
+	model = glm::translate(model, glm::vec3(6.0f, 0.0f, 0.0f));
+	temp = model;//respaldo de matriz
+	model = glm::scale(model, glm::vec3(12.0f, 1.5f, 1.5f));
+	projectionShader.setVec3("aColor", glm::vec3((float)0.9, (float)0.7, (float)0));
+	projectionShader.setMat4("model", model);
+	glDrawArrays(GL_TRIANGLES, 0, 36);
+	model = temp;
+
+	model = glm::translate(model, glm::vec3(6.0f, 0.0f, 0.0f));
+	temp = model;
+	model = glm::scale(model, glm::vec3(3.0f, 21.0f, 3.0f));
+	projectionShader.setVec3("aColor", glm::vec3((float)0.9, (float)0.7, (float)0));
+	projectionShader.setMat4("model", model);
+	glDrawArrays(GL_TRIANGLES, 0, 36);
+	model = temp2;
+
+	////////////////////////
+	/////////////////////////////////////////////////
+	model = glm::translate(model, glm::vec3(2.0f, 21.0f, 0.0f));
+	//model = glm::rotate(model, glm::radians(15.0f), glm::vec3(1, 0, 0));
+	//model = glm::rotate(model, glm::radians(-15.0f), glm::vec3(0, 1, 0));
+	model = glm::rotate(model, glm::radians(-15.0f), glm::vec3(0, 0, 1));
+	temp = model;//respaldo de matriz
+	temp2 = model;
+	model = glm::scale(model, glm::vec3(3.0f, 21.0f, 3.0f));
+	projectionShader.setVec3("aColor", glm::vec3((float)0.9, (float)0.7, (float)0));
+	projectionShader.setMat4("model", model);
+	glDrawArrays(GL_TRIANGLES, 0, 36);
+	model = temp;
+
+	model = glm::translate(model, glm::vec3(6.0f, 0.0f, -3.5f));
+	model = glm::rotate(model, glm::radians(30.0f), glm::vec3(0, 1, 0));
+	temp = model;//respaldo de matriz
+	model = glm::scale(model, glm::vec3(12.0f, 1.5f, 1.5f));
+	projectionShader.setVec3("aColor", glm::vec3((float)0.9, (float)0.7, (float)0));
+	projectionShader.setMat4("model", model);
+	glDrawArrays(GL_TRIANGLES, 0, 36);
+	model = temp;
+
+
+	model = glm::translate(model, glm::vec3(6.0f, 0.0f, 0.0f));
+	temp = model;
+	model = glm::scale(model, glm::vec3(3.0f, 21.0f, 3.0f));
+	projectionShader.setVec3("aColor", glm::vec3((float)0.9, (float)0.7, (float)0));
+	projectionShader.setMat4("model", model);
+	glDrawArrays(GL_TRIANGLES, 0, 36);
+	model = temp;
+
+	model = glm::rotate(model, glm::radians(-60.0f), glm::vec3(0, 1, 0));
+	model = glm::translate(model, glm::vec3(6.0f, 0.0f, 0.0f));
+	temp = model;//respaldo de matriz
+	model = glm::scale(model, glm::vec3(12.0f, 1.5f, 1.5f));
+	projectionShader.setVec3("aColor", glm::vec3((float)0.9, (float)0.7, (float)0));
+	projectionShader.setMat4("model", model);
+	glDrawArrays(GL_TRIANGLES, 0, 36);
+	model = temp;
+
+	model = glm::translate(model, glm::vec3(6.0f, 0.0f, 0.0f));
+	temp = model;
+	model = glm::scale(model, glm::vec3(3.0f, 21.0f, 3.0f));
+	projectionShader.setVec3("aColor", glm::vec3((float)0.9, (float)0.7, (float)0));
+	projectionShader.setMat4("model", model);
+	glDrawArrays(GL_TRIANGLES, 0, 36);
+	model = temp2;
+
+	////////////////////////
+	/////////////////////////////////////////////////
+	model = glm::translate(model, glm::vec3(0.0f, 21.0f, 0.0f));
+	//model = glm::rotate(model, glm::radians(15.0f), glm::vec3(1, 0, 0));
+	//model = glm::rotate(model, glm::radians(-15.0f), glm::vec3(0, 1, 0));
+	//	model = glm::rotate(model, glm::radians(-15.0f), glm::vec3(0, 0, 1));
+	temp = model;//respaldo de matriz
+	temp2 = model;
+	model = glm::scale(model, glm::vec3(3.0f, 21.0f, 3.0f));
+	projectionShader.setVec3("aColor", glm::vec3((float)0.9, (float)0.7, (float)0));
+	projectionShader.setMat4("model", model);
+	glDrawArrays(GL_TRIANGLES, 0, 36);
+	model = temp;
+
+	model = glm::translate(model, glm::vec3(6.0f, 0.0f, -3.5f));
+	model = glm::rotate(model, glm::radians(30.0f), glm::vec3(0, 1, 0));
+	temp = model;//respaldo de matriz
+	model = glm::scale(model, glm::vec3(12.0f, 1.5f, 1.5f));
+	projectionShader.setVec3("aColor", glm::vec3((float)0.9, (float)0.7, (float)0));
+	projectionShader.setMat4("model", model);
+	glDrawArrays(GL_TRIANGLES, 0, 36);
+	model = temp;
+
+
+	model = glm::translate(model, glm::vec3(6.0f, 0.0f, 0.0f));
+	temp = model;
+	model = glm::scale(model, glm::vec3(3.0f, 21.0f, 3.0f));
+	projectionShader.setVec3("aColor", glm::vec3((float)0.9, (float)0.7, (float)0));
+	projectionShader.setMat4("model", model);
+	glDrawArrays(GL_TRIANGLES, 0, 36);
+	model = temp;
+
+	model = glm::rotate(model, glm::radians(-60.0f), glm::vec3(0, 1, 0));
+	model = glm::translate(model, glm::vec3(6.0f, 0.0f, 0.0f));
+	temp = model;//respaldo de matriz
+	model = glm::scale(model, glm::vec3(12.0f, 1.5f, 1.5f));
+	projectionShader.setVec3("aColor", glm::vec3((float)0.9, (float)0.7, (float)0));
+	projectionShader.setMat4("model", model);
+	glDrawArrays(GL_TRIANGLES, 0, 36);
+	model = temp;
+
+	model = glm::translate(model, glm::vec3(6.0f, 0.0f, 0.0f));
+	temp = model;
+	model = glm::scale(model, glm::vec3(3.0f, 21.0f, 3.0f));
+	projectionShader.setVec3("aColor", glm::vec3((float)0.9, (float)0.7, (float)0));
+	projectionShader.setMat4("model", model);
+	glDrawArrays(GL_TRIANGLES, 0, 36);
+	model = temp2;
+
+
+	////////////////////////
+	/////////////////////////////////////////////////
+	model = glm::translate(model, glm::vec3(0.0f, 21.0f, 0.0f));
+	//model = glm::rotate(model, glm::radians(15.0f), glm::vec3(1, 0, 0));
+	//model = glm::rotate(model, glm::radians(-15.0f), glm::vec3(0, 1, 0));
+	//	model = glm::rotate(model, glm::radians(-15.0f), glm::vec3(0, 0, 1));
+	temp = model;//respaldo de matriz
+	temp2 = model;
+	model = glm::scale(model, glm::vec3(3.0f, 21.0f, 3.0f));
+	projectionShader.setVec3("aColor", glm::vec3((float)0.9, (float)0.7, (float)0));
+	projectionShader.setMat4("model", model);
+	glDrawArrays(GL_TRIANGLES, 0, 36);
+	model = temp;
+
+	model = glm::translate(model, glm::vec3(6.0f, 0.0f, -3.5f));
+	model = glm::rotate(model, glm::radians(30.0f), glm::vec3(0, 1, 0));
+	temp = model;//respaldo de matriz
+	model = glm::scale(model, glm::vec3(12.0f, 1.5f, 1.5f));
+	projectionShader.setVec3("aColor", glm::vec3((float)0.9, (float)0.7, (float)0));
+	projectionShader.setMat4("model", model);
+	glDrawArrays(GL_TRIANGLES, 0, 36);
+	model = temp;
+
+
+	model = glm::translate(model, glm::vec3(6.0f, 0.0f, 0.0f));
+	temp = model;
+	model = glm::scale(model, glm::vec3(3.0f, 21.0f, 3.0f));
+	projectionShader.setVec3("aColor", glm::vec3((float)0.9, (float)0.7, (float)0));
+	projectionShader.setMat4("model", model);
+	glDrawArrays(GL_TRIANGLES, 0, 36);
+	model = temp;
+
+	model = glm::rotate(model, glm::radians(-60.0f), glm::vec3(0, 1, 0));
+	model = glm::translate(model, glm::vec3(6.0f, 0.0f, 0.0f));
+	temp = model;//respaldo de matriz
+	model = glm::scale(model, glm::vec3(12.0f, 1.5f, 1.5f));
+	projectionShader.setVec3("aColor", glm::vec3((float)0.9, (float)0.7, (float)0));
+	projectionShader.setMat4("model", model);
+	glDrawArrays(GL_TRIANGLES, 0, 36);
+	model = temp;
+
+	model = glm::translate(model, glm::vec3(6.0f, 0.0f, 0.0f));
+	temp = model;
+	model = glm::scale(model, glm::vec3(3.0f, 21.0f, 3.0f));
+	projectionShader.setVec3("aColor", glm::vec3((float)0.9, (float)0.7, (float)0));
+	projectionShader.setMat4("model", model);
+	glDrawArrays(GL_TRIANGLES, 0, 36);
+	model = temp2;
+
+	//////////////////////////////
+	////////////////////////
+	/////////////////////////////////////////////////
+	model = glm::translate(model, glm::vec3(0.0f, 21.0f, 0.0f));
+	//model = glm::rotate(model, glm::radians(15.0f), glm::vec3(1, 0, 0));
+	//model = glm::rotate(model, glm::radians(-15.0f), glm::vec3(0, 1, 0));
+	//	model = glm::rotate(model, glm::radians(-15.0f), glm::vec3(0, 0, 1));
+	temp = model;//respaldo de matriz
+	temp2 = model;
+	model = glm::scale(model, glm::vec3(3.0f, 21.0f, 3.0f));
+	projectionShader.setVec3("aColor", glm::vec3((float)0.9, (float)0.7, (float)0));
+	projectionShader.setMat4("model", model);
+	glDrawArrays(GL_TRIANGLES, 0, 36);
+	model = temp;
+
+	model = glm::translate(model, glm::vec3(6.0f, 0.0f, -3.5f));
+	model = glm::rotate(model, glm::radians(30.0f), glm::vec3(0, 1, 0));
+	temp = model;//respaldo de matriz
+	model = glm::scale(model, glm::vec3(12.0f, 1.5f, 1.5f));
+	projectionShader.setVec3("aColor", glm::vec3((float)0.9, (float)0.7, (float)0));
+	projectionShader.setMat4("model", model);
+	glDrawArrays(GL_TRIANGLES, 0, 36);
+	model = temp;
+
+
+	model = glm::translate(model, glm::vec3(6.0f, 0.0f, 0.0f));
+	temp = model;
+	model = glm::scale(model, glm::vec3(3.0f, 21.0f, 3.0f));
+	projectionShader.setVec3("aColor", glm::vec3((float)0.9, (float)0.7, (float)0));
+	projectionShader.setMat4("model", model);
+	glDrawArrays(GL_TRIANGLES, 0, 36);
+	model = temp;
+
+	model = glm::rotate(model, glm::radians(-60.0f), glm::vec3(0, 1, 0));
+	model = glm::translate(model, glm::vec3(6.0f, 0.0f, 0.0f));
+	temp = model;//respaldo de matriz
+	model = glm::scale(model, glm::vec3(12.0f, 1.5f, 1.5f));
+	projectionShader.setVec3("aColor", glm::vec3((float)0.9, (float)0.7, (float)0));
+	projectionShader.setMat4("model", model);
+	glDrawArrays(GL_TRIANGLES, 0, 36);
+	model = temp;
+
+	model = glm::translate(model, glm::vec3(6.0f, 0.0f, 0.0f));
+	temp = model;
+	model = glm::scale(model, glm::vec3(3.0f, 21.0f, 3.0f));
+	projectionShader.setVec3("aColor", glm::vec3((float)0.9, (float)0.7, (float)0));
+	projectionShader.setMat4("model", model);
+	glDrawArrays(GL_TRIANGLES, 0, 36);
+	model = temp2;////////////////////////
+				  /////////////////////////////////////////////////
+	model = glm::translate(model, glm::vec3(0.0f, 21.0f, 0.0f));
+	//model = glm::rotate(model, glm::radians(15.0f), glm::vec3(1, 0, 0));
+	//model = glm::rotate(model, glm::radians(-15.0f), glm::vec3(0, 1, 0));
+	//	model = glm::rotate(model, glm::radians(-15.0f), glm::vec3(0, 0, 1));
+	temp = model;//respaldo de matriz
+	temp2 = model;
+	model = glm::scale(model, glm::vec3(3.0f, 21.0f, 3.0f));
+	projectionShader.setVec3("aColor", glm::vec3((float)0.9, (float)0.7, (float)0));
+	projectionShader.setMat4("model", model);
+	glDrawArrays(GL_TRIANGLES, 0, 36);
+	model = temp;
+
+	model = glm::translate(model, glm::vec3(6.0f, 0.0f, -3.5f));
+	model = glm::rotate(model, glm::radians(30.0f), glm::vec3(0, 1, 0));
+	temp = model;//respaldo de matriz
+	model = glm::scale(model, glm::vec3(12.0f, 1.5f, 1.5f));
+	projectionShader.setVec3("aColor", glm::vec3((float)0.9, (float)0.7, (float)0));
+	projectionShader.setMat4("model", model);
+	glDrawArrays(GL_TRIANGLES, 0, 36);
+	model = temp;
+
+
+	model = glm::translate(model, glm::vec3(6.0f, 0.0f, 0.0f));
+	temp = model;
+	model = glm::scale(model, glm::vec3(3.0f, 21.0f, 3.0f));
+	projectionShader.setVec3("aColor", glm::vec3((float)0.9, (float)0.7, (float)0));
+	projectionShader.setMat4("model", model);
+	glDrawArrays(GL_TRIANGLES, 0, 36);
+	model = temp;
+
+	model = glm::rotate(model, glm::radians(-60.0f), glm::vec3(0, 1, 0));
+	model = glm::translate(model, glm::vec3(6.0f, 0.0f, 0.0f));
+	temp = model;//respaldo de matriz
+	model = glm::scale(model, glm::vec3(12.0f, 1.5f, 1.5f));
+	projectionShader.setVec3("aColor", glm::vec3((float)0.9, (float)0.7, (float)0));
+	projectionShader.setMat4("model", model);
+	glDrawArrays(GL_TRIANGLES, 0, 36);
+	model = temp;
+
+	model = glm::translate(model, glm::vec3(6.0f, 0.0f, 0.0f));
+	temp = model;
+	model = glm::scale(model, glm::vec3(3.0f, 21.0f, 3.0f));
+	projectionShader.setVec3("aColor", glm::vec3((float)0.9, (float)0.7, (float)0));
+	projectionShader.setMat4("model", model);
+	glDrawArrays(GL_TRIANGLES, 0, 36);
+	model = temp2;////////////////////////
+				  /////////////////////////////////////////////////
+	model = glm::translate(model, glm::vec3(0.0f, 21.0f, 0.0f));
+	//model = glm::rotate(model, glm::radians(15.0f), glm::vec3(1, 0, 0));
+	//model = glm::rotate(model, glm::radians(-15.0f), glm::vec3(0, 1, 0));
+	//	model = glm::rotate(model, glm::radians(-15.0f), glm::vec3(0, 0, 1));
+	temp = model;//respaldo de matriz
+	temp2 = model;
+	model = glm::scale(model, glm::vec3(3.0f, 21.0f, 3.0f));
+	projectionShader.setVec3("aColor", glm::vec3((float)0.9, (float)0.7, (float)0));
+	projectionShader.setMat4("model", model);
+	glDrawArrays(GL_TRIANGLES, 0, 36);
+	model = temp;
+
+	model = glm::translate(model, glm::vec3(6.0f, 0.0f, -3.5f));
+	model = glm::rotate(model, glm::radians(30.0f), glm::vec3(0, 1, 0));
+	temp = model;//respaldo de matriz
+	model = glm::scale(model, glm::vec3(12.0f, 1.5f, 1.5f));
+	projectionShader.setVec3("aColor", glm::vec3((float)0.9, (float)0.7, (float)0));
+	projectionShader.setMat4("model", model);
+	glDrawArrays(GL_TRIANGLES, 0, 36);
+	model = temp;
+
+
+	model = glm::translate(model, glm::vec3(6.0f, 0.0f, 0.0f));
+	temp = model;
+	model = glm::scale(model, glm::vec3(3.0f, 21.0f, 3.0f));
+	projectionShader.setVec3("aColor", glm::vec3((float)0.9, (float)0.7, (float)0));
+	projectionShader.setMat4("model", model);
+	glDrawArrays(GL_TRIANGLES, 0, 36);
+	model = temp;
+
+	model = glm::rotate(model, glm::radians(-60.0f), glm::vec3(0, 1, 0));
+	model = glm::translate(model, glm::vec3(6.0f, 0.0f, 0.0f));
+	temp = model;//respaldo de matriz
+	model = glm::scale(model, glm::vec3(12.0f, 1.5f, 1.5f));
+	projectionShader.setVec3("aColor", glm::vec3((float)0.9, (float)0.7, (float)0));
+	projectionShader.setMat4("model", model);
+	glDrawArrays(GL_TRIANGLES, 0, 36);
+	model = temp;
+
+	model = glm::translate(model, glm::vec3(6.0f, 0.0f, 0.0f));
+	temp = model;
+	model = glm::scale(model, glm::vec3(3.0f, 21.0f, 3.0f));
+	projectionShader.setVec3("aColor", glm::vec3((float)0.9, (float)0.7, (float)0));
+	projectionShader.setMat4("model", model);
+	glDrawArrays(GL_TRIANGLES, 0, 36);
+	model = temp2;////////////////////////
+				  /////////////////////////////////////////////////
+	model = glm::translate(model, glm::vec3(0.0f, 21.0f, 0.0f));
+	//model = glm::rotate(model, glm::radians(15.0f), glm::vec3(1, 0, 0));
+	//model = glm::rotate(model, glm::radians(-15.0f), glm::vec3(0, 1, 0));
+	//	model = glm::rotate(model, glm::radians(-15.0f), glm::vec3(0, 0, 1));
+	temp = model;//respaldo de matriz
+	temp2 = model;
+	model = glm::scale(model, glm::vec3(3.0f, 21.0f, 3.0f));
+	projectionShader.setVec3("aColor", glm::vec3((float)0.9, (float)0.7, (float)0));
+	projectionShader.setMat4("model", model);
+	glDrawArrays(GL_TRIANGLES, 0, 36);
+	model = temp;
+
+	model = glm::translate(model, glm::vec3(6.0f, 0.0f, -3.5f));
+	model = glm::rotate(model, glm::radians(30.0f), glm::vec3(0, 1, 0));
+	temp = model;//respaldo de matriz
+	model = glm::scale(model, glm::vec3(12.0f, 1.5f, 1.5f));
+	projectionShader.setVec3("aColor", glm::vec3((float)0.9, (float)0.7, (float)0));
+	projectionShader.setMat4("model", model);
+	glDrawArrays(GL_TRIANGLES, 0, 36);
+	model = temp;
+
+
+	model = glm::translate(model, glm::vec3(6.0f, 0.0f, 0.0f));
+	temp = model;
+	model = glm::scale(model, glm::vec3(3.0f, 21.0f, 3.0f));
+	projectionShader.setVec3("aColor", glm::vec3((float)0.9, (float)0.7, (float)0));
+	projectionShader.setMat4("model", model);
+	glDrawArrays(GL_TRIANGLES, 0, 36);
+	model = temp;
+
+	model = glm::rotate(model, glm::radians(-60.0f), glm::vec3(0, 1, 0));
+	model = glm::translate(model, glm::vec3(6.0f, 0.0f, 0.0f));
+	temp = model;//respaldo de matriz
+	model = glm::scale(model, glm::vec3(12.0f, 1.5f, 1.5f));
+	projectionShader.setVec3("aColor", glm::vec3((float)0.9, (float)0.7, (float)0));
+	projectionShader.setMat4("model", model);
+	glDrawArrays(GL_TRIANGLES, 0, 36);
+	model = temp;
+
+	model = glm::translate(model, glm::vec3(6.0f, 0.0f, 0.0f));
+	temp = model;
+	model = glm::scale(model, glm::vec3(3.0f, 21.0f, 3.0f));
+	projectionShader.setVec3("aColor", glm::vec3((float)0.9, (float)0.7, (float)0));
+	projectionShader.setMat4("model", model);
+	glDrawArrays(GL_TRIANGLES, 0, 36);
+	model = temp2;
+	////////////////////////
+	/////////////////////////////////////////////////
+	model = glm::translate(model, glm::vec3(0.0f, 21.0f, 0.0f));
+	model = glm::rotate(model, glm::radians(27.0f), glm::vec3(1, 0, 0));
+	//model = glm::rotate(model, glm::radians(-15.0f), glm::vec3(0, 1, 0));
+	//	model = glm::rotate(model, glm::radians(-15.0f), glm::vec3(0, 0, 1));
+	temp = model;//respaldo de matriz
+	temp2 = model;
+	model = glm::scale(model, glm::vec3(3.0f, 21.0f, 3.0f));
+	projectionShader.setVec3("aColor", glm::vec3((float)0.9, (float)0.7, (float)0));
+	projectionShader.setMat4("model", model);
+	glDrawArrays(GL_TRIANGLES, 0, 36);
+	model = temp;
+
+	model = glm::translate(model, glm::vec3(6.0f, 0.0f, -3.5f));
+	model = glm::rotate(model, glm::radians(30.0f), glm::vec3(0, 1, 0));
+	temp = model;//respaldo de matriz
+	model = glm::scale(model, glm::vec3(12.0f, 1.5f, 1.5f));
+	projectionShader.setVec3("aColor", glm::vec3((float)0.9, (float)0.7, (float)0));
+	projectionShader.setMat4("model", model);
+	glDrawArrays(GL_TRIANGLES, 0, 36);
+	model = temp;
+
+
+	model = glm::translate(model, glm::vec3(6.0f, 0.0f, 0.0f));
+	temp = model;
+	model = glm::scale(model, glm::vec3(3.0f, 21.0f, 3.0f));
+	projectionShader.setVec3("aColor", glm::vec3((float)0.9, (float)0.7, (float)0));
+	projectionShader.setMat4("model", model);
+	glDrawArrays(GL_TRIANGLES, 0, 36);
+	model = temp;
+
+	model = glm::rotate(model, glm::radians(-60.0f), glm::vec3(0, 1, 0));
+	model = glm::translate(model, glm::vec3(6.0f, 0.0f, 0.0f));
+	temp = model;//respaldo de matriz
+	model = glm::scale(model, glm::vec3(12.0f, 1.5f, 1.5f));
+	projectionShader.setVec3("aColor", glm::vec3((float)0.9, (float)0.7, (float)0));
+	projectionShader.setMat4("model", model);
+	glDrawArrays(GL_TRIANGLES, 0, 36);
+	model = temp;
+
+	model = glm::translate(model, glm::vec3(6.0f, 0.0f, 0.0f));
+	temp = model;
+	model = glm::scale(model, glm::vec3(3.0f, 21.0f, 3.0f));
+	projectionShader.setVec3("aColor", glm::vec3((float)0.9, (float)0.7, (float)0));
+	projectionShader.setMat4("model", model);
+	glDrawArrays(GL_TRIANGLES, 0, 36);
+	model = temp2;
+	////////////////////////
+	/////////////////////////////////////////////////
+	model = glm::translate(model, glm::vec3(0.0f, 21.0f, 0.0f));
+	model = glm::rotate(model, glm::radians(15.0f), glm::vec3(1, 0, 0));
+	//model = glm::rotate(model, glm::radians(-15.0f), glm::vec3(0, 1, 0));
+	//	model = glm::rotate(model, glm::radians(-15.0f), glm::vec3(0, 0, 1));
+	temp = model;//respaldo de matriz
+	temp2 = model;
+	model = glm::scale(model, glm::vec3(3.0f, 21.0f, 3.0f));
+	projectionShader.setVec3("aColor", glm::vec3((float)0.9, (float)0.7, (float)0));
+	projectionShader.setMat4("model", model);
+	glDrawArrays(GL_TRIANGLES, 0, 36);
+	model = temp;
+
+	model = glm::translate(model, glm::vec3(6.0f, 0.0f, -3.5f));
+	model = glm::rotate(model, glm::radians(30.0f), glm::vec3(0, 1, 0));
+	temp = model;//respaldo de matriz
+	model = glm::scale(model, glm::vec3(12.0f, 1.5f, 1.5f));
+	projectionShader.setVec3("aColor", glm::vec3((float)0.9, (float)0.7, (float)0));
+	projectionShader.setMat4("model", model);
+	glDrawArrays(GL_TRIANGLES, 0, 36);
+	model = temp;
+
+
+	model = glm::translate(model, glm::vec3(6.0f, 0.0f, 0.0f));
+	temp = model;
+	model = glm::scale(model, glm::vec3(3.0f, 21.0f, 3.0f));
+	projectionShader.setVec3("aColor", glm::vec3((float)0.9, (float)0.7, (float)0));
+	projectionShader.setMat4("model", model);
+	glDrawArrays(GL_TRIANGLES, 0, 36);
+	model = temp;
+
+	model = glm::rotate(model, glm::radians(-60.0f), glm::vec3(0, 1, 0));
+	model = glm::translate(model, glm::vec3(6.0f, 0.0f, 0.0f));
+	temp = model;//respaldo de matriz
+	model = glm::scale(model, glm::vec3(12.0f, 1.5f, 1.5f));
+	projectionShader.setVec3("aColor", glm::vec3((float)0.9, (float)0.7, (float)0));
+	projectionShader.setMat4("model", model);
+	glDrawArrays(GL_TRIANGLES, 0, 36);
+	model = temp;
+
+	model = glm::translate(model, glm::vec3(6.0f, 0.0f, 0.0f));
+	temp = model;
+	model = glm::scale(model, glm::vec3(3.0f, 21.0f, 3.0f));
+	projectionShader.setVec3("aColor", glm::vec3((float)0.9, (float)0.7, (float)0));
+	projectionShader.setMat4("model", model);
+	glDrawArrays(GL_TRIANGLES, 0, 36);
+	model = temp2;
+	////////////////
+	/////////////////////////////////////////////////
+	model = glm::translate(model, glm::vec3(0.0f, 21.0f, 0.0f));
+	//model = glm::rotate(model, glm::radians(15.0f), glm::vec3(1, 0, 0));
+	//model = glm::rotate(model, glm::radians(-15.0f), glm::vec3(0, 1, 0));
+	//	model = glm::rotate(model, glm::radians(-15.0f), glm::vec3(0, 0, 1));
+	temp = model;//respaldo de matriz
+	temp2 = model;
+	model = glm::scale(model, glm::vec3(3.0f, 21.0f, 3.0f));
+	projectionShader.setVec3("aColor", glm::vec3((float)0.9, (float)0.7, (float)0));
+	projectionShader.setMat4("model", model);
+	glDrawArrays(GL_TRIANGLES, 0, 36);
+	model = temp;
+
+	model = glm::translate(model, glm::vec3(6.0f, 0.0f, -3.5f));
+	model = glm::rotate(model, glm::radians(30.0f), glm::vec3(0, 1, 0));
+	temp = model;//respaldo de matriz
+	model = glm::scale(model, glm::vec3(12.0f, 1.5f, 1.5f));
+	projectionShader.setVec3("aColor", glm::vec3((float)0.9, (float)0.7, (float)0));
+	projectionShader.setMat4("model", model);
+	glDrawArrays(GL_TRIANGLES, 0, 36);
+	model = temp;
+
+
+	model = glm::translate(model, glm::vec3(6.0f, 0.0f, 0.0f));
+	temp = model;
+	model = glm::scale(model, glm::vec3(3.0f, 21.0f, 3.0f));
+	projectionShader.setVec3("aColor", glm::vec3((float)0.9, (float)0.7, (float)0));
+	projectionShader.setMat4("model", model);
+	glDrawArrays(GL_TRIANGLES, 0, 36);
+	model = temp;
+
+	model = glm::rotate(model, glm::radians(-60.0f), glm::vec3(0, 1, 0));
+	model = glm::translate(model, glm::vec3(6.0f, 0.0f, 0.0f));
+	temp = model;//respaldo de matriz
+	model = glm::scale(model, glm::vec3(12.0f, 1.5f, 1.5f));
+	projectionShader.setVec3("aColor", glm::vec3((float)0.9, (float)0.7, (float)0));
+	projectionShader.setMat4("model", model);
+	glDrawArrays(GL_TRIANGLES, 0, 36);
+	model = temp;
+
+	model = glm::translate(model, glm::vec3(6.0f, 0.0f, 0.0f));
+	temp = model;
+	model = glm::scale(model, glm::vec3(3.0f, 21.0f, 3.0f));
+	projectionShader.setVec3("aColor", glm::vec3((float)0.9, (float)0.7, (float)0));
+	projectionShader.setMat4("model", model);
+	glDrawArrays(GL_TRIANGLES, 0, 36);
+	model = temp2;
+
+	///////////////////
+	/////////////////////////////////////////////////
+	model = glm::translate(model, glm::vec3(0.0f, 21.0f, 0.0f));
+	model = glm::rotate(model, glm::radians(15.0f), glm::vec3(1, 0, 0));
+	//model = glm::rotate(model, glm::radians(-15.0f), glm::vec3(0, 1, 0));
+	//	model = glm::rotate(model, glm::radians(-15.0f), glm::vec3(0, 0, 1));
+	temp = model;//respaldo de matriz
+	temp2 = model;
+	model = glm::scale(model, glm::vec3(3.0f, 21.0f, 3.0f));
+	projectionShader.setVec3("aColor", glm::vec3((float)0.9, (float)0.7, (float)0));
+	projectionShader.setMat4("model", model);
+	glDrawArrays(GL_TRIANGLES, 0, 36);
+	model = temp;
+
+	model = glm::translate(model, glm::vec3(6.0f, 0.0f, -3.5f));
+	model = glm::rotate(model, glm::radians(30.0f), glm::vec3(0, 1, 0));
+	temp = model;//respaldo de matriz
+	model = glm::scale(model, glm::vec3(12.0f, 1.5f, 1.5f));
+	projectionShader.setVec3("aColor", glm::vec3((float)0.9, (float)0.7, (float)0));
+	projectionShader.setMat4("model", model);
+	glDrawArrays(GL_TRIANGLES, 0, 36);
+	model = temp;
+
+
+	model = glm::translate(model, glm::vec3(6.0f, 0.0f, 0.0f));
+	temp = model;
+	model = glm::scale(model, glm::vec3(3.0f, 21.0f, 3.0f));
+	projectionShader.setVec3("aColor", glm::vec3((float)0.9, (float)0.7, (float)0));
+	projectionShader.setMat4("model", model);
+	glDrawArrays(GL_TRIANGLES, 0, 36);
+	model = temp;
+
+	model = glm::rotate(model, glm::radians(-60.0f), glm::vec3(0, 1, 0));
+	model = glm::translate(model, glm::vec3(6.0f, 0.0f, 0.0f));
+	temp = model;//respaldo de matriz
+	model = glm::scale(model, glm::vec3(12.0f, 1.5f, 1.5f));
+	projectionShader.setVec3("aColor", glm::vec3((float)0.9, (float)0.7, (float)0));
+	projectionShader.setMat4("model", model);
+	glDrawArrays(GL_TRIANGLES, 0, 36);
+	model = temp;
+
+	model = glm::translate(model, glm::vec3(6.0f, 0.0f, 0.0f));
+	temp = model;
+	model = glm::scale(model, glm::vec3(3.0f, 21.0f, 3.0f));
+	projectionShader.setVec3("aColor", glm::vec3((float)0.9, (float)0.7, (float)0));
+	projectionShader.setMat4("model", model);
+	glDrawArrays(GL_TRIANGLES, 0, 36);
+	model = temp2;
+
+	/////////////////////////////////////////////////
+	model = glm::translate(model, glm::vec3(0.0f, 21.0f, 0.0f));
+	//model = glm::rotate(model, glm::radians(15.0f), glm::vec3(1, 0, 0));
+	//model = glm::rotate(model, glm::radians(-15.0f), glm::vec3(0, 1, 0));
+	//	model = glm::rotate(model, glm::radians(-15.0f), glm::vec3(0, 0, 1));
+	temp = model;//respaldo de matriz
+	temp2 = model;
+	model = glm::scale(model, glm::vec3(3.0f, 21.0f, 3.0f));
+	projectionShader.setVec3("aColor", glm::vec3((float)0.9, (float)0.7, (float)0));
+	projectionShader.setMat4("model", model);
+	glDrawArrays(GL_TRIANGLES, 0, 36);
+	model = temp;
+
+	model = glm::translate(model, glm::vec3(6.0f, 0.0f, -3.5f));
+	model = glm::rotate(model, glm::radians(30.0f), glm::vec3(0, 1, 0));
+	temp = model;//respaldo de matriz
+	model = glm::scale(model, glm::vec3(12.0f, 1.5f, 1.5f));
+	projectionShader.setVec3("aColor", glm::vec3((float)0.9, (float)0.7, (float)0));
+	projectionShader.setMat4("model", model);
+	glDrawArrays(GL_TRIANGLES, 0, 36);
+	model = temp;
+
+
+	model = glm::translate(model, glm::vec3(6.0f, 0.0f, 0.0f));
+	temp = model;
+	model = glm::scale(model, glm::vec3(3.0f, 21.0f, 3.0f));
+	projectionShader.setVec3("aColor", glm::vec3((float)0.9, (float)0.7, (float)0));
+	projectionShader.setMat4("model", model);
+	glDrawArrays(GL_TRIANGLES, 0, 36);
+	model = temp;
+
+	model = glm::rotate(model, glm::radians(-60.0f), glm::vec3(0, 1, 0));
+	model = glm::translate(model, glm::vec3(6.0f, 0.0f, 0.0f));
+	temp = model;//respaldo de matriz
+	model = glm::scale(model, glm::vec3(12.0f, 1.5f, 1.5f));
+	projectionShader.setVec3("aColor", glm::vec3((float)0.9, (float)0.7, (float)0));
+	projectionShader.setMat4("model", model);
+	glDrawArrays(GL_TRIANGLES, 0, 36);
+	model = temp;
+
+	model = glm::translate(model, glm::vec3(6.0f, 0.0f, 0.0f));
+	temp = model;
+	model = glm::scale(model, glm::vec3(3.0f, 21.0f, 3.0f));
+	projectionShader.setVec3("aColor", glm::vec3((float)0.9, (float)0.7, (float)0));
+	projectionShader.setMat4("model", model);
+	glDrawArrays(GL_TRIANGLES, 0, 36);
+	model = temp2;
+
+
+	/////////////////////////////////////////////////
+	model = glm::translate(model, glm::vec3(0.0f, 21.0f, 0.0f));
+	//model = glm::rotate(model, glm::radians(15.0f), glm::vec3(1, 0, 0));
+	//model = glm::rotate(model, glm::radians(-15.0f), glm::vec3(0, 1, 0));
+	//	model = glm::rotate(model, glm::radians(-15.0f), glm::vec3(0, 0, 1));
+	temp = model;//respaldo de matriz
+	temp2 = model;
+	model = glm::scale(model, glm::vec3(3.0f, 21.0f, 3.0f));
+	projectionShader.setVec3("aColor", glm::vec3((float)0.9, (float)0.7, (float)0));
+	projectionShader.setMat4("model", model);
+	glDrawArrays(GL_TRIANGLES, 0, 36);
+	model = temp;
+
+	model = glm::translate(model, glm::vec3(6.0f, 0.0f, -3.5f));
+	model = glm::rotate(model, glm::radians(30.0f), glm::vec3(0, 1, 0));
+	temp = model;//respaldo de matriz
+	model = glm::scale(model, glm::vec3(12.0f, 1.5f, 1.5f));
+	projectionShader.setVec3("aColor", glm::vec3((float)0.9, (float)0.7, (float)0));
+	projectionShader.setMat4("model", model);
+	glDrawArrays(GL_TRIANGLES, 0, 36);
+	model = temp;
+
+
+	model = glm::translate(model, glm::vec3(6.0f, 0.0f, 0.0f));
+	temp = model;
+	model = glm::scale(model, glm::vec3(3.0f, 21.0f, 3.0f));
+	projectionShader.setVec3("aColor", glm::vec3((float)0.9, (float)0.7, (float)0));
+	projectionShader.setMat4("model", model);
+	glDrawArrays(GL_TRIANGLES, 0, 36);
+	model = temp;
+
+	model = glm::rotate(model, glm::radians(-60.0f), glm::vec3(0, 1, 0));
+	model = glm::translate(model, glm::vec3(6.0f, 0.0f, 0.0f));
+	temp = model;//respaldo de matriz
+	model = glm::scale(model, glm::vec3(12.0f, 1.5f, 1.5f));
+	projectionShader.setVec3("aColor", glm::vec3((float)0.9, (float)0.7, (float)0));
+	projectionShader.setMat4("model", model);
+	glDrawArrays(GL_TRIANGLES, 0, 36);
+	model = temp;
+
+	model = glm::translate(model, glm::vec3(6.0f, 0.0f, 0.0f));
+	temp = model;
+	model = glm::scale(model, glm::vec3(3.0f, 21.0f, 3.0f));
+	projectionShader.setVec3("aColor", glm::vec3((float)0.9, (float)0.7, (float)0));
+	projectionShader.setMat4("model", model);
+	glDrawArrays(GL_TRIANGLES, 0, 36);
+	model = temp2;
+
+	/////////////////////////////////////////////////
+	model = glm::translate(model, glm::vec3(0.0f, 21.0f, 0.0f));
+	//model = glm::rotate(model, glm::radians(15.0f), glm::vec3(1, 0, 0));
+	//model = glm::rotate(model, glm::radians(-15.0f), glm::vec3(0, 1, 0));
+	//	model = glm::rotate(model, glm::radians(-15.0f), glm::vec3(0, 0, 1));
+	temp = model;//respaldo de matriz
+	temp2 = model;
+	model = glm::scale(model, glm::vec3(3.0f, 21.0f, 3.0f));
+	projectionShader.setVec3("aColor", glm::vec3((float)0.9, (float)0.7, (float)0));
+	projectionShader.setMat4("model", model);
+	glDrawArrays(GL_TRIANGLES, 0, 36);
+	model = temp;
+
+	model = glm::translate(model, glm::vec3(6.0f, 0.0f, -3.5f));
+	model = glm::rotate(model, glm::radians(30.0f), glm::vec3(0, 1, 0));
+	temp = model;//respaldo de matriz
+	model = glm::scale(model, glm::vec3(12.0f, 1.5f, 1.5f));
+	projectionShader.setVec3("aColor", glm::vec3((float)0.9, (float)0.7, (float)0));
+	projectionShader.setMat4("model", model);
+	glDrawArrays(GL_TRIANGLES, 0, 36);
+	model = temp;
+
+
+	model = glm::translate(model, glm::vec3(6.0f, 0.0f, 0.0f));
+	temp = model;
+	model = glm::scale(model, glm::vec3(3.0f, 21.0f, 3.0f));
+	projectionShader.setVec3("aColor", glm::vec3((float)0.9, (float)0.7, (float)0));
+	projectionShader.setMat4("model", model);
+	glDrawArrays(GL_TRIANGLES, 0, 36);
+	model = temp;
+
+	model = glm::rotate(model, glm::radians(-60.0f), glm::vec3(0, 1, 0));
+	model = glm::translate(model, glm::vec3(6.0f, 0.0f, 0.0f));
+	temp = model;//respaldo de matriz
+	model = glm::scale(model, glm::vec3(12.0f, 1.5f, 1.5f));
+	projectionShader.setVec3("aColor", glm::vec3((float)0.9, (float)0.7, (float)0));
+	projectionShader.setMat4("model", model);
+	glDrawArrays(GL_TRIANGLES, 0, 36);
+	model = temp;
+
+	model = glm::translate(model, glm::vec3(6.0f, 0.0f, 0.0f));
+	temp = model;
+	model = glm::scale(model, glm::vec3(3.0f, 21.0f, 3.0f));
+	projectionShader.setVec3("aColor", glm::vec3((float)0.9, (float)0.7, (float)0));
+	projectionShader.setMat4("model", model);
+	glDrawArrays(GL_TRIANGLES, 0, 36);
+	model = temp2;
+
+	/////////////////////////////////////////////////
+	model = glm::translate(model, glm::vec3(0.0f, 21.0f, 0.0f));
+	//model = glm::rotate(model, glm::radians(15.0f), glm::vec3(1, 0, 0));
+	//model = glm::rotate(model, glm::radians(-15.0f), glm::vec3(0, 1, 0));
+	//	model = glm::rotate(model, glm::radians(-15.0f), glm::vec3(0, 0, 1));
+	temp = model;//respaldo de matriz
+	temp2 = model;
+	model = glm::scale(model, glm::vec3(3.0f, 21.0f, 3.0f));
+	projectionShader.setVec3("aColor", glm::vec3((float)0.9, (float)0.7, (float)0));
+	projectionShader.setMat4("model", model);
+	glDrawArrays(GL_TRIANGLES, 0, 36);
+	model = temp;
+
+	model = glm::translate(model, glm::vec3(6.0f, 0.0f, -3.5f));
+	model = glm::rotate(model, glm::radians(30.0f), glm::vec3(0, 1, 0));
+	temp = model;//respaldo de matriz
+	model = glm::scale(model, glm::vec3(12.0f, 1.5f, 1.5f));
+	projectionShader.setVec3("aColor", glm::vec3((float)0.9, (float)0.7, (float)0));
+	projectionShader.setMat4("model", model);
+	glDrawArrays(GL_TRIANGLES, 0, 36);
+	model = temp;
+
+
+	model = glm::translate(model, glm::vec3(6.0f, 0.0f, 0.0f));
+	temp = model;
+	model = glm::scale(model, glm::vec3(3.0f, 21.0f, 3.0f));
+	projectionShader.setVec3("aColor", glm::vec3((float)0.9, (float)0.7, (float)0));
+	projectionShader.setMat4("model", model);
+	glDrawArrays(GL_TRIANGLES, 0, 36);
+	model = temp;
+
+	model = glm::rotate(model, glm::radians(-60.0f), glm::vec3(0, 1, 0));
+	model = glm::translate(model, glm::vec3(6.0f, 0.0f, 0.0f));
+	temp = model;//respaldo de matriz
+	model = glm::scale(model, glm::vec3(12.0f, 1.5f, 1.5f));
+	projectionShader.setVec3("aColor", glm::vec3((float)0.9, (float)0.7, (float)0));
+	projectionShader.setMat4("model", model);
+	glDrawArrays(GL_TRIANGLES, 0, 36);
+	model = temp;
+
+	model = glm::translate(model, glm::vec3(6.0f, 0.0f, 0.0f));
+	temp = model;
+	model = glm::scale(model, glm::vec3(3.0f, 21.0f, 3.0f));
+	projectionShader.setVec3("aColor", glm::vec3((float)0.9, (float)0.7, (float)0));
+	projectionShader.setMat4("model", model);
+	glDrawArrays(GL_TRIANGLES, 0, 36);
+	model = temp2;
+
+	/////////////////////////////////////////////////
+	model = glm::translate(model, glm::vec3(0.0f, 21.0f, 0.0f));
+	model = glm::rotate(model, glm::radians(15.0f), glm::vec3(1, 0, 0));
+	//model = glm::rotate(model, glm::radians(-15.0f), glm::vec3(0, 1, 0));
+	//	model = glm::rotate(model, glm::radians(-15.0f), glm::vec3(0, 0, 1));
+	temp = model;//respaldo de matriz
+	temp2 = model;
+	model = glm::scale(model, glm::vec3(3.0f, 21.0f, 3.0f));
+	projectionShader.setVec3("aColor", glm::vec3((float)0.9, (float)0.7, (float)0));
+	projectionShader.setMat4("model", model);
+	glDrawArrays(GL_TRIANGLES, 0, 36);
+	model = temp;
+
+	model = glm::translate(model, glm::vec3(6.0f, 0.0f, -3.5f));
+	model = glm::rotate(model, glm::radians(30.0f), glm::vec3(0, 1, 0));
+	temp = model;//respaldo de matriz
+	model = glm::scale(model, glm::vec3(12.0f, 1.5f, 1.5f));
+	projectionShader.setVec3("aColor", glm::vec3((float)0.9, (float)0.7, (float)0));
+	projectionShader.setMat4("model", model);
+	glDrawArrays(GL_TRIANGLES, 0, 36);
+	model = temp;
+
+
+	model = glm::translate(model, glm::vec3(6.0f, 0.0f, 0.0f));
+	temp = model;
+	model = glm::scale(model, glm::vec3(3.0f, 21.0f, 3.0f));
+	projectionShader.setVec3("aColor", glm::vec3((float)0.9, (float)0.7, (float)0));
+	projectionShader.setMat4("model", model);
+	glDrawArrays(GL_TRIANGLES, 0, 36);
+	model = temp;
+
+	model = glm::rotate(model, glm::radians(-60.0f), glm::vec3(0, 1, 0));
+	model = glm::translate(model, glm::vec3(6.0f, 0.0f, 0.0f));
+	temp = model;//respaldo de matriz
+	model = glm::scale(model, glm::vec3(12.0f, 1.5f, 1.5f));
+	projectionShader.setVec3("aColor", glm::vec3((float)0.9, (float)0.7, (float)0));
+	projectionShader.setMat4("model", model);
+	glDrawArrays(GL_TRIANGLES, 0, 36);
+	model = temp;
+
+	model = glm::translate(model, glm::vec3(6.0f, 0.0f, 0.0f));
+	temp = model;
+	model = glm::scale(model, glm::vec3(3.0f, 21.0f, 3.0f));
+	projectionShader.setVec3("aColor", glm::vec3((float)0.9, (float)0.7, (float)0));
+	projectionShader.setMat4("model", model);
+	glDrawArrays(GL_TRIANGLES, 0, 36);
+	model = temp2;
+
+
+
+	/////////////////////////////////////////////////
+	model = glm::translate(model, glm::vec3(0.0f, 21.0f, 0.0f));
+	model = glm::rotate(model, glm::radians(15.0f), glm::vec3(1, 0, 0));
+	//model = glm::rotate(model, glm::radians(-15.0f), glm::vec3(0, 1, 0));
+	//	model = glm::rotate(model, glm::radians(-15.0f), glm::vec3(0, 0, 1));
+	temp = model;//respaldo de matriz
+	temp2 = model;
+	model = glm::scale(model, glm::vec3(3.0f, 21.0f, 3.0f));
+	projectionShader.setVec3("aColor", glm::vec3((float)0.9, (float)0.7, (float)0));
+	projectionShader.setMat4("model", model);
+	glDrawArrays(GL_TRIANGLES, 0, 36);
+	model = temp;
+
+	model = glm::translate(model, glm::vec3(6.0f, 0.0f, -3.5f));
+	model = glm::rotate(model, glm::radians(30.0f), glm::vec3(0, 1, 0));
+	temp = model;//respaldo de matriz
+	model = glm::scale(model, glm::vec3(12.0f, 1.5f, 1.5f));
+	projectionShader.setVec3("aColor", glm::vec3((float)0.9, (float)0.7, (float)0));
+	projectionShader.setMat4("model", model);
+	glDrawArrays(GL_TRIANGLES, 0, 36);
+	model = temp;
+
+
+	model = glm::translate(model, glm::vec3(6.0f, 0.0f, 0.0f));
+	temp = model;
+	model = glm::scale(model, glm::vec3(3.0f, 21.0f, 3.0f));
+	projectionShader.setVec3("aColor", glm::vec3((float)0.9, (float)0.7, (float)0));
+	projectionShader.setMat4("model", model);
+	glDrawArrays(GL_TRIANGLES, 0, 36);
+	model = temp;
+
+	model = glm::rotate(model, glm::radians(-60.0f), glm::vec3(0, 1, 0));
+	model = glm::translate(model, glm::vec3(6.0f, 0.0f, 0.0f));
+	temp = model;//respaldo de matriz
+	model = glm::scale(model, glm::vec3(12.0f, 1.5f, 1.5f));
+	projectionShader.setVec3("aColor", glm::vec3((float)0.9, (float)0.7, (float)0));
+	projectionShader.setMat4("model", model);
+	glDrawArrays(GL_TRIANGLES, 0, 36);
+	model = temp;
+
+	model = glm::translate(model, glm::vec3(6.0f, 0.0f, 0.0f));
+	temp = model;
+	model = glm::scale(model, glm::vec3(3.0f, 21.0f, 3.0f));
+	projectionShader.setVec3("aColor", glm::vec3((float)0.9, (float)0.7, (float)0));
+	projectionShader.setMat4("model", model);
+	glDrawArrays(GL_TRIANGLES, 0, 36);
+	model = temp2;
+
+
+	/////////////////////////////////////////////////
+	model = glm::translate(model, glm::vec3(0.0f, 21.0f, 0.0f));
+	//model = glm::rotate(model, glm::radians(15.0f), glm::vec3(1, 0, 0));
+	//model = glm::rotate(model, glm::radians(-15.0f), glm::vec3(0, 1, 0));
+	//	model = glm::rotate(model, glm::radians(-15.0f), glm::vec3(0, 0, 1));
+	temp = model;//respaldo de matriz
+	temp2 = model;
+	model = glm::scale(model, glm::vec3(3.0f, 21.0f, 3.0f));
+	projectionShader.setVec3("aColor", glm::vec3((float)0.9, (float)0.7, (float)0));
+	projectionShader.setMat4("model", model);
+	glDrawArrays(GL_TRIANGLES, 0, 36);
+	model = temp;
+
+	model = glm::translate(model, glm::vec3(6.0f, 0.0f, -3.5f));
+	model = glm::rotate(model, glm::radians(30.0f), glm::vec3(0, 1, 0));
+	temp = model;//respaldo de matriz
+	model = glm::scale(model, glm::vec3(12.0f, 1.5f, 1.5f));
+	projectionShader.setVec3("aColor", glm::vec3((float)0.9, (float)0.7, (float)0));
+	projectionShader.setMat4("model", model);
+	glDrawArrays(GL_TRIANGLES, 0, 36);
+	model = temp;
+
+
+	model = glm::translate(model, glm::vec3(6.0f, 0.0f, 0.0f));
+	temp = model;
+	model = glm::scale(model, glm::vec3(3.0f, 21.0f, 3.0f));
+	projectionShader.setVec3("aColor", glm::vec3((float)0.9, (float)0.7, (float)0));
+	projectionShader.setMat4("model", model);
+	glDrawArrays(GL_TRIANGLES, 0, 36);
+	model = temp;
+
+	model = glm::rotate(model, glm::radians(-60.0f), glm::vec3(0, 1, 0));
+	model = glm::translate(model, glm::vec3(6.0f, 0.0f, 0.0f));
+	temp = model;//respaldo de matriz
+	model = glm::scale(model, glm::vec3(12.0f, 1.5f, 1.5f));
+	projectionShader.setVec3("aColor", glm::vec3((float)0.9, (float)0.7, (float)0));
+	projectionShader.setMat4("model", model);
+	glDrawArrays(GL_TRIANGLES, 0, 36);
+	model = temp;
+
+	model = glm::translate(model, glm::vec3(6.0f, 0.0f, 0.0f));
+	temp = model;
+	model = glm::scale(model, glm::vec3(3.0f, 21.0f, 3.0f));
+	projectionShader.setVec3("aColor", glm::vec3((float)0.9, (float)0.7, (float)0));
+	projectionShader.setMat4("model", model);
+	glDrawArrays(GL_TRIANGLES, 0, 36);
+	model = temp2;
+
+	/////////////////////////////////////////////////
+	model = glm::translate(model, glm::vec3(0.0f, 21.0f, 0.0f));
+	//model = glm::rotate(model, glm::radians(15.0f), glm::vec3(1, 0, 0));
+	//model = glm::rotate(model, glm::radians(-15.0f), glm::vec3(0, 1, 0));
+	//	model = glm::rotate(model, glm::radians(-15.0f), glm::vec3(0, 0, 1));
+	temp = model;//respaldo de matriz
+	temp2 = model;
+	model = glm::scale(model, glm::vec3(3.0f, 21.0f, 3.0f));
+	projectionShader.setVec3("aColor", glm::vec3((float)0.9, (float)0.7, (float)0));
+	projectionShader.setMat4("model", model);
+	glDrawArrays(GL_TRIANGLES, 0, 36);
+	model = temp;
+
+	model = glm::translate(model, glm::vec3(6.0f, 0.0f, -3.5f));
+	model = glm::rotate(model, glm::radians(30.0f), glm::vec3(0, 1, 0));
+	temp = model;//respaldo de matriz
+	model = glm::scale(model, glm::vec3(12.0f, 1.5f, 1.5f));
+	projectionShader.setVec3("aColor", glm::vec3((float)0.9, (float)0.7, (float)0));
+	projectionShader.setMat4("model", model);
+	glDrawArrays(GL_TRIANGLES, 0, 36);
+	model = temp;
+
+
+	model = glm::translate(model, glm::vec3(6.0f, 0.0f, 0.0f));
+	temp = model;
+	model = glm::scale(model, glm::vec3(3.0f, 21.0f, 3.0f));
+	projectionShader.setVec3("aColor", glm::vec3((float)0.9, (float)0.7, (float)0));
+	projectionShader.setMat4("model", model);
+	glDrawArrays(GL_TRIANGLES, 0, 36);
+	model = temp;
+
+	model = glm::rotate(model, glm::radians(-60.0f), glm::vec3(0, 1, 0));
+	model = glm::translate(model, glm::vec3(6.0f, 0.0f, 0.0f));
+	temp = model;//respaldo de matriz
+	model = glm::scale(model, glm::vec3(12.0f, 1.5f, 1.5f));
+	projectionShader.setVec3("aColor", glm::vec3((float)0.9, (float)0.7, (float)0));
+	projectionShader.setMat4("model", model);
+	glDrawArrays(GL_TRIANGLES, 0, 36);
+	model = temp;
+
+	model = glm::translate(model, glm::vec3(6.0f, 0.0f, 0.0f));
+	temp = model;
+	model = glm::scale(model, glm::vec3(3.0f, 21.0f, 3.0f));
+	projectionShader.setVec3("aColor", glm::vec3((float)0.9, (float)0.7, (float)0));
+	projectionShader.setMat4("model", model);
+	glDrawArrays(GL_TRIANGLES, 0, 36);
+	model = temp2;
+
+
+	/////////////////////////////////////////////////
+	model = glm::translate(model, glm::vec3(0.0f, 21.0f, 0.0f));
+	model = glm::rotate(model, glm::radians(-15.0f), glm::vec3(1, 0, 0));
+	//model = glm::rotate(model, glm::radians(-15.0f), glm::vec3(0, 1, 0));
+	//	model = glm::rotate(model, glm::radians(-15.0f), glm::vec3(0, 0, 1));
+	temp = model;//respaldo de matriz
+	temp2 = model;
+	model = glm::scale(model, glm::vec3(3.0f, 21.0f, 3.0f));
+	projectionShader.setVec3("aColor", glm::vec3((float)0.9, (float)0.7, (float)0));
+	projectionShader.setMat4("model", model);
+	glDrawArrays(GL_TRIANGLES, 0, 36);
+	model = temp;
+
+	model = glm::translate(model, glm::vec3(6.0f, 0.0f, -3.5f));
+	model = glm::rotate(model, glm::radians(30.0f), glm::vec3(0, 1, 0));
+	temp = model;//respaldo de matriz
+	model = glm::scale(model, glm::vec3(12.0f, 1.5f, 1.5f));
+	projectionShader.setVec3("aColor", glm::vec3((float)0.9, (float)0.7, (float)0));
+	projectionShader.setMat4("model", model);
+	glDrawArrays(GL_TRIANGLES, 0, 36);
+	model = temp;
+
+
+	model = glm::translate(model, glm::vec3(6.0f, 0.0f, 0.0f));
+	temp = model;
+	model = glm::scale(model, glm::vec3(3.0f, 21.0f, 3.0f));
+	projectionShader.setVec3("aColor", glm::vec3((float)0.9, (float)0.7, (float)0));
+	projectionShader.setMat4("model", model);
+	glDrawArrays(GL_TRIANGLES, 0, 36);
+	model = temp;
+
+	model = glm::rotate(model, glm::radians(-60.0f), glm::vec3(0, 1, 0));
+	model = glm::translate(model, glm::vec3(6.0f, 0.0f, 0.0f));
+	temp = model;//respaldo de matriz
+	model = glm::scale(model, glm::vec3(12.0f, 1.5f, 1.5f));
+	projectionShader.setVec3("aColor", glm::vec3((float)0.9, (float)0.7, (float)0));
+	projectionShader.setMat4("model", model);
+	glDrawArrays(GL_TRIANGLES, 0, 36);
+	model = temp;
+
+	model = glm::translate(model, glm::vec3(6.0f, 0.0f, 0.0f));
+	temp = model;
+	model = glm::scale(model, glm::vec3(3.0f, 21.0f, 3.0f));
+	projectionShader.setVec3("aColor", glm::vec3((float)0.9, (float)0.7, (float)0));
+	projectionShader.setMat4("model", model);
+	glDrawArrays(GL_TRIANGLES, 0, 36);
+	model = temp2;
+
+	/////////////////////////////////////////////////
+	model = glm::translate(model, glm::vec3(0.0f, 21.0f, 0.0f));
+	model = glm::rotate(model, glm::radians(-15.0f), glm::vec3(1, 0, 0));
+	//model = glm::rotate(model, glm::radians(-15.0f), glm::vec3(0, 1, 0));
+	//	model = glm::rotate(model, glm::radians(-15.0f), glm::vec3(0, 0, 1));
+	temp = model;//respaldo de matriz
+	temp2 = model;
+	model = glm::scale(model, glm::vec3(3.0f, 21.0f, 3.0f));
+	projectionShader.setVec3("aColor", glm::vec3((float)0.9, (float)0.7, (float)0));
+	projectionShader.setMat4("model", model);
+	glDrawArrays(GL_TRIANGLES, 0, 36);
+	model = temp;
+
+	model = glm::translate(model, glm::vec3(6.0f, 0.0f, -3.5f));
+	model = glm::rotate(model, glm::radians(30.0f), glm::vec3(0, 1, 0));
+	temp = model;//respaldo de matriz
+	model = glm::scale(model, glm::vec3(12.0f, 1.5f, 1.5f));
+	projectionShader.setVec3("aColor", glm::vec3((float)0.9, (float)0.7, (float)0));
+	projectionShader.setMat4("model", model);
+	glDrawArrays(GL_TRIANGLES, 0, 36);
+	model = temp;
+
+
+	model = glm::translate(model, glm::vec3(6.0f, 0.0f, 0.0f));
+	temp = model;
+	model = glm::scale(model, glm::vec3(3.0f, 21.0f, 3.0f));
+	projectionShader.setVec3("aColor", glm::vec3((float)0.9, (float)0.7, (float)0));
+	projectionShader.setMat4("model", model);
+	glDrawArrays(GL_TRIANGLES, 0, 36);
+	model = temp;
+
+	model = glm::rotate(model, glm::radians(-60.0f), glm::vec3(0, 1, 0));
+	model = glm::translate(model, glm::vec3(6.0f, 0.0f, 0.0f));
+	temp = model;//respaldo de matriz
+	model = glm::scale(model, glm::vec3(12.0f, 1.5f, 1.5f));
+	projectionShader.setVec3("aColor", glm::vec3((float)0.9, (float)0.7, (float)0));
+	projectionShader.setMat4("model", model);
+	glDrawArrays(GL_TRIANGLES, 0, 36);
+	model = temp;
+
+	model = glm::translate(model, glm::vec3(6.0f, 0.0f, 0.0f));
+	temp = model;
+	model = glm::scale(model, glm::vec3(3.0f, 21.0f, 3.0f));
+	projectionShader.setVec3("aColor", glm::vec3((float)0.9, (float)0.7, (float)0));
+	projectionShader.setMat4("model", model);
+	glDrawArrays(GL_TRIANGLES, 0, 36);
+	model = temp2;
+
+	/////////////////////////////////////////////////
+	model = glm::translate(model, glm::vec3(0.0f, 21.0f, 0.0f));
+	//model = glm::rotate(model, glm::radians(-15.0f), glm::vec3(1, 0, 0));
+	//model = glm::rotate(model, glm::radians(-15.0f), glm::vec3(0, 1, 0));
+	//	model = glm::rotate(model, glm::radians(-15.0f), glm::vec3(0, 0, 1));
+	temp = model;//respaldo de matriz
+	temp2 = model;
+	model = glm::scale(model, glm::vec3(3.0f, 21.0f, 3.0f));
+	projectionShader.setVec3("aColor", glm::vec3((float)0.9, (float)0.7, (float)0));
+	projectionShader.setMat4("model", model);
+	glDrawArrays(GL_TRIANGLES, 0, 36);
+	model = temp;
+
+	model = glm::translate(model, glm::vec3(6.0f, 0.0f, -3.5f));
+	model = glm::rotate(model, glm::radians(30.0f), glm::vec3(0, 1, 0));
+	temp = model;//respaldo de matriz
+	model = glm::scale(model, glm::vec3(12.0f, 1.5f, 1.5f));
+	projectionShader.setVec3("aColor", glm::vec3((float)0.9, (float)0.7, (float)0));
+	projectionShader.setMat4("model", model);
+	glDrawArrays(GL_TRIANGLES, 0, 36);
+	model = temp;
+
+
+	model = glm::translate(model, glm::vec3(6.0f, 0.0f, 0.0f));
+	temp = model;
+	model = glm::scale(model, glm::vec3(3.0f, 21.0f, 3.0f));
+	projectionShader.setVec3("aColor", glm::vec3((float)0.9, (float)0.7, (float)0));
+	projectionShader.setMat4("model", model);
+	glDrawArrays(GL_TRIANGLES, 0, 36);
+	model = temp;
+
+	model = glm::rotate(model, glm::radians(-60.0f), glm::vec3(0, 1, 0));
+	model = glm::translate(model, glm::vec3(6.0f, 0.0f, 0.0f));
+	temp = model;//respaldo de matriz
+	model = glm::scale(model, glm::vec3(12.0f, 1.5f, 1.5f));
+	projectionShader.setVec3("aColor", glm::vec3((float)0.9, (float)0.7, (float)0));
+	projectionShader.setMat4("model", model);
+	glDrawArrays(GL_TRIANGLES, 0, 36);
+	model = temp;
+
+	model = glm::translate(model, glm::vec3(6.0f, 0.0f, 0.0f));
+	temp = model;
+	model = glm::scale(model, glm::vec3(3.0f, 21.0f, 3.0f));
+	projectionShader.setVec3("aColor", glm::vec3((float)0.9, (float)0.7, (float)0));
+	projectionShader.setMat4("model", model);
+	glDrawArrays(GL_TRIANGLES, 0, 36);
+	model = temp2;
+
+	/////////////////////////////////////////////////
+	model = glm::translate(model, glm::vec3(0.0f, 21.0f, 0.0f));
+	//model = glm::rotate(model, glm::radians(-15.0f), glm::vec3(1, 0, 0));
+	//model = glm::rotate(model, glm::radians(-15.0f), glm::vec3(0, 1, 0));
+	//	model = glm::rotate(model, glm::radians(-15.0f), glm::vec3(0, 0, 1));
+	temp = model;//respaldo de matriz
+	temp2 = model;
+	model = glm::scale(model, glm::vec3(3.0f, 21.0f, 3.0f));
+	projectionShader.setVec3("aColor", glm::vec3((float)0.9, (float)0.7, (float)0));
+	projectionShader.setMat4("model", model);
+	glDrawArrays(GL_TRIANGLES, 0, 36);
+	model = temp;
+
+	model = glm::translate(model, glm::vec3(6.0f, 0.0f, -3.5f));
+	model = glm::rotate(model, glm::radians(30.0f), glm::vec3(0, 1, 0));
+	temp = model;//respaldo de matriz
+	model = glm::scale(model, glm::vec3(12.0f, 1.5f, 1.5f));
+	projectionShader.setVec3("aColor", glm::vec3((float)0.9, (float)0.7, (float)0));
+	projectionShader.setMat4("model", model);
+	glDrawArrays(GL_TRIANGLES, 0, 36);
+	model = temp;
+
+
+	model = glm::translate(model, glm::vec3(6.0f, 0.0f, 0.0f));
+	temp = model;
+	model = glm::scale(model, glm::vec3(3.0f, 21.0f, 3.0f));
+	projectionShader.setVec3("aColor", glm::vec3((float)0.9, (float)0.7, (float)0));
+	projectionShader.setMat4("model", model);
+	glDrawArrays(GL_TRIANGLES, 0, 36);
+	model = temp;
+
+	model = glm::rotate(model, glm::radians(-60.0f), glm::vec3(0, 1, 0));
+	model = glm::translate(model, glm::vec3(6.0f, 0.0f, 0.0f));
+	temp = model;//respaldo de matriz
+	model = glm::scale(model, glm::vec3(12.0f, 1.5f, 1.5f));
+	projectionShader.setVec3("aColor", glm::vec3((float)0.9, (float)0.7, (float)0));
+	projectionShader.setMat4("model", model);
+	glDrawArrays(GL_TRIANGLES, 0, 36);
+	model = temp;
+
+	model = glm::translate(model, glm::vec3(6.0f, 0.0f, 0.0f));
+	temp = model;
+	model = glm::scale(model, glm::vec3(3.0f, 21.0f, 3.0f));
+	projectionShader.setVec3("aColor", glm::vec3((float)0.9, (float)0.7, (float)0));
+	projectionShader.setMat4("model", model);
+	glDrawArrays(GL_TRIANGLES, 0, 36);
+	model = temp2;
+
+	/////////////////////////////////////////////////
+	model = glm::translate(model, glm::vec3(0.0f, 21.0f, 0.0f));
+	//model = glm::rotate(model, glm::radians(-15.0f), glm::vec3(1, 0, 0));
+	//model = glm::rotate(model, glm::radians(-15.0f), glm::vec3(0, 1, 0));
+	//	model = glm::rotate(model, glm::radians(-15.0f), glm::vec3(0, 0, 1));
+	temp = model;//respaldo de matriz
+	temp2 = model;
+	model = glm::scale(model, glm::vec3(3.0f, 21.0f, 3.0f));
+	projectionShader.setVec3("aColor", glm::vec3((float)0.9, (float)0.7, (float)0));
+	projectionShader.setMat4("model", model);
+	glDrawArrays(GL_TRIANGLES, 0, 36);
+	model = temp;
+
+	model = glm::translate(model, glm::vec3(6.0f, 0.0f, -3.5f));
+	model = glm::rotate(model, glm::radians(30.0f), glm::vec3(0, 1, 0));
+	temp = model;//respaldo de matriz
+	model = glm::scale(model, glm::vec3(12.0f, 1.5f, 1.5f));
+	projectionShader.setVec3("aColor", glm::vec3((float)0.9, (float)0.7, (float)0));
+	projectionShader.setMat4("model", model);
+	glDrawArrays(GL_TRIANGLES, 0, 36);
+	model = temp;
+
+
+	model = glm::translate(model, glm::vec3(6.0f, 0.0f, 0.0f));
+	temp = model;
+	model = glm::scale(model, glm::vec3(3.0f, 21.0f, 3.0f));
+	projectionShader.setVec3("aColor", glm::vec3((float)0.9, (float)0.7, (float)0));
+	projectionShader.setMat4("model", model);
+	glDrawArrays(GL_TRIANGLES, 0, 36);
+	model = temp;
+
+	model = glm::rotate(model, glm::radians(-60.0f), glm::vec3(0, 1, 0));
+	model = glm::translate(model, glm::vec3(6.0f, 0.0f, 0.0f));
+	temp = model;//respaldo de matriz
+	model = glm::scale(model, glm::vec3(12.0f, 1.5f, 1.5f));
+	projectionShader.setVec3("aColor", glm::vec3((float)0.9, (float)0.7, (float)0));
+	projectionShader.setMat4("model", model);
+	glDrawArrays(GL_TRIANGLES, 0, 36);
+	model = temp;
+
+	model = glm::translate(model, glm::vec3(6.0f, 0.0f, 0.0f));
+	temp = model;
+	model = glm::scale(model, glm::vec3(3.0f, 21.0f, 3.0f));
+	projectionShader.setVec3("aColor", glm::vec3((float)0.9, (float)0.7, (float)0));
+	projectionShader.setMat4("model", model);
+	glDrawArrays(GL_TRIANGLES, 0, 36);
+	model = temp2;
+
+	/////////////////////////////////////////////////
+	model = glm::translate(model, glm::vec3(0.0f, 21.0f, 0.0f));
+	model = glm::rotate(model, glm::radians(-15.0f), glm::vec3(1, 0, 0));
+	//model = glm::rotate(model, glm::radians(-15.0f), glm::vec3(0, 1, 0));
+	//	model = glm::rotate(model, glm::radians(-15.0f), glm::vec3(0, 0, 1));
+	temp = model;//respaldo de matriz
+	temp2 = model;
+	model = glm::scale(model, glm::vec3(3.0f, 21.0f, 3.0f));
+	projectionShader.setVec3("aColor", glm::vec3((float)0.9, (float)0.7, (float)0));
+	projectionShader.setMat4("model", model);
+	glDrawArrays(GL_TRIANGLES, 0, 36);
+	model = temp;
+
+	model = glm::translate(model, glm::vec3(6.0f, 0.0f, -3.5f));
+	model = glm::rotate(model, glm::radians(30.0f), glm::vec3(0, 1, 0));
+	temp = model;//respaldo de matriz
+	model = glm::scale(model, glm::vec3(12.0f, 1.5f, 1.5f));
+	projectionShader.setVec3("aColor", glm::vec3((float)0.9, (float)0.7, (float)0));
+	projectionShader.setMat4("model", model);
+	glDrawArrays(GL_TRIANGLES, 0, 36);
+	model = temp;
+
+
+	model = glm::translate(model, glm::vec3(6.0f, 0.0f, 0.0f));
+	temp = model;
+	model = glm::scale(model, glm::vec3(3.0f, 21.0f, 3.0f));
+	projectionShader.setVec3("aColor", glm::vec3((float)0.9, (float)0.7, (float)0));
+	projectionShader.setMat4("model", model);
+	glDrawArrays(GL_TRIANGLES, 0, 36);
+	model = temp;
+
+	model = glm::rotate(model, glm::radians(-60.0f), glm::vec3(0, 1, 0));
+	model = glm::translate(model, glm::vec3(6.0f, 0.0f, 0.0f));
+	temp = model;//respaldo de matriz
+	model = glm::scale(model, glm::vec3(12.0f, 1.5f, 1.5f));
+	projectionShader.setVec3("aColor", glm::vec3((float)0.9, (float)0.7, (float)0));
+	projectionShader.setMat4("model", model);
+	glDrawArrays(GL_TRIANGLES, 0, 36);
+	model = temp;
+
+	model = glm::translate(model, glm::vec3(6.0f, 0.0f, 0.0f));
+	temp = model;
+	model = glm::scale(model, glm::vec3(3.0f, 21.0f, 3.0f));
+	projectionShader.setVec3("aColor", glm::vec3((float)0.9, (float)0.7, (float)0));
+	projectionShader.setMat4("model", model);
+	glDrawArrays(GL_TRIANGLES, 0, 36);
+	model = temp2;
+
+	/////////////////////////////////////////////////
+	model = glm::translate(model, glm::vec3(0.0f, 21.0f, 0.0f));
+	model = glm::rotate(model, glm::radians(-15.0f), glm::vec3(1, 0, 0));
+	//model = glm::rotate(model, glm::radians(-15.0f), glm::vec3(0, 1, 0));
+	//	model = glm::rotate(model, glm::radians(-15.0f), glm::vec3(0, 0, 1));
+	temp = model;//respaldo de matriz
+	temp2 = model;
+	model = glm::scale(model, glm::vec3(3.0f, 21.0f, 3.0f));
+	projectionShader.setVec3("aColor", glm::vec3((float)0.9, (float)0.7, (float)0));
+	projectionShader.setMat4("model", model);
+	glDrawArrays(GL_TRIANGLES, 0, 36);
+	model = temp;
+
+	model = glm::translate(model, glm::vec3(6.0f, 0.0f, -3.5f));
+	model = glm::rotate(model, glm::radians(30.0f), glm::vec3(0, 1, 0));
+	temp = model;//respaldo de matriz
+	model = glm::scale(model, glm::vec3(12.0f, 1.5f, 1.5f));
+	projectionShader.setVec3("aColor", glm::vec3((float)0.9, (float)0.7, (float)0));
+	projectionShader.setMat4("model", model);
+	glDrawArrays(GL_TRIANGLES, 0, 36);
+	model = temp;
+
+
+	model = glm::translate(model, glm::vec3(6.0f, 0.0f, 0.0f));
+	temp = model;
+	model = glm::scale(model, glm::vec3(3.0f, 21.0f, 3.0f));
+	projectionShader.setVec3("aColor", glm::vec3((float)0.9, (float)0.7, (float)0));
+	projectionShader.setMat4("model", model);
+	glDrawArrays(GL_TRIANGLES, 0, 36);
+	model = temp;
+
+	model = glm::rotate(model, glm::radians(-60.0f), glm::vec3(0, 1, 0));
+	model = glm::translate(model, glm::vec3(6.0f, 0.0f, 0.0f));
+	temp = model;//respaldo de matriz
+	model = glm::scale(model, glm::vec3(12.0f, 1.5f, 1.5f));
+	projectionShader.setVec3("aColor", glm::vec3((float)0.9, (float)0.7, (float)0));
+	projectionShader.setMat4("model", model);
+	glDrawArrays(GL_TRIANGLES, 0, 36);
+	model = temp;
+
+	model = glm::translate(model, glm::vec3(6.0f, 0.0f, 0.0f));
+	temp = model;
+	model = glm::scale(model, glm::vec3(3.0f, 21.0f, 3.0f));
+	projectionShader.setVec3("aColor", glm::vec3((float)0.9, (float)0.7, (float)0));
+	projectionShader.setMat4("model", model);
+	glDrawArrays(GL_TRIANGLES, 0, 36);
+	model = temp2;
+
+	/////////////////////////////////////////////////
+	model = glm::translate(model, glm::vec3(0.0f, 21.0f, 0.0f));
+	//model = glm::rotate(model, glm::radians(-15.0f), glm::vec3(1, 0, 0));
+	//model = glm::rotate(model, glm::radians(-15.0f), glm::vec3(0, 1, 0));
+	//	model = glm::rotate(model, glm::radians(-15.0f), glm::vec3(0, 0, 1));
+	temp = model;//respaldo de matriz
+	temp2 = model;
+	model = glm::scale(model, glm::vec3(3.0f, 21.0f, 3.0f));
+	projectionShader.setVec3("aColor", glm::vec3((float)0.9, (float)0.7, (float)0));
+	projectionShader.setMat4("model", model);
+	glDrawArrays(GL_TRIANGLES, 0, 36);
+	model = temp;
+
+	model = glm::translate(model, glm::vec3(6.0f, 0.0f, -3.5f));
+	model = glm::rotate(model, glm::radians(30.0f), glm::vec3(0, 1, 0));
+	temp = model;//respaldo de matriz
+	model = glm::scale(model, glm::vec3(12.0f, 1.5f, 1.5f));
+	projectionShader.setVec3("aColor", glm::vec3((float)0.9, (float)0.7, (float)0));
+	projectionShader.setMat4("model", model);
+	glDrawArrays(GL_TRIANGLES, 0, 36);
+	model = temp;
+
+
+	model = glm::translate(model, glm::vec3(6.0f, 0.0f, 0.0f));
+	temp = model;
+	model = glm::scale(model, glm::vec3(3.0f, 21.0f, 3.0f));
+	projectionShader.setVec3("aColor", glm::vec3((float)0.9, (float)0.7, (float)0));
+	projectionShader.setMat4("model", model);
+	glDrawArrays(GL_TRIANGLES, 0, 36);
+	model = temp;
+
+	model = glm::rotate(model, glm::radians(-60.0f), glm::vec3(0, 1, 0));
+	model = glm::translate(model, glm::vec3(6.0f, 0.0f, 0.0f));
+	temp = model;//respaldo de matriz
+	model = glm::scale(model, glm::vec3(12.0f, 1.5f, 1.5f));
+	projectionShader.setVec3("aColor", glm::vec3((float)0.9, (float)0.7, (float)0));
+	projectionShader.setMat4("model", model);
+	glDrawArrays(GL_TRIANGLES, 0, 36);
+	model = temp;
+
+	model = glm::translate(model, glm::vec3(6.0f, 0.0f, 0.0f));
+	temp = model;
+	model = glm::scale(model, glm::vec3(3.0f, 21.0f, 3.0f));
+	projectionShader.setVec3("aColor", glm::vec3((float)0.9, (float)0.7, (float)0));
+	projectionShader.setMat4("model", model);
+	glDrawArrays(GL_TRIANGLES, 0, 36);
+	model = temp2;
+
+	/////////////////////////////////////////////////
+	model = glm::translate(model, glm::vec3(0.0f, 21.0f, 0.0f));
+	//model = glm::rotate(model, glm::radians(-15.0f), glm::vec3(1, 0, 0));
+	//model = glm::rotate(model, glm::radians(-15.0f), glm::vec3(0, 1, 0));
+	//	model = glm::rotate(model, glm::radians(-15.0f), glm::vec3(0, 0, 1));
+	temp = model;//respaldo de matriz
+	temp2 = model;
+	model = glm::scale(model, glm::vec3(3.0f, 21.0f, 3.0f));
+	projectionShader.setVec3("aColor", glm::vec3((float)0.9, (float)0.7, (float)0));
+	projectionShader.setMat4("model", model);
+	glDrawArrays(GL_TRIANGLES, 0, 36);
+	model = temp;
+
+	model = glm::translate(model, glm::vec3(6.0f, 0.0f, -3.5f));
+	model = glm::rotate(model, glm::radians(30.0f), glm::vec3(0, 1, 0));
+	temp = model;//respaldo de matriz
+	model = glm::scale(model, glm::vec3(12.0f, 1.5f, 1.5f));
+	projectionShader.setVec3("aColor", glm::vec3((float)0.9, (float)0.7, (float)0));
+	projectionShader.setMat4("model", model);
+	glDrawArrays(GL_TRIANGLES, 0, 36);
+	model = temp;
+
+
+	model = glm::translate(model, glm::vec3(6.0f, 0.0f, 0.0f));
+	temp = model;
+	model = glm::scale(model, glm::vec3(3.0f, 21.0f, 3.0f));
+	projectionShader.setVec3("aColor", glm::vec3((float)0.9, (float)0.7, (float)0));
+	projectionShader.setMat4("model", model);
+	glDrawArrays(GL_TRIANGLES, 0, 36);
+	model = temp;
+
+	model = glm::rotate(model, glm::radians(-60.0f), glm::vec3(0, 1, 0));
+	model = glm::translate(model, glm::vec3(6.0f, 0.0f, 0.0f));
+	temp = model;//respaldo de matriz
+	model = glm::scale(model, glm::vec3(12.0f, 1.5f, 1.5f));
+	projectionShader.setVec3("aColor", glm::vec3((float)0.9, (float)0.7, (float)0));
+	projectionShader.setMat4("model", model);
+	glDrawArrays(GL_TRIANGLES, 0, 36);
+	model = temp;
+
+	model = glm::translate(model, glm::vec3(6.0f, 0.0f, 0.0f));
+	temp = model;
+	model = glm::scale(model, glm::vec3(3.0f, 21.0f, 3.0f));
+	projectionShader.setVec3("aColor", glm::vec3((float)0.9, (float)0.7, (float)0));
+	projectionShader.setMat4("model", model);
+	glDrawArrays(GL_TRIANGLES, 0, 36);
+	model = temp2;
+
+
+	/////////////////////////////////////////////////
+	model = glm::translate(model, glm::vec3(3.0f, 21.0f, 0.0f));
+	model = glm::rotate(model, glm::radians(-15.0f), glm::vec3(1, 0, 0));
+	//model = glm::rotate(model, glm::radians(-15.0f), glm::vec3(0, 1, 0));
+	model = glm::rotate(model, glm::radians(-30.0f), glm::vec3(0, 0, 1));
+	temp = model;//respaldo de matriz
+	temp2 = model;
+	model = glm::scale(model, glm::vec3(3.0f, 21.0f, 3.0f));
+	projectionShader.setVec3("aColor", glm::vec3((float)0.9, (float)0.7, (float)0));
+	projectionShader.setMat4("model", model);
+	glDrawArrays(GL_TRIANGLES, 0, 36);
+	model = temp;
+
+	model = glm::translate(model, glm::vec3(6.0f, 0.0f, -3.5f));
+	model = glm::rotate(model, glm::radians(30.0f), glm::vec3(0, 1, 0));
+	temp = model;//respaldo de matriz
+	model = glm::scale(model, glm::vec3(12.0f, 1.5f, 1.5f));
+	projectionShader.setVec3("aColor", glm::vec3((float)0.9, (float)0.7, (float)0));
+	projectionShader.setMat4("model", model);
+	glDrawArrays(GL_TRIANGLES, 0, 36);
+	model = temp;
+
+
+	model = glm::translate(model, glm::vec3(6.0f, 0.0f, 0.0f));
+	temp = model;
+	model = glm::scale(model, glm::vec3(3.0f, 21.0f, 3.0f));
+	projectionShader.setVec3("aColor", glm::vec3((float)0.9, (float)0.7, (float)0));
+	projectionShader.setMat4("model", model);
+	glDrawArrays(GL_TRIANGLES, 0, 36);
+	model = temp;
+
+	model = glm::rotate(model, glm::radians(-60.0f), glm::vec3(0, 1, 0));
+	model = glm::translate(model, glm::vec3(6.0f, 0.0f, 0.0f));
+	temp = model;//respaldo de matriz
+	model = glm::scale(model, glm::vec3(12.0f, 1.5f, 1.5f));
+	projectionShader.setVec3("aColor", glm::vec3((float)0.9, (float)0.7, (float)0));
+	projectionShader.setMat4("model", model);
+	glDrawArrays(GL_TRIANGLES, 0, 36);
+	model = temp;
+
+	model = glm::translate(model, glm::vec3(6.0f, 0.0f, 0.0f));
+	temp = model;
+	model = glm::scale(model, glm::vec3(3.0f, 21.0f, 3.0f));
+	projectionShader.setVec3("aColor", glm::vec3((float)0.9, (float)0.7, (float)0));
+	projectionShader.setMat4("model", model);
+	glDrawArrays(GL_TRIANGLES, 0, 36);
+	model = temp2;
+
+
+	/////////////////////////////////////////////////
+	model = glm::translate(model, glm::vec3(3.0f, 21.0f, 0.0f));
+	//model = glm::rotate(model, glm::radians(-15.0f), glm::vec3(1, 0, 0));
+	//model = glm::rotate(model, glm::radians(-15.0f), glm::vec3(0, 1, 0));
+	model = glm::rotate(model, glm::radians(-30.0f), glm::vec3(0, 0, 1));
+	temp = model;//respaldo de matriz
+	temp2 = model;
+	model = glm::scale(model, glm::vec3(3.0f, 21.0f, 3.0f));
+	projectionShader.setVec3("aColor", glm::vec3((float)0.9, (float)0.7, (float)0));
+	projectionShader.setMat4("model", model);
+	glDrawArrays(GL_TRIANGLES, 0, 36);
+	model = temp;
+
+	model = glm::translate(model, glm::vec3(6.0f, 0.0f, -3.5f));
+	model = glm::rotate(model, glm::radians(30.0f), glm::vec3(0, 1, 0));
+	temp = model;//respaldo de matriz
+	model = glm::scale(model, glm::vec3(12.0f, 1.5f, 1.5f));
+	projectionShader.setVec3("aColor", glm::vec3((float)0.9, (float)0.7, (float)0));
+	projectionShader.setMat4("model", model);
+	glDrawArrays(GL_TRIANGLES, 0, 36);
+	model = temp;
+
+
+	model = glm::translate(model, glm::vec3(6.0f, 0.0f, 0.0f));
+	temp = model;
+	model = glm::scale(model, glm::vec3(3.0f, 21.0f, 3.0f));
+	projectionShader.setVec3("aColor", glm::vec3((float)0.9, (float)0.7, (float)0));
+	projectionShader.setMat4("model", model);
+	glDrawArrays(GL_TRIANGLES, 0, 36);
+	model = temp;
+
+	model = glm::rotate(model, glm::radians(-60.0f), glm::vec3(0, 1, 0));
+	model = glm::translate(model, glm::vec3(6.0f, 0.0f, 0.0f));
+	temp = model;//respaldo de matriz
+	model = glm::scale(model, glm::vec3(12.0f, 1.5f, 1.5f));
+	projectionShader.setVec3("aColor", glm::vec3((float)0.9, (float)0.7, (float)0));
+	projectionShader.setMat4("model", model);
+	glDrawArrays(GL_TRIANGLES, 0, 36);
+	model = temp;
+
+	model = glm::translate(model, glm::vec3(6.0f, 0.0f, 0.0f));
+	temp = model;
+	model = glm::scale(model, glm::vec3(3.0f, 21.0f, 3.0f));
+	projectionShader.setVec3("aColor", glm::vec3((float)0.9, (float)0.7, (float)0));
+	projectionShader.setMat4("model", model);
+	glDrawArrays(GL_TRIANGLES, 0, 36);
+	model = temp2;
+
+
+
+
+	/////////////////////////////////////////////////
+	model = glm::translate(model, glm::vec3(3.0f, 21.0f, 0.0f));
+	model = glm::rotate(model, glm::radians(-15.0f), glm::vec3(1, 0, 0));
+	model = glm::rotate(model, glm::radians(15.0f), glm::vec3(0, 1, 0));
+	model = glm::rotate(model, glm::radians(-15.0f), glm::vec3(0, 0, 1));
+	temp = model;//respaldo de matriz
+	temp2 = model;
+	model = glm::scale(model, glm::vec3(3.0f, 21.0f, 3.0f));
+	projectionShader.setVec3("aColor", glm::vec3((float)0.9, (float)0.7, (float)0));
+	projectionShader.setMat4("model", model);
+	glDrawArrays(GL_TRIANGLES, 0, 36);
+	model = temp;
+
+	model = glm::translate(model, glm::vec3(6.0f, 0.0f, -3.5f));
+	model = glm::rotate(model, glm::radians(30.0f), glm::vec3(0, 1, 0));
+	temp = model;//respaldo de matriz
+	model = glm::scale(model, glm::vec3(12.0f, 1.5f, 1.5f));
+	projectionShader.setVec3("aColor", glm::vec3((float)0.9, (float)0.7, (float)0));
+	projectionShader.setMat4("model", model);
+	glDrawArrays(GL_TRIANGLES, 0, 36);
+	model = temp;
+
+
+	model = glm::translate(model, glm::vec3(6.0f, 0.0f, 0.0f));
+	temp = model;
+	model = glm::scale(model, glm::vec3(3.0f, 21.0f, 3.0f));
+	projectionShader.setVec3("aColor", glm::vec3((float)0.9, (float)0.7, (float)0));
+	projectionShader.setMat4("model", model);
+	glDrawArrays(GL_TRIANGLES, 0, 36);
+	model = temp;
+
+	model = glm::rotate(model, glm::radians(-60.0f), glm::vec3(0, 1, 0));
+	model = glm::translate(model, glm::vec3(6.0f, 0.0f, 0.0f));
+	temp = model;//respaldo de matriz
+	model = glm::scale(model, glm::vec3(12.0f, 1.5f, 1.5f));
+	projectionShader.setVec3("aColor", glm::vec3((float)0.9, (float)0.7, (float)0));
+	projectionShader.setMat4("model", model);
+	glDrawArrays(GL_TRIANGLES, 0, 36);
+	model = temp;
+
+	model = glm::translate(model, glm::vec3(6.0f, 0.0f, 0.0f));
+	temp = model;
+	model = glm::scale(model, glm::vec3(3.0f, 21.0f, 3.0f));
+	projectionShader.setVec3("aColor", glm::vec3((float)0.9, (float)0.7, (float)0));
+	projectionShader.setMat4("model", model);
+	glDrawArrays(GL_TRIANGLES, 0, 36);
+	model = temp2;
+
+
+	/////////////////////////////////////////////////
+	model = glm::translate(model, glm::vec3(3.0f, 21.0f, 10.0f));
+	model = glm::rotate(model, glm::radians(25.0f), glm::vec3(1, 0, 0));
+	model = glm::rotate(model, glm::radians(25.0f), glm::vec3(0, 1, 0));
+	model = glm::rotate(model, glm::radians(-15.0f), glm::vec3(0, 0, 1));
+	temp = model;//respaldo de matriz
+	temp2 = model;
+	model = glm::scale(model, glm::vec3(3.0f, 21.0f, 3.0f));
+	projectionShader.setVec3("aColor", glm::vec3((float)0.9, (float)0.7, (float)0));
+	projectionShader.setMat4("model", model);
+	glDrawArrays(GL_TRIANGLES, 0, 36);
+	model = temp;
+
+	model = glm::translate(model, glm::vec3(6.0f, 0.0f, -3.5f));
+	model = glm::rotate(model, glm::radians(30.0f), glm::vec3(0, 1, 0));
+	temp = model;//respaldo de matriz
+	model = glm::scale(model, glm::vec3(12.0f, 1.5f, 1.5f));
+	projectionShader.setVec3("aColor", glm::vec3((float)0.9, (float)0.7, (float)0));
+	projectionShader.setMat4("model", model);
+	glDrawArrays(GL_TRIANGLES, 0, 36);
+	model = temp;
+
+
+	model = glm::translate(model, glm::vec3(6.0f, 0.0f, 0.0f));
+	temp = model;
+	model = glm::scale(model, glm::vec3(3.0f, 21.0f, 3.0f));
+	projectionShader.setVec3("aColor", glm::vec3((float)0.9, (float)0.7, (float)0));
+	projectionShader.setMat4("model", model);
+	glDrawArrays(GL_TRIANGLES, 0, 36);
+	model = temp;
+
+	model = glm::rotate(model, glm::radians(-60.0f), glm::vec3(0, 1, 0));
+	model = glm::translate(model, glm::vec3(6.0f, 0.0f, 0.0f));
+	temp = model;//respaldo de matriz
+	model = glm::scale(model, glm::vec3(12.0f, 1.5f, 1.5f));
+	projectionShader.setVec3("aColor", glm::vec3((float)0.9, (float)0.7, (float)0));
+	projectionShader.setMat4("model", model);
+	glDrawArrays(GL_TRIANGLES, 0, 36);
+	model = temp;
+
+	model = glm::translate(model, glm::vec3(6.0f, 0.0f, 0.0f));
+	temp = model;
+	model = glm::scale(model, glm::vec3(3.0f, 21.0f, 3.0f));
+	projectionShader.setVec3("aColor", glm::vec3((float)0.9, (float)0.7, (float)0));
+	projectionShader.setMat4("model", model);
+	glDrawArrays(GL_TRIANGLES, 0, 36);
+	model = temp2;
+
+	/////////////////////////////////////////////////
+	model = glm::translate(model, glm::vec3(0.0f, 21.0f, 0.0f));
+	//model = glm::rotate(model, glm::radians(30.0f), glm::vec3(1, 0, 0));
+	//model = glm::rotate(model, glm::radians(25.0f), glm::vec3(0, 1, 0));
+	//model = glm::rotate(model, glm::radians(-15.0f), glm::vec3(0, 0, 1));
+	temp = model;//respaldo de matriz
+	temp2 = model;
+	model = glm::scale(model, glm::vec3(3.0f, 21.0f, 3.0f));
+	projectionShader.setVec3("aColor", glm::vec3((float)0.9, (float)0.7, (float)0));
+	projectionShader.setMat4("model", model);
+	glDrawArrays(GL_TRIANGLES, 0, 36);
+	model = temp;
+
+	model = glm::translate(model, glm::vec3(6.0f, 0.0f, -3.5f));
+	model = glm::rotate(model, glm::radians(30.0f), glm::vec3(0, 1, 0));
+	temp = model;//respaldo de matriz
+	model = glm::scale(model, glm::vec3(12.0f, 1.5f, 1.5f));
+	projectionShader.setVec3("aColor", glm::vec3((float)0.9, (float)0.7, (float)0));
+	projectionShader.setMat4("model", model);
+	glDrawArrays(GL_TRIANGLES, 0, 36);
+	model = temp;
+
+
+	model = glm::translate(model, glm::vec3(6.0f, 0.0f, 0.0f));
+	temp = model;
+	model = glm::scale(model, glm::vec3(3.0f, 21.0f, 3.0f));
+	projectionShader.setVec3("aColor", glm::vec3((float)0.9, (float)0.7, (float)0));
+	projectionShader.setMat4("model", model);
+	glDrawArrays(GL_TRIANGLES, 0, 36);
+	model = temp;
+
+	model = glm::rotate(model, glm::radians(-60.0f), glm::vec3(0, 1, 0));
+	model = glm::translate(model, glm::vec3(6.0f, 0.0f, 0.0f));
+	temp = model;//respaldo de matriz
+	model = glm::scale(model, glm::vec3(12.0f, 1.5f, 1.5f));
+	projectionShader.setVec3("aColor", glm::vec3((float)0.9, (float)0.7, (float)0));
+	projectionShader.setMat4("model", model);
+	glDrawArrays(GL_TRIANGLES, 0, 36);
+	model = temp;
+
+	model = glm::translate(model, glm::vec3(6.0f, 0.0f, 0.0f));
+	temp = model;
+	model = glm::scale(model, glm::vec3(3.0f, 21.0f, 3.0f));
+	projectionShader.setVec3("aColor", glm::vec3((float)0.9, (float)0.7, (float)0));
+	projectionShader.setMat4("model", model);
+	glDrawArrays(GL_TRIANGLES, 0, 36);
+	model = temp2;
+
+	/////////////////////////////////////////////////
+	model = glm::translate(model, glm::vec3(0.0f, 21.0f, 0.0f));
+	//model = glm::rotate(model, glm::radians(30.0f), glm::vec3(1, 0, 0));
+	//model = glm::rotate(model, glm::radians(25.0f), glm::vec3(0, 1, 0));
+	//model = glm::rotate(model, glm::radians(-15.0f), glm::vec3(0, 0, 1));
+	temp = model;//respaldo de matriz
+	temp2 = model;
+	model = glm::scale(model, glm::vec3(3.0f, 21.0f, 3.0f));
+	projectionShader.setVec3("aColor", glm::vec3((float)0.9, (float)0.7, (float)0));
+	projectionShader.setMat4("model", model);
+	glDrawArrays(GL_TRIANGLES, 0, 36);
+	model = temp;
+
+	model = glm::translate(model, glm::vec3(6.0f, 0.0f, -3.5f));
+	model = glm::rotate(model, glm::radians(30.0f), glm::vec3(0, 1, 0));
+	temp = model;//respaldo de matriz
+	model = glm::scale(model, glm::vec3(12.0f, 1.5f, 1.5f));
+	projectionShader.setVec3("aColor", glm::vec3((float)0.9, (float)0.7, (float)0));
+	projectionShader.setMat4("model", model);
+	glDrawArrays(GL_TRIANGLES, 0, 36);
+	model = temp;
+
+
+	model = glm::translate(model, glm::vec3(6.0f, 0.0f, 0.0f));
+	temp = model;
+	model = glm::scale(model, glm::vec3(3.0f, 21.0f, 3.0f));
+	projectionShader.setVec3("aColor", glm::vec3((float)0.9, (float)0.7, (float)0));
+	projectionShader.setMat4("model", model);
+	glDrawArrays(GL_TRIANGLES, 0, 36);
+	model = temp;
+
+	model = glm::rotate(model, glm::radians(-60.0f), glm::vec3(0, 1, 0));
+	model = glm::translate(model, glm::vec3(6.0f, 0.0f, 0.0f));
+	temp = model;//respaldo de matriz
+	model = glm::scale(model, glm::vec3(12.0f, 1.5f, 1.5f));
+	projectionShader.setVec3("aColor", glm::vec3((float)0.9, (float)0.7, (float)0));
+	projectionShader.setMat4("model", model);
+	glDrawArrays(GL_TRIANGLES, 0, 36);
+	model = temp;
+
+	model = glm::translate(model, glm::vec3(6.0f, 0.0f, 0.0f));
+	temp = model;
+	model = glm::scale(model, glm::vec3(3.0f, 21.0f, 3.0f));
+	projectionShader.setVec3("aColor", glm::vec3((float)0.9, (float)0.7, (float)0));
+	projectionShader.setMat4("model", model);
+	glDrawArrays(GL_TRIANGLES, 0, 36);
+	model = temp2;
+	/////////////////////////////////////////////////
+	model = glm::translate(model, glm::vec3(0.0f, 21.0f, 0.0f));
+	//model = glm::rotate(model, glm::radians(30.0f), glm::vec3(1, 0, 0));
+	//model = glm::rotate(model, glm::radians(25.0f), glm::vec3(0, 1, 0));
+	//model = glm::rotate(model, glm::radians(-15.0f), glm::vec3(0, 0, 1));
+	temp = model;//respaldo de matriz
+	temp2 = model;
+	model = glm::scale(model, glm::vec3(3.0f, 21.0f, 3.0f));
+	projectionShader.setVec3("aColor", glm::vec3((float)0.9, (float)0.7, (float)0));
+	projectionShader.setMat4("model", model);
+	glDrawArrays(GL_TRIANGLES, 0, 36);
+	model = temp;
+
+	model = glm::translate(model, glm::vec3(6.0f, 0.0f, -3.5f));
+	model = glm::rotate(model, glm::radians(30.0f), glm::vec3(0, 1, 0));
+	temp = model;//respaldo de matriz
+	model = glm::scale(model, glm::vec3(12.0f, 1.5f, 1.5f));
+	projectionShader.setVec3("aColor", glm::vec3((float)0.9, (float)0.7, (float)0));
+	projectionShader.setMat4("model", model);
+	glDrawArrays(GL_TRIANGLES, 0, 36);
+	model = temp;
+
+
+	model = glm::translate(model, glm::vec3(6.0f, 0.0f, 0.0f));
+	temp = model;
+	model = glm::scale(model, glm::vec3(3.0f, 21.0f, 3.0f));
+	projectionShader.setVec3("aColor", glm::vec3((float)0.9, (float)0.7, (float)0));
+	projectionShader.setMat4("model", model);
+	glDrawArrays(GL_TRIANGLES, 0, 36);
+	model = temp;
+
+	model = glm::rotate(model, glm::radians(-60.0f), glm::vec3(0, 1, 0));
+	model = glm::translate(model, glm::vec3(6.0f, 0.0f, 0.0f));
+	temp = model;//respaldo de matriz
+	model = glm::scale(model, glm::vec3(12.0f, 1.5f, 1.5f));
+	projectionShader.setVec3("aColor", glm::vec3((float)0.9, (float)0.7, (float)0));
+	projectionShader.setMat4("model", model);
+	glDrawArrays(GL_TRIANGLES, 0, 36);
+	model = temp;
+
+	model = glm::translate(model, glm::vec3(6.0f, 0.0f, 0.0f));
+	temp = model;
+	model = glm::scale(model, glm::vec3(3.0f, 21.0f, 3.0f));
+	projectionShader.setVec3("aColor", glm::vec3((float)0.9, (float)0.7, (float)0));
+	projectionShader.setMat4("model", model);
+	glDrawArrays(GL_TRIANGLES, 0, 36);
+	model = temp2;
+	/////////////////////////////////////////////////
+	model = glm::translate(model, glm::vec3(0.0f, 21.0f, 0.0f));
+	//model = glm::rotate(model, glm::radians(15.0f), glm::vec3(1, 0, 0));
+	//model = glm::rotate(model, glm::radians(25.0f), glm::vec3(0, 1, 0));
+	//model = glm::rotate(model, glm::radians(-15.0f), glm::vec3(0, 0, 1));
+	temp = model;//respaldo de matriz
+	temp2 = model;
+	model = glm::scale(model, glm::vec3(3.0f, 21.0f, 3.0f));
+	projectionShader.setVec3("aColor", glm::vec3((float)0.9, (float)0.7, (float)0));
+	projectionShader.setMat4("model", model);
+	glDrawArrays(GL_TRIANGLES, 0, 36);
+	model = temp;
+
+	model = glm::translate(model, glm::vec3(6.0f, 0.0f, -3.5f));
+	model = glm::rotate(model, glm::radians(30.0f), glm::vec3(0, 1, 0));
+	temp = model;//respaldo de matriz
+	model = glm::scale(model, glm::vec3(12.0f, 1.5f, 1.5f));
+	projectionShader.setVec3("aColor", glm::vec3((float)0.9, (float)0.7, (float)0));
+	projectionShader.setMat4("model", model);
+	glDrawArrays(GL_TRIANGLES, 0, 36);
+	model = temp;
+
+
+	model = glm::translate(model, glm::vec3(6.0f, 0.0f, 0.0f));
+	temp = model;
+	model = glm::scale(model, glm::vec3(3.0f, 21.0f, 3.0f));
+	projectionShader.setVec3("aColor", glm::vec3((float)0.9, (float)0.7, (float)0));
+	projectionShader.setMat4("model", model);
+	glDrawArrays(GL_TRIANGLES, 0, 36);
+	model = temp;
+
+	model = glm::rotate(model, glm::radians(-60.0f), glm::vec3(0, 1, 0));
+	model = glm::translate(model, glm::vec3(6.0f, 0.0f, 0.0f));
+	temp = model;//respaldo de matriz
+	model = glm::scale(model, glm::vec3(12.0f, 1.5f, 1.5f));
+	projectionShader.setVec3("aColor", glm::vec3((float)0.9, (float)0.7, (float)0));
+	projectionShader.setMat4("model", model);
+	glDrawArrays(GL_TRIANGLES, 0, 36);
+	model = temp;
+
+	model = glm::translate(model, glm::vec3(6.0f, 0.0f, 0.0f));
+	temp = model;
+	model = glm::scale(model, glm::vec3(3.0f, 21.0f, 3.0f));
+	projectionShader.setVec3("aColor", glm::vec3((float)0.9, (float)0.7, (float)0));
+	projectionShader.setMat4("model", model);
+	glDrawArrays(GL_TRIANGLES, 0, 36);
+	model = temp2;
+	/////////////////////////////////////////////////
+	model = glm::translate(model, glm::vec3(0.0f, 21.0f, 0.0f));
+	//model = glm::rotate(model, glm::radians(30.0f), glm::vec3(1, 0, 0));
+	//model = glm::rotate(model, glm::radians(25.0f), glm::vec3(0, 1, 0));
+	//model = glm::rotate(model, glm::radians(-15.0f), glm::vec3(0, 0, 1));
+	temp = model;//respaldo de matriz
+	temp2 = model;
+	model = glm::scale(model, glm::vec3(3.0f, 21.0f, 3.0f));
+	projectionShader.setVec3("aColor", glm::vec3((float)0.9, (float)0.7, (float)0));
+	projectionShader.setMat4("model", model);
+	glDrawArrays(GL_TRIANGLES, 0, 36);
+	model = temp;
+
+	model = glm::translate(model, glm::vec3(6.0f, 0.0f, -3.5f));
+	model = glm::rotate(model, glm::radians(30.0f), glm::vec3(0, 1, 0));
+	temp = model;//respaldo de matriz
+	model = glm::scale(model, glm::vec3(12.0f, 1.5f, 1.5f));
+	projectionShader.setVec3("aColor", glm::vec3((float)0.9, (float)0.7, (float)0));
+	projectionShader.setMat4("model", model);
+	glDrawArrays(GL_TRIANGLES, 0, 36);
+	model = temp;
+
+
+	model = glm::translate(model, glm::vec3(6.0f, 0.0f, 0.0f));
+	temp = model;
+	model = glm::scale(model, glm::vec3(3.0f, 21.0f, 3.0f));
+	projectionShader.setVec3("aColor", glm::vec3((float)0.9, (float)0.7, (float)0));
+	projectionShader.setMat4("model", model);
+	glDrawArrays(GL_TRIANGLES, 0, 36);
+	model = temp;
+
+	model = glm::rotate(model, glm::radians(-60.0f), glm::vec3(0, 1, 0));
+	model = glm::translate(model, glm::vec3(6.0f, 0.0f, 0.0f));
+	temp = model;//respaldo de matriz
+	model = glm::scale(model, glm::vec3(12.0f, 1.5f, 1.5f));
+	projectionShader.setVec3("aColor", glm::vec3((float)0.9, (float)0.7, (float)0));
+	projectionShader.setMat4("model", model);
+	glDrawArrays(GL_TRIANGLES, 0, 36);
+	model = temp;
+
+	model = glm::translate(model, glm::vec3(6.0f, 0.0f, 0.0f));
+	temp = model;
+	model = glm::scale(model, glm::vec3(3.0f, 21.0f, 3.0f));
+	projectionShader.setVec3("aColor", glm::vec3((float)0.9, (float)0.7, (float)0));
+	projectionShader.setMat4("model", model);
+	glDrawArrays(GL_TRIANGLES, 0, 36);
+	model = temp2;
+	/////////////////////////////////////////////////
+	model = glm::translate(model, glm::vec3(0.0f, 21.0f, 0.0f));
+	//model = glm::rotate(model, glm::radians(30.0f), glm::vec3(1, 0, 0));
+	//model = glm::rotate(model, glm::radians(25.0f), glm::vec3(0, 1, 0));
+	//model = glm::rotate(model, glm::radians(-15.0f), glm::vec3(0, 0, 1));
+	temp = model;//respaldo de matriz
+	temp2 = model;
+	model = glm::scale(model, glm::vec3(3.0f, 21.0f, 3.0f));
+	projectionShader.setVec3("aColor", glm::vec3((float)0.9, (float)0.7, (float)0));
+	projectionShader.setMat4("model", model);
+	glDrawArrays(GL_TRIANGLES, 0, 36);
+	model = temp;
+
+	model = glm::translate(model, glm::vec3(6.0f, 0.0f, -3.5f));
+	model = glm::rotate(model, glm::radians(30.0f), glm::vec3(0, 1, 0));
+	temp = model;//respaldo de matriz
+	model = glm::scale(model, glm::vec3(12.0f, 1.5f, 1.5f));
+	projectionShader.setVec3("aColor", glm::vec3((float)0.9, (float)0.7, (float)0));
+	projectionShader.setMat4("model", model);
+	glDrawArrays(GL_TRIANGLES, 0, 36);
+	model = temp;
+
+
+	model = glm::translate(model, glm::vec3(6.0f, 0.0f, 0.0f));
+	temp = model;
+	model = glm::scale(model, glm::vec3(3.0f, 21.0f, 3.0f));
+	projectionShader.setVec3("aColor", glm::vec3((float)0.9, (float)0.7, (float)0));
+	projectionShader.setMat4("model", model);
+	glDrawArrays(GL_TRIANGLES, 0, 36);
+	model = temp;
+
+	model = glm::rotate(model, glm::radians(-60.0f), glm::vec3(0, 1, 0));
+	model = glm::translate(model, glm::vec3(6.0f, 0.0f, 0.0f));
+	temp = model;//respaldo de matriz
+	model = glm::scale(model, glm::vec3(12.0f, 1.5f, 1.5f));
+	projectionShader.setVec3("aColor", glm::vec3((float)0.9, (float)0.7, (float)0));
+	projectionShader.setMat4("model", model);
+	glDrawArrays(GL_TRIANGLES, 0, 36);
+	model = temp;
+
+	model = glm::translate(model, glm::vec3(6.0f, 0.0f, 0.0f));
+	temp = model;
+	model = glm::scale(model, glm::vec3(3.0f, 21.0f, 3.0f));
+	projectionShader.setVec3("aColor", glm::vec3((float)0.9, (float)0.7, (float)0));
+	projectionShader.setMat4("model", model);
+	glDrawArrays(GL_TRIANGLES, 0, 36);
+	model = temp2;
+	/////////////////////////////////////////////////
+	model = glm::translate(model, glm::vec3(0.0f, 21.0f, 0.0f));
+	//model = glm::rotate(model, glm::radians(30.0f), glm::vec3(1, 0, 0));
+	//model = glm::rotate(model, glm::radians(25.0f), glm::vec3(0, 1, 0));
+	//model = glm::rotate(model, glm::radians(-15.0f), glm::vec3(0, 0, 1));
+	temp = model;//respaldo de matriz
+	temp2 = model;
+	model = glm::scale(model, glm::vec3(3.0f, 21.0f, 3.0f));
+	projectionShader.setVec3("aColor", glm::vec3((float)0.9, (float)0.7, (float)0));
+	projectionShader.setMat4("model", model);
+	glDrawArrays(GL_TRIANGLES, 0, 36);
+	model = temp;
+
+	model = glm::translate(model, glm::vec3(6.0f, 0.0f, -3.5f));
+	model = glm::rotate(model, glm::radians(30.0f), glm::vec3(0, 1, 0));
+	temp = model;//respaldo de matriz
+	model = glm::scale(model, glm::vec3(12.0f, 1.5f, 1.5f));
+	projectionShader.setVec3("aColor", glm::vec3((float)0.9, (float)0.7, (float)0));
+	projectionShader.setMat4("model", model);
+	glDrawArrays(GL_TRIANGLES, 0, 36);
+	model = temp;
+
+
+	model = glm::translate(model, glm::vec3(6.0f, 0.0f, 0.0f));
+	temp = model;
+	model = glm::scale(model, glm::vec3(3.0f, 21.0f, 3.0f));
+	projectionShader.setVec3("aColor", glm::vec3((float)0.9, (float)0.7, (float)0));
+	projectionShader.setMat4("model", model);
+	glDrawArrays(GL_TRIANGLES, 0, 36);
+	model = temp;
+
+	model = glm::rotate(model, glm::radians(-60.0f), glm::vec3(0, 1, 0));
+	model = glm::translate(model, glm::vec3(6.0f, 0.0f, 0.0f));
+	temp = model;//respaldo de matriz
+	model = glm::scale(model, glm::vec3(12.0f, 1.5f, 1.5f));
+	projectionShader.setVec3("aColor", glm::vec3((float)0.9, (float)0.7, (float)0));
+	projectionShader.setMat4("model", model);
+	glDrawArrays(GL_TRIANGLES, 0, 36);
+	model = temp;
+
+	model = glm::translate(model, glm::vec3(6.0f, 0.0f, 0.0f));
+	temp = model;
+	model = glm::scale(model, glm::vec3(3.0f, 21.0f, 3.0f));
+	projectionShader.setVec3("aColor", glm::vec3((float)0.9, (float)0.7, (float)0));
+	projectionShader.setMat4("model", model);
+	glDrawArrays(GL_TRIANGLES, 0, 36);
+	model = temp2;
+
+	/////////////////////////////////////////////////
+	model = glm::translate(model, glm::vec3(0.0f, 21.0f, 0.0f));
+	//model = glm::rotate(model, glm::radians(30.0f), glm::vec3(1, 0, 0));
+	//model = glm::rotate(model, glm::radians(25.0f), glm::vec3(0, 1, 0));
+	//model = glm::rotate(model, glm::radians(-15.0f), glm::vec3(0, 0, 1));
+	temp = model;//respaldo de matriz
+	temp2 = model;
+	model = glm::scale(model, glm::vec3(3.0f, 21.0f, 3.0f));
+	projectionShader.setVec3("aColor", glm::vec3((float)0.9, (float)0.7, (float)0));
+	projectionShader.setMat4("model", model);
+	glDrawArrays(GL_TRIANGLES, 0, 36);
+	model = temp;
+
+	model = glm::translate(model, glm::vec3(6.0f, 0.0f, -3.5f));
+	model = glm::rotate(model, glm::radians(30.0f), glm::vec3(0, 1, 0));
+	temp = model;//respaldo de matriz
+	model = glm::scale(model, glm::vec3(12.0f, 1.5f, 1.5f));
+	projectionShader.setVec3("aColor", glm::vec3((float)0.9, (float)0.7, (float)0));
+	projectionShader.setMat4("model", model);
+	glDrawArrays(GL_TRIANGLES, 0, 36);
+	model = temp;
+
+
+	model = glm::translate(model, glm::vec3(6.0f, 0.0f, 0.0f));
+	temp = model;
+	model = glm::scale(model, glm::vec3(3.0f, 21.0f, 3.0f));
+	projectionShader.setVec3("aColor", glm::vec3((float)0.9, (float)0.7, (float)0));
+	projectionShader.setMat4("model", model);
+	glDrawArrays(GL_TRIANGLES, 0, 36);
+	model = temp;
+
+	model = glm::rotate(model, glm::radians(-60.0f), glm::vec3(0, 1, 0));
+	model = glm::translate(model, glm::vec3(6.0f, 0.0f, 0.0f));
+	temp = model;//respaldo de matriz
+	model = glm::scale(model, glm::vec3(12.0f, 1.5f, 1.5f));
+	projectionShader.setVec3("aColor", glm::vec3((float)0.9, (float)0.7, (float)0));
+	projectionShader.setMat4("model", model);
+	glDrawArrays(GL_TRIANGLES, 0, 36);
+	model = temp;
+
+	model = glm::translate(model, glm::vec3(6.0f, 0.0f, 0.0f));
+	temp = model;
+	model = glm::scale(model, glm::vec3(3.0f, 21.0f, 3.0f));
+	projectionShader.setVec3("aColor", glm::vec3((float)0.9, (float)0.7, (float)0));
+	projectionShader.setMat4("model", model);
+	glDrawArrays(GL_TRIANGLES, 0, 36);
+	model = temp2;
+	/////////////////////////////////////////////////
+	model = glm::translate(model, glm::vec3(0.0f, 21.0f, 0.0f));
+	//model = glm::rotate(model, glm::radians(30.0f), glm::vec3(1, 0, 0));
+	//model = glm::rotate(model, glm::radians(25.0f), glm::vec3(0, 1, 0));
+	//model = glm::rotate(model, glm::radians(-15.0f), glm::vec3(0, 0, 1));
+	temp = model;//respaldo de matriz
+	temp2 = model;
+	model = glm::scale(model, glm::vec3(3.0f, 21.0f, 3.0f));
+	projectionShader.setVec3("aColor", glm::vec3((float)0.9, (float)0.7, (float)0));
+	projectionShader.setMat4("model", model);
+	glDrawArrays(GL_TRIANGLES, 0, 36);
+	model = temp;
+
+	model = glm::translate(model, glm::vec3(6.0f, 0.0f, -3.5f));
+	model = glm::rotate(model, glm::radians(30.0f), glm::vec3(0, 1, 0));
+	temp = model;//respaldo de matriz
+	model = glm::scale(model, glm::vec3(12.0f, 1.5f, 1.5f));
+	projectionShader.setVec3("aColor", glm::vec3((float)0.9, (float)0.7, (float)0));
+	projectionShader.setMat4("model", model);
+	glDrawArrays(GL_TRIANGLES, 0, 36);
+	model = temp;
+
+
+	model = glm::translate(model, glm::vec3(6.0f, 0.0f, 0.0f));
+	temp = model;
+	model = glm::scale(model, glm::vec3(3.0f, 21.0f, 3.0f));
+	projectionShader.setVec3("aColor", glm::vec3((float)0.9, (float)0.7, (float)0));
+	projectionShader.setMat4("model", model);
+	glDrawArrays(GL_TRIANGLES, 0, 36);
+	model = temp;
+
+	model = glm::rotate(model, glm::radians(-60.0f), glm::vec3(0, 1, 0));
+	model = glm::translate(model, glm::vec3(6.0f, 0.0f, 0.0f));
+	temp = model;//respaldo de matriz
+	model = glm::scale(model, glm::vec3(12.0f, 1.5f, 1.5f));
+	projectionShader.setVec3("aColor", glm::vec3((float)0.9, (float)0.7, (float)0));
+	projectionShader.setMat4("model", model);
+	glDrawArrays(GL_TRIANGLES, 0, 36);
+	model = temp;
+
+	model = glm::translate(model, glm::vec3(6.0f, 0.0f, 0.0f));
+	temp = model;
+	model = glm::scale(model, glm::vec3(3.0f, 21.0f, 3.0f));
+	projectionShader.setVec3("aColor", glm::vec3((float)0.9, (float)0.7, (float)0));
+	projectionShader.setMat4("model", model);
+	glDrawArrays(GL_TRIANGLES, 0, 36);
+	model = temp2;
+	/////////////////////////////////////////////////
+	model = glm::translate(model, glm::vec3(0.0f, 21.0f, 0.0f));
+	//model = glm::rotate(model, glm::radians(30.0f), glm::vec3(1, 0, 0));
+	//model = glm::rotate(model, glm::radians(25.0f), glm::vec3(0, 1, 0));
+	//model = glm::rotate(model, glm::radians(-15.0f), glm::vec3(0, 0, 1));
+	temp = model;//respaldo de matriz
+	temp2 = model;
+	model = glm::scale(model, glm::vec3(3.0f, 21.0f, 3.0f));
+	projectionShader.setVec3("aColor", glm::vec3((float)0.9, (float)0.7, (float)0));
+	projectionShader.setMat4("model", model);
+	glDrawArrays(GL_TRIANGLES, 0, 36);
+	model = temp;
+
+	model = glm::translate(model, glm::vec3(6.0f, 0.0f, -3.5f));
+	model = glm::rotate(model, glm::radians(30.0f), glm::vec3(0, 1, 0));
+	temp = model;//respaldo de matriz
+	model = glm::scale(model, glm::vec3(12.0f, 1.5f, 1.5f));
+	projectionShader.setVec3("aColor", glm::vec3((float)0.9, (float)0.7, (float)0));
+	projectionShader.setMat4("model", model);
+	glDrawArrays(GL_TRIANGLES, 0, 36);
+	model = temp;
+
+
+	model = glm::translate(model, glm::vec3(6.0f, 0.0f, 0.0f));
+	temp = model;
+	model = glm::scale(model, glm::vec3(3.0f, 21.0f, 3.0f));
+	projectionShader.setVec3("aColor", glm::vec3((float)0.9, (float)0.7, (float)0));
+	projectionShader.setMat4("model", model);
+	glDrawArrays(GL_TRIANGLES, 0, 36);
+	model = temp;
+
+	model = glm::rotate(model, glm::radians(-60.0f), glm::vec3(0, 1, 0));
+	model = glm::translate(model, glm::vec3(6.0f, 0.0f, 0.0f));
+	temp = model;//respaldo de matriz
+	model = glm::scale(model, glm::vec3(12.0f, 1.5f, 1.5f));
+	projectionShader.setVec3("aColor", glm::vec3((float)0.9, (float)0.7, (float)0));
+	projectionShader.setMat4("model", model);
+	glDrawArrays(GL_TRIANGLES, 0, 36);
+	model = temp;
+
+	model = glm::translate(model, glm::vec3(6.0f, 0.0f, 0.0f));
+	temp = model;
+	model = glm::scale(model, glm::vec3(3.0f, 21.0f, 3.0f));
+	projectionShader.setVec3("aColor", glm::vec3((float)0.9, (float)0.7, (float)0));
+	projectionShader.setMat4("model", model);
+	glDrawArrays(GL_TRIANGLES, 0, 36);
+	model = temp2;
+
+	/////////////////////////////////////////////////
+	model = glm::translate(model, glm::vec3(0.0f, 21.0f, 0.0f));
+	//model = glm::rotate(model, glm::radians(30.0f), glm::vec3(1, 0, 0));
+	//model = glm::rotate(model, glm::radians(25.0f), glm::vec3(0, 1, 0));
+	//model = glm::rotate(model, glm::radians(-15.0f), glm::vec3(0, 0, 1));
+	temp = model;//respaldo de matriz
+	temp2 = model;
+	model = glm::scale(model, glm::vec3(3.0f, 21.0f, 3.0f));
+	projectionShader.setVec3("aColor", glm::vec3((float)0.9, (float)0.7, (float)0));
+	projectionShader.setMat4("model", model);
+	glDrawArrays(GL_TRIANGLES, 0, 36);
+	model = temp;
+
+	model = glm::translate(model, glm::vec3(6.0f, 0.0f, -3.5f));
+	model = glm::rotate(model, glm::radians(30.0f), glm::vec3(0, 1, 0));
+	temp = model;//respaldo de matriz
+	model = glm::scale(model, glm::vec3(12.0f, 1.5f, 1.5f));
+	projectionShader.setVec3("aColor", glm::vec3((float)0.9, (float)0.7, (float)0));
+	projectionShader.setMat4("model", model);
+	glDrawArrays(GL_TRIANGLES, 0, 36);
+	model = temp;
+
+
+	model = glm::translate(model, glm::vec3(6.0f, 0.0f, 0.0f));
+	temp = model;
+	model = glm::scale(model, glm::vec3(3.0f, 21.0f, 3.0f));
+	projectionShader.setVec3("aColor", glm::vec3((float)0.9, (float)0.7, (float)0));
+	projectionShader.setMat4("model", model);
+	glDrawArrays(GL_TRIANGLES, 0, 36);
+	model = temp;
+
+	model = glm::rotate(model, glm::radians(-60.0f), glm::vec3(0, 1, 0));
+	model = glm::translate(model, glm::vec3(6.0f, 0.0f, 0.0f));
+	temp = model;//respaldo de matriz
+	model = glm::scale(model, glm::vec3(12.0f, 1.5f, 1.5f));
+	projectionShader.setVec3("aColor", glm::vec3((float)0.9, (float)0.7, (float)0));
+	projectionShader.setMat4("model", model);
+	glDrawArrays(GL_TRIANGLES, 0, 36);
+	model = temp;
+
+	model = glm::translate(model, glm::vec3(6.0f, 0.0f, 0.0f));
+	temp = model;
+	model = glm::scale(model, glm::vec3(3.0f, 21.0f, 3.0f));
+	projectionShader.setVec3("aColor", glm::vec3((float)0.9, (float)0.7, (float)0));
+	projectionShader.setMat4("model", model);
+	glDrawArrays(GL_TRIANGLES, 0, 36);
+	model = temp2;
+	/////////////////////////////////////////////////
+	model = glm::translate(model, glm::vec3(0.0f, 21.0f, 0.0f));
+	//model = glm::rotate(model, glm::radians(30.0f), glm::vec3(1, 0, 0));
+	//model = glm::rotate(model, glm::radians(25.0f), glm::vec3(0, 1, 0));
+	//model = glm::rotate(model, glm::radians(-15.0f), glm::vec3(0, 0, 1));
+	temp = model;//respaldo de matriz
+	temp2 = model;
+	model = glm::scale(model, glm::vec3(3.0f, 21.0f, 3.0f));
+	projectionShader.setVec3("aColor", glm::vec3((float)0.9, (float)0.7, (float)0));
+	projectionShader.setMat4("model", model);
+	glDrawArrays(GL_TRIANGLES, 0, 36);
+	model = temp;
+
+	model = glm::translate(model, glm::vec3(6.0f, 0.0f, -3.5f));
+	model = glm::rotate(model, glm::radians(30.0f), glm::vec3(0, 1, 0));
+	temp = model;//respaldo de matriz
+	model = glm::scale(model, glm::vec3(12.0f, 1.5f, 1.5f));
+	projectionShader.setVec3("aColor", glm::vec3((float)0.9, (float)0.7, (float)0));
+	projectionShader.setMat4("model", model);
+	glDrawArrays(GL_TRIANGLES, 0, 36);
+	model = temp;
+
+
+	model = glm::translate(model, glm::vec3(6.0f, 0.0f, 0.0f));
+	temp = model;
+	model = glm::scale(model, glm::vec3(3.0f, 21.0f, 3.0f));
+	projectionShader.setVec3("aColor", glm::vec3((float)0.9, (float)0.7, (float)0));
+	projectionShader.setMat4("model", model);
+	glDrawArrays(GL_TRIANGLES, 0, 36);
+	model = temp;
+
+	model = glm::rotate(model, glm::radians(-60.0f), glm::vec3(0, 1, 0));
+	model = glm::translate(model, glm::vec3(6.0f, 0.0f, 0.0f));
+	temp = model;//respaldo de matriz
+	model = glm::scale(model, glm::vec3(12.0f, 1.5f, 1.5f));
+	projectionShader.setVec3("aColor", glm::vec3((float)0.9, (float)0.7, (float)0));
+	projectionShader.setMat4("model", model);
+	glDrawArrays(GL_TRIANGLES, 0, 36);
+	model = temp;
+
+	model = glm::translate(model, glm::vec3(6.0f, 0.0f, 0.0f));
+	temp = model;
+	model = glm::scale(model, glm::vec3(3.0f, 21.0f, 3.0f));
+	projectionShader.setVec3("aColor", glm::vec3((float)0.9, (float)0.7, (float)0));
+	projectionShader.setMat4("model", model);
+	glDrawArrays(GL_TRIANGLES, 0, 36);
+	model = temp2;
+	/////////////////////////////////////////////////
+	model = glm::translate(model, glm::vec3(2.0f, 21.0f, 0.0f));
+	//model = glm::rotate(model, glm::radians(30.0f), glm::vec3(1, 0, 0));
+	//model = glm::rotate(model, glm::radians(25.0f), glm::vec3(0, 1, 0));
+	model = glm::rotate(model, glm::radians(-25.0f), glm::vec3(0, 0, 1));
+	temp = model;//respaldo de matriz
+	temp2 = model;
+	model = glm::scale(model, glm::vec3(3.0f, 21.0f, 3.0f));
+	projectionShader.setVec3("aColor", glm::vec3((float)0.9, (float)0.7, (float)0));
+	projectionShader.setMat4("model", model);
+	glDrawArrays(GL_TRIANGLES, 0, 36);
+	model = temp;
+
+	model = glm::translate(model, glm::vec3(6.0f, 0.0f, -3.5f));
+	model = glm::rotate(model, glm::radians(30.0f), glm::vec3(0, 1, 0));
+	temp = model;//respaldo de matriz
+	model = glm::scale(model, glm::vec3(12.0f, 1.5f, 1.5f));
+	projectionShader.setVec3("aColor", glm::vec3((float)0.9, (float)0.7, (float)0));
+	projectionShader.setMat4("model", model);
+	glDrawArrays(GL_TRIANGLES, 0, 36);
+	model = temp;
+
+
+	model = glm::translate(model, glm::vec3(6.0f, 0.0f, 0.0f));
+	temp = model;
+	model = glm::scale(model, glm::vec3(3.0f, 21.0f, 3.0f));
+	projectionShader.setVec3("aColor", glm::vec3((float)0.9, (float)0.7, (float)0));
+	projectionShader.setMat4("model", model);
+	glDrawArrays(GL_TRIANGLES, 0, 36);
+	model = temp;
+
+	model = glm::rotate(model, glm::radians(-60.0f), glm::vec3(0, 1, 0));
+	model = glm::translate(model, glm::vec3(6.0f, 0.0f, 0.0f));
+	temp = model;//respaldo de matriz
+	model = glm::scale(model, glm::vec3(12.0f, 1.5f, 1.5f));
+	projectionShader.setVec3("aColor", glm::vec3((float)0.9, (float)0.7, (float)0));
+	projectionShader.setMat4("model", model);
+	glDrawArrays(GL_TRIANGLES, 0, 36);
+	model = temp;
+
+	model = glm::translate(model, glm::vec3(6.0f, 0.0f, 0.0f));
+	temp = model;
+	model = glm::scale(model, glm::vec3(3.0f, 21.0f, 3.0f));
+	projectionShader.setVec3("aColor", glm::vec3((float)0.9, (float)0.7, (float)0));
+	projectionShader.setMat4("model", model);
+	glDrawArrays(GL_TRIANGLES, 0, 36);
+	model = temp2;
+
+	/////////////////////////////////////////////////
+	model = glm::translate(model, glm::vec3(2.0f, 21.0f, 0.0f));
+	//model = glm::rotate(model, glm::radians(30.0f), glm::vec3(1, 0, 0));
+	//model = glm::rotate(model, glm::radians(25.0f), glm::vec3(0, 1, 0));
+	model = glm::rotate(model, glm::radians(-15.0f), glm::vec3(0, 0, 1));
+	temp = model;//respaldo de matriz
+	temp2 = model;
+	model = glm::scale(model, glm::vec3(3.0f, 21.0f, 3.0f));
+	projectionShader.setVec3("aColor", glm::vec3((float)0.9, (float)0.7, (float)0));
+	projectionShader.setMat4("model", model);
+	glDrawArrays(GL_TRIANGLES, 0, 36);
+	model = temp;
+
+	model = glm::translate(model, glm::vec3(6.0f, 0.0f, -3.5f));
+	model = glm::rotate(model, glm::radians(30.0f), glm::vec3(0, 1, 0));
+	temp = model;//respaldo de matriz
+	model = glm::scale(model, glm::vec3(12.0f, 1.5f, 1.5f));
+	projectionShader.setVec3("aColor", glm::vec3((float)0.9, (float)0.7, (float)0));
+	projectionShader.setMat4("model", model);
+	glDrawArrays(GL_TRIANGLES, 0, 36);
+	model = temp;
+
+
+	model = glm::translate(model, glm::vec3(6.0f, 0.0f, 0.0f));
+	temp = model;
+	model = glm::scale(model, glm::vec3(3.0f, 21.0f, 3.0f));
+	projectionShader.setVec3("aColor", glm::vec3((float)0.9, (float)0.7, (float)0));
+	projectionShader.setMat4("model", model);
+	glDrawArrays(GL_TRIANGLES, 0, 36);
+	model = temp;
+
+	model = glm::rotate(model, glm::radians(-60.0f), glm::vec3(0, 1, 0));
+	model = glm::translate(model, glm::vec3(6.0f, 0.0f, 0.0f));
+	temp = model;//respaldo de matriz
+	model = glm::scale(model, glm::vec3(12.0f, 1.5f, 1.5f));
+	projectionShader.setVec3("aColor", glm::vec3((float)0.9, (float)0.7, (float)0));
+	projectionShader.setMat4("model", model);
+	glDrawArrays(GL_TRIANGLES, 0, 36);
+	model = temp;
+
+	model = glm::translate(model, glm::vec3(6.0f, 0.0f, 0.0f));
+	temp = model;
+	model = glm::scale(model, glm::vec3(3.0f, 21.0f, 3.0f));
+	projectionShader.setVec3("aColor", glm::vec3((float)0.9, (float)0.7, (float)0));
+	projectionShader.setMat4("model", model);
+	glDrawArrays(GL_TRIANGLES, 0, 36);
+	model = temp2;
+	/////////////////////////////////////////////////
+	model = glm::translate(model, glm::vec3(2.0f, 21.0f, 0.0f));
+	model = glm::rotate(model, glm::radians(-5.0f), glm::vec3(1, 0, 0));
+	//model = glm::rotate(model, glm::radians(25.0f), glm::vec3(0, 1, 0));
+	model = glm::rotate(model, glm::radians(-25.0f), glm::vec3(0, 0, 1));
+	temp = model;//respaldo de matriz
+	temp2 = model;
+	model = glm::scale(model, glm::vec3(3.0f, 21.0f, 3.0f));
+	projectionShader.setVec3("aColor", glm::vec3((float)0.9, (float)0.7, (float)0));
+	projectionShader.setMat4("model", model);
+	glDrawArrays(GL_TRIANGLES, 0, 36);
+	model = temp;
+
+	model = glm::translate(model, glm::vec3(6.0f, 0.0f, -3.5f));
+	model = glm::rotate(model, glm::radians(30.0f), glm::vec3(0, 1, 0));
+	temp = model;//respaldo de matriz
+	model = glm::scale(model, glm::vec3(12.0f, 1.5f, 1.5f));
+	projectionShader.setVec3("aColor", glm::vec3((float)0.9, (float)0.7, (float)0));
+	projectionShader.setMat4("model", model);
+	glDrawArrays(GL_TRIANGLES, 0, 36);
+	model = temp;
+
+
+	model = glm::translate(model, glm::vec3(6.0f, 0.0f, 0.0f));
+	temp = model;
+	model = glm::scale(model, glm::vec3(3.0f, 21.0f, 3.0f));
+	projectionShader.setVec3("aColor", glm::vec3((float)0.9, (float)0.7, (float)0));
+	projectionShader.setMat4("model", model);
+	glDrawArrays(GL_TRIANGLES, 0, 36);
+	model = temp;
+
+	model = glm::rotate(model, glm::radians(-60.0f), glm::vec3(0, 1, 0));
+	model = glm::translate(model, glm::vec3(6.0f, 0.0f, 0.0f));
+	temp = model;//respaldo de matriz
+	model = glm::scale(model, glm::vec3(12.0f, 1.5f, 1.5f));
+	projectionShader.setVec3("aColor", glm::vec3((float)0.9, (float)0.7, (float)0));
+	projectionShader.setMat4("model", model);
+	glDrawArrays(GL_TRIANGLES, 0, 36);
+	model = temp;
+
+	model = glm::translate(model, glm::vec3(6.0f, 0.0f, 0.0f));
+	temp = model;
+	model = glm::scale(model, glm::vec3(3.0f, 21.0f, 3.0f));
+	projectionShader.setVec3("aColor", glm::vec3((float)0.9, (float)0.7, (float)0));
+	projectionShader.setMat4("model", model);
+	glDrawArrays(GL_TRIANGLES, 0, 36);
+	model = temp2;
+
+	/////////////////////////////////////////////////
+	model = glm::translate(model, glm::vec3(2.0f, 21.0f, 0.0f));
+	//model = glm::rotate(model, glm::radians(30.0f), glm::vec3(1, 0, 0));
+	//model = glm::rotate(model, glm::radians(25.0f), glm::vec3(0, 1, 0));
+	model = glm::rotate(model, glm::radians(-15.0f), glm::vec3(0, 0, 1));
+	temp = model;//respaldo de matriz
+	temp2 = model;
+	model = glm::scale(model, glm::vec3(3.0f, 21.0f, 3.0f));
+	projectionShader.setVec3("aColor", glm::vec3((float)0.9, (float)0.7, (float)0));
+	projectionShader.setMat4("model", model);
+	glDrawArrays(GL_TRIANGLES, 0, 36);
+	model = temp;
+
+	model = glm::translate(model, glm::vec3(6.0f, 0.0f, -3.5f));
+	model = glm::rotate(model, glm::radians(30.0f), glm::vec3(0, 1, 0));
+	temp = model;//respaldo de matriz
+	model = glm::scale(model, glm::vec3(12.0f, 1.5f, 1.5f));
+	projectionShader.setVec3("aColor", glm::vec3((float)0.9, (float)0.7, (float)0));
+	projectionShader.setMat4("model", model);
+	glDrawArrays(GL_TRIANGLES, 0, 36);
+	model = temp;
+
+
+	model = glm::translate(model, glm::vec3(6.0f, 0.0f, 0.0f));
+	temp = model;
+	model = glm::scale(model, glm::vec3(3.0f, 21.0f, 3.0f));
+	projectionShader.setVec3("aColor", glm::vec3((float)0.9, (float)0.7, (float)0));
+	projectionShader.setMat4("model", model);
+	glDrawArrays(GL_TRIANGLES, 0, 36);
+	model = temp;
+
+	model = glm::rotate(model, glm::radians(-60.0f), glm::vec3(0, 1, 0));
+	model = glm::translate(model, glm::vec3(6.0f, 0.0f, 0.0f));
+	temp = model;//respaldo de matriz
+	model = glm::scale(model, glm::vec3(12.0f, 1.5f, 1.5f));
+	projectionShader.setVec3("aColor", glm::vec3((float)0.9, (float)0.7, (float)0));
+	projectionShader.setMat4("model", model);
+	glDrawArrays(GL_TRIANGLES, 0, 36);
+	model = temp;
+
+	model = glm::translate(model, glm::vec3(6.0f, 0.0f, 0.0f));
+	temp = model;
+	model = glm::scale(model, glm::vec3(3.0f, 21.0f, 3.0f));
+	projectionShader.setVec3("aColor", glm::vec3((float)0.9, (float)0.7, (float)0));
+	projectionShader.setMat4("model", model);
+	glDrawArrays(GL_TRIANGLES, 0, 36);
+	model = temp2;
+	///////////
+	/////////////////////////////////////////////////
+	model = glm::translate(model, glm::vec3(2.0f, 21.0f, 0.0f));
+	model = glm::rotate(model, glm::radians(-10.0f), glm::vec3(1, 0, 0));
+	//model = glm::rotate(model, glm::radians(25.0f), glm::vec3(0, 1, 0));
+	model = glm::rotate(model, glm::radians(-15.0f), glm::vec3(0, 0, 1));
+	temp = model;//respaldo de matriz
+	temp2 = model;
+	model = glm::scale(model, glm::vec3(3.0f, 21.0f, 3.0f));
+	projectionShader.setVec3("aColor", glm::vec3((float)0.9, (float)0.7, (float)0));
+	projectionShader.setMat4("model", model);
+	glDrawArrays(GL_TRIANGLES, 0, 36);
+	model = temp;
+
+	model = glm::translate(model, glm::vec3(6.0f, 0.0f, -3.5f));
+	model = glm::rotate(model, glm::radians(30.0f), glm::vec3(0, 1, 0));
+	temp = model;//respaldo de matriz
+	model = glm::scale(model, glm::vec3(12.0f, 1.5f, 1.5f));
+	projectionShader.setVec3("aColor", glm::vec3((float)0.9, (float)0.7, (float)0));
+	projectionShader.setMat4("model", model);
+	glDrawArrays(GL_TRIANGLES, 0, 36);
+	model = temp;
+
+
+	model = glm::translate(model, glm::vec3(6.0f, 0.0f, 0.0f));
+	temp = model;
+	model = glm::scale(model, glm::vec3(3.0f, 21.0f, 3.0f));
+	projectionShader.setVec3("aColor", glm::vec3((float)0.9, (float)0.7, (float)0));
+	projectionShader.setMat4("model", model);
+	glDrawArrays(GL_TRIANGLES, 0, 36);
+	model = temp;
+
+	model = glm::rotate(model, glm::radians(-60.0f), glm::vec3(0, 1, 0));
+	model = glm::translate(model, glm::vec3(6.0f, 0.0f, 0.0f));
+	temp = model;//respaldo de matriz
+	model = glm::scale(model, glm::vec3(12.0f, 1.5f, 1.5f));
+	projectionShader.setVec3("aColor", glm::vec3((float)0.9, (float)0.7, (float)0));
+	projectionShader.setMat4("model", model);
+	glDrawArrays(GL_TRIANGLES, 0, 36);
+	model = temp;
+
+	model = glm::translate(model, glm::vec3(6.0f, 0.0f, 0.0f));
+	temp = model;
+	model = glm::scale(model, glm::vec3(3.0f, 21.0f, 3.0f));
+	projectionShader.setVec3("aColor", glm::vec3((float)0.9, (float)0.7, (float)0));
+	projectionShader.setMat4("model", model);
+	glDrawArrays(GL_TRIANGLES, 0, 36);
+	///////////
+
 	//Soporte1
 	model = savestate.at(0) = glm::translate(savestate.at(0) = glm::mat4(1.0f), glm::vec3(9.546*escala/2, 8.9 /2*escala, 4 * escala / 1.5 *2.3));
 	model = glm::rotate(model, glm::radians(45.0f), glm::vec3(0.0f, 0.0f, 1.0f));
