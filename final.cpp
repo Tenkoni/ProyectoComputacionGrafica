@@ -93,7 +93,12 @@ float escala = 15.0f;
  
 
 //reja savestate
-glm::mat4 savestatereja = glm::mat4(1.0f);
+glm::mat4 savestatereja = glm::mat4(1.0f), savestatereja2;
+float test_grados = 0.0f,
+		test_pos_x = 0.0f,
+		test_pos_z = 0.0f;
+
+
 
 unsigned int generateTextures(const char* filename, bool alfa)
 {
@@ -226,7 +231,7 @@ void animate(void)
 
 }
 
-void display(Shader shader, Shader projectionShader, Model modelo, Model pista, Model reja)
+void display(Shader shader, Shader projectionShader, Model modelo, Model pista, Model pista2, Model reja)
 {
 	//shader.use();
 
@@ -253,9 +258,10 @@ void display(Shader shader, Shader projectionShader, Model modelo, Model pista, 
 
 	glBindVertexArray(VAO);
 
-	/////RIEL-BASE
+//////////MONTAÑA
+/////RIEL-BASE
 	/////////////////////////////////////////////////
-	model = glm::translate(model, glm::vec3(-500.0f, 10.0f, -600.0f));
+	model = glm::translate(model, glm::vec3(-500.0f, 10.0f, -485.0f));
 	model = glm::rotate(model, glm::radians(-90.0f), glm::vec3(1, 0, 0));
 	temp = model;//respaldo de matriz
 	temp2 = model;
@@ -5396,7 +5402,10 @@ void display(Shader shader, Shader projectionShader, Model modelo, Model pista, 
 	projectionShader.setMat4("model", model);
 	glDrawArrays(GL_TRIANGLES, 0, 36);
 	///////////
+	/////////////////
+	///////////////////////////
 
+	//rueda de la fortuna
 	//Soporte1
 	model = savestate.at(0) = glm::translate(savestate.at(0) = glm::mat4(1.0f), glm::vec3(9.546*escala/2, 8.9 /2*escala, 4 * escala / 1.5 *2.3));
 	model = glm::rotate(model, glm::radians(45.0f), glm::vec3(0.0f, 0.0f, 1.0f));
@@ -5483,11 +5492,18 @@ void display(Shader shader, Shader projectionShader, Model modelo, Model pista, 
 	shader.setMat4("model", model);
 	pista.Draw(shader);
 
+	model = glm::translate(model = glm::mat4(1.0f), glm::vec3(0, 0, -594));
+	model = glm::rotate(model, glm::radians(90.0f), glm::vec3(0.0f, 1.0f, 0.0f));
+	model = glm::scale(model, glm::vec3(4.5f, 0.0f, 2.5f));
+	shader.setMat4("model", model);
+	pista2.Draw(shader);
+
 	model = glm::translate(model = glm::mat4(1.0f), glm::vec3(movKit_x, movKit_y, movKit_z));
 	model = glm::rotate(model, glm::radians(rotKit_y), glm::vec3(0.0f, 1.0f, 0.0f));
 	shader.setMat4("model", model);
 	//modelo.Draw(shader);
 
+	//fence bottom start
 	model = savestatereja = glm::translate(model = glm::mat4(1.0f), glm::vec3(15, 0, 52));
 	model = glm::rotate(model, glm::radians(90.0f), glm::vec3(0.0f, 1.0f, 0.0f));
 	model = glm::scale(model, glm::vec3(4.5f, 4.5f, 4.5f));
@@ -5496,14 +5512,14 @@ void display(Shader shader, Shader projectionShader, Model modelo, Model pista, 
 
 	for (int ind = 0; ind < 6; ind++)
 	{
-		model = savestatereja = glm::translate(savestatereja, glm::vec3(11.3, 0, 0));
+		model = savestatereja = savestatereja2 = glm::translate(savestatereja, glm::vec3(11.3, 0, 0));
 		model = glm::rotate(model, glm::radians(90.0f), glm::vec3(0.0f, 1.0f, 0.0f));
 		model = glm::scale(model, glm::vec3(4.5f, 4.5f, 4.5f));
 		shader.setMat4("model", model);
 		reja.Draw(shader);
 	}
 
-	model = savestatereja = glm::translate(model = glm::mat4(1.0f), glm::vec3(-15, 0, 52));
+	model = savestatereja  = glm::translate(model = glm::mat4(1.0f), glm::vec3(-15, 0, 52));
 	model = glm::rotate(model, glm::radians(90.0f), glm::vec3(0.0f, 1.0f, 0.0f));
 	model = glm::scale(model, glm::vec3(4.5f, 4.5f, 4.5f));
 	shader.setMat4("model", model);
@@ -5517,6 +5533,532 @@ void display(Shader shader, Shader projectionShader, Model modelo, Model pista, 
 		shader.setMat4("model", model);
 		reja.Draw(shader);
 	}
+	//first_ low left
+	model = glm::translate(savestatereja, glm::vec3(-11.3/2, 0, 0));
+	model = savestatereja = glm::rotate(model, glm::radians(32.0f), glm::vec3(0.0f, 1.0f, 0.0f));
+	model = glm::scale(model, glm::vec3(4.5f, 4.5f, 4.5f));
+	shader.setMat4("model", model);
+	reja.Draw(shader);
+
+	for (int ind = 0; ind < 6; ind++)
+	{
+		model = savestatereja = glm::translate(savestatereja, glm::vec3(0, 0, -11.3));
+		//model = glm::rotate(model, glm::radians(-114.0f), glm::vec3(0.0f, 1.0f, 0.0f));
+		model = glm::scale(model, glm::vec3(4.5f, 4.5f, 4.5f));
+		shader.setMat4("model", model);
+		reja.Draw(shader);
+	}
+
+	model = glm::translate(model = glm::mat4(1.0f), glm::vec3(-130.75, 0, -12.5));
+	model = savestatereja = glm::rotate(model, glm::radians(46.0f), glm::vec3(0.0f, 1.0f, 0.0f));
+	model = glm::scale(model, glm::vec3(4.5f, 4.5f, 4.5f));
+	shader.setMat4("model", model);
+	reja.Draw(shader);
+
+	for (int ind = 0; ind < 8; ind++)
+	{
+		model = savestatereja = glm::translate(savestatereja, glm::vec3(0, 0, -11.3));
+		//model = glm::rotate(model, glm::radians(-114.0f), glm::vec3(0.0f, 1.0f, 0.0f));
+		model = glm::scale(model, glm::vec3(4.5f, 4.5f, 4.5f));
+		shader.setMat4("model", model);
+		reja.Draw(shader);
+	}
+
+	model = glm::translate(model = glm::mat4(1.0f), glm::vec3(-205.25, 0, -81.75));
+	model = savestatereja = glm::rotate(model, glm::radians(62.1f), glm::vec3(0.0f, 1.0f, 0.0f));
+	model = glm::scale(model, glm::vec3(4.5f, 4.5f, 4.5f));
+	shader.setMat4("model", model);
+	reja.Draw(shader);
+
+	for (int ind = 0; ind < 3; ind++)
+	{
+		model = savestatereja = glm::translate(savestatereja, glm::vec3(0, 0, -11.3));
+		//model = glm::rotate(model, glm::radians(-114.0f), glm::vec3(0.0f, 1.0f, 0.0f));
+		model = glm::scale(model, glm::vec3(4.5f, 4.5f, 4.5f));
+		shader.setMat4("model", model);
+		reja.Draw(shader);
+	}
+
+	model = glm::translate(model = glm::mat4(1.0f), glm::vec3(-243.25, 0, -101.5));
+	model = savestatereja = glm::rotate(model, glm::radians(73.8f), glm::vec3(0.0f, 1.0f, 0.0f));
+	model = glm::scale(model, glm::vec3(4.5f, 4.5f, 4.5f));
+	shader.setMat4("model", model);
+	reja.Draw(shader);
+
+	for (int ind = 0; ind < 9; ind++)
+	{
+		model = savestatereja = glm::translate(savestatereja, glm::vec3(0, 0, -11.3));
+		//model = glm::rotate(model, glm::radians(-114.0f), glm::vec3(0.0f, 1.0f, 0.0f));
+		model = glm::scale(model, glm::vec3(4.5f, 4.5f, 4.5f));
+		shader.setMat4("model", model);
+		reja.Draw(shader);
+	}
+
+
+	model = glm::translate(model = glm::mat4(1.0f), glm::vec3 (-351.75, 0, -132.25));
+	model = savestatereja = glm::rotate(model, glm::radians(84.8f), glm::vec3(0.0f, 1.0f, 0.0f));
+	model = glm::scale(model, glm::vec3(4.5f, 4.5f, 4.5f));
+	shader.setMat4("model", model);
+	reja.Draw(shader);
+
+	for (int ind = 0; ind < 3; ind++)
+	{
+		model = savestatereja = glm::translate(savestatereja, glm::vec3(0, 0, -11.3));
+		//model = glm::rotate(model, glm::radians(-114.0f), glm::vec3(0.0f, 1.0f, 0.0f));
+		model = glm::scale(model, glm::vec3(4.5f, 4.5f, 4.5f));
+		shader.setMat4("model", model);
+		reja.Draw(shader);
+	}
+
+	model = glm::translate(model = glm::mat4(1.0f), glm::vec3(-396.5, 0, -135.75));
+	model = savestatereja = glm::rotate(model, glm::radians(89.9f), glm::vec3(0.0f, 1.0f, 0.0f));
+	model = glm::scale(model, glm::vec3(4.5f, 4.5f, 4.5f));
+	shader.setMat4("model", model);
+	reja.Draw(shader);
+
+	for (int ind = 0; ind < 3; ind++)
+	{
+		model = savestatereja = glm::translate(savestatereja, glm::vec3(0, 0, -11.3));
+		//model = glm::rotate(model, glm::radians(-114.0f), glm::vec3(0.0f, 1.0f, 0.0f));
+		model = glm::scale(model, glm::vec3(4.5f, 4.5f, 4.5f));
+		shader.setMat4("model", model);
+		reja.Draw(shader);
+	}
+
+	model = glm::translate(model = glm::mat4(1.0f), glm::vec3(-441.5, 0, -135.5));
+	model = savestatereja = glm::rotate(model, glm::radians(94.9f), glm::vec3(0.0f, 1.0f, 0.0f));
+	model = glm::scale(model, glm::vec3(4.5f, 4.5f, 4.5f));
+	shader.setMat4("model", model);
+	reja.Draw(shader);
+
+	for (int ind = 0; ind < 3; ind++)
+	{
+		model = savestatereja = glm::translate(savestatereja, glm::vec3(0, 0, -11.3));
+		//model = glm::rotate(model, glm::radians(-114.0f), glm::vec3(0.0f, 1.0f, 0.0f));
+		model = glm::scale(model, glm::vec3(4.5f, 4.5f, 4.5f));
+		shader.setMat4("model", model);
+		reja.Draw(shader);
+	}
+
+	model = glm::translate(model = glm::mat4(1.0f), glm::vec3(-483.75, 0, -130));
+	model = savestatereja = glm::rotate(model, glm::radians(112.6f), glm::vec3(0.0f, 1.0f, 0.0f));
+	model = glm::scale(model, glm::vec3(4.5f, 4.5f, 4.5f));
+	shader.setMat4("model", model);
+	reja.Draw(shader);
+
+	for (int ind = 0; ind < 5; ind++)
+	{
+		model = savestatereja = glm::translate(savestatereja, glm::vec3(0, 0, -11.3));
+		//model = glm::rotate(model, glm::radians(-114.0f), glm::vec3(0.0f, 1.0f, 0.0f));
+		model = glm::scale(model, glm::vec3(4.5f, 4.5f, 4.5f));
+		shader.setMat4("model", model);
+		reja.Draw(shader);
+	}
+	//second-fence low_right
+	model = glm::translate(savestatereja2, glm::vec3(11.3 / 2, 0, 0));
+	model = savestatereja = glm::rotate(model, glm::radians(180-32.0f), glm::vec3(0.0f, 1.0f, 0.0f));
+	model = glm::scale(model, glm::vec3(4.5f, 4.5f, 4.5f));
+	shader.setMat4("model", model);
+	reja.Draw(shader);
+
+	for (int ind = 0; ind < 6; ind++)
+	{
+		model = savestatereja = glm::translate(savestatereja, glm::vec3(0, 0, 11.3));
+		//model = glm::rotate(model, glm::radians(-114.0f), glm::vec3(0.0f, 1.0f, 0.0f));
+		model = glm::scale(model, glm::vec3(4.5f, 4.5f, 4.5f));
+		shader.setMat4("model", model);
+		reja.Draw(shader);
+	}
+
+	model = glm::translate(model = glm::mat4(1.0f), glm::vec3(130.75, 0, -12.5));
+	model = savestatereja = glm::rotate(model, glm::radians(180-46.0f), glm::vec3(0.0f, 1.0f, 0.0f));
+	model = glm::scale(model, glm::vec3(4.5f, 4.5f, 4.5f));
+	shader.setMat4("model", model);
+	reja.Draw(shader);
+
+	for (int ind = 0; ind < 8; ind++)
+	{
+		model = savestatereja = glm::translate(savestatereja, glm::vec3(0, 0, 11.3));
+		//model = glm::rotate(model, glm::radians(-114.0f), glm::vec3(0.0f, 1.0f, 0.0f));
+		model = glm::scale(model, glm::vec3(4.5f, 4.5f, 4.5f));
+		shader.setMat4("model", model);
+		reja.Draw(shader);
+	}
+
+	model = glm::translate(model = glm::mat4(1.0f), glm::vec3(205.25, 0, -81.75));
+	model = savestatereja = glm::rotate(model, glm::radians(180-62.1f), glm::vec3(0.0f, 1.0f, 0.0f));
+	model = glm::scale(model, glm::vec3(4.5f, 4.5f, 4.5f));
+	shader.setMat4("model", model);
+	reja.Draw(shader);
+
+	for (int ind = 0; ind < 3; ind++)
+	{
+		model = savestatereja = glm::translate(savestatereja, glm::vec3(0, 0, 11.3));
+		//model = glm::rotate(model, glm::radians(-114.0f), glm::vec3(0.0f, 1.0f, 0.0f));
+		model = glm::scale(model, glm::vec3(4.5f, 4.5f, 4.5f));
+		shader.setMat4("model", model);
+		reja.Draw(shader);
+	}
+
+	model = glm::translate(model = glm::mat4(1.0f), glm::vec3(243.25, 0, -101.5));
+	model = savestatereja = glm::rotate(model, glm::radians(180-73.8f), glm::vec3(0.0f, 1.0f, 0.0f));
+	model = glm::scale(model, glm::vec3(4.5f, 4.5f, 4.5f));
+	shader.setMat4("model", model);
+	reja.Draw(shader);
+
+	for (int ind = 0; ind < 9; ind++)
+	{
+		model = savestatereja = glm::translate(savestatereja, glm::vec3(0, 0, 11.3));
+		//model = glm::rotate(model, glm::radians(-114.0f), glm::vec3(0.0f, 1.0f, 0.0f));
+		model = glm::scale(model, glm::vec3(4.5f, 4.5f, 4.5f));
+		shader.setMat4("model", model);
+		reja.Draw(shader);
+	}
+
+
+	model = glm::translate(model = glm::mat4(1.0f), glm::vec3(351.75, 0, -132.25));
+	model = savestatereja = glm::rotate(model, glm::radians(180-84.8f), glm::vec3(0.0f, 1.0f, 0.0f));
+	model = glm::scale(model, glm::vec3(4.5f, 4.5f, 4.5f));
+	shader.setMat4("model", model);
+	reja.Draw(shader);
+
+	for (int ind = 0; ind < 3; ind++)
+	{
+		model = savestatereja = glm::translate(savestatereja, glm::vec3(0, 0, 11.3));
+		//model = glm::rotate(model, glm::radians(-114.0f), glm::vec3(0.0f, 1.0f, 0.0f));
+		model = glm::scale(model, glm::vec3(4.5f, 4.5f, 4.5f));
+		shader.setMat4("model", model);
+		reja.Draw(shader);
+	}
+
+	model = glm::translate(model = glm::mat4(1.0f), glm::vec3(396.5, 0, -135.75));
+	model = savestatereja = glm::rotate(model, glm::radians(180-89.9f), glm::vec3(0.0f, 1.0f, 0.0f));
+	model = glm::scale(model, glm::vec3(4.5f, 4.5f, 4.5f));
+	shader.setMat4("model", model);
+	reja.Draw(shader);
+
+	for (int ind = 0; ind < 3; ind++)
+	{
+		model = savestatereja = glm::translate(savestatereja, glm::vec3(0, 0, 11.3));
+		//model = glm::rotate(model, glm::radians(-114.0f), glm::vec3(0.0f, 1.0f, 0.0f));
+		model = glm::scale(model, glm::vec3(4.5f, 4.5f, 4.5f));
+		shader.setMat4("model", model);
+		reja.Draw(shader);
+	}
+
+	model = glm::translate(model = glm::mat4(1.0f), glm::vec3(441.5, 0, -135.5));
+	model = savestatereja = glm::rotate(model, glm::radians(180-94.9f), glm::vec3(0.0f, 1.0f, 0.0f));
+	model = glm::scale(model, glm::vec3(4.5f, 4.5f, 4.5f));
+	shader.setMat4("model", model);
+	reja.Draw(shader);
+
+	for (int ind = 0; ind < 3; ind++)
+	{
+		model = savestatereja = glm::translate(savestatereja, glm::vec3(0, 0, 11.3));
+		//model = glm::rotate(model, glm::radians(-114.0f), glm::vec3(0.0f, 1.0f, 0.0f));
+		model = glm::scale(model, glm::vec3(4.5f, 4.5f, 4.5f));
+		shader.setMat4("model", model);
+		reja.Draw(shader);
+	}
+
+	model = glm::translate(model = glm::mat4(1.0f), glm::vec3(483.75, 0, -130));
+	model = savestatereja = glm::rotate(model, glm::radians(180 - 112.6f), glm::vec3(0.0f, 1.0f, 0.0f));
+	model = glm::scale(model, glm::vec3(4.5f, 4.5f, 4.5f));
+	shader.setMat4("model", model);
+	reja.Draw(shader);
+
+	for (int ind = 0; ind < 5; ind++)
+	{
+		model = savestatereja = glm::translate(savestatereja, glm::vec3(0, 0, 11.3));
+		//model = glm::rotate(model, glm::radians(-114.0f), glm::vec3(0.0f, 1.0f, 0.0f));
+		model = glm::scale(model, glm::vec3(4.5f, 4.5f, 4.5f));
+		shader.setMat4("model", model);
+		reja.Draw(shader);
+	}
+	// fence top start
+
+	model = savestatereja = glm::translate(model = glm::mat4(1.0f), glm::vec3(15, 0, -503));
+	model = glm::rotate(model, glm::radians(90.0f), glm::vec3(0.0f, 1.0f, 0.0f));
+	model = glm::scale(model, glm::vec3(4.5f, 4.5f, 4.5f));
+	shader.setMat4("model", model);
+	reja.Draw(shader);
+
+	for (int ind = 0; ind < 6; ind++)
+	{
+		model = savestatereja = savestatereja2 = glm::translate(savestatereja, glm::vec3(11.3, 0, 0));
+		model = glm::rotate(model, glm::radians(90.0f), glm::vec3(0.0f, 1.0f, 0.0f));
+		model = glm::scale(model, glm::vec3(4.5f, 4.5f, 4.5f));
+		shader.setMat4("model", model);
+		reja.Draw(shader);
+	}
+
+	model = savestatereja = glm::translate(model = glm::mat4(1.0f), glm::vec3(-15, 0, -503));
+	model = glm::rotate(model, glm::radians(90.0f), glm::vec3(0.0f, 1.0f, 0.0f));
+	model = glm::scale(model, glm::vec3(4.5f, 4.5f, 4.5f));
+	shader.setMat4("model", model);
+	reja.Draw(shader);
+
+	for (int ind = 0; ind < 6; ind++)
+	{
+		model = savestatereja = glm::translate(savestatereja, glm::vec3(-11.3, 0, 0));
+		model = glm::rotate(model, glm::radians(90.0f), glm::vec3(0.0f, 1.0f, 0.0f));
+		model = glm::scale(model, glm::vec3(4.5f, 4.5f, 4.5f));
+		shader.setMat4("model", model);
+		reja.Draw(shader);
+	}
+	//fence left top
+
+	model = glm::translate(savestatereja, glm::vec3(-11.3 / 2, 0, 0));
+	model = savestatereja = glm::rotate(model, glm::radians(180 - 32.0f), glm::vec3(0.0f, 1.0f, 0.0f));
+	model = glm::scale(model, glm::vec3(4.5f, 4.5f, 4.5f));
+	shader.setMat4("model", model);
+	reja.Draw(shader);
+
+	for (int ind = 0; ind < 6; ind++)
+	{
+		model = savestatereja = glm::translate(savestatereja, glm::vec3(0, 0, -11.3));
+		//model = glm::rotate(model, glm::radians(-114.0f), glm::vec3(0.0f, 1.0f, 0.0f));
+		model = glm::scale(model, glm::vec3(4.5f, 4.5f, 4.5f));
+		shader.setMat4("model", model);
+		reja.Draw(shader);
+	}
+
+	model = glm::translate(model = glm::mat4(1.0f), glm::vec3(-130.75, 0, 12.5 - 503 + 52));
+	model = savestatereja = glm::rotate(model, glm::radians(180-46.0f), glm::vec3(0.0f, 1.0f, 0.0f));
+	model = glm::scale(model, glm::vec3(4.5f, 4.5f, 4.5f));
+	shader.setMat4("model", model);
+	reja.Draw(shader);
+
+	for (int ind = 0; ind < 8; ind++)
+	{
+		model = savestatereja = glm::translate(savestatereja, glm::vec3(0, 0, -11.3));
+		//model = glm::rotate(model, glm::radians(-114.0f), glm::vec3(0.0f, 1.0f, 0.0f));
+		model = glm::scale(model, glm::vec3(4.5f, 4.5f, 4.5f));
+		shader.setMat4("model", model);
+		reja.Draw(shader);
+	}
+
+	model = glm::translate(model = glm::mat4(1.0f), glm::vec3(-205.25, 0, 81.75 - 503 + 52));
+	model = savestatereja = glm::rotate(model, glm::radians(180-62.1f), glm::vec3(0.0f, 1.0f, 0.0f));
+	model = glm::scale(model, glm::vec3(4.5f, 4.5f, 4.5f));
+	shader.setMat4("model", model);
+	reja.Draw(shader);
+
+	for (int ind = 0; ind < 3; ind++)
+	{
+		model = savestatereja = glm::translate(savestatereja, glm::vec3(0, 0, -11.3));
+		//model = glm::rotate(model, glm::radians(-114.0f), glm::vec3(0.0f, 1.0f, 0.0f));
+		model = glm::scale(model, glm::vec3(4.5f, 4.5f, 4.5f));
+		shader.setMat4("model", model);
+		reja.Draw(shader);
+	}
+
+	model = glm::translate(model = glm::mat4(1.0f), glm::vec3(-243.25, 0, 101.5 - 503 + 52));
+	model = savestatereja = glm::rotate(model, glm::radians(180-73.8f), glm::vec3(0.0f, 1.0f, 0.0f));
+	model = glm::scale(model, glm::vec3(4.5f, 4.5f, 4.5f));
+	shader.setMat4("model", model);
+	reja.Draw(shader);
+
+	for (int ind = 0; ind < 9; ind++)
+	{
+		model = savestatereja = glm::translate(savestatereja, glm::vec3(0, 0, -11.3));
+		//model = glm::rotate(model, glm::radians(-114.0f), glm::vec3(0.0f, 1.0f, 0.0f));
+		model = glm::scale(model, glm::vec3(4.5f, 4.5f, 4.5f));
+		shader.setMat4("model", model);
+		reja.Draw(shader);
+	}
+
+
+	model = glm::translate(model = glm::mat4(1.0f), glm::vec3(-351.75, 0, 132.25 - 503 + 52));
+	model = savestatereja = glm::rotate(model, glm::radians(180-84.8f), glm::vec3(0.0f, 1.0f, 0.0f));
+	model = glm::scale(model, glm::vec3(4.5f, 4.5f, 4.5f));
+	shader.setMat4("model", model);
+	reja.Draw(shader);
+
+	for (int ind = 0; ind < 3; ind++)
+	{
+		model = savestatereja = glm::translate(savestatereja, glm::vec3(0, 0, -11.3));
+		//model = glm::rotate(model, glm::radians(-114.0f), glm::vec3(0.0f, 1.0f, 0.0f));
+		model = glm::scale(model, glm::vec3(4.5f, 4.5f, 4.5f));
+		shader.setMat4("model", model);
+		reja.Draw(shader);
+	}
+
+	model = glm::translate(model = glm::mat4(1.0f), glm::vec3(-396.5, 0, 135.75 - 503 + 52));
+	model = savestatereja = glm::rotate(model, glm::radians(180-89.9f), glm::vec3(0.0f, 1.0f, 0.0f));
+	model = glm::scale(model, glm::vec3(4.5f, 4.5f, 4.5f));
+	shader.setMat4("model", model);
+	reja.Draw(shader);
+
+	for (int ind = 0; ind < 3; ind++)
+	{
+		model = savestatereja = glm::translate(savestatereja, glm::vec3(0, 0, -11.3));
+		//model = glm::rotate(model, glm::radians(-114.0f), glm::vec3(0.0f, 1.0f, 0.0f));
+		model = glm::scale(model, glm::vec3(4.5f, 4.5f, 4.5f));
+		shader.setMat4("model", model);
+		reja.Draw(shader);
+	}
+
+	model = glm::translate(model = glm::mat4(1.0f), glm::vec3(-441.5, 0, 135.5 - 503 + 52));
+	model = savestatereja = glm::rotate(model, glm::radians(180-94.9f), glm::vec3(0.0f, 1.0f, 0.0f));
+	model = glm::scale(model, glm::vec3(4.5f, 4.5f, 4.5f));
+	shader.setMat4("model", model);
+	reja.Draw(shader);
+
+	for (int ind = 0; ind < 3; ind++)
+	{
+		model = savestatereja = glm::translate(savestatereja, glm::vec3(0, 0, -11.3));
+		//model = glm::rotate(model, glm::radians(-114.0f), glm::vec3(0.0f, 1.0f, 0.0f));
+		model = glm::scale(model, glm::vec3(4.5f, 4.5f, 4.5f));
+		shader.setMat4("model", model);
+		reja.Draw(shader);
+	}
+
+	model = glm::translate(model = glm::mat4(1.0f), glm::vec3(-483.75, 0, 130 - 503 + 52));
+	model = savestatereja = glm::rotate(model, glm::radians(180-112.6f), glm::vec3(0.0f, 1.0f, 0.0f));
+	model = glm::scale(model, glm::vec3(4.5f, 4.5f, 4.5f));
+	shader.setMat4("model", model);
+	reja.Draw(shader);
+
+	for (int ind = 0; ind < 5; ind++)
+	{
+		model = savestatereja = glm::translate(savestatereja, glm::vec3(0, 0, -11.3));
+		//model = glm::rotate(model, glm::radians(-114.0f), glm::vec3(0.0f, 1.0f, 0.0f));
+		model = glm::scale(model, glm::vec3(4.5f, 4.5f, 4.5f));
+		shader.setMat4("model", model);
+		reja.Draw(shader);
+	}
+	//fence right top
+
+	model = glm::translate(savestatereja2, glm::vec3(11.3 / 2, 0, 0));
+	model = savestatereja = glm::rotate(model, glm::radians(180 + 32.0f), glm::vec3(0.0f, 1.0f, 0.0f));
+	model = glm::scale(model, glm::vec3(4.5f, 4.5f, 4.5f));
+	shader.setMat4("model", model);
+	reja.Draw(shader);
+
+	for (int ind = 0; ind < 6; ind++)
+	{
+		model = savestatereja = glm::translate(savestatereja, glm::vec3(0, 0, -11.3));
+		//model = glm::rotate(model, glm::radians(-114.0f), glm::vec3(0.0f, 1.0f, 0.0f));
+		model = glm::scale(model, glm::vec3(4.5f, 4.5f, 4.5f));
+		shader.setMat4("model", model);
+		reja.Draw(shader);
+	}
+
+	model = glm::translate(model = glm::mat4(1.0f), glm::vec3(130.75, 0, 12.5-503 + 52));
+	model = savestatereja = glm::rotate(model, glm::radians(180 + 46.0f), glm::vec3(0.0f, 1.0f, 0.0f));
+	model = glm::scale(model, glm::vec3(4.5f, 4.5f, 4.5f));
+	shader.setMat4("model", model);
+	reja.Draw(shader);
+
+	for (int ind = 0; ind < 8; ind++)
+	{
+		model = savestatereja = glm::translate(savestatereja, glm::vec3(0, 0, -11.3));
+		//model = glm::rotate(model, glm::radians(-114.0f), glm::vec3(0.0f, 1.0f, 0.0f));
+		model = glm::scale(model, glm::vec3(4.5f, 4.5f, 4.5f));
+		shader.setMat4("model", model);
+		reja.Draw(shader);
+	}
+
+	model = glm::translate(model = glm::mat4(1.0f), glm::vec3(205.25, 0, 81.75 - 503 +52));
+	model = savestatereja = glm::rotate(model, glm::radians(180 + 62.1f), glm::vec3(0.0f, 1.0f, 0.0f));
+	model = glm::scale(model, glm::vec3(4.5f, 4.5f, 4.5f));
+	shader.setMat4("model", model);
+	reja.Draw(shader);
+
+	for (int ind = 0; ind < 3; ind++)
+	{
+		model = savestatereja = glm::translate(savestatereja, glm::vec3(0, 0, -11.3));
+		//model = glm::rotate(model, glm::radians(-114.0f), glm::vec3(0.0f, 1.0f, 0.0f));
+		model = glm::scale(model, glm::vec3(4.5f, 4.5f, 4.5f));
+		shader.setMat4("model", model);
+		reja.Draw(shader);
+	}
+
+	model = glm::translate(model = glm::mat4(1.0f), glm::vec3(243.25, 0, 101.5 - 503 + 52));
+	model = savestatereja = glm::rotate(model, glm::radians(180 + 73.8f), glm::vec3(0.0f, 1.0f, 0.0f));
+	model = glm::scale(model, glm::vec3(4.5f, 4.5f, 4.5f));
+	shader.setMat4("model", model);
+	reja.Draw(shader);
+
+	for (int ind = 0; ind < 9; ind++)
+	{
+		model = savestatereja = glm::translate(savestatereja, glm::vec3(0, 0, -11.3));
+		//model = glm::rotate(model, glm::radians(-114.0f), glm::vec3(0.0f, 1.0f, 0.0f));
+		model = glm::scale(model, glm::vec3(4.5f, 4.5f, 4.5f));
+		shader.setMat4("model", model);
+		reja.Draw(shader);
+	}
+
+
+	model = glm::translate(model = glm::mat4(1.0f), glm::vec3(351.75, 0, 132.25 - 503 + 52));
+	model = savestatereja = glm::rotate(model, glm::radians(180 + 84.8f), glm::vec3(0.0f, 1.0f, 0.0f));
+	model = glm::scale(model, glm::vec3(4.5f, 4.5f, 4.5f));
+	shader.setMat4("model", model);
+	reja.Draw(shader);
+
+	for (int ind = 0; ind < 3; ind++)
+	{
+		model = savestatereja = glm::translate(savestatereja, glm::vec3(0, 0, -11.3));
+		//model = glm::rotate(model, glm::radians(-114.0f), glm::vec3(0.0f, 1.0f, 0.0f));
+		model = glm::scale(model, glm::vec3(4.5f, 4.5f, 4.5f));
+		shader.setMat4("model", model);
+		reja.Draw(shader);
+	}
+
+	model = glm::translate(model = glm::mat4(1.0f), glm::vec3(396.5, 0, 135.75 - 503 + 52));
+	model = savestatereja = glm::rotate(model, glm::radians(180 + 89.9f), glm::vec3(0.0f, 1.0f, 0.0f));
+	model = glm::scale(model, glm::vec3(4.5f, 4.5f, 4.5f));
+	shader.setMat4("model", model);
+	reja.Draw(shader);
+
+	for (int ind = 0; ind < 3; ind++)
+	{
+		model = savestatereja = glm::translate(savestatereja, glm::vec3(0, 0, -11.3));
+		//model = glm::rotate(model, glm::radians(-114.0f), glm::vec3(0.0f, 1.0f, 0.0f));
+		model = glm::scale(model, glm::vec3(4.5f, 4.5f, 4.5f));
+		shader.setMat4("model", model);
+		reja.Draw(shader);
+	}
+
+	model = glm::translate(model = glm::mat4(1.0f), glm::vec3(441.5, 0, 135.5 - 503 + 52));
+	model = savestatereja = glm::rotate(model, glm::radians(180 + 94.9f), glm::vec3(0.0f, 1.0f, 0.0f));
+	model = glm::scale(model, glm::vec3(4.5f, 4.5f, 4.5f));
+	shader.setMat4("model", model);
+	reja.Draw(shader);
+
+	for (int ind = 0; ind < 3; ind++)
+	{
+		model = savestatereja = glm::translate(savestatereja, glm::vec3(0, 0, -11.3));
+		//model = glm::rotate(model, glm::radians(-114.0f), glm::vec3(0.0f, 1.0f, 0.0f));
+		model = glm::scale(model, glm::vec3(4.5f, 4.5f, 4.5f));
+		shader.setMat4("model", model);
+		reja.Draw(shader);
+	}
+
+	model = glm::translate(model = glm::mat4(1.0f), glm::vec3(483.75, 0, 130 - 503 + 52));
+	model = savestatereja = glm::rotate(model, glm::radians(180 + 112.6f), glm::vec3(0.0f, 1.0f, 0.0f));
+	model = glm::scale(model, glm::vec3(4.5f, 4.5f, 4.5f));
+	shader.setMat4("model", model);
+	reja.Draw(shader);
+
+	for (int ind = 0; ind < 5; ind++)
+	{
+		model = savestatereja = glm::translate(savestatereja, glm::vec3(0, 0, -11.3));
+		//model = glm::rotate(model, glm::radians(-114.0f), glm::vec3(0.0f, 1.0f, 0.0f));
+		model = glm::scale(model, glm::vec3(4.5f, 4.5f, 4.5f));
+		shader.setMat4("model", model);
+		reja.Draw(shader);
+	}
+
+
+
+	////puede ser util para encontrar coordenadas de x, z, además de rotaciones en y
+	//model = glm::translate(model = glm::mat4(1.0f), glm::vec3(test_pos_x, 0, test_pos_z));
+	//model = savestatereja = glm::rotate(model, glm::radians(test_grados), glm::vec3(0.0f, 1.0f, 0.0f));
+	//model = glm::scale(model, glm::vec3(4.5f, 4.5f, 4.5f));
+	//shader.setMat4("model", model);
+	//reja.Draw(shader);
 
 }
 
@@ -5578,6 +6120,7 @@ int main()
 	// Load models
 	Model ourModel = ((char *)"Models/kit2.obj");
 	Model pista = ((char *)"Models/pista2.obj");
+	Model pista2 = ((char *)"Models/piso3test.obj");
 	Model reja = ((char *)"Models/reja/reja.obj");
 
 	glm::mat4 projection = glm::mat4(1.0f);	//This matrix is for Projection
@@ -5601,7 +6144,7 @@ int main()
 		glClearColor(1.0f, 1.0f, 1.0f, 1.0f);
 		glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
-		display(modelShader, projectionShader, ourModel, pista, reja);
+		display(modelShader, projectionShader, ourModel, pista, pista2, reja);
 
 		// glfw: swap buffers and poll IO events (keys pressed/released, mouse moved etc.)
 		// -------------------------------------------------------------------------------
@@ -5642,6 +6185,47 @@ void my_input(GLFWwindow *window)
 		reversa = false;
 	if (glfwGetKey(window, GLFW_KEY_Z) == GLFW_PRESS)
 		reversa = true;
+
+	if (glfwGetKey(window, GLFW_KEY_R) == GLFW_PRESS)
+	{
+		test_grados += 0.1;
+		std::cout << "Grados: " << test_grados << std::endl;
+	}
+
+	if (glfwGetKey(window, GLFW_KEY_T) == GLFW_PRESS)
+	{
+		test_grados -= 0.1;
+		std::cout << "Grados: " << test_grados << std::endl;
+	}
+	if (glfwGetKey(window, GLFW_KEY_UP) == GLFW_PRESS)
+	{
+		test_pos_z += 0.25;
+		std::cout << "PosZ: " << test_pos_z << std::endl;
+	}
+	if (glfwGetKey(window, GLFW_KEY_DOWN) == GLFW_PRESS)
+	{
+		test_pos_z -= 0.25;
+		std::cout << "PosZ: " << test_pos_z << std::endl;
+	}
+	if (glfwGetKey(window, GLFW_KEY_RIGHT) == GLFW_PRESS)
+	{
+		test_pos_x += 0.25;
+		std::cout << "PosX: " << test_pos_x << std::endl;
+	}
+	if (glfwGetKey(window, GLFW_KEY_LEFT) == GLFW_PRESS)
+	{
+		test_pos_x -= 0.25;
+		std::cout << "PosX: " << test_pos_x << std::endl;
+	}
+	if (glfwGetKey(window, GLFW_KEY_I) == GLFW_PRESS)
+	{
+		std::cout << "-----COORDINATES-----" << std::endl;
+		std::cout << "PosX: " << test_pos_x << std::endl;
+		std::cout << "PosZ: " << test_pos_z << std::endl;
+		std::cout << "Grados: " << test_grados << std::endl;
+		std::cout << "---------------------" << std::endl;
+	}
+	
 
 }
 
