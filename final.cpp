@@ -96,7 +96,9 @@ float escala = 15.0f;
 glm::mat4 savestatereja = glm::mat4(1.0f), savestatereja2;
 float test_grados = 0.0f,
 		test_pos_x = 0.0f,
-		test_pos_z = 0.0f;
+		test_pos_z = 0.0f,
+	test_pos_x2 = 0.0f,
+	test_pos_z2 = 0.0f;
 
 
 
@@ -231,7 +233,7 @@ void animate(void)
 
 }
 
-void display(Shader shader, Shader projectionShader, Model modelo, Model pista, Model pista2, Model reja)
+void display(Shader shader, Shader projectionShader, Model modelo, Model pista, Model pista2, Model reja, vector<Model> tienda, vector<Model> gente, vector<Model> arbol)
 {
 	//shader.use();
 
@@ -5492,7 +5494,7 @@ void display(Shader shader, Shader projectionShader, Model modelo, Model pista, 
 	shader.setMat4("model", model);
 	pista.Draw(shader);
 
-	model = glm::translate(model = glm::mat4(1.0f), glm::vec3(0, 0, -594));
+	model = glm::translate(model = glm::mat4(1.0f), glm::vec3(0, 0, -600));
 	model = glm::rotate(model, glm::radians(90.0f), glm::vec3(0.0f, 1.0f, 0.0f));
 	model = glm::scale(model, glm::vec3(4.5f, 0.0f, 2.5f));
 	shader.setMat4("model", model);
@@ -5501,6 +5503,8 @@ void display(Shader shader, Shader projectionShader, Model modelo, Model pista, 
 	model = glm::translate(model = glm::mat4(1.0f), glm::vec3(movKit_x, movKit_y, movKit_z));
 	model = glm::rotate(model, glm::radians(rotKit_y), glm::vec3(0.0f, 1.0f, 0.0f));
 	shader.setMat4("model", model);
+
+
 	//modelo.Draw(shader);
 
 	//fence bottom start
@@ -6052,13 +6056,289 @@ void display(Shader shader, Shader projectionShader, Model modelo, Model pista, 
 	}
 
 
+	model = glm::translate(model = glm::mat4(1.0f), glm::vec3(511.25, 0, -151.25));
+	model = savestatereja = glm::rotate(model, glm::radians(-111.1f), glm::vec3(0.0f, 1.0f, 0.0f));
+	model = glm::scale(model, glm::vec3(6.5f, 6.5f, 6.5f));
+	shader.setMat4("model", model);
+	tienda.at(0).Draw(shader); //dagashi 
 
-	////puede ser util para encontrar coordenadas de x, z, además de rotaciones en y
+	model = glm::translate(model = glm::mat4(1.0f), glm::vec3(507.5, 0, -297.5));
+	model = savestatereja = glm::rotate(model, glm::radians(-69.0f), glm::vec3(0.0f, 1.0f, 0.0f));
+	model = glm::scale(model, glm::vec3(6.5f, 6.5f, 6.5f));
+	shader.setMat4("model", model);
+	tienda.at(1).Draw(shader); //puesto box
+
+	model = glm::translate(model = glm::mat4(1.0f), glm::vec3(137.5, 0, -195));
+	model = savestatereja = glm::rotate(model, glm::radians(-164.0f), glm::vec3(0.0f, 1.0f, 0.0f));
+	model = glm::scale(model, glm::vec3(6.5f, 6.5f, 6.5f));
+	shader.setMat4("model", model);
+	tienda.at(2).Draw(shader); //puesto  rojo
+
+	model = glm::translate(model = glm::mat4(1.0f), glm::vec3(72.5, 0, -480));
+	model = savestatereja = glm::rotate(model, glm::radians(138.0f), glm::vec3(0.0f, 1.0f, 0.0f));
+	model = glm::scale(model, glm::vec3(6.5f, 6.5f, 6.5f));
+	shader.setMat4("model", model);
+	tienda.at(3).Draw(shader);//puesto rosa chico
+
+	model = glm::translate(model = glm::mat4(1.0f), glm::vec3(518.75, 0, -216.25));
+	model = savestatereja = glm::rotate(model, glm::radians(0.0f), glm::vec3(0.0f, 1.0f, 0.0f));
+	model = glm::scale(model, glm::vec3(6.5f, 6.5f, 6.5f));
+	shader.setMat4("model", model);
+	tienda.at(4).Draw(shader); //puesto tom nook
+
+	model = glm::translate(model = glm::mat4(1.0f), glm::vec3(151.25, 0, -248.75));
+	model = savestatereja = glm::rotate(model, glm::radians(-43.0f), glm::vec3(0.0f, 1.0f, 0.0f));
+	model = glm::scale(model, glm::vec3(6.5f, 6.5f, 6.5f));
+	shader.setMat4("model", model);
+	tienda.at(5).Draw(shader);//puesto cafe madera
+
+	model = glm::translate(model = glm::mat4(1.0f), glm::vec3(-393.75, 0, -302.5));
+	model = savestatereja = glm::rotate(model, glm::radians(134.0f), glm::vec3(0.0f, 1.0f, 0.0f));
+	model = glm::scale(model, glm::vec3(6.5f, 6.5f, 6.5f));
+	shader.setMat4("model", model);
+	tienda.at(6).Draw(shader);//periodico
+
+	model = glm::translate(model = glm::mat4(1.0f), glm::vec3( -532.5, 0,  -226.25));
+	model = savestatereja = glm::rotate(model, glm::radians(0.0f), glm::vec3(0.0f, 1.0f, 0.0f));
+	model = glm::scale(model, glm::vec3(6.5f, 6.5f, 6.5f));
+	shader.setMat4("model", model);
+	tienda.at(7).Draw(shader); //muro
+
+	model = glm::translate(model = glm::mat4(1.0f), glm::vec3(-82.5, 0, 30));
+	model = savestatereja = glm::rotate(model, glm::radians(-49.0f), glm::vec3(0.0f, 1.0f, 0.0f));
+	model = glm::scale(model, glm::vec3(6.5f, 6.5f, 6.5f));
+	shader.setMat4("model", model);
+	tienda.at(3).Draw(shader);
+
+	//cuadrante pasto derecho bottom
+	model = glm::translate(model = glm::mat4(1.0f), glm::vec3(168.75, 0, 17.5));
+	model = savestatereja = glm::rotate(model, glm::radians(0.0f), glm::vec3(0.0f, 1.0f, 0.0f));
+	model = glm::scale(model, glm::vec3(6.5f, 6.5f, 6.5f));
+	shader.setMat4("model", model);
+	arbol.at(1).Draw(shader);
+
+	model = glm::translate(model = glm::mat4(1.0f), glm::vec3(233.75, 0, -70.5));
+	model = savestatereja = glm::rotate(model, glm::radians(0.0f), glm::vec3(0.0f, 1.0f, 0.0f));
+	model = glm::scale(model, glm::vec3(6.5f, 6.5f, 6.5f));
+	shader.setMat4("model", model);
+	arbol.at(1).Draw(shader);
+
+	model = glm::translate(model = glm::mat4(1.0f), glm::vec3(300.75, 0, 37.5));
+	model = savestatereja = glm::rotate(model, glm::radians(0.0f), glm::vec3(0.0f, 1.0f, 0.0f));
+	model = glm::scale(model, glm::vec3(6.5f, 6.5f, 6.5f));
+	shader.setMat4("model", model);
+	arbol.at(1).Draw(shader);
+
+	model = glm::translate(model = glm::mat4(1.0f), glm::vec3(338.75, 0, -73.5));
+	model = savestatereja = glm::rotate(model, glm::radians(0.0f), glm::vec3(0.0f, 1.0f, 0.0f));
+	model = glm::scale(model, glm::vec3(6.5f, 6.5f, 6.5f));
+	shader.setMat4("model", model);
+	arbol.at(1).Draw(shader);
+
+	model = glm::translate(model = glm::mat4(1.0f), glm::vec3(438.75, 0, -15.5));
+	model = savestatereja = glm::rotate(model, glm::radians(0.0f), glm::vec3(0.0f, 1.0f, 0.0f));
+	model = glm::scale(model, glm::vec3(6.5f, 6.5f, 6.5f));
+	shader.setMat4("model", model);
+	arbol.at(1).Draw(shader);
+
+	model = glm::translate(model = glm::mat4(1.0f), glm::vec3(203.75, 0, -32.5));
+	model = savestatereja = glm::rotate(model, glm::radians(0.0f), glm::vec3(0.0f, 1.0f, 0.0f));
+	model = glm::scale(model, glm::vec3(6.5f, 6.5f, 6.5f));
+	shader.setMat4("model", model);
+	arbol.at(0).Draw(shader);
+
+	model = glm::translate(model = glm::mat4(1.0f), glm::vec3(273.75, 0, -22.5));
+	model = savestatereja = glm::rotate(model, glm::radians(0.0f), glm::vec3(0.0f, 1.0f, 0.0f));
+	model = glm::scale(model, glm::vec3(6.5f, 6.5f, 6.5f));
+	shader.setMat4("model", model);
+	arbol.at(0).Draw(shader);
+
+	model = glm::translate(model = glm::mat4(1.0f), glm::vec3(436.75, 0, -98.75));
+	model = savestatereja = glm::rotate(model, glm::radians(0.0f), glm::vec3(0.0f, 1.0f, 0.0f));
+	model = glm::scale(model, glm::vec3(6.5f, 6.5f, 6.5f));
+	shader.setMat4("model", model);
+	arbol.at(0).Draw(shader);
+
+	//pasto izq bot
+
+
+	model = glm::translate(model = glm::mat4(1.0f), glm::vec3(-168.75, 0, 17.5));
+	model = savestatereja = glm::rotate(model, glm::radians(0.0f), glm::vec3(0.0f, 1.0f, 0.0f));
+	model = glm::scale(model, glm::vec3(6.5f, 6.5f, 6.5f));
+	shader.setMat4("model", model);
+	arbol.at(1).Draw(shader);
+
+	model = glm::translate(model = glm::mat4(1.0f), glm::vec3(-233.75, 0, -70.5));
+	model = savestatereja = glm::rotate(model, glm::radians(0.0f), glm::vec3(0.0f, 1.0f, 0.0f));
+	model = glm::scale(model, glm::vec3(6.5f, 6.5f, 6.5f));
+	shader.setMat4("model", model);
+	arbol.at(1).Draw(shader);
+
+	model = glm::translate(model = glm::mat4(1.0f), glm::vec3(-300.75, 0, 37.5));
+	model = savestatereja = glm::rotate(model, glm::radians(0.0f), glm::vec3(0.0f, 1.0f, 0.0f));
+	model = glm::scale(model, glm::vec3(6.5f, 6.5f, 6.5f));
+	shader.setMat4("model", model);
+	arbol.at(1).Draw(shader);
+
+	model = glm::translate(model = glm::mat4(1.0f), glm::vec3(-338.75, 0, -73.5));
+	model = savestatereja = glm::rotate(model, glm::radians(0.0f), glm::vec3(0.0f, 1.0f, 0.0f));
+	model = glm::scale(model, glm::vec3(6.5f, 6.5f, 6.5f));
+	shader.setMat4("model", model);
+	arbol.at(1).Draw(shader);
+
+	model = glm::translate(model = glm::mat4(1.0f), glm::vec3(-438.75, 0, -15.5));
+	model = savestatereja = glm::rotate(model, glm::radians(0.0f), glm::vec3(0.0f, 1.0f, 0.0f));
+	model = glm::scale(model, glm::vec3(6.5f, 6.5f, 6.5f));
+	shader.setMat4("model", model);
+	arbol.at(1).Draw(shader);
+
+	model = glm::translate(model = glm::mat4(1.0f), glm::vec3(-203.75, 0, -32.5));
+	model = savestatereja = glm::rotate(model, glm::radians(0.0f), glm::vec3(0.0f, 1.0f, 0.0f));
+	model = glm::scale(model, glm::vec3(6.5f, 6.5f, 6.5f));
+	shader.setMat4("model", model);
+	arbol.at(0).Draw(shader);
+
+	model = glm::translate(model = glm::mat4(1.0f), glm::vec3(-273.75, 0, -22.5));
+	model = savestatereja = glm::rotate(model, glm::radians(0.0f), glm::vec3(0.0f, 1.0f, 0.0f));
+	model = glm::scale(model, glm::vec3(6.5f, 6.5f, 6.5f));
+	shader.setMat4("model", model);
+	arbol.at(0).Draw(shader);
+
+	model = glm::translate(model = glm::mat4(1.0f), glm::vec3(-436.75, 0, -98.75));
+	model = savestatereja = glm::rotate(model, glm::radians(0.0f), glm::vec3(0.0f, 1.0f, 0.0f));
+	model = glm::scale(model, glm::vec3(6.5f, 6.5f, 6.5f));
+	shader.setMat4("model", model);
+	arbol.at(0).Draw(shader);
+	
+	//pasto izq top
+
+
+	model = glm::translate(model = glm::mat4(1.0f), glm::vec3(-168.75, 0, 17.5-520));
+	model = savestatereja = glm::rotate(model, glm::radians(0.0f), glm::vec3(0.0f, 1.0f, 0.0f));
+	model = glm::scale(model, glm::vec3(6.5f, 6.5f, 6.5f));
+	shader.setMat4("model", model);
+	arbol.at(1).Draw(shader);
+
+	model = glm::translate(model = glm::mat4(1.0f), glm::vec3(-233.75, 0, -70.5 - 520));
+	model = savestatereja = glm::rotate(model, glm::radians(0.0f), glm::vec3(0.0f, 1.0f, 0.0f));
+	model = glm::scale(model, glm::vec3(6.5f, 6.5f, 6.5f));
+	shader.setMat4("model", model);
+	arbol.at(1).Draw(shader);
+
+	model = glm::translate(model = glm::mat4(1.0f), glm::vec3(-300.75, 0, 37.5 - 520));
+	model = savestatereja = glm::rotate(model, glm::radians(0.0f), glm::vec3(0.0f, 1.0f, 0.0f));
+	model = glm::scale(model, glm::vec3(6.5f, 6.5f, 6.5f));
+	shader.setMat4("model", model);
+	arbol.at(1).Draw(shader);
+
+	model = glm::translate(model = glm::mat4(1.0f), glm::vec3(-338.75, 0, -73.5 - 520));
+	model = savestatereja = glm::rotate(model, glm::radians(0.0f), glm::vec3(0.0f, 1.0f, 0.0f));
+	model = glm::scale(model, glm::vec3(6.5f, 6.5f, 6.5f));
+	shader.setMat4("model", model);
+	arbol.at(1).Draw(shader);
+
+	model = glm::translate(model = glm::mat4(1.0f), glm::vec3(-438.75, 0, -15.5 - 520));
+	model = savestatereja = glm::rotate(model, glm::radians(0.0f), glm::vec3(0.0f, 1.0f, 0.0f));
+	model = glm::scale(model, glm::vec3(6.5f, 6.5f, 6.5f));
+	shader.setMat4("model", model);
+	arbol.at(1).Draw(shader);
+
+	model = glm::translate(model = glm::mat4(1.0f), glm::vec3(-203.75, 0, -32.5 - 520));
+	model = savestatereja = glm::rotate(model, glm::radians(0.0f), glm::vec3(0.0f, 1.0f, 0.0f));
+	model = glm::scale(model, glm::vec3(6.5f, 6.5f, 6.5f));
+	shader.setMat4("model", model);
+	arbol.at(0).Draw(shader);
+
+	model = glm::translate(model = glm::mat4(1.0f), glm::vec3(-273.75, 0, -22.5 - 520));
+	model = savestatereja = glm::rotate(model, glm::radians(0.0f), glm::vec3(0.0f, 1.0f, 0.0f));
+	model = glm::scale(model, glm::vec3(6.5f, 6.5f, 6.5f));
+	shader.setMat4("model", model);
+	arbol.at(0).Draw(shader);
+
+	model = glm::translate(model = glm::mat4(1.0f), glm::vec3(-436.75, 0, -98.75 - 520));
+	model = savestatereja = glm::rotate(model, glm::radians(0.0f), glm::vec3(0.0f, 1.0f, 0.0f));
+	model = glm::scale(model, glm::vec3(6.5f, 6.5f, 6.5f));
+	shader.setMat4("model", model);
+	arbol.at(0).Draw(shader);
+
+	//pasto der top
+
+
+	model = glm::translate(model = glm::mat4(1.0f), glm::vec3(168.75, 0, 17.5 - 450));
+	model = savestatereja = glm::rotate(model, glm::radians(0.0f), glm::vec3(0.0f, 1.0f, 0.0f));
+	model = glm::scale(model, glm::vec3(6.5f, 6.5f, 6.5f));
+	shader.setMat4("model", model);
+	arbol.at(1).Draw(shader);
+
+	model = glm::translate(model = glm::mat4(1.0f), glm::vec3(233.75, 0, -70.5 - 450));
+	model = savestatereja = glm::rotate(model, glm::radians(0.0f), glm::vec3(0.0f, 1.0f, 0.0f));
+	model = glm::scale(model, glm::vec3(6.5f, 6.5f, 6.5f));
+	shader.setMat4("model", model);
+	arbol.at(1).Draw(shader);
+
+	model = glm::translate(model = glm::mat4(1.0f), glm::vec3(300.75, 0, 37.5 - 450));
+	model = savestatereja = glm::rotate(model, glm::radians(0.0f), glm::vec3(0.0f, 1.0f, 0.0f));
+	model = glm::scale(model, glm::vec3(6.5f, 6.5f, 6.5f));
+	shader.setMat4("model", model);
+	arbol.at(1).Draw(shader);
+
+	model = glm::translate(model = glm::mat4(1.0f), glm::vec3(338.75, 0, -73.5 - 450));
+	model = savestatereja = glm::rotate(model, glm::radians(0.0f), glm::vec3(0.0f, 1.0f, 0.0f));
+	model = glm::scale(model, glm::vec3(6.5f, 6.5f, 6.5f));
+	shader.setMat4("model", model);
+	arbol.at(1).Draw(shader);
+
+	model = glm::translate(model = glm::mat4(1.0f), glm::vec3(438.75, 0, -15.5 - 450));
+	model = savestatereja = glm::rotate(model, glm::radians(0.0f), glm::vec3(0.0f, 1.0f, 0.0f));
+	model = glm::scale(model, glm::vec3(6.5f, 6.5f, 6.5f));
+	shader.setMat4("model", model);
+	arbol.at(1).Draw(shader);
+
+	model = glm::translate(model = glm::mat4(1.0f), glm::vec3(203.75, 0, -32.5 - 450));
+	model = savestatereja = glm::rotate(model, glm::radians(0.0f), glm::vec3(0.0f, 1.0f, 0.0f));
+	model = glm::scale(model, glm::vec3(6.5f, 6.5f, 6.5f));
+	shader.setMat4("model", model);
+	arbol.at(0).Draw(shader);
+
+	model = glm::translate(model = glm::mat4(1.0f), glm::vec3(273.75, 0, -22.5 - 450));
+	model = savestatereja = glm::rotate(model, glm::radians(0.0f), glm::vec3(0.0f, 1.0f, 0.0f));
+	model = glm::scale(model, glm::vec3(6.5f, 6.5f, 6.5f));
+	shader.setMat4("model", model);
+	arbol.at(0).Draw(shader);
+
+	model = glm::translate(model = glm::mat4(1.0f), glm::vec3(436.75, 0, -98.75 - 450));
+	model = savestatereja = glm::rotate(model, glm::radians(0.0f), glm::vec3(0.0f, 1.0f, 0.0f));
+	model = glm::scale(model, glm::vec3(6.5f, 6.5f, 6.5f));
+	shader.setMat4("model", model);
+	arbol.at(0).Draw(shader);
+
+	model = glm::translate(model = glm::mat4(1.0f), glm::vec3(392.75, 0, -375));
+	model = savestatereja = glm::rotate(model, glm::radians(0.0f), glm::vec3(0.0f, 1.0f, 0.0f));
+	model = glm::scale(model, glm::vec3(6.5f, 6.5f, 6.5f));
+	shader.setMat4("model", model);
+	arbol.at(1).Draw(shader);
+
+	model = glm::translate(model = glm::mat4(1.0f), glm::vec3(487.75, 0, - 336));
+	model = savestatereja = glm::rotate(model, glm::radians(0.0f), glm::vec3(0.0f, 1.0f, 0.0f));
+	model = glm::scale(model, glm::vec3(6.5f, 6.5f, 6.5f));
+	shader.setMat4("model", model);
+	arbol.at(0).Draw(shader);
+
+
+	//puede ser util para encontrar coordenadas de x, z, además de rotaciones en y
 	//model = glm::translate(model = glm::mat4(1.0f), glm::vec3(test_pos_x, 0, test_pos_z));
 	//model = savestatereja = glm::rotate(model, glm::radians(test_grados), glm::vec3(0.0f, 1.0f, 0.0f));
-	//model = glm::scale(model, glm::vec3(4.5f, 4.5f, 4.5f));
+	//model = glm::scale(model, glm::vec3(6.5f, 6.5f, 6.5f));
 	//shader.setMat4("model", model);
-	//reja.Draw(shader);
+	//tienda.at(7).Draw(shader); 
+
+	//puede ser util para encontrar coordenadas de x, z, además de rotaciones en y
+	model = glm::translate(model = glm::mat4(1.0f), glm::vec3(test_pos_x2, 0, test_pos_z2));
+	model = glm::rotate(model, glm::radians(test_grados), glm::vec3(0.0f, 1.0f, 0.0f));
+	model = glm::scale(model, glm::vec3(6.5f, 6.5f, 6.5f));
+	//model = glm::scale(model, glm::vec3(4.5f, 4.5f, 4.5f));
+	shader.setMat4("model", model);
+	gente.at(0).Draw(shader);
 
 }
 
@@ -6122,7 +6402,11 @@ int main()
 	Model pista = ((char *)"Models/pista2.obj");
 	Model pista2 = ((char *)"Models/piso3test.obj");
 	Model reja = ((char *)"Models/reja/reja.obj");
-
+	std::vector<Model> tienda{ (char *)"Models/tienda1/tienda1.obj" , (char *)"Models/tienda2/tienda2.obj" , (char *)"Models/tienda3/tienda3.obj" ,
+		(char *)"Models/tienda4/tienda4.obj" , (char *)"Models/tienda5/tienda5.obj", (char *)"Models/tienda7/tienda7.obj",
+		(char *)"Models/tienda6/tienda6.obj" , (char *)"Models/muro/muro.obj"};
+	std::vector<Model> gente{ (char *)"Models/gente/girl1/untitled.obj" };
+	std::vector<Model> arbol{ (char *)"Models/nature/arbol1/arbol1.obj", (char *)"Models/nature/arbol2/arbol1.obj", (char *)"Models/nature/arbol3/arbol3.obj"};
 	glm::mat4 projection = glm::mat4(1.0f);	//This matrix is for Projection
 	projection = glm::perspective(glm::radians(camera.Zoom), (float)SCR_WIDTH / (float)SCR_HEIGHT, 0.1f, 2000.0f);
 	// render loop
@@ -6144,7 +6428,7 @@ int main()
 		glClearColor(1.0f, 1.0f, 1.0f, 1.0f);
 		glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
-		display(modelShader, projectionShader, ourModel, pista, pista2, reja);
+		display(modelShader, projectionShader, ourModel, pista, pista2, reja, tienda, gente, arbol);
 
 		// glfw: swap buffers and poll IO events (keys pressed/released, mouse moved etc.)
 		// -------------------------------------------------------------------------------
@@ -6188,33 +6472,33 @@ void my_input(GLFWwindow *window)
 
 	if (glfwGetKey(window, GLFW_KEY_R) == GLFW_PRESS)
 	{
-		test_grados += 0.1;
+		test_grados += 1.0;
 		std::cout << "Grados: " << test_grados << std::endl;
 	}
 
 	if (glfwGetKey(window, GLFW_KEY_T) == GLFW_PRESS)
 	{
-		test_grados -= 0.1;
+		test_grados -= 1.0;
 		std::cout << "Grados: " << test_grados << std::endl;
 	}
 	if (glfwGetKey(window, GLFW_KEY_UP) == GLFW_PRESS)
 	{
-		test_pos_z += 0.25;
+		test_pos_z += 1.25;
 		std::cout << "PosZ: " << test_pos_z << std::endl;
 	}
 	if (glfwGetKey(window, GLFW_KEY_DOWN) == GLFW_PRESS)
 	{
-		test_pos_z -= 0.25;
+		test_pos_z -= 1.25;
 		std::cout << "PosZ: " << test_pos_z << std::endl;
 	}
 	if (glfwGetKey(window, GLFW_KEY_RIGHT) == GLFW_PRESS)
 	{
-		test_pos_x += 0.25;
+		test_pos_x += 1.25;
 		std::cout << "PosX: " << test_pos_x << std::endl;
 	}
 	if (glfwGetKey(window, GLFW_KEY_LEFT) == GLFW_PRESS)
 	{
-		test_pos_x -= 0.25;
+		test_pos_x -= 1.25;
 		std::cout << "PosX: " << test_pos_x << std::endl;
 	}
 	if (glfwGetKey(window, GLFW_KEY_I) == GLFW_PRESS)
@@ -6226,6 +6510,33 @@ void my_input(GLFWwindow *window)
 		std::cout << "---------------------" << std::endl;
 	}
 	
+	if (glfwGetKey(window, GLFW_KEY_8) == GLFW_PRESS)
+	{
+		test_pos_z2 += 1.25;
+		std::cout << "PosZ: " << test_pos_z2 << std::endl;
+	}
+	if (glfwGetKey(window, GLFW_KEY_5) == GLFW_PRESS)
+	{
+		test_pos_z2 -= 1.25;
+		std::cout << "PosZ: " << test_pos_z2 << std::endl;
+	}
+	if (glfwGetKey(window, GLFW_KEY_6) == GLFW_PRESS)
+	{
+		test_pos_x2 += 1.25;
+		std::cout << "PosX: " << test_pos_x2 << std::endl;
+	}
+	if (glfwGetKey(window, GLFW_KEY_4) == GLFW_PRESS)
+	{
+		test_pos_x2 -= 1.25;
+		std::cout << "PosX: " << test_pos_x2 << std::endl;
+	}
+	if (glfwGetKey(window, GLFW_KEY_L) == GLFW_PRESS)
+	{
+		std::cout << "-----COORDINATES-----" << std::endl;
+		std::cout << "PosX: " << test_pos_x2 << std::endl;
+		std::cout << "PosZ: " << test_pos_z2 << std::endl;
+		std::cout << "---------------------" << std::endl;
+	}
 
 }
 
