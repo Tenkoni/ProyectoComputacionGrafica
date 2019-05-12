@@ -230,13 +230,11 @@ void animate(void)
 	if (play)
 	{
 		fortuna_rot += 0.2f; //rueda de la fortuna
-			if (estado == 0) {
+		if (estado == 0) {
 
 			if (movKit_z < 80) {
 				movKit_z += 1.0f;
 				rotKit_x = -5;
-				printf("ezx=%f \n", movKit_z);
-				printf("e0y=%=f \n", movKit_y);
 			}
 			else {
 				rotKit_x = -60;
@@ -249,8 +247,6 @@ void animate(void)
 				movKit_z += 1.35f;
 				movKit_y += 2.0f;
 				rotKit_x = -60;
-				printf("e1z=%f \n", movKit_z);
-				printf("e1y=%=f \n", movKit_y);
 			}
 			else {
 				rotKit_x = -45;
@@ -263,8 +259,6 @@ void animate(void)
 				movKit_z += 0.75f;
 				movKit_y += 1.0f;
 				rotKit_x = -45;
-				printf("e2z=%f \n", movKit_z);
-				printf("e2y=%f \n", movKit_y);
 			}
 			else{
 				rotKit_x =-25;
@@ -277,8 +271,6 @@ void animate(void)
 				movKit_z += 1.0f;
 				movKit_y += 0.75f;
 				rotKit_x = -15;
-				printf("e3z=%f \n", movKit_z);
-				printf("e3y=%f \n", movKit_y);
 			}
 			else {
 				rotKit_x = -5;
@@ -290,11 +282,10 @@ void animate(void)
 			if (movKit_z <310) {
 				movKit_z += 1.0f;
 				rotKit_x = 5;
-				printf("e3z=%f \n", movKit_z);
-				printf("e3y=%f \n", movKit_y);
 			}
 			else {
 				rotKit_x = 10;
+				rotKit_y = -30;
 				estado = 5;
 			}
 		}
@@ -302,33 +293,28 @@ void animate(void)
 		if (estado == 5) {
 			if (movKit_y > 200) {
 				movKit_y -= 1.0f;
-				movKit_x -= 0.55f;
-				rotKit_x = 65;
-				rotKit_y = -45;
-
-				printf("e3z=%f \n", movKit_z);
-				printf("e3y=%f \n", movKit_y);
+				movKit_z += 0.75f;
+				movKit_x -= 0.75f;
+				rotKit_x = 30;
 			}
 			else {
-				rotKit_x = 65;
+				rotKit_x = 85;
+				rotKit_y = -15;
+				rotKit_z = 30;
 				estado = 6;
 			}
 		}
 
 		if (estado == 6) {
-			if (movKit_y > 100) {
+			if (movKit_y > 150) {
 				movKit_y -= 1.0f;
-				movKit_x -= 0.40f;
-				movKit_z += 0.40f;
-				rotKit_x = 85;
-				rotKit_y = -55;
-				rotKit_z = 45;
-
-				printf("e3z=%f \n", movKit_z);
-				printf("e3y=%f \n", movKit_y);
+				movKit_x -= 0.20f;
+				movKit_z += 0.25f;
+				rotKit_z = 60;
 			}
 			else {
 				rotKit_x = 90;
+				rotKit_z = 85;
 				estado = 7;
 			}
 		}
@@ -337,14 +323,9 @@ void animate(void)
 			if (movKit_y > 50) {
 				movKit_y -= 1.0f;
 				movKit_x -= 0.40f;
-				rotKit_x = 85;
-				rotKit_y = -45;
-
-				printf("e3z=%f \n", movKit_z);
-				printf("e3y=%f \n", movKit_y);
 			}
 			else {
-				rotKit_x = 90;
+				rotKit_y = -45;
 				estado = 8;
 			}
 		}
@@ -352,153 +333,164 @@ void animate(void)
 
 
 		if (estado == 8) {
-			if (movKit_y > 20) {
+			if (movKit_y > 30) {
 				movKit_y -= 1.0f;
-				movKit_x -= 1.0f;
-				movKit_z -= 0.5f;
-				rotKit_x = 55;
-				printf("e3z=%f \n", movKit_z);
-				printf("e3y=%f \n", movKit_y);
-				printf("e9x=%f \n", movKit_x);
+				movKit_x -= 1.5f;
 			}
 			else {
+				rotKit_y = -85;
 				estado = 9;
 			}
 		}
 
 
 		if (estado == 9) {
-			if (movKit_x > -150) {
+			if (movKit_x > -170) {
 				movKit_x -= 1.0f;
-				rotKit_x = -25;
-				printf("e3z=%f \n", movKit_z);
-				printf("e3y=%f \n", movKit_y);
 			}
 			else {
-				rotKit_x = 45;
+				rotKit_y = -150;
+				rotKit_z = -5;
 				estado = 10;
 			}
 		}
 
 		if (estado == 10) {
-			if (movKit_y < 240) {
-				movKit_x -= 0.45f;
+			if (movKit_y < 210) {
+				movKit_x -= 0.40f;
+				movKit_z += 0.15f;
 				movKit_y += 1.0f;
-				printf("e3z=%f \n", movKit_z);
-				printf("e3y=%f \n", movKit_y);
 			}
 			else {
-				
+				rotKit_x = 85;
 				estado = 11;
 			}
 		}
 
 		if (estado == 11) {
-			if (movKit_z < 500) {
-				movKit_z += 1.0f;
-				printf("e3z=%f \n", movKit_z);
-				printf("e3y=%f \n", movKit_y);
+			if (movKit_y < 230) {
+				movKit_y += 0.85f;
+				movKit_z += 0.85f;
+				rotKit_x = 100;
 			}
 			else {
 
+				rotKit_x = 120;
 				estado = 12;
 			}
 		}
+
 		if (estado == 12) {
-			if (movKit_y > 150) {
-				movKit_z -= 0.5f;
-				movKit_y -= 1.0f;
-				movKit_x -= 0.75f;
-				printf("e3z=%f \n", movKit_z);
-				printf("e3y=%f \n", movKit_y);
+			if (movKit_y < 250) {
+				movKit_y += 0.85f;
+				movKit_z += 0.85f;
+				movKit_x -= 0.85f;
 			}
 			else {
 
+				rotKit_x = 190;
 				estado = 13;
 			}
 		}
 
 		if (estado == 13) {
-			if (movKit_y > 10) {
-				movKit_z -= 0.5f;
-				movKit_y -= 1.0f;
-				printf("e3z=%f \n", movKit_z);
-				printf("e3y=%f \n", movKit_y);
+			if (movKit_z < 440) {
+				movKit_z += 1.0f;
+				movKit_x -= 0.15f;
 			}
 			else {
 
+				rotKit_x = 230;
 				estado = 14;
 			}
 		}
 
 		if (estado == 14) {
-			if (movKit_z > 200) {
-				movKit_z -= 0.5f;
-				printf("e3z=%f \n", movKit_z);
-				printf("e3y=%f \n", movKit_y);
+			if (movKit_x > -310) {
+				movKit_x -= 0.25f;
+				movKit_z += 0.10f;
+				movKit_y -= 0.45f;
 			}
 			else {
-				
+				rotKit_x = 300;
+				rotKit_y = -180;
 				estado = 15;
 			}
 		}
 
 		if (estado == 15) {
-			if (movKit_z > 150) {
-				movKit_z -= 0.85f;
-				movKit_y += 0.5f;
-				printf("e3z=%f \n", movKit_z);
-				printf("e3y=%f \n", movKit_y);
+			if (movKit_y > 10) {
+				movKit_z -= 0.7f;
+				movKit_y -= 1.0f;
+				movKit_x -= 0.10f;
+
 			}
 			else {
-
+				rotKit_x = 360;
 				estado = 16;
 			}
 		}
 
 		if (estado == 16) {
-			if (movKit_z > -5) {
-				movKit_z -= 1.0f;
-				printf("e3z=%f \n", movKit_z);
-				printf("e3y=%f \n", movKit_y);
+			if (movKit_z > 200) {
+				movKit_z -= 0.5f;
+				movKit_x -= 0.06f;
 			}
 			else {
-				movKit_x -= 3.5f;
+				rotKit_x = 400;
 				estado = 17;
 			}
 		}
 
 		if (estado == 17) {
-			if (movKit_z > -55) {
-				movKit_z -= 1.0f;
-				movKit_y -= 0.85f;
-				printf("e3z=%f \n", movKit_z);
-				printf("e3y=%f \n", movKit_y);
+			if (movKit_z > 135) {
+				movKit_z -= 0.85f;
+				movKit_y += 0.5f;
+
 			}
 			else {
-
+				rotKit_x = 360;
 				estado = 18;
 			}
 		}
 
-
 		if (estado == 18) {
-			if (movKit_x < 5) {
-				movKit_x += 1.00f;
-				printf("e3z=%f \n", movKit_z);
-				printf("e3y=%f \n", movKit_y);
+			if (movKit_z > -15) {
+				movKit_z -= 1.0f;
 			}
 			else {
-
+				rotKit_x = 310;
 				estado = 19;
 			}
 		}
 
 		if (estado == 19) {
+			if (movKit_z > -80) {
+				movKit_z -= 1.0f;
+				movKit_y -= 0.75f;
+			}
+			else {
+				rotKit_x = 360;
+				rotKit_y = -270;
+				estado = 20;
+			}
+		}
+
+
+		if (estado == 20) {
+			if (movKit_x < 0) {
+				movKit_x += 1.00f;
+				movKit_z += 0.05f;
+			}
+			else {
+				rotKit_y = -360;
+				estado = 21;
+			}
+		}
+
+		if (estado == 21) {
 			if (movKit_z < 0) {
 				movKit_z += 2.00f;
-				printf("e3z=%f \n", movKit_z);
-				printf("e3y=%f \n", movKit_y);
 			}
 			else {
 
