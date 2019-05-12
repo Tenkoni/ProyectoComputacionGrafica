@@ -77,7 +77,9 @@ t_caja_brillo;
 float movKit_z = 0.0f,
 movKit_x = 0.0f,
 movKit_y = 0.0f,
+rotKit_x = 0.0f,
 rotKit_y = 0.0f,
+rotKit_z = 0.0f,
 fortuna_rot = 0.0f;
 
 int estado = 0;
