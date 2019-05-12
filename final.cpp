@@ -6324,13 +6324,24 @@ void display(Shader shader, Shader projectionShader, Model modelo, Model pista, 
 	shader.setMat4("model", model);
 	arbol.at(0).Draw(shader);
 
+	model = glm::translate(model = glm::mat4(1.0f), glm::vec3(-527.5, 0, -162.5));
+	model = savestatereja = glm::rotate(model, glm::radians(-27.0f), glm::vec3(0.0f, 1.0f, 0.0f));
+	model = glm::scale(model, glm::vec3(6.5f, 6.5f, 6.5f));
+	shader.setMat4("model", model);
+	gente.at(1).Draw(shader);
+
+	model = glm::translate(model = glm::mat4(1.0f), glm::vec3(-520, 0, -290));
+	model = savestatereja = glm::rotate(model, glm::radians(33.0f), glm::vec3(0.0f, 1.0f, 0.0f));
+	model = glm::scale(model, glm::vec3(6.5f, 6.5f, 6.5f));
+	shader.setMat4("model", model);
+	gente.at(1).Draw(shader);
 
 	//puede ser util para encontrar coordenadas de x, z, además de rotaciones en y
 	//model = glm::translate(model = glm::mat4(1.0f), glm::vec3(test_pos_x, 0, test_pos_z));
 	//model = savestatereja = glm::rotate(model, glm::radians(test_grados), glm::vec3(0.0f, 1.0f, 0.0f));
 	//model = glm::scale(model, glm::vec3(6.5f, 6.5f, 6.5f));
 	//shader.setMat4("model", model);
-	//tienda.at(7).Draw(shader); 
+	//gente.at(1).Draw(shader); 
 
 	//puede ser util para encontrar coordenadas de x, z, además de rotaciones en y
 	model = glm::translate(model = glm::mat4(1.0f), glm::vec3(test_pos_x2, 0, test_pos_z2));
@@ -6405,7 +6416,7 @@ int main()
 	std::vector<Model> tienda{ (char *)"Models/tienda1/tienda1.obj" , (char *)"Models/tienda2/tienda2.obj" , (char *)"Models/tienda3/tienda3.obj" ,
 		(char *)"Models/tienda4/tienda4.obj" , (char *)"Models/tienda5/tienda5.obj", (char *)"Models/tienda7/tienda7.obj",
 		(char *)"Models/tienda6/tienda6.obj" , (char *)"Models/muro/muro.obj"};
-	std::vector<Model> gente{ (char *)"Models/gente/girl1/untitled.obj" };
+	std::vector<Model> gente{ (char *)"Models/gente/girl1/untitled.obj", (char *)"Models/gente/nigga/nigga.obj" };
 	std::vector<Model> arbol{ (char *)"Models/nature/arbol1/arbol1.obj", (char *)"Models/nature/arbol2/arbol1.obj", (char *)"Models/nature/arbol3/arbol3.obj"};
 	glm::mat4 projection = glm::mat4(1.0f);	//This matrix is for Projection
 	projection = glm::perspective(glm::radians(camera.Zoom), (float)SCR_WIDTH / (float)SCR_HEIGHT, 0.1f, 2000.0f);
