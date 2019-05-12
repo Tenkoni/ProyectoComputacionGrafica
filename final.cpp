@@ -228,8 +228,284 @@ void animate(void)
 	if (play)
 	{
 		fortuna_rot += 0.2f; //rueda de la fortuna
+			if (estado == 0) {
 
+			if (movKit_z < 80) {
+				movKit_z += 1.0f;
+				rotKit_x = -5;
+				printf("ezx=%f \n", movKit_z);
+				printf("e0y=%=f \n", movKit_y);
+			}
+			else {
+				rotKit_x = -60;
+				estado = 1;
+			}
+		}
+
+		if (estado == 1) {
+			if (movKit_y <200) {
+				movKit_z += 1.35f;
+				movKit_y += 2.0f;
+				rotKit_x = -60;
+				printf("e1z=%f \n", movKit_z);
+				printf("e1y=%=f \n", movKit_y);
+			}
+			else {
+				rotKit_x = -45;
+				estado = 2;
+			}
+		}
+		
+		if (estado == 2) {
+			if (movKit_y <210) {
+				movKit_z += 0.75f;
+				movKit_y += 1.0f;
+				rotKit_x = -45;
+				printf("e2z=%f \n", movKit_z);
+				printf("e2y=%f \n", movKit_y);
+			}
+			else{
+				rotKit_x =-25;
+				estado = 3;
+			}
+		}
+
+		if (estado == 3) {
+			if (movKit_z <240) {
+				movKit_z += 1.0f;
+				movKit_y += 0.75f;
+				rotKit_x = -15;
+				printf("e3z=%f \n", movKit_z);
+				printf("e3y=%f \n", movKit_y);
+			}
+			else {
+				rotKit_x = -5;
+				estado = 4;
+			}
+		}
+		
+		if (estado == 4) {
+			if (movKit_z <310) {
+				movKit_z += 1.0f;
+				rotKit_x = 5;
+				printf("e3z=%f \n", movKit_z);
+				printf("e3y=%f \n", movKit_y);
+			}
+			else {
+				rotKit_x = 10;
+				estado = 5;
+			}
+		}
+
+		if (estado == 5) {
+			if (movKit_y > 200) {
+				movKit_y -= 1.0f;
+				movKit_x -= 0.55f;
+				rotKit_x = 65;
+				rotKit_y = -45;
+
+				printf("e3z=%f \n", movKit_z);
+				printf("e3y=%f \n", movKit_y);
+			}
+			else {
+				rotKit_x = 65;
+				estado = 6;
+			}
+		}
+
+		if (estado == 6) {
+			if (movKit_y > 100) {
+				movKit_y -= 1.0f;
+				movKit_x -= 0.40f;
+				movKit_z += 0.40f;
+				rotKit_x = 85;
+				rotKit_y = -55;
+				rotKit_z = 45;
+
+				printf("e3z=%f \n", movKit_z);
+				printf("e3y=%f \n", movKit_y);
+			}
+			else {
+				rotKit_x = 90;
+				estado = 7;
+			}
+		}
+
+		if (estado == 7) {
+			if (movKit_y > 50) {
+				movKit_y -= 1.0f;
+				movKit_x -= 0.40f;
+				rotKit_x = 85;
+				rotKit_y = -45;
+
+				printf("e3z=%f \n", movKit_z);
+				printf("e3y=%f \n", movKit_y);
+			}
+			else {
+				rotKit_x = 90;
+				estado = 8;
+			}
+		}
+
+
+
+		if (estado == 8) {
+			if (movKit_y > 20) {
+				movKit_y -= 1.0f;
+				movKit_x -= 1.0f;
+				movKit_z -= 0.5f;
+				rotKit_x = 55;
+				printf("e3z=%f \n", movKit_z);
+				printf("e3y=%f \n", movKit_y);
+				printf("e9x=%f \n", movKit_x);
+			}
+			else {
+				estado = 9;
+			}
+		}
+
+
+		if (estado == 9) {
+			if (movKit_x > -150) {
+				movKit_x -= 1.0f;
+				rotKit_x = -25;
+				printf("e3z=%f \n", movKit_z);
+				printf("e3y=%f \n", movKit_y);
+			}
+			else {
+				rotKit_x = 45;
+				estado = 10;
+			}
+		}
+
+		if (estado == 10) {
+			if (movKit_y < 240) {
+				movKit_x -= 0.45f;
+				movKit_y += 1.0f;
+				printf("e3z=%f \n", movKit_z);
+				printf("e3y=%f \n", movKit_y);
+			}
+			else {
+				
+				estado = 11;
+			}
+		}
+
+		if (estado == 11) {
+			if (movKit_z < 500) {
+				movKit_z += 1.0f;
+				printf("e3z=%f \n", movKit_z);
+				printf("e3y=%f \n", movKit_y);
+			}
+			else {
+
+				estado = 12;
+			}
+		}
+		if (estado == 12) {
+			if (movKit_y > 150) {
+				movKit_z -= 0.5f;
+				movKit_y -= 1.0f;
+				movKit_x -= 0.75f;
+				printf("e3z=%f \n", movKit_z);
+				printf("e3y=%f \n", movKit_y);
+			}
+			else {
+
+				estado = 13;
+			}
+		}
+
+		if (estado == 13) {
+			if (movKit_y > 10) {
+				movKit_z -= 0.5f;
+				movKit_y -= 1.0f;
+				printf("e3z=%f \n", movKit_z);
+				printf("e3y=%f \n", movKit_y);
+			}
+			else {
+
+				estado = 14;
+			}
+		}
+
+		if (estado == 14) {
+			if (movKit_z > 200) {
+				movKit_z -= 0.5f;
+				printf("e3z=%f \n", movKit_z);
+				printf("e3y=%f \n", movKit_y);
+			}
+			else {
+				
+				estado = 15;
+			}
+		}
+
+		if (estado == 15) {
+			if (movKit_z > 150) {
+				movKit_z -= 0.85f;
+				movKit_y += 0.5f;
+				printf("e3z=%f \n", movKit_z);
+				printf("e3y=%f \n", movKit_y);
+			}
+			else {
+
+				estado = 16;
+			}
+		}
+
+		if (estado == 16) {
+			if (movKit_z > -5) {
+				movKit_z -= 1.0f;
+				printf("e3z=%f \n", movKit_z);
+				printf("e3y=%f \n", movKit_y);
+			}
+			else {
+				movKit_x -= 3.5f;
+				estado = 17;
+			}
+		}
+
+		if (estado == 17) {
+			if (movKit_z > -55) {
+				movKit_z -= 1.0f;
+				movKit_y -= 0.85f;
+				printf("e3z=%f \n", movKit_z);
+				printf("e3y=%f \n", movKit_y);
+			}
+			else {
+
+				estado = 18;
+			}
+		}
+
+
+		if (estado == 18) {
+			if (movKit_x < 5) {
+				movKit_x += 1.00f;
+				printf("e3z=%f \n", movKit_z);
+				printf("e3y=%f \n", movKit_y);
+			}
+			else {
+
+				estado = 19;
+			}
+		}
+
+		if (estado == 19) {
+			if (movKit_z < 0) {
+				movKit_z += 2.00f;
+				printf("e3z=%f \n", movKit_z);
+				printf("e3y=%f \n", movKit_y);
+			}
+			else {
+
+				estado = 0;
+			}
+		}
 	}
+	
+	
 
 }
 
@@ -244,6 +520,7 @@ void display(Shader shader, Shader projectionShader, Model modelo, Model pista, 
 	glm::mat4 tmp = glm::mat4(1.0f);
 	glm::mat4 temp = glm::mat4(1.0f);
 	glm::mat4 temp2 = glm::mat4(1.0f);
+	glm::mat4 temp3 = glm::mat4(1.0f);
 	glm::mat4 model = glm::mat4(1.0f);		// initialize Matrix, Use this matrix for individual models
 	glm::mat4 view = glm::mat4(1.0f);		//Use this matrix for ALL models
 	glm::mat4 projection = glm::mat4(1.0f);	//This matrix is for Projection
@@ -285,6 +562,7 @@ void display(Shader shader, Shader projectionShader, Model modelo, Model pista, 
 
 	model = glm::translate(model, glm::vec3(6.0f, 0.0f, 0.0f));
 	temp = model;
+	temp3 = temp;
 	model = glm::scale(model, glm::vec3(3.0f, 21.0f, 3.0f));
 	projectionShader.setVec3("aColor", glm::vec3((float)0.9, (float)0.7, (float)0));
 	projectionShader.setMat4("model", model);
@@ -5500,13 +5778,16 @@ void display(Shader shader, Shader projectionShader, Model modelo, Model pista, 
 	shader.setMat4("model", model);
 	pista2.Draw(shader);
 
-	model = glm::translate(model = glm::mat4(1.0f), glm::vec3(movKit_x, movKit_y, movKit_z));
+	model = glm::rotate(temp3, glm::radians(90.0f), glm::vec3(1.0f, 0.0f, 0.0f));
+	model = glm::rotate(model, glm::radians(180.0f), glm::vec3(0.0f, 1.0f, 0.0f));
+	model = glm::rotate(model, glm::radians(-30.0f), glm::vec3(0.0f, 0.0f, 1.0f));
+	model = glm::translate(model, glm::vec3(3.0f,8.0f,0.0f));
+	model = glm::translate(model, glm::vec3(movKit_x, movKit_y, movKit_z));
+	model = glm::rotate(model, glm::radians(rotKit_x), glm::vec3(1.0f, 0.0f, 0.0f));
 	model = glm::rotate(model, glm::radians(rotKit_y), glm::vec3(0.0f, 1.0f, 0.0f));
+	model = glm::rotate(model, glm::radians(rotKit_z), glm::vec3(0.0f, 0.0f, 1.0f));
 	shader.setMat4("model", model);
-
-
-	//modelo.Draw(shader);
-
+	modelo.Draw(shader);
 	//fence bottom start
 	model = savestatereja = glm::translate(model = glm::mat4(1.0f), glm::vec3(15, 0, 52));
 	model = glm::rotate(model, glm::radians(90.0f), glm::vec3(0.0f, 1.0f, 0.0f));
