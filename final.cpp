@@ -14,7 +14,9 @@
 #include "esfera.h"
 #include "toroide.h"
 #include <vector>
-
+#include <fstream>
+#include <iterator>
+#include <deque>
 
 // Other Libs
 #include "SOIL2/SOIL2.h"
@@ -50,6 +52,7 @@ void myData(void);
 void display(Shader, Shader, Model, Model);
 void getResolution(void);
 void animate(void);
+void load_vectors(void);
 void LoadTextures(void);
 unsigned int generateTextures(char*, bool);
 
@@ -77,32 +80,43 @@ t_caja_brillo;
 float movKit_z = 0.0f,
 movKit_x = 0.0f,
 movKit_y = 0.0f,
-rotKit_x = 0.0f,
 rotKit_y = 0.0f,
+rotKit_x = 0.0f,
 rotKit_z = 0.0f,
 fortuna_rot = 0.0f;
 
 int estado = 0;
-bool play, reversa = false;
+bool play, reversa = false, available = true, recording = false, autoroute = false;
 
 //savestates_fortuna
-std::vector < glm::mat4 > savestate(15); 
+std::vector < glm::mat4 > savestate(15);
 std::vector < glm::mat4 > savestate_adorno(15);
+
+
+//camera movements
+std::deque < glm::vec3 > camerapos;
+std::deque < double > pitchvec, yawvec;
 
 
 //factor de escala fortuna
 float escala = 15.0f;
- 
+
 
 //reja savestate
 glm::mat4 savestatereja = glm::mat4(1.0f), savestatereja2;
 float test_grados = 0.0f,
-		test_pos_x = 0.0f,
-		test_pos_z = 0.0f,
-	test_pos_x2 = 0.0f,
-	test_pos_z2 = 0.0f;
+test_pos_x = 0.0f,
+test_pos_z = 0.0f,
+test_pos_x2 = 0.0f,
+test_pos_z2 = 0.0f;
 
-
+//camera route
+std::ofstream outFile1("CameraTour/camera_route.nino", ios::out | ios::binary);
+std::ofstream outFile2("CameraTour/camera_pitch.nino", ios::out | ios::binary);
+std::ofstream outFile3("CameraTour/camera_yaw.nino", ios::out | ios::binary);
+std::ifstream inFile1("CameraTour/saved/camera_route.nino");
+std::ifstream inFile2("CameraTour/saved/camera_pitch.nino");
+std::ifstream inFile3("CameraTour/saved/camera_yaw.nino");
 
 unsigned int generateTextures(const char* filename, bool alfa)
 {
@@ -161,16 +175,16 @@ void myData()
 	GLfloat vertices[] = {
 		//Position				//Normals
 		-0.5f, -0.5f, -0.5f,  0.0f,  0.0f, -1.0f,//
-		 0.5f, -0.5f, -0.5f,  0.0f,  0.0f, -1.0f,
-		 0.5f,  0.5f, -0.5f,  0.0f,  0.0f, -1.0f,
-		 0.5f,  0.5f, -0.5f,  0.0f,  0.0f, -1.0f,
+		0.5f, -0.5f, -0.5f,  0.0f,  0.0f, -1.0f,
+		0.5f,  0.5f, -0.5f,  0.0f,  0.0f, -1.0f,
+		0.5f,  0.5f, -0.5f,  0.0f,  0.0f, -1.0f,
 		-0.5f,  0.5f, -0.5f,  0.0f,  0.0f, -1.0f,
 		-0.5f, -0.5f, -0.5f,  0.0f,  0.0f, -1.0f,
 
 		-0.5f, -0.5f,  0.5f,  0.0f,  0.0f,  1.0f,
-		 0.5f, -0.5f,  0.5f,  0.0f,  0.0f,  1.0f,
-		 0.5f,  0.5f,  0.5f,  0.0f,  0.0f,  1.0f,
-		 0.5f,  0.5f,  0.5f,  0.0f,  0.0f,  1.0f,
+		0.5f, -0.5f,  0.5f,  0.0f,  0.0f,  1.0f,
+		0.5f,  0.5f,  0.5f,  0.0f,  0.0f,  1.0f,
+		0.5f,  0.5f,  0.5f,  0.0f,  0.0f,  1.0f,
 		-0.5f,  0.5f,  0.5f,  0.0f,  0.0f,  1.0f,
 		-0.5f, -0.5f,  0.5f,  0.0f,  0.0f,  1.0f,
 
@@ -181,24 +195,24 @@ void myData()
 		-0.5f, -0.5f,  0.5f, -1.0f,  0.0f,  0.0f,
 		-0.5f,  0.5f,  0.5f, -1.0f,  0.0f,  0.0f,
 
-		 0.5f,  0.5f,  0.5f,  1.0f,  0.0f,  0.0f,
-		 0.5f,  0.5f, -0.5f,  1.0f,  0.0f,  0.0f,
-		 0.5f, -0.5f, -0.5f,  1.0f,  0.0f,  0.0f,
-		 0.5f, -0.5f, -0.5f,  1.0f,  0.0f,  0.0f,
-		 0.5f, -0.5f,  0.5f,  1.0f,  0.0f,  0.0f,
-		 0.5f,  0.5f,  0.5f,  1.0f,  0.0f,  0.0f,
+		0.5f,  0.5f,  0.5f,  1.0f,  0.0f,  0.0f,
+		0.5f,  0.5f, -0.5f,  1.0f,  0.0f,  0.0f,
+		0.5f, -0.5f, -0.5f,  1.0f,  0.0f,  0.0f,
+		0.5f, -0.5f, -0.5f,  1.0f,  0.0f,  0.0f,
+		0.5f, -0.5f,  0.5f,  1.0f,  0.0f,  0.0f,
+		0.5f,  0.5f,  0.5f,  1.0f,  0.0f,  0.0f,
 
 		-0.5f, -0.5f, -0.5f,  0.0f, -1.0f,  0.0f,
-		 0.5f, -0.5f, -0.5f,  0.0f, -1.0f,  0.0f,
-		 0.5f, -0.5f,  0.5f,  0.0f, -1.0f,  0.0f,
-		 0.5f, -0.5f,  0.5f,  0.0f, -1.0f,  0.0f,
+		0.5f, -0.5f, -0.5f,  0.0f, -1.0f,  0.0f,
+		0.5f, -0.5f,  0.5f,  0.0f, -1.0f,  0.0f,
+		0.5f, -0.5f,  0.5f,  0.0f, -1.0f,  0.0f,
 		-0.5f, -0.5f,  0.5f,  0.0f, -1.0f,  0.0f,
 		-0.5f, -0.5f, -0.5f,  0.0f, -1.0f,  0.0f,
 
 		-0.5f,  0.5f, -0.5f,  0.0f,  1.0f,  0.0f,
-		 0.5f,  0.5f, -0.5f,  0.0f,  1.0f,  0.0f,
-		 0.5f,  0.5f,  0.5f,  0.0f,  1.0f,  0.0f,
-		 0.5f,  0.5f,  0.5f,  0.0f,  1.0f,  0.0f,
+		0.5f,  0.5f, -0.5f,  0.0f,  1.0f,  0.0f,
+		0.5f,  0.5f,  0.5f,  0.0f,  1.0f,  0.0f,
+		0.5f,  0.5f,  0.5f,  0.0f,  1.0f,  0.0f,
 		-0.5f,  0.5f,  0.5f,  0.0f,  1.0f,  0.0f,
 		-0.5f,  0.5f, -0.5f,  0.0f,  1.0f,  0.0f
 	};
@@ -230,276 +244,293 @@ void animate(void)
 	if (play)
 	{
 		fortuna_rot += 0.2f; //rueda de la fortuna
-		if (estado == 0) {
+	}
 
-			if (movKit_z < 80) {
-				movKit_z += 1.0f;
-				rotKit_x = -5;
-			}
-			else {
-				rotKit_x = -60;
-				estado = 1;
-			}
+	if (recording)
+	{
+		camerapos.push_back(camera.Position);
+		pitchvec.push_back(camera.Pitch);
+		yawvec.push_back(camera.Yaw);
+	}
+
+	if (autoroute & !camerapos.empty())
+	{
+		camera.Position = camerapos.front();
+		camerapos.pop_front();
+		camera.Pitch = pitchvec.front();
+		pitchvec.pop_front();
+		camera.Yaw = yawvec.front();
+		yawvec.pop_front();
+		camera.updateCameraVectors();
+	}
+
+	if (estado == 0) {
+
+		if (movKit_z < 80) {
+			movKit_z += 1.0f;
+			rotKit_x = -5;
 		}
-
-		if (estado == 1) {
-			if (movKit_y <200) {
-				movKit_z += 1.35f;
-				movKit_y += 2.0f;
-				rotKit_x = -60;
-			}
-			else {
-				rotKit_x = -45;
-				estado = 2;
-			}
-		}
-		
-		if (estado == 2) {
-			if (movKit_y <210) {
-				movKit_z += 0.75f;
-				movKit_y += 1.0f;
-				rotKit_x = -45;
-			}
-			else{
-				rotKit_x =-25;
-				estado = 3;
-			}
-		}
-
-		if (estado == 3) {
-			if (movKit_z <240) {
-				movKit_z += 1.0f;
-				movKit_y += 0.75f;
-				rotKit_x = -15;
-			}
-			else {
-				rotKit_x = -5;
-				estado = 4;
-			}
-		}
-		
-		if (estado == 4) {
-			if (movKit_z <310) {
-				movKit_z += 1.0f;
-				rotKit_x = 5;
-			}
-			else {
-				rotKit_x = 10;
-				rotKit_y = -30;
-				estado = 5;
-			}
-		}
-
-		if (estado == 5) {
-			if (movKit_y > 200) {
-				movKit_y -= 1.0f;
-				movKit_z += 0.75f;
-				movKit_x -= 0.75f;
-				rotKit_x = 30;
-			}
-			else {
-				rotKit_x = 85;
-				rotKit_y = -15;
-				rotKit_z = 30;
-				estado = 6;
-			}
-		}
-
-		if (estado == 6) {
-			if (movKit_y > 150) {
-				movKit_y -= 1.0f;
-				movKit_x -= 0.20f;
-				movKit_z += 0.25f;
-				rotKit_z = 60;
-			}
-			else {
-				rotKit_x = 90;
-				rotKit_z = 85;
-				estado = 7;
-			}
-		}
-
-		if (estado == 7) {
-			if (movKit_y > 50) {
-				movKit_y -= 1.0f;
-				movKit_x -= 0.40f;
-			}
-			else {
-				rotKit_y = -45;
-				estado = 8;
-			}
-		}
-
-
-
-		if (estado == 8) {
-			if (movKit_y > 30) {
-				movKit_y -= 1.0f;
-				movKit_x -= 1.5f;
-			}
-			else {
-				rotKit_y = -85;
-				estado = 9;
-			}
-		}
-
-
-		if (estado == 9) {
-			if (movKit_x > -170) {
-				movKit_x -= 1.0f;
-			}
-			else {
-				rotKit_y = -150;
-				rotKit_z = -5;
-				estado = 10;
-			}
-		}
-
-		if (estado == 10) {
-			if (movKit_y < 210) {
-				movKit_x -= 0.40f;
-				movKit_z += 0.15f;
-				movKit_y += 1.0f;
-			}
-			else {
-				rotKit_x = 85;
-				estado = 11;
-			}
-		}
-
-		if (estado == 11) {
-			if (movKit_y < 230) {
-				movKit_y += 0.85f;
-				movKit_z += 0.85f;
-				rotKit_x = 100;
-			}
-			else {
-
-				rotKit_x = 120;
-				estado = 12;
-			}
-		}
-
-		if (estado == 12) {
-			if (movKit_y < 250) {
-				movKit_y += 0.85f;
-				movKit_z += 0.85f;
-				movKit_x -= 0.85f;
-			}
-			else {
-
-				rotKit_x = 190;
-				estado = 13;
-			}
-		}
-
-		if (estado == 13) {
-			if (movKit_z < 440) {
-				movKit_z += 1.0f;
-				movKit_x -= 0.15f;
-			}
-			else {
-
-				rotKit_x = 230;
-				estado = 14;
-			}
-		}
-
-		if (estado == 14) {
-			if (movKit_x > -310) {
-				movKit_x -= 0.25f;
-				movKit_z += 0.10f;
-				movKit_y -= 0.45f;
-			}
-			else {
-				rotKit_x = 300;
-				rotKit_y = -180;
-				estado = 15;
-			}
-		}
-
-		if (estado == 15) {
-			if (movKit_y > 10) {
-				movKit_z -= 0.7f;
-				movKit_y -= 1.0f;
-				movKit_x -= 0.10f;
-
-			}
-			else {
-				rotKit_x = 360;
-				estado = 16;
-			}
-		}
-
-		if (estado == 16) {
-			if (movKit_z > 200) {
-				movKit_z -= 0.5f;
-				movKit_x -= 0.06f;
-			}
-			else {
-				rotKit_x = 400;
-				estado = 17;
-			}
-		}
-
-		if (estado == 17) {
-			if (movKit_z > 135) {
-				movKit_z -= 0.85f;
-				movKit_y += 0.5f;
-
-			}
-			else {
-				rotKit_x = 360;
-				estado = 18;
-			}
-		}
-
-		if (estado == 18) {
-			if (movKit_z > -15) {
-				movKit_z -= 1.0f;
-			}
-			else {
-				rotKit_x = 310;
-				estado = 19;
-			}
-		}
-
-		if (estado == 19) {
-			if (movKit_z > -80) {
-				movKit_z -= 1.0f;
-				movKit_y -= 0.75f;
-			}
-			else {
-				rotKit_x = 360;
-				rotKit_y = -270;
-				estado = 20;
-			}
-		}
-
-
-		if (estado == 20) {
-			if (movKit_x < 0) {
-				movKit_x += 1.00f;
-				movKit_z += 0.05f;
-			}
-			else {
-				rotKit_y = -360;
-				estado = 21;
-			}
-		}
-
-		if (estado == 21) {
-			if (movKit_z < 0) {
-				movKit_z += 2.00f;
-			}
-			else {
-
-				estado = 0;
-			}
+		else {
+			rotKit_x = -60;
+			estado = 1;
 		}
 	}
-	
-	
+
+	if (estado == 1) {
+		if (movKit_y <200) {
+			movKit_z += 1.35f;
+			movKit_y += 2.0f;
+			rotKit_x = -60;
+		}
+		else {
+			rotKit_x = -45;
+			estado = 2;
+		}
+	}
+
+	if (estado == 2) {
+		if (movKit_y <210) {
+			movKit_z += 0.75f;
+			movKit_y += 1.0f;
+			rotKit_x = -45;
+		}
+		else {
+			rotKit_x = -25;
+			estado = 3;
+		}
+	}
+
+	if (estado == 3) {
+		if (movKit_z <240) {
+			movKit_z += 1.0f;
+			movKit_y += 0.75f;
+			rotKit_x = -15;
+		}
+		else {
+			rotKit_x = -5;
+			estado = 4;
+		}
+	}
+
+	if (estado == 4) {
+		if (movKit_z <310) {
+			movKit_z += 1.0f;
+			rotKit_x = 5;
+		}
+		else {
+			rotKit_x = 10;
+			rotKit_y = -30;
+			estado = 5;
+		}
+	}
+
+	if (estado == 5) {
+		if (movKit_y > 200) {
+			movKit_y -= 1.0f;
+			movKit_z += 0.75f;
+			movKit_x -= 0.75f;
+			rotKit_x = 30;
+		}
+		else {
+			rotKit_x = 85;
+			rotKit_y = -15;
+			rotKit_z = 30;
+			estado = 6;
+		}
+	}
+
+	if (estado == 6) {
+		if (movKit_y > 150) {
+			movKit_y -= 1.0f;
+			movKit_x -= 0.20f;
+			movKit_z += 0.25f;
+			rotKit_z = 60;
+		}
+		else {
+			rotKit_x = 90;
+			rotKit_z = 85;
+			estado = 7;
+		}
+	}
+
+	if (estado == 7) {
+		if (movKit_y > 50) {
+			movKit_y -= 1.0f;
+			movKit_x -= 0.40f;
+		}
+		else {
+			rotKit_y = -45;
+			estado = 8;
+		}
+	}
+
+
+
+	if (estado == 8) {
+		if (movKit_y > 30) {
+			movKit_y -= 1.0f;
+			movKit_x -= 1.5f;
+		}
+		else {
+			rotKit_y = -85;
+			estado = 9;
+		}
+	}
+
+
+	if (estado == 9) {
+		if (movKit_x > -170) {
+			movKit_x -= 1.0f;
+		}
+		else {
+			rotKit_y = -150;
+			rotKit_z = -5;
+			estado = 10;
+		}
+	}
+
+	if (estado == 10) {
+		if (movKit_y < 210) {
+			movKit_x -= 0.40f;
+			movKit_z += 0.15f;
+			movKit_y += 1.0f;
+		}
+		else {
+			rotKit_x = 85;
+			estado = 11;
+		}
+	}
+
+	if (estado == 11) {
+		if (movKit_y < 230) {
+			movKit_y += 0.85f;
+			movKit_z += 0.85f;
+			rotKit_x = 100;
+		}
+		else {
+
+			rotKit_x = 120;
+			estado = 12;
+		}
+	}
+
+	if (estado == 12) {
+		if (movKit_y < 250) {
+			movKit_y += 0.85f;
+			movKit_z += 0.85f;
+			movKit_x -= 0.85f;
+		}
+		else {
+
+			rotKit_x = 190;
+			estado = 13;
+		}
+	}
+
+	if (estado == 13) {
+		if (movKit_z < 440) {
+			movKit_z += 1.0f;
+			movKit_x -= 0.15f;
+		}
+		else {
+
+			rotKit_x = 230;
+			estado = 14;
+		}
+	}
+
+	if (estado == 14) {
+		if (movKit_x > -310) {
+			movKit_x -= 0.25f;
+			movKit_z += 0.10f;
+			movKit_y -= 0.45f;
+		}
+		else {
+			rotKit_x = 300;
+			rotKit_y = -180;
+			estado = 15;
+		}
+	}
+
+	if (estado == 15) {
+		if (movKit_y > 10) {
+			movKit_z -= 0.7f;
+			movKit_y -= 1.0f;
+			movKit_x -= 0.10f;
+
+		}
+		else {
+			rotKit_x = 360;
+			estado = 16;
+		}
+	}
+
+	if (estado == 16) {
+		if (movKit_z > 200) {
+			movKit_z -= 0.5f;
+			movKit_x -= 0.06f;
+		}
+		else {
+			rotKit_x = 400;
+			estado = 17;
+		}
+	}
+
+	if (estado == 17) {
+		if (movKit_z > 135) {
+			movKit_z -= 0.85f;
+			movKit_y += 0.5f;
+
+		}
+		else {
+			rotKit_x = 360;
+			estado = 18;
+		}
+	}
+
+	if (estado == 18) {
+		if (movKit_z > -15) {
+			movKit_z -= 1.0f;
+		}
+		else {
+			rotKit_x = 310;
+			estado = 19;
+		}
+	}
+
+	if (estado == 19) {
+		if (movKit_z > -80) {
+			movKit_z -= 1.0f;
+			movKit_y -= 0.75f;
+		}
+		else {
+			rotKit_x = 360;
+			rotKit_y = -270;
+			estado = 20;
+		}
+	}
+
+
+	if (estado == 20) {
+		if (movKit_x < 0) {
+			movKit_x += 1.00f;
+			movKit_z += 0.05f;
+		}
+		else {
+			rotKit_y = -360;
+			estado = 21;
+		}
+	}
+
+	if (estado == 21) {
+		if (movKit_z < 0) {
+			movKit_z += 2.00f;
+		}
+		else {
+
+			estado = 0;
+		}
+	}
 
 }
 
@@ -519,7 +550,7 @@ void display(Shader shader, Shader projectionShader, Model modelo, Model pista, 
 	glm::mat4 view = glm::mat4(1.0f);		//Use this matrix for ALL models
 	glm::mat4 projection = glm::mat4(1.0f);	//This matrix is for Projection
 
-	//Use "projection" to include Camera
+											//Use "projection" to include Camera
 	projection = glm::perspective(glm::radians(camera.Zoom), (float)SCR_WIDTH / (float)SCR_HEIGHT, 0.1f, 2000.0f);
 	view = camera.GetViewMatrix();
 
@@ -531,8 +562,8 @@ void display(Shader shader, Shader projectionShader, Model modelo, Model pista, 
 
 	glBindVertexArray(VAO);
 
-//////////MONTAÑA
-/////RIEL-BASE
+	//////////MONTAÑA
+	/////RIEL-BASE
 	/////////////////////////////////////////////////
 	model = glm::translate(model, glm::vec3(-500.0f, 10.0f, -485.0f));
 	model = glm::rotate(model, glm::radians(-90.0f), glm::vec3(1, 0, 0));
@@ -629,7 +660,7 @@ void display(Shader shader, Shader projectionShader, Model modelo, Model pista, 
 		model = temp2;
 		//////////////////////
 	}
-	
+
 	/////////////////////////////////////////////////
 	model = glm::translate(model, glm::vec3(0.0f, 21.0f, 1.0f));
 	model = glm::rotate(model, glm::radians(15.0f), glm::vec3(1, 0, 0));
@@ -868,7 +899,7 @@ void display(Shader shader, Shader projectionShader, Model modelo, Model pista, 
 		model = temp2;
 		//////////////////////
 	}
-	
+
 	/////////////////////////////////////////////////
 	model = glm::translate(model, glm::vec3(0.0f, 21.0f, -1.0f));
 	model = glm::rotate(model, glm::radians(-30.0f), glm::vec3(1, 0, 0));
@@ -1165,7 +1196,7 @@ void display(Shader shader, Shader projectionShader, Model modelo, Model pista, 
 	model = temp2;
 	//////////////////////
 
-	
+
 	////////////////////////
 	for (int ind = 0; ind < 2; ind++)
 	{
@@ -1519,7 +1550,7 @@ void display(Shader shader, Shader projectionShader, Model modelo, Model pista, 
 		model = temp2;
 		////////////////////////
 	}
-	
+
 
 	for (int ind = 0; ind < 2; ind++)
 	{
@@ -1623,7 +1654,7 @@ void display(Shader shader, Shader projectionShader, Model modelo, Model pista, 
 	glDrawArrays(GL_TRIANGLES, 0, 36);
 	model = temp2;
 	////////////////////////
-	
+
 
 	for (int ind = 0; ind < 2; ind++)
 	{
@@ -1676,7 +1707,7 @@ void display(Shader shader, Shader projectionShader, Model modelo, Model pista, 
 		model = temp2;
 		////////////////////////	
 	}
-	
+
 
 	for (int ind = 0; ind < 5; ind++)
 	{
@@ -2388,7 +2419,7 @@ void display(Shader shader, Shader projectionShader, Model modelo, Model pista, 
 	model = temp2;
 
 
-	
+
 
 	for (int ind = 0; ind < 4; ind++)
 	{
@@ -2440,7 +2471,7 @@ void display(Shader shader, Shader projectionShader, Model modelo, Model pista, 
 		glDrawArrays(GL_TRIANGLES, 0, 36);
 		model = temp2;
 	}
-	
+
 
 	for (int ind = 0; ind < 2; ind++)
 	{
@@ -3252,7 +3283,7 @@ void display(Shader shader, Shader projectionShader, Model modelo, Model pista, 
 
 	//rueda de la fortuna
 	//Soporte1
-	model = savestate.at(0) = glm::translate(savestate.at(0) = glm::mat4(1.0f), glm::vec3(9.546*escala/2, 8.9 /2*escala, 4 * escala / 1.5 *2.3));
+	model = savestate.at(0) = glm::translate(savestate.at(0) = glm::mat4(1.0f), glm::vec3(9.546*escala / 2, 8.9 / 2 * escala, 4 * escala / 1.5 *2.3));
 	model = glm::rotate(model, glm::radians(45.0f), glm::vec3(0.0f, 0.0f, 1.0f));
 	model = glm::scale(model, glm::vec3(0.5*escala, 13.5*escala, 0.5*escala));
 	projectionShader.setVec3("aColor", glm::vec3((float)214 / 255, (float)216 / 255, (float)201 / 255));
@@ -3268,7 +3299,7 @@ void display(Shader shader, Shader projectionShader, Model modelo, Model pista, 
 	glDrawArrays(GL_TRIANGLES, 0, 36);
 
 	//Soporte3
-	model = savestate.at(0) = glm::translate(savestate.at(0) = glm::mat4(1.0f), glm::vec3(9.546*escala / 2, 8.9 / 2 * escala, -4*escala/1.5 + 4 * escala / 1.5 * 2.3));
+	model = savestate.at(0) = glm::translate(savestate.at(0) = glm::mat4(1.0f), glm::vec3(9.546*escala / 2, 8.9 / 2 * escala, -4 * escala / 1.5 + 4 * escala / 1.5 * 2.3));
 	model = glm::rotate(model, glm::radians(45.0f), glm::vec3(0.0f, 0.0f, 1.0f));
 	model = glm::scale(model, glm::vec3(0.5*escala, 13.5 * escala, 0.5*escala));
 	projectionShader.setVec3("aColor", glm::vec3((float)214 / 255, (float)216 / 255, (float)201 / 255));
@@ -3284,9 +3315,9 @@ void display(Shader shader, Shader projectionShader, Model modelo, Model pista, 
 	glDrawArrays(GL_TRIANGLES, 0, 36);
 
 	//Eje
-	model = glm::translate(savestate.at(0) = glm::mat4(1.0f), glm::vec3(-13.5 * escala * cos(45 * M_PI / 180) / 2 + 9.546*escala / 2, (13.5 * escala * cos(45 * M_PI / 180) / 2) + (8.9 / 2 )*escala, -2*escala/1.5+ 4 * escala / 1.5 * 2.3));
+	model = glm::translate(savestate.at(0) = glm::mat4(1.0f), glm::vec3(-13.5 * escala * cos(45 * M_PI / 180) / 2 + 9.546*escala / 2, (13.5 * escala * cos(45 * M_PI / 180) / 2) + (8.9 / 2)*escala, -2 * escala / 1.5 + 4 * escala / 1.5 * 2.3));
 	model = savestate.at(0) = glm::rotate(model, glm::radians(fortuna_rot), glm::vec3(0.0f, 0.0f, 1.0f));
-	model = glm::scale(model, glm::vec3(0.25*escala, 0.25*escala, 2.25*escala/1.5));
+	model = glm::scale(model, glm::vec3(0.25*escala, 0.25*escala, 2.25*escala / 1.5));
 	projectionShader.setVec3("aColor", glm::vec3((float)244 / 255, (float)90 / 255, (float)116 / 255));
 	projectionShader.setMat4("model", model);
 	my_sphere.render();
@@ -3342,17 +3373,18 @@ void display(Shader shader, Shader projectionShader, Model modelo, Model pista, 
 	model = glm::scale(model, glm::vec3(4.5f, 0.0f, 2.5f));
 	shader.setMat4("model", model);
 	pista2.Draw(shader);
-
+////////MOUNTAIN CART
 	model = glm::rotate(temp3, glm::radians(90.0f), glm::vec3(1.0f, 0.0f, 0.0f));
 	model = glm::rotate(model, glm::radians(180.0f), glm::vec3(0.0f, 1.0f, 0.0f));
 	model = glm::rotate(model, glm::radians(-30.0f), glm::vec3(0.0f, 0.0f, 1.0f));
-	model = glm::translate(model, glm::vec3(3.0f,8.0f,0.0f));
+	model = glm::translate(model, glm::vec3(3.0f, 8.0f, 0.0f));
 	model = glm::translate(model, glm::vec3(movKit_x, movKit_y, movKit_z));
 	model = glm::rotate(model, glm::radians(rotKit_x), glm::vec3(1.0f, 0.0f, 0.0f));
 	model = glm::rotate(model, glm::radians(rotKit_y), glm::vec3(0.0f, 1.0f, 0.0f));
 	model = glm::rotate(model, glm::radians(rotKit_z), glm::vec3(0.0f, 0.0f, 1.0f));
 	shader.setMat4("model", model);
 	modelo.Draw(shader);
+///////////////
 	//fence bottom start
 	model = savestatereja = glm::translate(model = glm::mat4(1.0f), glm::vec3(15, 0, 52));
 	model = glm::rotate(model, glm::radians(90.0f), glm::vec3(0.0f, 1.0f, 0.0f));
@@ -3369,7 +3401,7 @@ void display(Shader shader, Shader projectionShader, Model modelo, Model pista, 
 		reja.Draw(shader);
 	}
 
-	model = savestatereja  = glm::translate(model = glm::mat4(1.0f), glm::vec3(-15, 0, 52));
+	model = savestatereja = glm::translate(model = glm::mat4(1.0f), glm::vec3(-15, 0, 52));
 	model = glm::rotate(model, glm::radians(90.0f), glm::vec3(0.0f, 1.0f, 0.0f));
 	model = glm::scale(model, glm::vec3(4.5f, 4.5f, 4.5f));
 	shader.setMat4("model", model);
@@ -3384,7 +3416,7 @@ void display(Shader shader, Shader projectionShader, Model modelo, Model pista, 
 		reja.Draw(shader);
 	}
 	//first_ low left
-	model = glm::translate(savestatereja, glm::vec3(-11.3/2, 0, 0));
+	model = glm::translate(savestatereja, glm::vec3(-11.3 / 2, 0, 0));
 	model = savestatereja = glm::rotate(model, glm::radians(32.0f), glm::vec3(0.0f, 1.0f, 0.0f));
 	model = glm::scale(model, glm::vec3(4.5f, 4.5f, 4.5f));
 	shader.setMat4("model", model);
@@ -3445,7 +3477,7 @@ void display(Shader shader, Shader projectionShader, Model modelo, Model pista, 
 	}
 
 
-	model = glm::translate(model = glm::mat4(1.0f), glm::vec3 (-351.75, 0, -132.25));
+	model = glm::translate(model = glm::mat4(1.0f), glm::vec3(-351.75, 0, -132.25));
 	model = savestatereja = glm::rotate(model, glm::radians(84.8f), glm::vec3(0.0f, 1.0f, 0.0f));
 	model = glm::scale(model, glm::vec3(4.5f, 4.5f, 4.5f));
 	shader.setMat4("model", model);
@@ -3506,7 +3538,7 @@ void display(Shader shader, Shader projectionShader, Model modelo, Model pista, 
 	}
 	//second-fence low_right
 	model = glm::translate(savestatereja2, glm::vec3(11.3 / 2, 0, 0));
-	model = savestatereja = glm::rotate(model, glm::radians(180-32.0f), glm::vec3(0.0f, 1.0f, 0.0f));
+	model = savestatereja = glm::rotate(model, glm::radians(180 - 32.0f), glm::vec3(0.0f, 1.0f, 0.0f));
 	model = glm::scale(model, glm::vec3(4.5f, 4.5f, 4.5f));
 	shader.setMat4("model", model);
 	reja.Draw(shader);
@@ -3521,7 +3553,7 @@ void display(Shader shader, Shader projectionShader, Model modelo, Model pista, 
 	}
 
 	model = glm::translate(model = glm::mat4(1.0f), glm::vec3(130.75, 0, -12.5));
-	model = savestatereja = glm::rotate(model, glm::radians(180-46.0f), glm::vec3(0.0f, 1.0f, 0.0f));
+	model = savestatereja = glm::rotate(model, glm::radians(180 - 46.0f), glm::vec3(0.0f, 1.0f, 0.0f));
 	model = glm::scale(model, glm::vec3(4.5f, 4.5f, 4.5f));
 	shader.setMat4("model", model);
 	reja.Draw(shader);
@@ -3536,7 +3568,7 @@ void display(Shader shader, Shader projectionShader, Model modelo, Model pista, 
 	}
 
 	model = glm::translate(model = glm::mat4(1.0f), glm::vec3(205.25, 0, -81.75));
-	model = savestatereja = glm::rotate(model, glm::radians(180-62.1f), glm::vec3(0.0f, 1.0f, 0.0f));
+	model = savestatereja = glm::rotate(model, glm::radians(180 - 62.1f), glm::vec3(0.0f, 1.0f, 0.0f));
 	model = glm::scale(model, glm::vec3(4.5f, 4.5f, 4.5f));
 	shader.setMat4("model", model);
 	reja.Draw(shader);
@@ -3551,7 +3583,7 @@ void display(Shader shader, Shader projectionShader, Model modelo, Model pista, 
 	}
 
 	model = glm::translate(model = glm::mat4(1.0f), glm::vec3(243.25, 0, -101.5));
-	model = savestatereja = glm::rotate(model, glm::radians(180-73.8f), glm::vec3(0.0f, 1.0f, 0.0f));
+	model = savestatereja = glm::rotate(model, glm::radians(180 - 73.8f), glm::vec3(0.0f, 1.0f, 0.0f));
 	model = glm::scale(model, glm::vec3(4.5f, 4.5f, 4.5f));
 	shader.setMat4("model", model);
 	reja.Draw(shader);
@@ -3567,7 +3599,7 @@ void display(Shader shader, Shader projectionShader, Model modelo, Model pista, 
 
 
 	model = glm::translate(model = glm::mat4(1.0f), glm::vec3(351.75, 0, -132.25));
-	model = savestatereja = glm::rotate(model, glm::radians(180-84.8f), glm::vec3(0.0f, 1.0f, 0.0f));
+	model = savestatereja = glm::rotate(model, glm::radians(180 - 84.8f), glm::vec3(0.0f, 1.0f, 0.0f));
 	model = glm::scale(model, glm::vec3(4.5f, 4.5f, 4.5f));
 	shader.setMat4("model", model);
 	reja.Draw(shader);
@@ -3582,7 +3614,7 @@ void display(Shader shader, Shader projectionShader, Model modelo, Model pista, 
 	}
 
 	model = glm::translate(model = glm::mat4(1.0f), glm::vec3(396.5, 0, -135.75));
-	model = savestatereja = glm::rotate(model, glm::radians(180-89.9f), glm::vec3(0.0f, 1.0f, 0.0f));
+	model = savestatereja = glm::rotate(model, glm::radians(180 - 89.9f), glm::vec3(0.0f, 1.0f, 0.0f));
 	model = glm::scale(model, glm::vec3(4.5f, 4.5f, 4.5f));
 	shader.setMat4("model", model);
 	reja.Draw(shader);
@@ -3597,7 +3629,7 @@ void display(Shader shader, Shader projectionShader, Model modelo, Model pista, 
 	}
 
 	model = glm::translate(model = glm::mat4(1.0f), glm::vec3(441.5, 0, -135.5));
-	model = savestatereja = glm::rotate(model, glm::radians(180-94.9f), glm::vec3(0.0f, 1.0f, 0.0f));
+	model = savestatereja = glm::rotate(model, glm::radians(180 - 94.9f), glm::vec3(0.0f, 1.0f, 0.0f));
 	model = glm::scale(model, glm::vec3(4.5f, 4.5f, 4.5f));
 	shader.setMat4("model", model);
 	reja.Draw(shader);
@@ -3674,7 +3706,7 @@ void display(Shader shader, Shader projectionShader, Model modelo, Model pista, 
 	}
 
 	model = glm::translate(model = glm::mat4(1.0f), glm::vec3(-130.75, 0, 12.5 - 503 + 52));
-	model = savestatereja = glm::rotate(model, glm::radians(180-46.0f), glm::vec3(0.0f, 1.0f, 0.0f));
+	model = savestatereja = glm::rotate(model, glm::radians(180 - 46.0f), glm::vec3(0.0f, 1.0f, 0.0f));
 	model = glm::scale(model, glm::vec3(4.5f, 4.5f, 4.5f));
 	shader.setMat4("model", model);
 	reja.Draw(shader);
@@ -3689,7 +3721,7 @@ void display(Shader shader, Shader projectionShader, Model modelo, Model pista, 
 	}
 
 	model = glm::translate(model = glm::mat4(1.0f), glm::vec3(-205.25, 0, 81.75 - 503 + 52));
-	model = savestatereja = glm::rotate(model, glm::radians(180-62.1f), glm::vec3(0.0f, 1.0f, 0.0f));
+	model = savestatereja = glm::rotate(model, glm::radians(180 - 62.1f), glm::vec3(0.0f, 1.0f, 0.0f));
 	model = glm::scale(model, glm::vec3(4.5f, 4.5f, 4.5f));
 	shader.setMat4("model", model);
 	reja.Draw(shader);
@@ -3704,7 +3736,7 @@ void display(Shader shader, Shader projectionShader, Model modelo, Model pista, 
 	}
 
 	model = glm::translate(model = glm::mat4(1.0f), glm::vec3(-243.25, 0, 101.5 - 503 + 52));
-	model = savestatereja = glm::rotate(model, glm::radians(180-73.8f), glm::vec3(0.0f, 1.0f, 0.0f));
+	model = savestatereja = glm::rotate(model, glm::radians(180 - 73.8f), glm::vec3(0.0f, 1.0f, 0.0f));
 	model = glm::scale(model, glm::vec3(4.5f, 4.5f, 4.5f));
 	shader.setMat4("model", model);
 	reja.Draw(shader);
@@ -3720,7 +3752,7 @@ void display(Shader shader, Shader projectionShader, Model modelo, Model pista, 
 
 
 	model = glm::translate(model = glm::mat4(1.0f), glm::vec3(-351.75, 0, 132.25 - 503 + 52));
-	model = savestatereja = glm::rotate(model, glm::radians(180-84.8f), glm::vec3(0.0f, 1.0f, 0.0f));
+	model = savestatereja = glm::rotate(model, glm::radians(180 - 84.8f), glm::vec3(0.0f, 1.0f, 0.0f));
 	model = glm::scale(model, glm::vec3(4.5f, 4.5f, 4.5f));
 	shader.setMat4("model", model);
 	reja.Draw(shader);
@@ -3735,7 +3767,7 @@ void display(Shader shader, Shader projectionShader, Model modelo, Model pista, 
 	}
 
 	model = glm::translate(model = glm::mat4(1.0f), glm::vec3(-396.5, 0, 135.75 - 503 + 52));
-	model = savestatereja = glm::rotate(model, glm::radians(180-89.9f), glm::vec3(0.0f, 1.0f, 0.0f));
+	model = savestatereja = glm::rotate(model, glm::radians(180 - 89.9f), glm::vec3(0.0f, 1.0f, 0.0f));
 	model = glm::scale(model, glm::vec3(4.5f, 4.5f, 4.5f));
 	shader.setMat4("model", model);
 	reja.Draw(shader);
@@ -3750,7 +3782,7 @@ void display(Shader shader, Shader projectionShader, Model modelo, Model pista, 
 	}
 
 	model = glm::translate(model = glm::mat4(1.0f), glm::vec3(-441.5, 0, 135.5 - 503 + 52));
-	model = savestatereja = glm::rotate(model, glm::radians(180-94.9f), glm::vec3(0.0f, 1.0f, 0.0f));
+	model = savestatereja = glm::rotate(model, glm::radians(180 - 94.9f), glm::vec3(0.0f, 1.0f, 0.0f));
 	model = glm::scale(model, glm::vec3(4.5f, 4.5f, 4.5f));
 	shader.setMat4("model", model);
 	reja.Draw(shader);
@@ -3765,7 +3797,7 @@ void display(Shader shader, Shader projectionShader, Model modelo, Model pista, 
 	}
 
 	model = glm::translate(model = glm::mat4(1.0f), glm::vec3(-483.75, 0, 130 - 503 + 52));
-	model = savestatereja = glm::rotate(model, glm::radians(180-112.6f), glm::vec3(0.0f, 1.0f, 0.0f));
+	model = savestatereja = glm::rotate(model, glm::radians(180 - 112.6f), glm::vec3(0.0f, 1.0f, 0.0f));
 	model = glm::scale(model, glm::vec3(4.5f, 4.5f, 4.5f));
 	shader.setMat4("model", model);
 	reja.Draw(shader);
@@ -3795,7 +3827,7 @@ void display(Shader shader, Shader projectionShader, Model modelo, Model pista, 
 		reja.Draw(shader);
 	}
 
-	model = glm::translate(model = glm::mat4(1.0f), glm::vec3(130.75, 0, 12.5-503 + 52));
+	model = glm::translate(model = glm::mat4(1.0f), glm::vec3(130.75, 0, 12.5 - 503 + 52));
 	model = savestatereja = glm::rotate(model, glm::radians(180 + 46.0f), glm::vec3(0.0f, 1.0f, 0.0f));
 	model = glm::scale(model, glm::vec3(4.5f, 4.5f, 4.5f));
 	shader.setMat4("model", model);
@@ -3810,7 +3842,7 @@ void display(Shader shader, Shader projectionShader, Model modelo, Model pista, 
 		reja.Draw(shader);
 	}
 
-	model = glm::translate(model = glm::mat4(1.0f), glm::vec3(205.25, 0, 81.75 - 503 +52));
+	model = glm::translate(model = glm::mat4(1.0f), glm::vec3(205.25, 0, 81.75 - 503 + 52));
 	model = savestatereja = glm::rotate(model, glm::radians(180 + 62.1f), glm::vec3(0.0f, 1.0f, 0.0f));
 	model = glm::scale(model, glm::vec3(4.5f, 4.5f, 4.5f));
 	shader.setMat4("model", model);
@@ -3901,7 +3933,7 @@ void display(Shader shader, Shader projectionShader, Model modelo, Model pista, 
 		reja.Draw(shader);
 	}
 
-
+	//tiendas
 	model = glm::translate(model = glm::mat4(1.0f), glm::vec3(511.25, 0, -151.25));
 	model = savestatereja = glm::rotate(model, glm::radians(-111.1f), glm::vec3(0.0f, 1.0f, 0.0f));
 	model = glm::scale(model, glm::vec3(6.5f, 6.5f, 6.5f));
@@ -3944,7 +3976,7 @@ void display(Shader shader, Shader projectionShader, Model modelo, Model pista, 
 	shader.setMat4("model", model);
 	tienda.at(6).Draw(shader);//periodico
 
-	model = glm::translate(model = glm::mat4(1.0f), glm::vec3( -532.5, 0,  -226.25));
+	model = glm::translate(model = glm::mat4(1.0f), glm::vec3(-532.5, 0, -226.25));
 	model = savestatereja = glm::rotate(model, glm::radians(0.0f), glm::vec3(0.0f, 1.0f, 0.0f));
 	model = glm::scale(model, glm::vec3(6.5f, 6.5f, 6.5f));
 	shader.setMat4("model", model);
@@ -3956,6 +3988,7 @@ void display(Shader shader, Shader projectionShader, Model modelo, Model pista, 
 	shader.setMat4("model", model);
 	tienda.at(3).Draw(shader);
 
+	//arboles
 	//cuadrante pasto derecho bottom
 	model = glm::translate(model = glm::mat4(1.0f), glm::vec3(168.75, 0, 17.5));
 	model = savestatereja = glm::rotate(model, glm::radians(0.0f), glm::vec3(0.0f, 1.0f, 0.0f));
@@ -4055,11 +4088,11 @@ void display(Shader shader, Shader projectionShader, Model modelo, Model pista, 
 	model = glm::scale(model, glm::vec3(6.5f, 6.5f, 6.5f));
 	shader.setMat4("model", model);
 	arbol.at(0).Draw(shader);
-	
+
 	//pasto izq top
 
 
-	model = glm::translate(model = glm::mat4(1.0f), glm::vec3(-168.75, 0, 17.5-520));
+	model = glm::translate(model = glm::mat4(1.0f), glm::vec3(-168.75, 0, 17.5 - 520));
 	model = savestatereja = glm::rotate(model, glm::radians(0.0f), glm::vec3(0.0f, 1.0f, 0.0f));
 	model = glm::scale(model, glm::vec3(6.5f, 6.5f, 6.5f));
 	shader.setMat4("model", model);
@@ -4164,12 +4197,13 @@ void display(Shader shader, Shader projectionShader, Model modelo, Model pista, 
 	shader.setMat4("model", model);
 	arbol.at(1).Draw(shader);
 
-	model = glm::translate(model = glm::mat4(1.0f), glm::vec3(487.75, 0, - 336));
+	model = glm::translate(model = glm::mat4(1.0f), glm::vec3(487.75, 0, -336));
 	model = savestatereja = glm::rotate(model, glm::radians(0.0f), glm::vec3(0.0f, 1.0f, 0.0f));
 	model = glm::scale(model, glm::vec3(6.5f, 6.5f, 6.5f));
 	shader.setMat4("model", model);
 	arbol.at(0).Draw(shader);
 
+	//sucurity nigga
 	model = glm::translate(model = glm::mat4(1.0f), glm::vec3(-527.5, 0, -162.5));
 	model = savestatereja = glm::rotate(model, glm::radians(-27.0f), glm::vec3(0.0f, 1.0f, 0.0f));
 	model = glm::scale(model, glm::vec3(6.5f, 6.5f, 6.5f));
@@ -4182,6 +4216,8 @@ void display(Shader shader, Shader projectionShader, Model modelo, Model pista, 
 	shader.setMat4("model", model);
 	gente.at(1).Draw(shader);
 
+
+
 	//puede ser util para encontrar coordenadas de x, z, además de rotaciones en y
 	//model = glm::translate(model = glm::mat4(1.0f), glm::vec3(test_pos_x, 0, test_pos_z));
 	//model = savestatereja = glm::rotate(model, glm::radians(test_grados), glm::vec3(0.0f, 1.0f, 0.0f));
@@ -4193,7 +4229,6 @@ void display(Shader shader, Shader projectionShader, Model modelo, Model pista, 
 	model = glm::translate(model = glm::mat4(1.0f), glm::vec3(test_pos_x2, 0, test_pos_z2));
 	model = glm::rotate(model, glm::radians(test_grados), glm::vec3(0.0f, 1.0f, 0.0f));
 	model = glm::scale(model, glm::vec3(6.5f, 6.5f, 6.5f));
-	//model = glm::scale(model, glm::vec3(4.5f, 4.5f, 4.5f));
 	shader.setMat4("model", model);
 	gente.at(0).Draw(shader);
 
@@ -4212,12 +4247,12 @@ int main()
 	glfwWindowHint(GLFW_OPENGL_FORWARD_COMPAT, GL_TRUE); // uncomment this statement to fix compilation on OS X
 #endif
 
-	// glfw window creation
-	// --------------------
+														 // glfw window creation
+														 // --------------------
 	monitors = glfwGetPrimaryMonitor();
 	getResolution();
 
-	GLFWwindow* window = glfwCreateWindow(SCR_WIDTH, SCR_HEIGHT, "Practica 11", NULL, NULL);
+	GLFWwindow* window = glfwCreateWindow(SCR_WIDTH, SCR_HEIGHT, "Feria 1.0", NULL, NULL);
 	if (window == NULL)
 	{
 		std::cout << "Failed to create GLFW window" << std::endl;
@@ -4234,6 +4269,8 @@ int main()
 	glfwSetInputMode(window, GLFW_CURSOR, GLFW_CURSOR_NORMAL);
 
 	glewInit();
+
+
 
 	//random colours
 
@@ -4261,9 +4298,9 @@ int main()
 	Model reja = ((char *)"Models/reja/reja.obj");
 	std::vector<Model> tienda{ (char *)"Models/tienda1/tienda1.obj" , (char *)"Models/tienda2/tienda2.obj" , (char *)"Models/tienda3/tienda3.obj" ,
 		(char *)"Models/tienda4/tienda4.obj" , (char *)"Models/tienda5/tienda5.obj", (char *)"Models/tienda7/tienda7.obj",
-		(char *)"Models/tienda6/tienda6.obj" , (char *)"Models/muro/muro.obj"};
+		(char *)"Models/tienda6/untitled.obj" , (char *)"Models/muro/muro.obj" };
 	std::vector<Model> gente{ (char *)"Models/gente/girl1/untitled.obj", (char *)"Models/gente/nigga/nigga.obj" };
-	std::vector<Model> arbol{ (char *)"Models/nature/arbol1/arbol1.obj", (char *)"Models/nature/arbol2/arbol1.obj", (char *)"Models/nature/arbol3/arbol3.obj"};
+	std::vector<Model> arbol{ (char *)"Models/nature/arbol1/arbol1.obj", (char *)"Models/nature/arbol2/arbol1.obj", (char *)"Models/nature/arbol3/arbol3.obj" };
 	glm::mat4 projection = glm::mat4(1.0f);	//This matrix is for Projection
 	projection = glm::perspective(glm::radians(camera.Zoom), (float)SCR_WIDTH / (float)SCR_HEIGHT, 0.1f, 2000.0f);
 	// render loop
@@ -4310,28 +4347,78 @@ void my_input(GLFWwindow *window)
 		glfwSetWindowShouldClose(window, true);
 
 	if (glfwGetKey(window, GLFW_KEY_W) == GLFW_PRESS)
+	{
 		camera.ProcessKeyboard(FORWARD, (float)deltaTime);
+		std::cout << "------CoordinatesCamera------" << std::endl;
+		std::cout << "Xcamera: " << camera.Position.x << std::endl;
+		std::cout << "Ycamera: " << camera.Position.y << std::endl;
+		std::cout << "Zcamera: " << camera.Position.z << std::endl;
+		std::cout << "Pitch: " << camera.Pitch << std::endl;
+		std::cout << "Yaw: " << camera.Yaw << std::endl;
+		std::cout << "-----------------------------" << camera.Yaw << std::endl;
+
+	}
 	if (glfwGetKey(window, GLFW_KEY_S) == GLFW_PRESS)
+	{
 		camera.ProcessKeyboard(BACKWARD, (float)deltaTime);
+		std::cout << "------CoordinatesCamera------" << std::endl;
+		std::cout << "Xcamera: " << camera.Position.x << std::endl;
+		std::cout << "Ycamera: " << camera.Position.y << std::endl;
+		std::cout << "Zcamera: " << camera.Position.z << std::endl;
+		std::cout << "Pitch: " << camera.Pitch << std::endl;
+		std::cout << "Yaw: " << camera.Yaw << std::endl;
+		std::cout << "-----------------------------" << camera.Yaw << std::endl;
+	}
 	if (glfwGetKey(window, GLFW_KEY_A) == GLFW_PRESS)
+	{
 		camera.ProcessKeyboard(LEFT, (float)deltaTime);
+		std::cout << "------CoordinatesCamera------" << std::endl;
+		std::cout << "Xcamera: " << camera.Position.x << std::endl;
+		std::cout << "Ycamera: " << camera.Position.y << std::endl;
+		std::cout << "Zcamera: " << camera.Position.z << std::endl;
+		std::cout << "Pitch: " << camera.Pitch << std::endl;
+		std::cout << "Yaw: " << camera.Yaw << std::endl;
+		std::cout << "-----------------------------" << camera.Yaw << std::endl;
+	}
 	if (glfwGetKey(window, GLFW_KEY_D) == GLFW_PRESS)
+	{
 		camera.ProcessKeyboard(RIGHT, (float)deltaTime);
+		std::cout << "------CoordinatesCamera------" << std::endl;
+		std::cout << "Xcamera: " << camera.Position.x << std::endl;
+		std::cout << "Ycamera: " << camera.Position.y << std::endl;
+		std::cout << "Zcamera: " << camera.Position.z << std::endl;
+		std::cout << "Pitch: " << camera.Pitch << std::endl;
+		std::cout << "Yaw: " << camera.Yaw << std::endl;
+		std::cout << "-----------------------------" << camera.Yaw << std::endl;
+	}
 
 	if (glfwGetKey(window, GLFW_KEY_SPACE) == GLFW_PRESS)
 		play = true;
 	if (glfwGetKey(window, GLFW_KEY_P) == GLFW_PRESS)
 		play = false;
-	if (glfwGetKey(window, GLFW_KEY_X) == GLFW_PRESS)
-		reversa = false;
-	if (glfwGetKey(window, GLFW_KEY_Z) == GLFW_PRESS)
-		reversa = true;
 
 	if (glfwGetKey(window, GLFW_KEY_R) == GLFW_PRESS)
 	{
 		test_grados += 1.0;
 		std::cout << "Grados: " << test_grados << std::endl;
 	}
+
+	if (glfwGetKey(window, GLFW_KEY_G) == GLFW_PRESS)
+		recording = true;
+	if (glfwGetKey(window, GLFW_KEY_H) == GLFW_PRESS)
+	{
+		recording = false;
+		for (const auto &e : camerapos)
+		{
+			outFile1 << e.x << "\n";
+			outFile1 << e.y << "\n";
+			outFile1 << e.z << "\n";
+		}
+		for (const auto &e : pitchvec) outFile2 << e << "\n";
+		for (const auto &e : yawvec) outFile3 << e << "\n";
+	}
+
+
 
 	if (glfwGetKey(window, GLFW_KEY_T) == GLFW_PRESS)
 	{
@@ -4366,7 +4453,7 @@ void my_input(GLFWwindow *window)
 		std::cout << "Grados: " << test_grados << std::endl;
 		std::cout << "---------------------" << std::endl;
 	}
-	
+
 	if (glfwGetKey(window, GLFW_KEY_8) == GLFW_PRESS)
 	{
 		test_pos_z2 += 1.25;
@@ -4395,6 +4482,72 @@ void my_input(GLFWwindow *window)
 		std::cout << "---------------------" << std::endl;
 	}
 
+	if (glfwGetKey(window, GLFW_KEY_V) == GLFW_PRESS)
+	{
+		if (available)
+		{
+			available = false;
+			load_vectors();
+		}
+		autoroute = true;
+	}
+
+	if (glfwGetKey(window, GLFW_KEY_C) == GLFW_PRESS)
+	{
+		autoroute = false;
+	}
+
+	if (glfwGetKey(window, GLFW_KEY_B) == GLFW_PRESS)
+	{
+		available = true;
+	}
+
+}
+
+void load_vectors()
+{
+	std::cout << "Load funcion begins" << std::endl;
+	inFile1.clear();
+	inFile2.clear();
+	inFile3.clear();
+
+	if (inFile1)
+	{
+		std::cout << "Deque1 load started" << std::endl;
+		inFile1.seekg(0, ios::beg);
+		camerapos.clear();
+		double value, value2, value3;
+		while (inFile1 >> value)
+		{
+			inFile1 >> value2;
+			inFile1 >> value3;
+			camerapos.push_back(glm::vec3(value, value2, value3));
+		}
+		std::cout << "Deque1 load finished" << std::endl;
+	}
+
+	if (inFile2)
+	{
+		std::cout << "Deque2 load started" << std::endl;
+		inFile2.seekg(0, ios::beg);
+		pitchvec.clear();
+		double value;
+		while (inFile2 >> value)
+			pitchvec.push_back(value);
+		std::cout << "Deque2 load finished" << std::endl;
+	}
+
+	if (inFile3)
+	{
+		std::cout << "Deque3 load started" << std::endl;
+		inFile3.seekg(0, ios::beg);
+		yawvec.clear();
+		double value;
+		while (inFile3 >> value)
+			yawvec.push_back(value);
+		std::cout << "Deque3 load finished" << std::endl;
+	}
+	std::cout << "Load funcion ends" << std::endl;
 }
 
 // glfw: whenever the window size changed (by OS or user resize) this callback function executes
@@ -4409,6 +4562,9 @@ void resize(GLFWwindow* window, int width, int height)
 // -------------------------------------------------------
 void mouse_callback(GLFWwindow* window, double xpos, double ypos)
 {
+	if (autoroute)
+		return;
+
 	if (firstMouse)
 	{
 		lastX = xpos;
