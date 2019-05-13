@@ -241,18 +241,19 @@ void myData()
 
 void animate(void)
 {
+	//rueda
 	if (play)
 	{
 		fortuna_rot += 0.2f; //rueda de la fortuna
 	}
-
+	//camara grabar
 	if (recording)
 	{
 		camerapos.push_back(camera.Position);
 		pitchvec.push_back(camera.Pitch);
 		yawvec.push_back(camera.Yaw);
 	}
-
+	//camara
 	if (autoroute & !camerapos.empty())
 	{
 		camera.Position = camerapos.front();
@@ -263,7 +264,7 @@ void animate(void)
 		yawvec.pop_front();
 		camera.updateCameraVectors();
 	}
-
+	//carro montaña
 	if (estado == 0) {
 
 		if (movKit_z < 80) {
@@ -3373,7 +3374,7 @@ void display(Shader shader, Shader projectionShader, Model modelo, Model pista, 
 	model = glm::scale(model, glm::vec3(4.5f, 0.0f, 2.5f));
 	shader.setMat4("model", model);
 	pista2.Draw(shader);
-////////MOUNTAIN CART
+	////////MOUNTAIN CART
 	model = glm::rotate(temp3, glm::radians(90.0f), glm::vec3(1.0f, 0.0f, 0.0f));
 	model = glm::rotate(model, glm::radians(180.0f), glm::vec3(0.0f, 1.0f, 0.0f));
 	model = glm::rotate(model, glm::radians(-30.0f), glm::vec3(0.0f, 0.0f, 1.0f));
@@ -3384,7 +3385,7 @@ void display(Shader shader, Shader projectionShader, Model modelo, Model pista, 
 	model = glm::rotate(model, glm::radians(rotKit_z), glm::vec3(0.0f, 0.0f, 1.0f));
 	shader.setMat4("model", model);
 	modelo.Draw(shader);
-///////////////
+	///////////////
 	//fence bottom start
 	model = savestatereja = glm::translate(model = glm::mat4(1.0f), glm::vec3(15, 0, 52));
 	model = glm::rotate(model, glm::radians(90.0f), glm::vec3(0.0f, 1.0f, 0.0f));
@@ -4216,14 +4217,75 @@ void display(Shader shader, Shader projectionShader, Model modelo, Model pista, 
 	shader.setMat4("model", model);
 	gente.at(1).Draw(shader);
 
+	////Anastasia
+	model = glm::translate(model = glm::mat4(1.0f), glm::vec3(10, 0, 5));
+	model = savestatereja = glm::rotate(model, glm::radians(test_grados), glm::vec3(0.0f, 1.0f, 0.0f));
+	model = glm::scale(model, glm::vec3(6.5f, 6.5f, 6.5f));
+	shader.setMat4("model", model);
+	gente.at(2).Draw(shader);
 
+	//Ayanami
+	model = glm::translate(model = glm::mat4(1.0f), glm::vec3(0, 0, -100));
+	model = savestatereja = glm::rotate(model, glm::radians(test_grados), glm::vec3(0.0f, 1.0f, 0.0f));
+	model = glm::scale(model, glm::vec3(6.5f, 6.5f, 6.5f));
+	shader.setMat4("model", model);
+	gente.at(3).Draw(shader);
+
+	//BB
+	model = glm::translate(model = glm::mat4(1.0f), glm::vec3(-200, 0, -150));
+	model = savestatereja = glm::rotate(model, glm::radians(test_grados), glm::vec3(0.0f, 1.0f, 0.0f));
+	model = glm::scale(model, glm::vec3(6.5f, 6.5f, 6.5f));
+	shader.setMat4("model", model);
+	gente.at(4).Draw(shader);
+
+	//futaba
+	model = glm::translate(model = glm::mat4(1.0f), glm::vec3(400, 0, 200));
+	model = savestatereja = glm::rotate(model, glm::radians(test_grados), glm::vec3(0.0f, 1.0f, 0.0f));
+	model = glm::scale(model, glm::vec3(6.5f, 6.5f, 6.5f));
+	shader.setMat4("model", model);
+	gente.at(5).Draw(shader);
+
+	//indy
+	model = glm::translate(model = glm::mat4(1.0f), glm::vec3(50, 0, -50));
+	model = savestatereja = glm::rotate(model, glm::radians(test_grados), glm::vec3(0.0f, 1.0f, 0.0f));
+	model = glm::scale(model, glm::vec3(6.5f, 6.5f, 6.5f));
+	shader.setMat4("model", model);
+	gente.at(6).Draw(shader);
+
+	//suika
+	model = glm::translate(model = glm::mat4(1.0f), glm::vec3(100, 0, -100));
+	model = savestatereja = glm::rotate(model, glm::radians(test_grados), glm::vec3(0.0f, 1.0f, 0.0f));
+	model = glm::scale(model, glm::vec3(6.5f, 6.5f, 6.5f));
+	shader.setMat4("model", model);
+	gente.at(7).Draw(shader);
+
+	//mai
+	model = glm::translate(model = glm::mat4(1.0f), glm::vec3(25, 0, -75));
+	model = savestatereja = glm::rotate(model, glm::radians(test_grados), glm::vec3(0.0f, 1.0f, 0.0f));
+	model = glm::scale(model, glm::vec3(6.5f, 6.5f, 6.5f));
+	shader.setMat4("model", model);
+	gente.at(8).Draw(shader);
+
+	//miri
+	model = glm::translate(model = glm::mat4(1.0f), glm::vec3(400, 0, -600));
+	model = savestatereja = glm::rotate(model, glm::radians(test_grados), glm::vec3(0.0f, 1.0f, 0.0f));
+	model = glm::scale(model, glm::vec3(6.5f, 6.5f, 6.5f));
+	shader.setMat4("model", model);
+	gente.at(9).Draw(shader);
+
+	//mochi
+	model = glm::translate(model = glm::mat4(1.0f), glm::vec3(300, 0, -75));
+	model = savestatereja = glm::rotate(model, glm::radians(test_grados), glm::vec3(0.0f, 1.0f, 0.0f));
+	model = glm::scale(model, glm::vec3(6.5f, 6.5f, 6.5f));
+	shader.setMat4("model", model);
+	gente.at(10).Draw(shader);
 
 	//puede ser util para encontrar coordenadas de x, z, además de rotaciones en y
-	//model = glm::translate(model = glm::mat4(1.0f), glm::vec3(test_pos_x, 0, test_pos_z));
-	//model = savestatereja = glm::rotate(model, glm::radians(test_grados), glm::vec3(0.0f, 1.0f, 0.0f));
-	//model = glm::scale(model, glm::vec3(6.5f, 6.5f, 6.5f));
-	//shader.setMat4("model", model);
-	//gente.at(1).Draw(shader); 
+	model = glm::translate(model = glm::mat4(1.0f), glm::vec3(test_pos_x, 0, test_pos_z));
+	model = savestatereja = glm::rotate(model, glm::radians(test_grados), glm::vec3(0.0f, 1.0f, 0.0f));
+	model = glm::scale(model, glm::vec3(6.5f, 6.5f, 6.5f));
+	shader.setMat4("model", model);
+	gente.at(11).Draw(shader);
 
 	//puede ser util para encontrar coordenadas de x, z, además de rotaciones en y
 	model = glm::translate(model = glm::mat4(1.0f), glm::vec3(test_pos_x2, 0, test_pos_z2));
@@ -4298,8 +4360,10 @@ int main()
 	Model reja = ((char *)"Models/reja/reja.obj");
 	std::vector<Model> tienda{ (char *)"Models/tienda1/tienda1.obj" , (char *)"Models/tienda2/tienda2.obj" , (char *)"Models/tienda3/tienda3.obj" ,
 		(char *)"Models/tienda4/tienda4.obj" , (char *)"Models/tienda5/tienda5.obj", (char *)"Models/tienda7/tienda7.obj",
-		(char *)"Models/tienda6/untitled.obj" , (char *)"Models/muro/muro.obj" };
-	std::vector<Model> gente{ (char *)"Models/gente/girl1/untitled.obj", (char *)"Models/gente/nigga/nigga.obj" };
+		(char *)"Models/tienda6/tienda6.obj" , (char *)"Models/muro/muro.obj" };
+	std::vector<Model> gente{ (char *)"Models/gente/girl1/untitled.obj", (char *)"Models/gente/nigga/nigga.obj", (char *)"Models/gente/anastasia/anastasia.obj",(char *)"Models/gente/ayanami/ayanami.obj"
+		,(char *)"Models/gente/bb/bb.obj",(char *)"Models/gente/futaba/untitled.obj", (char *)"Models/gente/indy/indy.obj",
+		(char *)"Models/gente/japanesegoburin/untitled.obj",(char *)"Models/gente/mai/mai.obj",(char *)"Models/gente/miri/miri.obj",(char *)"Models/gente/mochi/mochi.obj" ,(char *)"Models/gente/misaki/misaki.obj" };
 	std::vector<Model> arbol{ (char *)"Models/nature/arbol1/arbol1.obj", (char *)"Models/nature/arbol2/arbol1.obj", (char *)"Models/nature/arbol3/arbol3.obj" };
 	glm::mat4 projection = glm::mat4(1.0f);	//This matrix is for Projection
 	projection = glm::perspective(glm::radians(camera.Zoom), (float)SCR_WIDTH / (float)SCR_HEIGHT, 0.1f, 2000.0f);
