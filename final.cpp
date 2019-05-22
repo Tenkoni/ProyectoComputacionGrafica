@@ -19,6 +19,9 @@
 
 // Other Libs
 #include "SOIL2/SOIL2.h"
+#include "irrKlang.h"
+using namespace irrklang;
+#pragma comment(lib, "irrKlang.lib")
 
 void resize(GLFWwindow* window, int width, int height);
 void my_input(GLFWwindow *window);
@@ -107,9 +110,9 @@ float escala = 15.0f;
 
 //reja savestate
 glm::mat4 savestatereja = glm::mat4(1.0f), savestatereja2;
-std::vector <double> test_pos_x (12, 0.0f);
-std::vector <double> test_pos_z (12, 0.0f);
-std::vector <float> test_grados (12, 0.0f);
+std::vector <double> test_pos_x(12, 0.0f);
+std::vector <double> test_pos_z(12, 0.0f);
+std::vector <float> test_grados(12, 0.0f);
 
 
 //camera route
@@ -569,9 +572,9 @@ void animate(void)
 	}
 	/*if (anim_on & a_anastasia.empty())
 	{
-		test_pos_x.at(0) = a_anastasia.front().x;
-		test_pos_z.at(0) = a_anastasia.front().y;
-		test_grados.at(0) = a_anastasia.front().z;
+	test_pos_x.at(0) = a_anastasia.front().x;
+	test_pos_z.at(0) = a_anastasia.front().y;
+	test_grados.at(0) = a_anastasia.front().z;
 
 	}*/
 }
@@ -3415,7 +3418,7 @@ void display(Shader shader, Shader projectionShader, Model modelo, Model pista, 
 	model = glm::scale(model, glm::vec3(4.5f, 0.0f, 2.5f));
 	shader.setMat4("model", model);
 	pista2.Draw(shader);
-////////MOUNTAIN CART
+	////////MOUNTAIN CART
 	model = glm::rotate(temp3, glm::radians(90.0f), glm::vec3(1.0f, 0.0f, 0.0f));
 	model = glm::rotate(model, glm::radians(180.0f), glm::vec3(0.0f, 1.0f, 0.0f));
 	model = glm::rotate(model, glm::radians(-30.0f), glm::vec3(0.0f, 0.0f, 1.0f));
@@ -3426,7 +3429,7 @@ void display(Shader shader, Shader projectionShader, Model modelo, Model pista, 
 	model = glm::rotate(model, glm::radians(rotKit_z), glm::vec3(0.0f, 0.0f, 1.0f));
 	shader.setMat4("model", model);
 	modelo.Draw(shader);
-///////////////
+	///////////////
 	//fence bottom start
 	model = savestatereja = glm::translate(model = glm::mat4(1.0f), glm::vec3(15, 0, 52));
 	model = glm::rotate(model, glm::radians(90.0f), glm::vec3(0.0f, 1.0f, 0.0f));
@@ -4349,6 +4352,19 @@ void display(Shader shader, Shader projectionShader, Model modelo, Model pista, 
 
 int main()
 {
+	ISoundEngine * engine = irrklang::createIrrKlangDevice();
+
+	if (!engine)
+	{
+		printf("Could not startup engine\n");
+		return 0; // error starting up the engine
+	}
+
+	// To play a sound, we only to call play2D(). The second parameter
+	// tells the engine to play it looped.
+
+	// play some sound stream, looped
+	engine->play2D("fairground.mp3", true);
 	// glfw: initialize and configure
 	// ------------------------------
 	glfwInit();
@@ -4413,15 +4429,15 @@ int main()
 		(char *)"Models/tienda4/tienda4.obj" , (char *)"Models/tienda5/tienda5.obj", (char *)"Models/tienda7/tienda7.obj",
 		(char *)"Models/tienda6/untitled.obj" , (char *)"Models/muro/muro.obj" , (char *)"Models/puesto/tiendita.obj" };
 	std::vector<Model> gente{ (char *)"Models/gente/girl1/untitled.obj", (char *)"Models/gente/nigga/nigga.obj", (char *)"Models/gente/anastasia/anastasia.obj",(char *)"Models/gente/ayanami/ayanami.obj"
-								,(char *)"Models/gente/bb/bb.obj",(char *)"Models/gente/futaba/untitled.obj", (char *)"Models/gente/indy/indy.obj",
-								(char *)"Models/gente/japanesegoburin/untitled.obj",(char *)"Models/gente/mai/mai.obj",(char *)"Models/gente/miri/miri.obj",(char *)"Models/gente/mochi/mochi.obj" ,(char *)"Models/gente/misaki/misaki.obj" };
-	std::vector<Model> arbol{ (char *)"Models/nature/arbol1/arbol1.obj", (char *)"Models/nature/arbol2/arbol1.obj", (char *)"Models/nature/arbol3/arbol3.obj"};
+		,(char *)"Models/gente/bb/bb.obj",(char *)"Models/gente/futaba/untitled.obj", (char *)"Models/gente/indy/indy.obj",
+		(char *)"Models/gente/japanesegoburin/untitled.obj",(char *)"Models/gente/mai/mai.obj",(char *)"Models/gente/miri/miri.obj",(char *)"Models/gente/mochi/mochi.obj" ,(char *)"Models/gente/misaki/misaki.obj" };
+	std::vector<Model> arbol{ (char *)"Models/nature/arbol1/arbol1.obj", (char *)"Models/nature/arbol2/arbol1.obj", (char *)"Models/nature/arbol3/arbol3.obj" };
 	glm::mat4 projection = glm::mat4(1.0f);	//This matrix is for Projection
 	projection = glm::perspective(glm::radians(camera.Zoom), (float)SCR_WIDTH / (float)SCR_HEIGHT, 0.1f, 2000.0f);
-	
+
 	//std::vector<Model> girlsepa{ (char *)"Models/Personaje/bota.obj", (char *)"Models/Personaje/piernader.obj", (char *)"Models/Personaje/piernaizq.obj", (char *)"Models/Personaje/torso.obj", (char *)"Models/Personaje/brazoder.obj",(char *)"Models/Personaje/brazoizq.obj",(char *)"Models/Personaje/cabeza.obj" };
 
-	
+
 	// render loop
 	// While the windows is not closed
 	while (!glfwWindowShouldClose(window))
@@ -4453,7 +4469,7 @@ int main()
 	// ------------------------------------------------------------------
 	glDeleteVertexArrays(1, &VAO);
 	glDeleteBuffers(1, &VBO);
-
+	engine->drop(); // delete engine
 	glfwTerminate();
 	return 0;
 }
@@ -4558,13 +4574,13 @@ void my_input(GLFWwindow *window)
 	}
 	if (glfwGetKey(window, GLFW_KEY_UP) == GLFW_PRESS)
 	{
-		test_pos_z.at(11)+= 1.25;
-		std::cout << "PosZ: " << test_pos_z.at(11)<< std::endl;
+		test_pos_z.at(11) += 1.25;
+		std::cout << "PosZ: " << test_pos_z.at(11) << std::endl;
 	}
 	if (glfwGetKey(window, GLFW_KEY_DOWN) == GLFW_PRESS)
 	{
-		test_pos_z.at(11)-= 1.25;
-		std::cout << "PosZ: " << test_pos_z.at(11)<< std::endl;
+		test_pos_z.at(11) -= 1.25;
+		std::cout << "PosZ: " << test_pos_z.at(11) << std::endl;
 	}
 	if (glfwGetKey(window, GLFW_KEY_RIGHT) == GLFW_PRESS)
 	{
@@ -4626,7 +4642,7 @@ void my_input(GLFWwindow *window)
 		available2 = true;
 	}
 
-	
+
 }
 
 
@@ -4721,92 +4737,92 @@ void load_vectors_anim()
 	/*
 	if (inAnim3)
 	{
-		std::cout << "Deque1 load started" << std::endl;
-		inAnim3.seekg(0, ios::beg);
-		a_anastasia.clear();
-		double value, value2, value3;
-		while (inAnim1 >> value)
-		{
-			inAnim3 >> value2;
-			inAnim3 >> value3;
-			a_anastasia.push_back(glm::vec3(value, value2, value3));
-		}
-		std::cout << "Deque1 load finished" << std::endl;
+	std::cout << "Deque1 load started" << std::endl;
+	inAnim3.seekg(0, ios::beg);
+	a_anastasia.clear();
+	double value, value2, value3;
+	while (inAnim1 >> value)
+	{
+	inAnim3 >> value2;
+	inAnim3 >> value3;
+	a_anastasia.push_back(glm::vec3(value, value2, value3));
+	}
+	std::cout << "Deque1 load finished" << std::endl;
 	}
 
 	if (inAnim1)
 	{
-		std::cout << "Deque1 load started" << std::endl;
-		inAnim1.seekg(0, ios::beg);
-		a_anastasia.clear();
-		double value, value2, value3;
-		while (inAnim1 >> value)
-		{
-			inAnim1 >> value2;
-			inAnim1 >> value3;
-			a_anastasia.push_back(glm::vec3(value, value2, value3));
-		}
-		std::cout << "Deque1 load finished" << std::endl;
+	std::cout << "Deque1 load started" << std::endl;
+	inAnim1.seekg(0, ios::beg);
+	a_anastasia.clear();
+	double value, value2, value3;
+	while (inAnim1 >> value)
+	{
+	inAnim1 >> value2;
+	inAnim1 >> value3;
+	a_anastasia.push_back(glm::vec3(value, value2, value3));
+	}
+	std::cout << "Deque1 load finished" << std::endl;
 	}
 
 	if (inAnim1)
 	{
-		std::cout << "Deque1 load started" << std::endl;
-		inAnim1.seekg(0, ios::beg);
-		a_anastasia.clear();
-		double value, value2, value3;
-		while (inAnim1 >> value)
-		{
-			inAnim1 >> value2;
-			inAnim1 >> value3;
-			a_anastasia.push_back(glm::vec3(value, value2, value3));
-		}
-		std::cout << "Deque1 load finished" << std::endl;
+	std::cout << "Deque1 load started" << std::endl;
+	inAnim1.seekg(0, ios::beg);
+	a_anastasia.clear();
+	double value, value2, value3;
+	while (inAnim1 >> value)
+	{
+	inAnim1 >> value2;
+	inAnim1 >> value3;
+	a_anastasia.push_back(glm::vec3(value, value2, value3));
+	}
+	std::cout << "Deque1 load finished" << std::endl;
 	}
 
 	if (inAnim1)
 	{
-		std::cout << "Deque1 load started" << std::endl;
-		inAnim1.seekg(0, ios::beg);
-		a_anastasia.clear();
-		double value, value2, value3;
-		while (inAnim1 >> value)
-		{
-			inAnim1 >> value2;
-			inAnim1 >> value3;
-			a_anastasia.push_back(glm::vec3(value, value2, value3));
-		}
-		std::cout << "Deque1 load finished" << std::endl;
+	std::cout << "Deque1 load started" << std::endl;
+	inAnim1.seekg(0, ios::beg);
+	a_anastasia.clear();
+	double value, value2, value3;
+	while (inAnim1 >> value)
+	{
+	inAnim1 >> value2;
+	inAnim1 >> value3;
+	a_anastasia.push_back(glm::vec3(value, value2, value3));
+	}
+	std::cout << "Deque1 load finished" << std::endl;
 	}
 
 	if (inAnim1)
 	{
-		std::cout << "Deque1 load started" << std::endl;
-		inAnim1.seekg(0, ios::beg);
-		a_anastasia.clear();
-		double value, value2, value3;
-		while (inAnim1 >> value)
-		{
-			inAnim1 >> value2;
-			inAnim1 >> value3;
-			a_anastasia.push_back(glm::vec3(value, value2, value3));
-		}
-		std::cout << "Deque1 load finished" << std::endl;
+	std::cout << "Deque1 load started" << std::endl;
+	inAnim1.seekg(0, ios::beg);
+	a_anastasia.clear();
+	double value, value2, value3;
+	while (inAnim1 >> value)
+	{
+	inAnim1 >> value2;
+	inAnim1 >> value3;
+	a_anastasia.push_back(glm::vec3(value, value2, value3));
+	}
+	std::cout << "Deque1 load finished" << std::endl;
 	}
 
 	if (inAnim1)
 	{
-		std::cout << "Deque1 load started" << std::endl;
-		inAnim1.seekg(0, ios::beg);
-		a_anastasia.clear();
-		double value, value2, value3;
-		while (inAnim1 >> value)
-		{
-			inAnim1 >> value2;
-			inAnim1 >> value3;
-			a_anastasia.push_back(glm::vec3(value, value2, value3));
-		}
-		std::cout << "Deque1 load finished" << std::endl;
+	std::cout << "Deque1 load started" << std::endl;
+	inAnim1.seekg(0, ios::beg);
+	a_anastasia.clear();
+	double value, value2, value3;
+	while (inAnim1 >> value)
+	{
+	inAnim1 >> value2;
+	inAnim1 >> value3;
+	a_anastasia.push_back(glm::vec3(value, value2, value3));
+	}
+	std::cout << "Deque1 load finished" << std::endl;
 	}
 	*/
 	std::cout << "Load funcion ends" << std::endl;
