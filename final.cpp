@@ -7,7 +7,6 @@
 #include <glew.h>
 #include <glfw3.h>
 #include <stb_image.h>
-
 #include "camera.h"
 #include "Model.h"
 #include <random>
@@ -55,7 +54,7 @@ void animate(void);
 void load_vectors(void);
 void LoadTextures(void);
 unsigned int generateTextures(char*, bool);
-
+void load_vectors_anim(void);
 //Figuras
 Esfera my_sphere(1.0);
 Toroide my_torus(1.0, 1.0, 3.0);
@@ -86,7 +85,7 @@ rotKit_z = 0.0f,
 fortuna_rot = 0.0f;
 
 int estado = 0;
-bool play, reversa = false, available = true, recording = false, autoroute = false;
+bool play, reversa = false, available = true, recording = false, autoroute = false, animrecord = false, anim_on = false, available2 = true;
 
 //savestates_fortuna
 std::vector < glm::mat4 > savestate(15);
@@ -97,6 +96,10 @@ std::vector < glm::mat4 > savestate_adorno(15);
 std::deque < glm::vec3 > camerapos;
 std::deque < double > pitchvec, yawvec;
 
+//animations
+
+std::deque < glm::vec3 > a_anastasia, a_ayanami, a_bb, a_futaba, a_indy, a_suika, a_mai, a_miri, a_mochi;
+
 
 //factor de escala fortuna
 float escala = 15.0f;
@@ -104,11 +107,10 @@ float escala = 15.0f;
 
 //reja savestate
 glm::mat4 savestatereja = glm::mat4(1.0f), savestatereja2;
-float test_grados = 0.0f,
-test_pos_x = 0.0f,
-test_pos_z = 0.0f,
-test_pos_x2 = 0.0f,
-test_pos_z2 = 0.0f;
+std::vector <double> test_pos_x (12, 0.0f);
+std::vector <double> test_pos_z (12, 0.0f);
+std::vector <float> test_grados (12, 0.0f);
+
 
 //camera route
 std::ofstream outFile1("CameraTour/camera_route.nino", ios::out | ios::binary);
@@ -117,6 +119,14 @@ std::ofstream outFile3("CameraTour/camera_yaw.nino", ios::out | ios::binary);
 std::ifstream inFile1("CameraTour/saved/camera_route.nino");
 std::ifstream inFile2("CameraTour/saved/camera_pitch.nino");
 std::ifstream inFile3("CameraTour/saved/camera_yaw.nino");
+
+//animation_generator
+std::ofstream outAnim("Animations/ayanami.nino", ios::out | ios::binary);
+std::ifstream inAnim1("Animations/saved/anastasia.nino");
+std::ifstream inAnim2("Animations/saved/ayanami.nino");
+
+
+
 
 unsigned int generateTextures(const char* filename, bool alfa)
 {
@@ -532,7 +542,38 @@ void animate(void)
 			estado = 0;
 		}
 	}
+	//grabar mov
+	if (animrecord)
+		a_ayanami.push_back(glm::vec3(test_pos_x.at(11), test_pos_z.at(11), test_grados.at(11)));
 
+	//animaciones
+	//anastasia anim
+	if (anim_on & !a_anastasia.empty())
+	{
+		glm::vec3 a = a_anastasia.front();
+		test_pos_x.at(0) = a.x;
+		test_pos_z.at(0) = a.y;
+		test_grados.at(0) = a.z;
+		a_anastasia.pop_front();
+
+	}
+
+	if (anim_on & !a_ayanami.empty())
+	{
+		glm::vec3 a = a_ayanami.front();
+		test_pos_x.at(1) = a.x;
+		test_pos_z.at(1) = a.y;
+		test_grados.at(1) = a.z;
+		a_ayanami.pop_front();
+
+	}
+	/*if (anim_on & a_anastasia.empty())
+	{
+		test_pos_x.at(0) = a_anastasia.front().x;
+		test_pos_z.at(0) = a_anastasia.front().y;
+		test_grados.at(0) = a_anastasia.front().z;
+
+	}*/
 }
 
 void display(Shader shader, Shader projectionShader, Model modelo, Model pista, Model pista2, Model reja, vector<Model> tienda, vector<Model> gente, vector<Model> arbol)
@@ -3330,14 +3371,14 @@ void display(Shader shader, Shader projectionShader, Model modelo, Model pista, 
 		model = savestate.at(ind + 1) = glm::rotate(savestate.at(0), glm::radians(ind*30.0f), glm::vec3(0.0f, 0.0f, 1.0f));
 		model = savestate.at(ind + 1) = glm::translate(savestate.at(ind + 1), glm::vec3(0, (8.0*escala) / 2, 0));
 		model = glm::scale(model, glm::vec3(0.25*escala, 8.0*escala, 0.25*escala));
-		projectionShader.setVec3("aColor", glm::vec3((float)100 / 255, (float)83 / 255, (float)148 / 255));
+		projectionShader.setVec3("aColor", glm::vec3((float)(double)rand() / (256) / 255, (float)(double)rand() / (256) / 255, (float)(double)rand() / (256) / 255));
 		projectionShader.setMat4("model", model);
 		glDrawArrays(GL_TRIANGLES, 0, 36);
 		//cabina
 		model = glm::translate(savestate.at(ind + 1), glm::vec3(0, (8.0*escala) / 2, 0));
 		model = savestate_adorno.at(ind) = glm::rotate(model, glm::radians(180.0f) - glm::radians(fortuna_rot) - glm::radians(ind*30.0f), glm::vec3(0.0f, 0.0f, 1.0f));
 		model = glm::scale(model, glm::vec3(0.5*escala, 0.5*escala, 0.5*escala));
-		projectionShader.setVec3("aColor", glm::vec3((float)100 / 255, (float)83 / 255, (float)148 / 255));
+		projectionShader.setVec3("aColor", glm::vec3(0.9f, 0.8f, 0.6f));
 		projectionShader.setMat4("model", model);
 		my_sphere.render();
 		//adornos
@@ -3374,7 +3415,7 @@ void display(Shader shader, Shader projectionShader, Model modelo, Model pista, 
 	model = glm::scale(model, glm::vec3(4.5f, 0.0f, 2.5f));
 	shader.setMat4("model", model);
 	pista2.Draw(shader);
-	////////MOUNTAIN CART
+////////MOUNTAIN CART
 	model = glm::rotate(temp3, glm::radians(90.0f), glm::vec3(1.0f, 0.0f, 0.0f));
 	model = glm::rotate(model, glm::radians(180.0f), glm::vec3(0.0f, 1.0f, 0.0f));
 	model = glm::rotate(model, glm::radians(-30.0f), glm::vec3(0.0f, 0.0f, 1.0f));
@@ -3385,7 +3426,7 @@ void display(Shader shader, Shader projectionShader, Model modelo, Model pista, 
 	model = glm::rotate(model, glm::radians(rotKit_z), glm::vec3(0.0f, 0.0f, 1.0f));
 	shader.setMat4("model", model);
 	modelo.Draw(shader);
-	///////////////
+///////////////
 	//fence bottom start
 	model = savestatereja = glm::translate(model = glm::mat4(1.0f), glm::vec3(15, 0, 52));
 	model = glm::rotate(model, glm::radians(90.0f), glm::vec3(0.0f, 1.0f, 0.0f));
@@ -4218,81 +4259,91 @@ void display(Shader shader, Shader projectionShader, Model modelo, Model pista, 
 	gente.at(1).Draw(shader);
 
 	////Anastasia
-	model = glm::translate(model = glm::mat4(1.0f), glm::vec3(10, 0, 5));
-	model = savestatereja = glm::rotate(model, glm::radians(test_grados), glm::vec3(0.0f, 1.0f, 0.0f));
+	model = glm::translate(model = glm::mat4(1.0f), glm::vec3(test_pos_x.at(0), 0, test_pos_z.at(0)));
+	model = savestatereja = glm::rotate(model, glm::radians(test_grados.at(0)), glm::vec3(0.0f, 1.0f, 0.0f));
 	model = glm::scale(model, glm::vec3(6.5f, 6.5f, 6.5f));
 	shader.setMat4("model", model);
 	gente.at(2).Draw(shader);
 
 	//Ayanami
-	model = glm::translate(model = glm::mat4(1.0f), glm::vec3(0, 0, -100));
-	model = savestatereja = glm::rotate(model, glm::radians(test_grados), glm::vec3(0.0f, 1.0f, 0.0f));
+	model = glm::translate(model = glm::mat4(1.0f), glm::vec3(test_pos_x.at(1), 0, test_pos_z.at(1)));
+	model = savestatereja = glm::rotate(model, glm::radians(test_grados.at(1)), glm::vec3(0.0f, 1.0f, 0.0f));
 	model = glm::scale(model, glm::vec3(6.5f, 6.5f, 6.5f));
 	shader.setMat4("model", model);
 	gente.at(3).Draw(shader);
 
 	//BB
-	model = glm::translate(model = glm::mat4(1.0f), glm::vec3(-200, 0, -150));
-	model = savestatereja = glm::rotate(model, glm::radians(test_grados), glm::vec3(0.0f, 1.0f, 0.0f));
+	model = glm::translate(model = glm::mat4(1.0f), glm::vec3(82, 0, -42));
+	model = savestatereja = glm::rotate(model, glm::radians(0.0f), glm::vec3(0.0f, 1.0f, 0.0f));
 	model = glm::scale(model, glm::vec3(6.5f, 6.5f, 6.5f));
 	shader.setMat4("model", model);
 	gente.at(4).Draw(shader);
 
 	//futaba
-	model = glm::translate(model = glm::mat4(1.0f), glm::vec3(400, 0, 200));
-	model = savestatereja = glm::rotate(model, glm::radians(test_grados), glm::vec3(0.0f, 1.0f, 0.0f));
+	model = glm::translate(model = glm::mat4(1.0f), glm::vec3(225, 0, -116.5));
+	model = savestatereja = glm::rotate(model, glm::radians(0.0f), glm::vec3(0.0f, 1.0f, 0.0f));
 	model = glm::scale(model, glm::vec3(6.5f, 6.5f, 6.5f));
 	shader.setMat4("model", model);
 	gente.at(5).Draw(shader);
 
 	//indy
-	model = glm::translate(model = glm::mat4(1.0f), glm::vec3(50, 0, -50));
-	model = savestatereja = glm::rotate(model, glm::radians(test_grados), glm::vec3(0.0f, 1.0f, 0.0f));
+	model = glm::translate(model = glm::mat4(1.0f), glm::vec3(133.75, 0, -197.5));
+	model = savestatereja = glm::rotate(model, glm::radians(184.0f), glm::vec3(0.0f, 1.0f, 0.0f));
 	model = glm::scale(model, glm::vec3(6.5f, 6.5f, 6.5f));
 	shader.setMat4("model", model);
 	gente.at(6).Draw(shader);
 
 	//suika
-	model = glm::translate(model = glm::mat4(1.0f), glm::vec3(100, 0, -100));
-	model = savestatereja = glm::rotate(model, glm::radians(test_grados), glm::vec3(0.0f, 1.0f, 0.0f));
+	model = glm::translate(model = glm::mat4(1.0f), glm::vec3(153, 0, -252));
+	model = savestatereja = glm::rotate(model, glm::radians(322.0f), glm::vec3(0.0f, 1.0f, 0.0f));
 	model = glm::scale(model, glm::vec3(6.5f, 6.5f, 6.5f));
 	shader.setMat4("model", model);
 	gente.at(7).Draw(shader);
 
 	//mai
-	model = glm::translate(model = glm::mat4(1.0f), glm::vec3(25, 0, -75));
-	model = savestatereja = glm::rotate(model, glm::radians(test_grados), glm::vec3(0.0f, 1.0f, 0.0f));
+	model = glm::translate(model = glm::mat4(1.0f), glm::vec3(-191, 0, -235));
+	model = savestatereja = glm::rotate(model, glm::radians(266.0f), glm::vec3(0.0f, 1.0f, 0.0f));
 	model = glm::scale(model, glm::vec3(6.5f, 6.5f, 6.5f));
 	shader.setMat4("model", model);
 	gente.at(8).Draw(shader);
 
 	//miri
-	model = glm::translate(model = glm::mat4(1.0f), glm::vec3(400, 0, -600));
-	model = savestatereja = glm::rotate(model, glm::radians(test_grados), glm::vec3(0.0f, 1.0f, 0.0f));
+	model = glm::translate(model = glm::mat4(1.0f), glm::vec3(-400, 0, -291));
+	model = savestatereja = glm::rotate(model, glm::radians(353.0f), glm::vec3(0.0f, 1.0f, 0.0f));
 	model = glm::scale(model, glm::vec3(6.5f, 6.5f, 6.5f));
 	shader.setMat4("model", model);
 	gente.at(9).Draw(shader);
 
 	//mochi
-	model = glm::translate(model = glm::mat4(1.0f), glm::vec3(300, 0, -75));
-	model = savestatereja = glm::rotate(model, glm::radians(test_grados), glm::vec3(0.0f, 1.0f, 0.0f));
+	model = glm::translate(model = glm::mat4(1.0f), glm::vec3(-390, 0, -147));
+	model = savestatereja = glm::rotate(model, glm::radians(228.0f), glm::vec3(0.0f, 1.0f, 0.0f));
 	model = glm::scale(model, glm::vec3(6.5f, 6.5f, 6.5f));
 	shader.setMat4("model", model);
 	gente.at(10).Draw(shader);
 
-	//puede ser util para encontrar coordenadas de x, z, además de rotaciones en y
-	model = glm::translate(model = glm::mat4(1.0f), glm::vec3(test_pos_x, 0, test_pos_z));
-	model = savestatereja = glm::rotate(model, glm::radians(test_grados), glm::vec3(0.0f, 1.0f, 0.0f));
-	model = glm::scale(model, glm::vec3(6.5f, 6.5f, 6.5f));
+	//puesto heuehe
+	model = glm::translate(model = glm::mat4(1.0f), glm::vec3(-168.75, 0, -226.25));
+	model = savestatereja = glm::rotate(model, glm::radians(180.0f), glm::vec3(0.0f, 1.0f, 0.0f));
+	model = glm::scale(model, glm::vec3(4.5f, 4.5f, 4.5f));
 	shader.setMat4("model", model);
-	gente.at(11).Draw(shader);
+	tienda.at(8).Draw(shader);
 
 	//puede ser util para encontrar coordenadas de x, z, además de rotaciones en y
-	model = glm::translate(model = glm::mat4(1.0f), glm::vec3(test_pos_x2, 0, test_pos_z2));
-	model = glm::rotate(model, glm::radians(test_grados), glm::vec3(0.0f, 1.0f, 0.0f));
+	/*model = glm::translate(model = glm::mat4(1.0f), glm::vec3(test_pos_x.at(11), 0, test_pos_z.at(11)));
+	model = savestatereja = glm::rotate(model, glm::radians(test_grados.at(11)), glm::vec3(0.0f, 1.0f, 0.0f));
+	model = glm::scale(model, glm::vec3(4.5f, 4.5f, 4.5f));
+	shader.setMat4("model", model);
+	tienda.at(8).Draw(shader); */
+
+
+	//puede ser util para encontrar coordenadas de x, z, además de rotaciones en y
+	/*model = glm::translate(model = glm::mat4(1.0f), glm::vec3(test_pos_x2, 0, test_pos_z2));
+	model = glm::rotate(model, glm::radians(test_grados.at(11)), glm::vec3(0.0f, 1.0f, 0.0f));
 	model = glm::scale(model, glm::vec3(6.5f, 6.5f, 6.5f));
 	shader.setMat4("model", model);
-	gente.at(0).Draw(shader);
+	gente.at(0).Draw(shader);*/
+
+
 
 }
 
@@ -4360,13 +4411,17 @@ int main()
 	Model reja = ((char *)"Models/reja/reja.obj");
 	std::vector<Model> tienda{ (char *)"Models/tienda1/tienda1.obj" , (char *)"Models/tienda2/tienda2.obj" , (char *)"Models/tienda3/tienda3.obj" ,
 		(char *)"Models/tienda4/tienda4.obj" , (char *)"Models/tienda5/tienda5.obj", (char *)"Models/tienda7/tienda7.obj",
-		(char *)"Models/tienda6/tienda6.obj" , (char *)"Models/muro/muro.obj" };
+		(char *)"Models/tienda6/untitled.obj" , (char *)"Models/muro/muro.obj" , (char *)"Models/puesto/tiendita.obj" };
 	std::vector<Model> gente{ (char *)"Models/gente/girl1/untitled.obj", (char *)"Models/gente/nigga/nigga.obj", (char *)"Models/gente/anastasia/anastasia.obj",(char *)"Models/gente/ayanami/ayanami.obj"
-		,(char *)"Models/gente/bb/bb.obj",(char *)"Models/gente/futaba/untitled.obj", (char *)"Models/gente/indy/indy.obj",
-		(char *)"Models/gente/japanesegoburin/untitled.obj",(char *)"Models/gente/mai/mai.obj",(char *)"Models/gente/miri/miri.obj",(char *)"Models/gente/mochi/mochi.obj" ,(char *)"Models/gente/misaki/misaki.obj" };
-	std::vector<Model> arbol{ (char *)"Models/nature/arbol1/arbol1.obj", (char *)"Models/nature/arbol2/arbol1.obj", (char *)"Models/nature/arbol3/arbol3.obj" };
+								,(char *)"Models/gente/bb/bb.obj",(char *)"Models/gente/futaba/untitled.obj", (char *)"Models/gente/indy/indy.obj",
+								(char *)"Models/gente/japanesegoburin/untitled.obj",(char *)"Models/gente/mai/mai.obj",(char *)"Models/gente/miri/miri.obj",(char *)"Models/gente/mochi/mochi.obj" ,(char *)"Models/gente/misaki/misaki.obj" };
+	std::vector<Model> arbol{ (char *)"Models/nature/arbol1/arbol1.obj", (char *)"Models/nature/arbol2/arbol1.obj", (char *)"Models/nature/arbol3/arbol3.obj"};
 	glm::mat4 projection = glm::mat4(1.0f);	//This matrix is for Projection
 	projection = glm::perspective(glm::radians(camera.Zoom), (float)SCR_WIDTH / (float)SCR_HEIGHT, 0.1f, 2000.0f);
+	
+	//std::vector<Model> girlsepa{ (char *)"Models/Personaje/bota.obj", (char *)"Models/Personaje/piernader.obj", (char *)"Models/Personaje/piernaizq.obj", (char *)"Models/Personaje/torso.obj", (char *)"Models/Personaje/brazoder.obj",(char *)"Models/Personaje/brazoizq.obj",(char *)"Models/Personaje/cabeza.obj" };
+
+	
 	// render loop
 	// While the windows is not closed
 	while (!glfwWindowShouldClose(window))
@@ -4463,8 +4518,8 @@ void my_input(GLFWwindow *window)
 
 	if (glfwGetKey(window, GLFW_KEY_R) == GLFW_PRESS)
 	{
-		test_grados += 1.0;
-		std::cout << "Grados: " << test_grados << std::endl;
+		test_grados.at(11) += 2.0;
+		std::cout << "Grados: " << test_grados.at(11) << std::endl;
 	}
 
 	if (glfwGetKey(window, GLFW_KEY_G) == GLFW_PRESS)
@@ -4482,69 +4537,54 @@ void my_input(GLFWwindow *window)
 		for (const auto &e : yawvec) outFile3 << e << "\n";
 	}
 
+	if (glfwGetKey(window, GLFW_KEY_N) == GLFW_PRESS)
+		animrecord = true;
+	if (glfwGetKey(window, GLFW_KEY_M) == GLFW_PRESS)
+	{
+		animrecord = false;
+		for (const auto &e : a_ayanami)
+		{
+			outAnim << e.x << "\n";
+			outAnim << e.y << "\n";
+			outAnim << e.z << "\n";
+		}
 
+	}
 
 	if (glfwGetKey(window, GLFW_KEY_T) == GLFW_PRESS)
 	{
-		test_grados -= 1.0;
-		std::cout << "Grados: " << test_grados << std::endl;
+		test_grados.at(11) -= 2.0;
+		std::cout << "Grados: " << test_grados.at(11) << std::endl;
 	}
 	if (glfwGetKey(window, GLFW_KEY_UP) == GLFW_PRESS)
 	{
-		test_pos_z += 1.25;
-		std::cout << "PosZ: " << test_pos_z << std::endl;
+		test_pos_z.at(11)+= 1.25;
+		std::cout << "PosZ: " << test_pos_z.at(11)<< std::endl;
 	}
 	if (glfwGetKey(window, GLFW_KEY_DOWN) == GLFW_PRESS)
 	{
-		test_pos_z -= 1.25;
-		std::cout << "PosZ: " << test_pos_z << std::endl;
+		test_pos_z.at(11)-= 1.25;
+		std::cout << "PosZ: " << test_pos_z.at(11)<< std::endl;
 	}
 	if (glfwGetKey(window, GLFW_KEY_RIGHT) == GLFW_PRESS)
 	{
-		test_pos_x += 1.25;
-		std::cout << "PosX: " << test_pos_x << std::endl;
+		test_pos_x.at(11) += 1.25;
+		std::cout << "PosX: " << test_pos_x.at(11) << std::endl;
 	}
 	if (glfwGetKey(window, GLFW_KEY_LEFT) == GLFW_PRESS)
 	{
-		test_pos_x -= 1.25;
-		std::cout << "PosX: " << test_pos_x << std::endl;
+		test_pos_x.at(11) -= 1.25;
+		std::cout << "PosX: " << test_pos_x.at(11) << std::endl;
 	}
 	if (glfwGetKey(window, GLFW_KEY_I) == GLFW_PRESS)
 	{
 		std::cout << "-----COORDINATES-----" << std::endl;
-		std::cout << "PosX: " << test_pos_x << std::endl;
-		std::cout << "PosZ: " << test_pos_z << std::endl;
-		std::cout << "Grados: " << test_grados << std::endl;
+		std::cout << "PosX: " << test_pos_x.at(11) << std::endl;
+		std::cout << "PosZ: " << test_pos_z.at(11) << std::endl;
+		std::cout << "Grados: " << test_grados.at(11) << std::endl;
 		std::cout << "---------------------" << std::endl;
 	}
 
-	if (glfwGetKey(window, GLFW_KEY_8) == GLFW_PRESS)
-	{
-		test_pos_z2 += 1.25;
-		std::cout << "PosZ: " << test_pos_z2 << std::endl;
-	}
-	if (glfwGetKey(window, GLFW_KEY_5) == GLFW_PRESS)
-	{
-		test_pos_z2 -= 1.25;
-		std::cout << "PosZ: " << test_pos_z2 << std::endl;
-	}
-	if (glfwGetKey(window, GLFW_KEY_6) == GLFW_PRESS)
-	{
-		test_pos_x2 += 1.25;
-		std::cout << "PosX: " << test_pos_x2 << std::endl;
-	}
-	if (glfwGetKey(window, GLFW_KEY_4) == GLFW_PRESS)
-	{
-		test_pos_x2 -= 1.25;
-		std::cout << "PosX: " << test_pos_x2 << std::endl;
-	}
-	if (glfwGetKey(window, GLFW_KEY_L) == GLFW_PRESS)
-	{
-		std::cout << "-----COORDINATES-----" << std::endl;
-		std::cout << "PosX: " << test_pos_x2 << std::endl;
-		std::cout << "PosZ: " << test_pos_z2 << std::endl;
-		std::cout << "---------------------" << std::endl;
-	}
 
 	if (glfwGetKey(window, GLFW_KEY_V) == GLFW_PRESS)
 	{
@@ -4566,7 +4606,29 @@ void my_input(GLFWwindow *window)
 		available = true;
 	}
 
+	if (glfwGetKey(window, GLFW_KEY_8) == GLFW_PRESS)
+	{
+		if (available2)
+		{
+			available2 = false;
+			load_vectors_anim();
+		}
+		anim_on = true;
+	}
+
+	if (glfwGetKey(window, GLFW_KEY_9) == GLFW_PRESS)
+	{
+		anim_on = false;
+	}
+
+	if (glfwGetKey(window, GLFW_KEY_0) == GLFW_PRESS)
+	{
+		available2 = true;
+	}
+
+	
 }
+
 
 void load_vectors()
 {
@@ -4611,6 +4673,142 @@ void load_vectors()
 			yawvec.push_back(value);
 		std::cout << "Deque3 load finished" << std::endl;
 	}
+	std::cout << "Load funcion ends" << std::endl;
+}
+
+
+void load_vectors_anim()
+{
+	std::cout << "Load funcion begins" << std::endl;
+	inAnim1.clear();
+	/*inAnim2.clear();
+	inAnim3.clear();
+	inAnim4.clear();
+	inAnim5.clear();
+	inAnim6.clear();
+	inAnim7.clear();
+	inAnim8.clear();*/
+
+	if (inAnim1)
+	{
+		std::cout << "Deque1 load started" << std::endl;
+		inAnim1.seekg(0, ios::beg);
+		a_anastasia.clear();
+		double value, value2, value3;
+		while (inAnim1 >> value)
+		{
+			inAnim1 >> value2;
+			inAnim1 >> value3;
+			a_anastasia.push_back(glm::vec3(value, value2, value3));
+		}
+		std::cout << "Deque1 load finished" << std::endl;
+	}
+
+	if (inAnim2)
+	{
+		std::cout << "Deque1 load started" << std::endl;
+		inAnim2.seekg(0, ios::beg);
+		a_ayanami.clear();
+		double value, value2, value3;
+		while (inAnim2 >> value)
+		{
+			inAnim2 >> value2;
+			inAnim2 >> value3;
+			a_ayanami.push_back(glm::vec3(value, value2, value3));
+		}
+		std::cout << "Deque1 load finished" << std::endl;
+	}
+	/*
+	if (inAnim3)
+	{
+		std::cout << "Deque1 load started" << std::endl;
+		inAnim3.seekg(0, ios::beg);
+		a_anastasia.clear();
+		double value, value2, value3;
+		while (inAnim1 >> value)
+		{
+			inAnim3 >> value2;
+			inAnim3 >> value3;
+			a_anastasia.push_back(glm::vec3(value, value2, value3));
+		}
+		std::cout << "Deque1 load finished" << std::endl;
+	}
+
+	if (inAnim1)
+	{
+		std::cout << "Deque1 load started" << std::endl;
+		inAnim1.seekg(0, ios::beg);
+		a_anastasia.clear();
+		double value, value2, value3;
+		while (inAnim1 >> value)
+		{
+			inAnim1 >> value2;
+			inAnim1 >> value3;
+			a_anastasia.push_back(glm::vec3(value, value2, value3));
+		}
+		std::cout << "Deque1 load finished" << std::endl;
+	}
+
+	if (inAnim1)
+	{
+		std::cout << "Deque1 load started" << std::endl;
+		inAnim1.seekg(0, ios::beg);
+		a_anastasia.clear();
+		double value, value2, value3;
+		while (inAnim1 >> value)
+		{
+			inAnim1 >> value2;
+			inAnim1 >> value3;
+			a_anastasia.push_back(glm::vec3(value, value2, value3));
+		}
+		std::cout << "Deque1 load finished" << std::endl;
+	}
+
+	if (inAnim1)
+	{
+		std::cout << "Deque1 load started" << std::endl;
+		inAnim1.seekg(0, ios::beg);
+		a_anastasia.clear();
+		double value, value2, value3;
+		while (inAnim1 >> value)
+		{
+			inAnim1 >> value2;
+			inAnim1 >> value3;
+			a_anastasia.push_back(glm::vec3(value, value2, value3));
+		}
+		std::cout << "Deque1 load finished" << std::endl;
+	}
+
+	if (inAnim1)
+	{
+		std::cout << "Deque1 load started" << std::endl;
+		inAnim1.seekg(0, ios::beg);
+		a_anastasia.clear();
+		double value, value2, value3;
+		while (inAnim1 >> value)
+		{
+			inAnim1 >> value2;
+			inAnim1 >> value3;
+			a_anastasia.push_back(glm::vec3(value, value2, value3));
+		}
+		std::cout << "Deque1 load finished" << std::endl;
+	}
+
+	if (inAnim1)
+	{
+		std::cout << "Deque1 load started" << std::endl;
+		inAnim1.seekg(0, ios::beg);
+		a_anastasia.clear();
+		double value, value2, value3;
+		while (inAnim1 >> value)
+		{
+			inAnim1 >> value2;
+			inAnim1 >> value3;
+			a_anastasia.push_back(glm::vec3(value, value2, value3));
+		}
+		std::cout << "Deque1 load finished" << std::endl;
+	}
+	*/
 	std::cout << "Load funcion ends" << std::endl;
 }
 
