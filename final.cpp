@@ -128,7 +128,12 @@ std::ofstream outAnim("Animations/ayanami.nino", ios::out | ios::binary);
 std::ifstream inAnim1("Animations/saved/anastasia.nino");
 std::ifstream inAnim2("Animations/saved/ayanami.nino");
 
+ISoundEngine * engine = irrklang::createIrrKlangDevice();
 
+//patopato
+float duck_position = 0.0f;
+bool duck_direction = true;
+float patoto1 = 0.0f, patoto2 = 0.0f, patoto3 = 0.0f, patoto4 = 0.0f, patoto5 = 0.0f, patoto6 = 0.0f;
 
 
 unsigned int generateTextures(const char* filename, bool alfa)
@@ -258,6 +263,18 @@ void animate(void)
 	if (play)
 	{
 		fortuna_rot += 0.2f; //rueda de la fortuna
+		if (duck_direction)
+		{
+			duck_position += 0.1;
+			if (duck_position >= 10.0f)
+				duck_direction = false;
+		}
+		else
+		{
+			duck_position -= 0.1;
+			if (duck_position <= 0.0f)
+				duck_direction = true;
+		}
 	}
 	//camara grabar
 	if (recording)
@@ -3396,6 +3413,7 @@ void display(Shader shader, Shader projectionShader, Model modelo, Model pista, 
 
 	//torus, rueda para la fortuna huehuehueue
 	model = glm::scale(savestate.at(0), glm::vec3(1.8f*escala, 1.8f*escala, 0.3f*escala));
+	projectionShader.setVec3("aColor", glm::vec3((float)244 / 255, (float)90 / 255, (float)116 / 255));
 	//model = glm::translate(model, lightPos);
 	projectionShader.setMat4("model", model);
 	my_torus.render();
@@ -3412,6 +3430,12 @@ void display(Shader shader, Shader projectionShader, Model modelo, Model pista, 
 	model = glm::scale(model, glm::vec3(2.5f, 0.0f, 2.5f));
 	shader.setMat4("model", model);
 	pista.Draw(shader);
+
+	model = glm::translate(model = glm::mat4(1.0f), glm::vec3(0, 0, -250.5));
+	model = savestatereja = glm::rotate(model, glm::radians(90.0f), glm::vec3(0.0f, 1.0f, 0.0f));
+	model = glm::scale(model, glm::vec3(4.5f, 4.5f, 4.5f));
+	shader.setMat4("model", model);
+	arbol.at(3).Draw(shader); //skybox
 
 	model = glm::translate(model = glm::mat4(1.0f), glm::vec3(0, 0, -600));
 	model = glm::rotate(model, glm::radians(90.0f), glm::vec3(0.0f, 1.0f, 0.0f));
@@ -4283,8 +4307,8 @@ void display(Shader shader, Shader projectionShader, Model modelo, Model pista, 
 	gente.at(4).Draw(shader);
 
 	//futaba
-	model = glm::translate(model = glm::mat4(1.0f), glm::vec3(225, 0, -116.5));
-	model = savestatereja = glm::rotate(model, glm::radians(0.0f), glm::vec3(0.0f, 1.0f, 0.0f));
+	model = glm::translate(model = glm::mat4(1.0f), glm::vec3(-153.75, 0, -226.25));
+	model = savestatereja = glm::rotate(model, glm::radians(-90.0f), glm::vec3(0.0f, 1.0f, 0.0f));
 	model = glm::scale(model, glm::vec3(6.5f, 6.5f, 6.5f));
 	shader.setMat4("model", model);
 	gente.at(5).Draw(shader);
@@ -4299,13 +4323,13 @@ void display(Shader shader, Shader projectionShader, Model modelo, Model pista, 
 	//suika
 	model = glm::translate(model = glm::mat4(1.0f), glm::vec3(153, 0, -252));
 	model = savestatereja = glm::rotate(model, glm::radians(322.0f), glm::vec3(0.0f, 1.0f, 0.0f));
-	model = glm::scale(model, glm::vec3(6.5f, 6.5f, 6.5f));
+	model = glm::scale(model, glm::vec3(8.5f, 8.5f, 8.5f));
 	shader.setMat4("model", model);
 	gente.at(7).Draw(shader);
 
 	//mai
-	model = glm::translate(model = glm::mat4(1.0f), glm::vec3(-191, 0, -235));
-	model = savestatereja = glm::rotate(model, glm::radians(266.0f), glm::vec3(0.0f, 1.0f, 0.0f));
+	model = glm::translate(model = glm::mat4(1.0f), glm::vec3(-163.75, 0, -235));
+	model = savestatereja = glm::rotate(model, glm::radians(74.0f), glm::vec3(0.0f, 1.0f, 0.0f));
 	model = glm::scale(model, glm::vec3(6.5f, 6.5f, 6.5f));
 	shader.setMat4("model", model);
 	gente.at(8).Draw(shader);
@@ -4331,12 +4355,87 @@ void display(Shader shader, Shader projectionShader, Model modelo, Model pista, 
 	shader.setMat4("model", model);
 	tienda.at(8).Draw(shader);
 
-	//puede ser util para encontrar coordenadas de x, z, además de rotaciones en y
-	/*model = glm::translate(model = glm::mat4(1.0f), glm::vec3(test_pos_x.at(11), 0, test_pos_z.at(11)));
-	model = savestatereja = glm::rotate(model, glm::radians(test_grados.at(11)), glm::vec3(0.0f, 1.0f, 0.0f));
+	//puesto heuehe
+	model = glm::translate(model = glm::mat4(1.0f), glm::vec3(-168.75, 0, -226.25));
+	model = savestatereja = glm::rotate(model, glm::radians(180.0f), glm::vec3(0.0f, 1.0f, 0.0f));
 	model = glm::scale(model, glm::vec3(4.5f, 4.5f, 4.5f));
 	shader.setMat4("model", model);
-	tienda.at(8).Draw(shader); */
+	tienda.at(8).Draw(shader);
+
+	//patos de tiro
+	model = savestatereja = glm::translate(model = glm::mat4(1.0f), glm::vec3(-168.75, 6, -227.5 + duck_position));
+	//nivel inferior
+	model = glm::translate(savestatereja, glm::vec3(patoto1, sin(duck_position), 0.0f));
+	model = glm::rotate(model, glm::radians(90.0f), glm::vec3(0.0f, 1.0f, 0.0f));
+	model = glm::scale(model, glm::vec3(4.5f, 4.5f, 4.5f));
+	shader.setMat4("model", model);
+	tienda.at(9).Draw(shader);
+
+	model = glm::translate(savestatereja, glm::vec3(patoto2, -sin(duck_position), -3.0f));
+	model = glm::rotate(model, glm::radians(90.0f), glm::vec3(0.0f, 1.0f, 0.0f));
+	model = glm::scale(model, glm::vec3(4.5f, 4.5f, 4.5f));
+	shader.setMat4("model", model);
+	tienda.at(9).Draw(shader);
+
+	model = glm::translate(savestatereja, glm::vec3(patoto5, sin(duck_position), -6.0f));
+	model = glm::rotate(model, glm::radians(90.0f), glm::vec3(0.0f, 1.0f, 0.0f));
+	model = glm::scale(model, glm::vec3(4.5f, 4.5f, 4.5f));
+	shader.setMat4("model", model);
+	tienda.at(9).Draw(shader);
+
+	model = glm::translate(savestatereja, glm::vec3(0.0f, -sin(duck_position), -9.0f));
+	model = glm::rotate(model, glm::radians(90.0f), glm::vec3(0.0f, 1.0f, 0.0f));
+	model = glm::scale(model, glm::vec3(4.5f, 4.5f, 4.5f));
+	shader.setMat4("model", model);
+	tienda.at(9).Draw(shader);
+
+	//superior
+	model = savestatereja = glm::translate(model = glm::mat4(1.0f), glm::vec3(-168.75, 8, -217.5 - duck_position));
+
+	model = glm::translate(savestatereja, glm::vec3(patoto6, sin(duck_position), 0.0f));
+	model = glm::rotate(model, glm::radians(90.0f), glm::vec3(0.0f, 1.0f, 0.0f));
+	model = glm::scale(model, glm::vec3(4.5f, 4.5f, 4.5f));
+	shader.setMat4("model", model);
+	tienda.at(9).Draw(shader);
+
+	model = glm::translate(savestatereja, glm::vec3(0.0f, -sin(duck_position), -3.0f));
+	model = glm::rotate(model, glm::radians(90.0f), glm::vec3(0.0f, 1.0f, 0.0f));
+	model = glm::scale(model, glm::vec3(4.5f, 4.5f, 4.5f));
+	shader.setMat4("model", model);
+	tienda.at(9).Draw(shader);
+
+	model = glm::translate(savestatereja, glm::vec3(patoto4, sin(duck_position), -6.0f));
+	model = glm::rotate(model, glm::radians(90.0f), glm::vec3(0.0f, 1.0f, 0.0f));
+	model = glm::scale(model, glm::vec3(4.5f, 4.5f, 4.5f));
+	shader.setMat4("model", model);
+	tienda.at(9).Draw(shader);
+
+	model = glm::translate(savestatereja, glm::vec3(patoto3, -sin(duck_position), -9.0f));
+	model = glm::rotate(model, glm::radians(90.0f), glm::vec3(0.0f, 1.0f, 0.0f));
+	model = glm::scale(model, glm::vec3(4.5f, 4.5f, 4.5f));
+	shader.setMat4("model", model);
+	tienda.at(9).Draw(shader);
+
+	model = glm::translate(model = glm::mat4(1.0f), glm::vec3(-162.5, 0, -226.25));
+	model = savestatereja = glm::rotate(model, glm::radians(180.0f), glm::vec3(0.0f, 1.0f, 0.0f));
+	model = glm::scale(model, glm::vec3(4.5f, 4.5f, 4.5f));
+	shader.setMat4("model", model);
+	tienda.at(10).Draw(shader);
+
+	model = glm::translate(model = glm::mat4(1.0f), glm::vec3(-2.5, 0, -227.5));
+	model = savestatereja = glm::rotate(model, glm::radians(90.0f), glm::vec3(0.0f, 1.0f, 0.0f));
+	model = glm::scale(model, glm::vec3(4.5f, 4.5f, 4.5f));
+	shader.setMat4("model", model);
+	tienda.at(11).Draw(shader);
+
+
+	//puede ser util para encontrar coordenadas de x, z, además de rotaciones en y
+	//model = glm::translate(model = glm::mat4(1.0f), glm::vec3(test_pos_x.at(11), 0, test_pos_z.at(11)));
+	//model = savestatereja = glm::rotate(model, glm::radians(test_grados.at(11)), glm::vec3(0.0f, 1.0f, 0.0f));
+	//model = glm::scale(model, glm::vec3(4.5f, 4.5f, 4.5f));
+	//shader.setMat4("model", model);
+	//gente.at(11).Draw(shader);
+
 
 
 	//puede ser util para encontrar coordenadas de x, z, además de rotaciones en y
@@ -4352,7 +4451,6 @@ void display(Shader shader, Shader projectionShader, Model modelo, Model pista, 
 
 int main()
 {
-	ISoundEngine * engine = irrklang::createIrrKlangDevice();
 
 	if (!engine)
 	{
@@ -4427,11 +4525,11 @@ int main()
 	Model reja = ((char *)"Models/reja/reja.obj");
 	std::vector<Model> tienda{ (char *)"Models/tienda1/tienda1.obj" , (char *)"Models/tienda2/tienda2.obj" , (char *)"Models/tienda3/tienda3.obj" ,
 		(char *)"Models/tienda4/tienda4.obj" , (char *)"Models/tienda5/tienda5.obj", (char *)"Models/tienda7/tienda7.obj",
-		(char *)"Models/tienda6/untitled.obj" , (char *)"Models/muro/muro.obj" , (char *)"Models/puesto/tiendita.obj" };
+		(char *)"Models/tienda6/untitled.obj" , (char *)"Models/muro/muro.obj" , (char *)"Models/puesto/tiendita.obj", (char *)"Models/patovolador/patovolador.obj",(char *)"Models/mesita/mesita_arma.obj",(char *)"Models/circo/circo.obj" };
 	std::vector<Model> gente{ (char *)"Models/gente/girl1/untitled.obj", (char *)"Models/gente/nigga/nigga.obj", (char *)"Models/gente/anastasia/anastasia.obj",(char *)"Models/gente/ayanami/ayanami.obj"
-		,(char *)"Models/gente/bb/bb.obj",(char *)"Models/gente/futaba/untitled.obj", (char *)"Models/gente/indy/indy.obj",
+		,(char *)"Models/gente/bb/bb.obj",(char *)"Models/gente/futaba/futaba.obj", (char *)"Models/gente/indy/indy.obj",
 		(char *)"Models/gente/japanesegoburin/untitled.obj",(char *)"Models/gente/mai/mai.obj",(char *)"Models/gente/miri/miri.obj",(char *)"Models/gente/mochi/mochi.obj" ,(char *)"Models/gente/misaki/misaki.obj" };
-	std::vector<Model> arbol{ (char *)"Models/nature/arbol1/arbol1.obj", (char *)"Models/nature/arbol2/arbol1.obj", (char *)"Models/nature/arbol3/arbol3.obj" };
+	std::vector<Model> arbol{ (char *)"Models/nature/arbol1/arbol1.obj", (char *)"Models/nature/arbol2/arbol1.obj", (char *)"Models/nature/arbol3/arbol3.obj", (char *)"Models/skydome.obj" };
 	glm::mat4 projection = glm::mat4(1.0f);	//This matrix is for Projection
 	projection = glm::perspective(glm::radians(camera.Zoom), (float)SCR_WIDTH / (float)SCR_HEIGHT, 0.1f, 2000.0f);
 
@@ -4640,6 +4738,53 @@ void my_input(GLFWwindow *window)
 	if (glfwGetKey(window, GLFW_KEY_0) == GLFW_PRESS)
 	{
 		available2 = true;
+	}
+
+	if (glfwGetKey(window, GLFW_KEY_L) == GLFW_PRESS)
+	{
+		if (patoto1 == 0.0f)
+		{
+			patoto1 = 5000.0f;
+			engine->play2D("cuack.mp3", false);
+			engine->play2D("sniper.mp3", false);
+			patoto6 = 0.0f;
+		}
+		else if (patoto2 == 0.0f)
+		{
+			patoto2 = 5000.0f;
+			engine->play2D("cuack.mp3", false);
+			engine->play2D("sniper.mp3", false);
+			patoto5 = 0.0f;
+		}
+		else if (patoto3 == 0.0f)
+		{
+			patoto3 = 5000.0f;
+			engine->play2D("cuack.mp3", false);
+			engine->play2D("sniper.mp3", false);
+			patoto4 = 0.0f;
+		}
+		else if (patoto4 == 0.0f)
+		{
+			patoto4 = 5000.0f;
+			engine->play2D("cuack.mp3", false);
+			engine->play2D("sniper.mp3", false);
+			engine->play2D("sniper.mp3", false);
+			patoto3 = 0.0f;
+		}
+		else if (patoto5 == 0.0f)
+		{
+			patoto5 = 5000.0f;
+			engine->play2D("cuack.mp3", false);
+			engine->play2D("sniper.mp3", false);
+			patoto2 = 0.0f;
+		}
+		else if (patoto6 == 0.0f)
+		{
+			patoto6 = 5000.0f;
+			engine->play2D("cuack.mp3", false);
+			engine->play2D("sniper.mp3", false);
+			patoto1 = 0.0f;
+		}
 	}
 
 
